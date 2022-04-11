@@ -1,0 +1,2419 @@
+stages:
+  preprocess-dataset:
+    foreach:
+      - pyramidal-cells
+      - interneurons
+    do:
+      cmd: >
+        morphoclass -v preprocess-dataset
+        --dataset-type ${item}
+        --morphologies-dir data/raw/${item}/morphologies
+        --db-file data/raw/${item}/neurondb.dat
+        --output-csv-path data/preprocessed-${item}.csv
+        --output-report-path reports/preprocess-dataset/${item}.html
+      deps:
+        - data/raw/${item}/morphologies
+        - data/raw/${item}/neurondb.dat
+      outs:
+        - data/preprocessed-${item}.csv
+  preprocess-janelia:
+    cmd: >
+      python data/preprocess-janelia.py
+      data/raw/janelia/selected_morphologies.csv
+      data/preprocessed-janelia.csv
+      .
+    deps:
+      - data/preprocess-janelia.py
+      - data/raw/janelia/selected_morphologies.csv
+    outs:
+      - data/preprocessed-janelia.csv
+  plot-dataset-stats:
+    foreach:
+      - pyramidal-cells
+      - interneurons
+    do:
+      cmd: >
+        morphoclass -v plot-dataset-stats
+        --input-csv-path data/preprocessed-${item}.csv
+        --output-report-path reports/plot-dataset-stats/${item}.html
+      deps:
+        - data/preprocessed-${item}.csv
+        - data/raw/${item}/morphologies
+  mcar-curation:
+    foreach:
+      - pyramidal-cells
+      - interneurons
+    do:
+      cmd: >
+        MCAR_INPUT_CSV_PATH="data/preprocessed-${item}.csv"
+        MCAR_OUTPUT_DIR="data/mcar-curation/${item}"
+        LUIGI_CONFIG_PATH="data/mcar-luigi.cfg"
+        LUIGI_LOGGING_PATH="data/mcar-luigi-logging.cfg"
+        morphology_workflows --local-scheduler Curate
+      deps:
+        - data/preprocessed-${item}.csv
+        - data/raw/${item}/morphologies
+        - data/mcar-luigi.cfg
+      outs:
+        - data/mcar-curation/${item}
+  mcar-curation-janelia:
+    cmd: >
+      MCAR_INPUT_CSV_PATH="data/preprocessed-janelia.csv"
+      MCAR_OUTPUT_DIR="data/mcar-curation/janelia"
+      LUIGI_CONFIG_PATH="data/mcar-luigi.cfg"
+      LUIGI_LOGGING_PATH="data/mcar-luigi-logging.cfg"
+      morphology_workflows --local-scheduler Curate
+    deps:
+      - data/preprocessed-janelia.csv
+      - data/raw/janelia/mouselight_isocortex_ASCII_Files
+      - data/mcar-luigi.cfg
+    outs:
+      - data/mcar-curation/janelia
+  organise-dataset:
+    foreach:
+      - pyramidal-cells
+      - interneurons
+      - janelia
+    do:
+      cmd: >
+        morphoclass -v organise-dataset
+        --input-csv-path data/mcar-curation/${item}/curated_dataset.csv
+        --output-dataset-directory data/final/${item}
+      deps:
+        - data/mcar-curation/${item}
+      outs:
+        - data/final/${item}
+  transfer-learning:
+    foreach: ${transfer_learning.models}
+    do:
+      cmd: >-
+        morphoclass -v transfer-learning
+        --batch-size '${item.batch_size}'
+        --checkpoint-paths-pretrained '${item.checkpoint_paths_pretrained}'
+        --dataset-name '${item.dataset_name}'
+        --feature-extractor-name '${item.feature_extractor_name}'
+        --input-csv '${item.input_csv}'
+        --model-class '${item.model_class}'
+        --model-params '${item.model_params}'
+        --n-epochs '${item.n_epochs}'
+        --optimizer-class '${item.optimizer_class}'
+        --optimizer-params '${item.optimizer_params}'
+        --results-file '${item.results_file}'
+        --seed '${transfer_learning.shared_parameters.seed}'
+      outs:
+      - ${item.results_file}
+      # - ${item.output_wildcard}
+  explain-models:
+    foreach: ${explain_models}
+    do:
+      cmd: >-
+        morphoclass -v explain-models
+        --checkpoint-path ${item.checkpoint_path}
+        --results-file ${item.results_file}
+      deps:
+      - ${item.checkpoint_path}
+      outs:
+      - ${item.checkpoint_path_outs}
+  performance-report:
+    foreach: ${performance-report}
+    do:
+      cmd: >-
+        morphoclass -v performance-report
+        --checkpoint-dir '${item.checkpoint_dir}'
+        --output-dir '${item.output_dir}'
+      deps:
+      - ${item.checkpoint_dir}
+
+  features-in-L1-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv all
+      diagram-deepwalk extract-features/in-L1/all/diagram-deepwalk
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/all/diagram-deepwalk
+  features-in-L1-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv axon
+      diagram-deepwalk extract-features/in-L1/axon/diagram-deepwalk
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/axon/diagram-deepwalk
+  features-in-L1-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv basal
+      diagram-deepwalk extract-features/in-L1/basal/diagram-deepwalk
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/basal/diagram-deepwalk
+  features-in-L1-diagram-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv all
+      diagram-tmd-rd extract-features/in-L1/all/diagram-tmd-rd
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/all/diagram-tmd-rd
+  features-in-L1-diagram-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv axon
+      diagram-tmd-rd extract-features/in-L1/axon/diagram-tmd-rd
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/axon/diagram-tmd-rd
+  features-in-L1-diagram-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv basal
+      diagram-tmd-rd extract-features/in-L1/basal/diagram-tmd-rd
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/basal/diagram-tmd-rd
+  features-in-L1-graph-rd-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv all
+      graph-rd extract-features/in-L1/all/graph-rd
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/all/graph-rd
+  features-in-L1-graph-rd-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv axon
+      graph-rd extract-features/in-L1/axon/graph-rd
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/axon/graph-rd
+  features-in-L1-graph-rd-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv basal
+      graph-rd extract-features/in-L1/basal/graph-rd
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/basal/graph-rd
+  features-in-L1-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv all
+      image-deepwalk extract-features/in-L1/all/image-deepwalk
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/all/image-deepwalk
+  features-in-L1-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv axon
+      image-deepwalk extract-features/in-L1/axon/image-deepwalk
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/axon/image-deepwalk
+  features-in-L1-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv basal
+      image-deepwalk extract-features/in-L1/basal/image-deepwalk
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/basal/image-deepwalk
+  features-in-L1-image-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv all
+      image-tmd-rd extract-features/in-L1/all/image-tmd-rd
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/all/image-tmd-rd
+  features-in-L1-image-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv axon
+      image-tmd-rd extract-features/in-L1/axon/image-tmd-rd
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/axon/image-tmd-rd
+  features-in-L1-image-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv basal
+      image-tmd-rd extract-features/in-L1/basal/image-tmd-rd
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/basal/image-tmd-rd
+  features-in-L23-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv all
+      diagram-deepwalk extract-features/in-L23/all/diagram-deepwalk
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/all/diagram-deepwalk
+  features-in-L23-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv axon
+      diagram-deepwalk extract-features/in-L23/axon/diagram-deepwalk
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/axon/diagram-deepwalk
+  features-in-L23-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv basal
+      diagram-deepwalk extract-features/in-L23/basal/diagram-deepwalk
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/basal/diagram-deepwalk
+  features-in-L23-diagram-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv all
+      diagram-tmd-rd extract-features/in-L23/all/diagram-tmd-rd
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/all/diagram-tmd-rd
+  features-in-L23-diagram-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv axon
+      diagram-tmd-rd extract-features/in-L23/axon/diagram-tmd-rd
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/axon/diagram-tmd-rd
+  features-in-L23-diagram-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv basal
+      diagram-tmd-rd extract-features/in-L23/basal/diagram-tmd-rd
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/basal/diagram-tmd-rd
+  features-in-L23-graph-rd-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv all
+      graph-rd extract-features/in-L23/all/graph-rd
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/all/graph-rd
+  features-in-L23-graph-rd-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv axon
+      graph-rd extract-features/in-L23/axon/graph-rd
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/axon/graph-rd
+  features-in-L23-graph-rd-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv basal
+      graph-rd extract-features/in-L23/basal/graph-rd
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/basal/graph-rd
+  features-in-L23-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv all
+      image-deepwalk extract-features/in-L23/all/image-deepwalk
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/all/image-deepwalk
+  features-in-L23-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv axon
+      image-deepwalk extract-features/in-L23/axon/image-deepwalk
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/axon/image-deepwalk
+  features-in-L23-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv basal
+      image-deepwalk extract-features/in-L23/basal/image-deepwalk
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/basal/image-deepwalk
+  features-in-L23-image-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv all
+      image-tmd-rd extract-features/in-L23/all/image-tmd-rd
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/all/image-tmd-rd
+  features-in-L23-image-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv axon
+      image-tmd-rd extract-features/in-L23/axon/image-tmd-rd
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/axon/image-tmd-rd
+  features-in-L23-image-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv basal
+      image-tmd-rd extract-features/in-L23/basal/image-tmd-rd
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/basal/image-tmd-rd
+  features-in-L4-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv all
+      diagram-deepwalk extract-features/in-L4/all/diagram-deepwalk
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/all/diagram-deepwalk
+  features-in-L4-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv axon
+      diagram-deepwalk extract-features/in-L4/axon/diagram-deepwalk
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/axon/diagram-deepwalk
+  features-in-L4-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv basal
+      diagram-deepwalk extract-features/in-L4/basal/diagram-deepwalk
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/basal/diagram-deepwalk
+  features-in-L4-diagram-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv all
+      diagram-tmd-rd extract-features/in-L4/all/diagram-tmd-rd
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/all/diagram-tmd-rd
+  features-in-L4-diagram-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv axon
+      diagram-tmd-rd extract-features/in-L4/axon/diagram-tmd-rd
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/axon/diagram-tmd-rd
+  features-in-L4-diagram-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv basal
+      diagram-tmd-rd extract-features/in-L4/basal/diagram-tmd-rd
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/basal/diagram-tmd-rd
+  features-in-L4-graph-rd-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv all
+      graph-rd extract-features/in-L4/all/graph-rd
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/all/graph-rd
+  features-in-L4-graph-rd-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv axon
+      graph-rd extract-features/in-L4/axon/graph-rd
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/axon/graph-rd
+  features-in-L4-graph-rd-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv basal
+      graph-rd extract-features/in-L4/basal/graph-rd
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/basal/graph-rd
+  features-in-L4-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv all
+      image-deepwalk extract-features/in-L4/all/image-deepwalk
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/all/image-deepwalk
+  features-in-L4-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv axon
+      image-deepwalk extract-features/in-L4/axon/image-deepwalk
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/axon/image-deepwalk
+  features-in-L4-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv basal
+      image-deepwalk extract-features/in-L4/basal/image-deepwalk
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/basal/image-deepwalk
+  features-in-L4-image-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv all
+      image-tmd-rd extract-features/in-L4/all/image-tmd-rd
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/all/image-tmd-rd
+  features-in-L4-image-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv axon
+      image-tmd-rd extract-features/in-L4/axon/image-tmd-rd
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/axon/image-tmd-rd
+  features-in-L4-image-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv basal
+      image-tmd-rd extract-features/in-L4/basal/image-tmd-rd
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/basal/image-tmd-rd
+  features-in-L5-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv all
+      diagram-deepwalk extract-features/in-L5/all/diagram-deepwalk
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/all/diagram-deepwalk
+  features-in-L5-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv axon
+      diagram-deepwalk extract-features/in-L5/axon/diagram-deepwalk
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/axon/diagram-deepwalk
+  features-in-L5-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv basal
+      diagram-deepwalk extract-features/in-L5/basal/diagram-deepwalk
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/basal/diagram-deepwalk
+  features-in-L5-diagram-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv all
+      diagram-tmd-rd extract-features/in-L5/all/diagram-tmd-rd
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/all/diagram-tmd-rd
+  features-in-L5-diagram-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv axon
+      diagram-tmd-rd extract-features/in-L5/axon/diagram-tmd-rd
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/axon/diagram-tmd-rd
+  features-in-L5-diagram-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv basal
+      diagram-tmd-rd extract-features/in-L5/basal/diagram-tmd-rd
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/basal/diagram-tmd-rd
+  features-in-L5-graph-rd-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv all
+      graph-rd extract-features/in-L5/all/graph-rd
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/all/graph-rd
+  features-in-L5-graph-rd-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv axon
+      graph-rd extract-features/in-L5/axon/graph-rd
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/axon/graph-rd
+  features-in-L5-graph-rd-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv basal
+      graph-rd extract-features/in-L5/basal/graph-rd
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/basal/graph-rd
+  features-in-L5-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv all
+      image-deepwalk extract-features/in-L5/all/image-deepwalk
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/all/image-deepwalk
+  features-in-L5-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv axon
+      image-deepwalk extract-features/in-L5/axon/image-deepwalk
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/axon/image-deepwalk
+  features-in-L5-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv basal
+      image-deepwalk extract-features/in-L5/basal/image-deepwalk
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/basal/image-deepwalk
+  features-in-L5-image-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv all
+      image-tmd-rd extract-features/in-L5/all/image-tmd-rd
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/all/image-tmd-rd
+  features-in-L5-image-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv axon
+      image-tmd-rd extract-features/in-L5/axon/image-tmd-rd
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/axon/image-tmd-rd
+  features-in-L5-image-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv basal
+      image-tmd-rd extract-features/in-L5/basal/image-tmd-rd
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/basal/image-tmd-rd
+  features-in-L6-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv all
+      diagram-deepwalk extract-features/in-L6/all/diagram-deepwalk
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/all/diagram-deepwalk
+  features-in-L6-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv axon
+      diagram-deepwalk extract-features/in-L6/axon/diagram-deepwalk
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/axon/diagram-deepwalk
+  features-in-L6-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv basal
+      diagram-deepwalk extract-features/in-L6/basal/diagram-deepwalk
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/basal/diagram-deepwalk
+  features-in-L6-diagram-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv all
+      diagram-tmd-rd extract-features/in-L6/all/diagram-tmd-rd
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/all/diagram-tmd-rd
+  features-in-L6-diagram-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv axon
+      diagram-tmd-rd extract-features/in-L6/axon/diagram-tmd-rd
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/axon/diagram-tmd-rd
+  features-in-L6-diagram-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv basal
+      diagram-tmd-rd extract-features/in-L6/basal/diagram-tmd-rd
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/basal/diagram-tmd-rd
+  features-in-L6-graph-rd-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv all
+      graph-rd extract-features/in-L6/all/graph-rd
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/all/graph-rd
+  features-in-L6-graph-rd-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv axon
+      graph-rd extract-features/in-L6/axon/graph-rd
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/axon/graph-rd
+  features-in-L6-graph-rd-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv basal
+      graph-rd extract-features/in-L6/basal/graph-rd
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/basal/graph-rd
+  features-in-L6-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv all
+      image-deepwalk extract-features/in-L6/all/image-deepwalk
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/all/image-deepwalk
+  features-in-L6-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv axon
+      image-deepwalk extract-features/in-L6/axon/image-deepwalk
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/axon/image-deepwalk
+  features-in-L6-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv basal
+      image-deepwalk extract-features/in-L6/basal/image-deepwalk
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/basal/image-deepwalk
+  features-in-L6-image-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv all
+      image-tmd-rd extract-features/in-L6/all/image-tmd-rd
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/all/image-tmd-rd
+  features-in-L6-image-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv axon
+      image-tmd-rd extract-features/in-L6/axon/image-tmd-rd
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/axon/image-tmd-rd
+  features-in-L6-image-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv basal
+      image-tmd-rd extract-features/in-L6/basal/image-tmd-rd
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/basal/image-tmd-rd
+  features-in-merged-layers-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
+      all diagram-deepwalk extract-features/in-merged-layers/all/diagram-deepwalk
+    deps:
+    - data/final/interneurons-merged-layers.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/in-merged-layers/all/diagram-deepwalk
+  features-in-merged-layers-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
+      axon diagram-deepwalk extract-features/in-merged-layers/axon/diagram-deepwalk
+    deps:
+    - data/final/interneurons-merged-layers.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/in-merged-layers/axon/diagram-deepwalk
+  features-in-merged-layers-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
+      basal diagram-deepwalk extract-features/in-merged-layers/basal/diagram-deepwalk
+    deps:
+    - data/final/interneurons-merged-layers.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/in-merged-layers/basal/diagram-deepwalk
+  features-in-merged-layers-diagram-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
+      all diagram-tmd-rd extract-features/in-merged-layers/all/diagram-tmd-rd
+    deps:
+    - data/final/interneurons-merged-layers.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/in-merged-layers/all/diagram-tmd-rd
+  features-in-merged-layers-diagram-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
+      axon diagram-tmd-rd extract-features/in-merged-layers/axon/diagram-tmd-rd
+    deps:
+    - data/final/interneurons-merged-layers.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/in-merged-layers/axon/diagram-tmd-rd
+  features-in-merged-layers-diagram-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
+      basal diagram-tmd-rd extract-features/in-merged-layers/basal/diagram-tmd-rd
+    deps:
+    - data/final/interneurons-merged-layers.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/in-merged-layers/basal/diagram-tmd-rd
+  features-in-merged-layers-graph-rd-all:
+    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
+      all graph-rd extract-features/in-merged-layers/all/graph-rd
+    deps:
+    - data/final/interneurons-merged-layers.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/in-merged-layers/all/graph-rd
+  features-in-merged-layers-graph-rd-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
+      axon graph-rd extract-features/in-merged-layers/axon/graph-rd
+    deps:
+    - data/final/interneurons-merged-layers.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/in-merged-layers/axon/graph-rd
+  features-in-merged-layers-graph-rd-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
+      basal graph-rd extract-features/in-merged-layers/basal/graph-rd
+    deps:
+    - data/final/interneurons-merged-layers.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/in-merged-layers/basal/graph-rd
+  features-in-merged-layers-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
+      all image-deepwalk extract-features/in-merged-layers/all/image-deepwalk
+    deps:
+    - data/final/interneurons-merged-layers.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/in-merged-layers/all/image-deepwalk
+  features-in-merged-layers-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
+      axon image-deepwalk extract-features/in-merged-layers/axon/image-deepwalk
+    deps:
+    - data/final/interneurons-merged-layers.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/in-merged-layers/axon/image-deepwalk
+  features-in-merged-layers-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
+      basal image-deepwalk extract-features/in-merged-layers/basal/image-deepwalk
+    deps:
+    - data/final/interneurons-merged-layers.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/in-merged-layers/basal/image-deepwalk
+  features-in-merged-layers-image-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
+      all image-tmd-rd extract-features/in-merged-layers/all/image-tmd-rd
+    deps:
+    - data/final/interneurons-merged-layers.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/in-merged-layers/all/image-tmd-rd
+  features-in-merged-layers-image-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
+      axon image-tmd-rd extract-features/in-merged-layers/axon/image-tmd-rd
+    deps:
+    - data/final/interneurons-merged-layers.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/in-merged-layers/axon/image-tmd-rd
+  features-in-merged-layers-image-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
+      basal image-tmd-rd extract-features/in-merged-layers/basal/image-tmd-rd
+    deps:
+    - data/final/interneurons-merged-layers.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/in-merged-layers/basal/image-tmd-rd
+  features-lida-in-merged-bc-merged-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv all diagram-deepwalk
+      extract-features/lida-in-merged-bc-merged/all/diagram-deepwalk
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/all/diagram-deepwalk
+  features-lida-in-merged-bc-merged-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv axon diagram-deepwalk
+      extract-features/lida-in-merged-bc-merged/axon/diagram-deepwalk
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/axon/diagram-deepwalk
+  features-lida-in-merged-bc-merged-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv basal diagram-deepwalk
+      extract-features/lida-in-merged-bc-merged/basal/diagram-deepwalk
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/basal/diagram-deepwalk
+  features-lida-in-merged-bc-merged-diagram-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv all diagram-tmd-rd
+      extract-features/lida-in-merged-bc-merged/all/diagram-tmd-rd
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/all/diagram-tmd-rd
+  features-lida-in-merged-bc-merged-diagram-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv axon diagram-tmd-rd
+      extract-features/lida-in-merged-bc-merged/axon/diagram-tmd-rd
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/axon/diagram-tmd-rd
+  features-lida-in-merged-bc-merged-diagram-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv basal diagram-tmd-rd
+      extract-features/lida-in-merged-bc-merged/basal/diagram-tmd-rd
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/basal/diagram-tmd-rd
+  features-lida-in-merged-bc-merged-graph-rd-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv all graph-rd
+      extract-features/lida-in-merged-bc-merged/all/graph-rd
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/all/graph-rd
+  features-lida-in-merged-bc-merged-graph-rd-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv axon graph-rd
+      extract-features/lida-in-merged-bc-merged/axon/graph-rd
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/axon/graph-rd
+  features-lida-in-merged-bc-merged-graph-rd-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv basal graph-rd
+      extract-features/lida-in-merged-bc-merged/basal/graph-rd
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/basal/graph-rd
+  features-lida-in-merged-bc-merged-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv all image-deepwalk
+      extract-features/lida-in-merged-bc-merged/all/image-deepwalk
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/all/image-deepwalk
+  features-lida-in-merged-bc-merged-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv axon image-deepwalk
+      extract-features/lida-in-merged-bc-merged/axon/image-deepwalk
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/axon/image-deepwalk
+  features-lida-in-merged-bc-merged-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv basal image-deepwalk
+      extract-features/lida-in-merged-bc-merged/basal/image-deepwalk
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/basal/image-deepwalk
+  features-lida-in-merged-bc-merged-image-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv all image-tmd-rd
+      extract-features/lida-in-merged-bc-merged/all/image-tmd-rd
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/all/image-tmd-rd
+  features-lida-in-merged-bc-merged-image-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv axon image-tmd-rd
+      extract-features/lida-in-merged-bc-merged/axon/image-tmd-rd
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/axon/image-tmd-rd
+  features-lida-in-merged-bc-merged-image-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv basal image-tmd-rd
+      extract-features/lida-in-merged-bc-merged/basal/image-tmd-rd
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/basal/image-tmd-rd
+  features-lida-in-merged-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv all diagram-deepwalk
+      extract-features/lida-in-merged/all/diagram-deepwalk
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/all/diagram-deepwalk
+  features-lida-in-merged-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv axon diagram-deepwalk
+      extract-features/lida-in-merged/axon/diagram-deepwalk
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/axon/diagram-deepwalk
+  features-lida-in-merged-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv basal diagram-deepwalk
+      extract-features/lida-in-merged/basal/diagram-deepwalk
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/basal/diagram-deepwalk
+  features-lida-in-merged-diagram-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv all diagram-tmd-rd
+      extract-features/lida-in-merged/all/diagram-tmd-rd
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/all/diagram-tmd-rd
+  features-lida-in-merged-diagram-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv axon diagram-tmd-rd
+      extract-features/lida-in-merged/axon/diagram-tmd-rd
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/axon/diagram-tmd-rd
+  features-lida-in-merged-diagram-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv basal diagram-tmd-rd
+      extract-features/lida-in-merged/basal/diagram-tmd-rd
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/basal/diagram-tmd-rd
+  features-lida-in-merged-graph-rd-all:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv all graph-rd extract-features/lida-in-merged/all/graph-rd
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/all/graph-rd
+  features-lida-in-merged-graph-rd-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv axon graph-rd extract-features/lida-in-merged/axon/graph-rd
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/axon/graph-rd
+  features-lida-in-merged-graph-rd-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv basal graph-rd extract-features/lida-in-merged/basal/graph-rd
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/basal/graph-rd
+  features-lida-in-merged-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv all image-deepwalk
+      extract-features/lida-in-merged/all/image-deepwalk
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/all/image-deepwalk
+  features-lida-in-merged-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv axon image-deepwalk
+      extract-features/lida-in-merged/axon/image-deepwalk
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/axon/image-deepwalk
+  features-lida-in-merged-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv basal image-deepwalk
+      extract-features/lida-in-merged/basal/image-deepwalk
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/basal/image-deepwalk
+  features-lida-in-merged-image-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv all image-tmd-rd extract-features/lida-in-merged/all/image-tmd-rd
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/all/image-tmd-rd
+  features-lida-in-merged-image-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv axon image-tmd-rd extract-features/lida-in-merged/axon/image-tmd-rd
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/axon/image-tmd-rd
+  features-lida-in-merged-image-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv basal image-tmd-rd
+      extract-features/lida-in-merged/basal/image-tmd-rd
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/basal/image-tmd-rd
+  features-lida-in-merged-no-nbc-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_no_NBC.csv all diagram-deepwalk
+      extract-features/lida-in-merged-no-nbc/all/diagram-deepwalk
+    deps:
+    - data/final/IN_data_no_NBC.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-no-nbc/all/diagram-deepwalk
+  features-lida-in-merged-no-nbc-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_no_NBC.csv axon diagram-deepwalk
+      extract-features/lida-in-merged-no-nbc/axon/diagram-deepwalk
+    deps:
+    - data/final/IN_data_no_NBC.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-no-nbc/axon/diagram-deepwalk
+  features-lida-in-merged-no-nbc-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_no_NBC.csv basal diagram-deepwalk
+      extract-features/lida-in-merged-no-nbc/basal/diagram-deepwalk
+    deps:
+    - data/final/IN_data_no_NBC.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-no-nbc/basal/diagram-deepwalk
+  features-lida-in-merged-no-nbc-diagram-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_no_NBC.csv all diagram-tmd-rd
+      extract-features/lida-in-merged-no-nbc/all/diagram-tmd-rd
+    deps:
+    - data/final/IN_data_no_NBC.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-no-nbc/all/diagram-tmd-rd
+  features-lida-in-merged-no-nbc-diagram-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_no_NBC.csv axon diagram-tmd-rd
+      extract-features/lida-in-merged-no-nbc/axon/diagram-tmd-rd
+    deps:
+    - data/final/IN_data_no_NBC.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-no-nbc/axon/diagram-tmd-rd
+  features-lida-in-merged-no-nbc-diagram-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_no_NBC.csv basal diagram-tmd-rd
+      extract-features/lida-in-merged-no-nbc/basal/diagram-tmd-rd
+    deps:
+    - data/final/IN_data_no_NBC.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-no-nbc/basal/diagram-tmd-rd
+  features-lida-in-merged-no-nbc-graph-rd-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_no_NBC.csv all graph-rd
+      extract-features/lida-in-merged-no-nbc/all/graph-rd
+    deps:
+    - data/final/IN_data_no_NBC.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-no-nbc/all/graph-rd
+  features-lida-in-merged-no-nbc-graph-rd-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_no_NBC.csv axon graph-rd
+      extract-features/lida-in-merged-no-nbc/axon/graph-rd
+    deps:
+    - data/final/IN_data_no_NBC.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-no-nbc/axon/graph-rd
+  features-lida-in-merged-no-nbc-graph-rd-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_no_NBC.csv basal graph-rd
+      extract-features/lida-in-merged-no-nbc/basal/graph-rd
+    deps:
+    - data/final/IN_data_no_NBC.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-no-nbc/basal/graph-rd
+  features-lida-in-merged-no-nbc-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_no_NBC.csv all image-deepwalk
+      extract-features/lida-in-merged-no-nbc/all/image-deepwalk
+    deps:
+    - data/final/IN_data_no_NBC.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-no-nbc/all/image-deepwalk
+  features-lida-in-merged-no-nbc-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_no_NBC.csv axon image-deepwalk
+      extract-features/lida-in-merged-no-nbc/axon/image-deepwalk
+    deps:
+    - data/final/IN_data_no_NBC.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-no-nbc/axon/image-deepwalk
+  features-lida-in-merged-no-nbc-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_no_NBC.csv basal image-deepwalk
+      extract-features/lida-in-merged-no-nbc/basal/image-deepwalk
+    deps:
+    - data/final/IN_data_no_NBC.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-no-nbc/basal/image-deepwalk
+  features-lida-in-merged-no-nbc-image-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_no_NBC.csv all image-tmd-rd
+      extract-features/lida-in-merged-no-nbc/all/image-tmd-rd
+    deps:
+    - data/final/IN_data_no_NBC.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-no-nbc/all/image-tmd-rd
+  features-lida-in-merged-no-nbc-image-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_no_NBC.csv axon image-tmd-rd
+      extract-features/lida-in-merged-no-nbc/axon/image-tmd-rd
+    deps:
+    - data/final/IN_data_no_NBC.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-no-nbc/axon/image-tmd-rd
+  features-lida-in-merged-no-nbc-image-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_no_NBC.csv basal image-tmd-rd
+      extract-features/lida-in-merged-no-nbc/basal/image-tmd-rd
+    deps:
+    - data/final/IN_data_no_NBC.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-no-nbc/basal/image-tmd-rd
+  features-lida-janelia-L5-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv all diagram-deepwalk
+      extract-features/lida-janelia-L5/all/diagram-deepwalk
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/all/diagram-deepwalk
+  features-lida-janelia-L5-diagram-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical diagram-deepwalk
+      extract-features/lida-janelia-L5/apical/diagram-deepwalk
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/apical/diagram-deepwalk
+  features-lida-janelia-L5-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv axon diagram-deepwalk
+      extract-features/lida-janelia-L5/axon/diagram-deepwalk
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/axon/diagram-deepwalk
+  features-lida-janelia-L5-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv basal diagram-deepwalk
+      extract-features/lida-janelia-L5/basal/diagram-deepwalk
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/basal/diagram-deepwalk
+  features-lida-janelia-L5-diagram-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv all diagram-tmd-rd
+      extract-features/lida-janelia-L5/all/diagram-tmd-rd
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/all/diagram-tmd-rd
+  features-lida-janelia-L5-diagram-tmd-rd-apical:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical diagram-tmd-rd
+      extract-features/lida-janelia-L5/apical/diagram-tmd-rd
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/apical/diagram-tmd-rd
+  features-lida-janelia-L5-diagram-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv axon diagram-tmd-rd
+      extract-features/lida-janelia-L5/axon/diagram-tmd-rd
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/axon/diagram-tmd-rd
+  features-lida-janelia-L5-diagram-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv basal diagram-tmd-rd
+      extract-features/lida-janelia-L5/basal/diagram-tmd-rd
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/basal/diagram-tmd-rd
+  features-lida-janelia-L5-graph-rd-all:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv all graph-rd
+      extract-features/lida-janelia-L5/all/graph-rd
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/all/graph-rd
+  features-lida-janelia-L5-graph-rd-apical:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical graph-rd
+      extract-features/lida-janelia-L5/apical/graph-rd
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/apical/graph-rd
+  features-lida-janelia-L5-graph-rd-axon:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv axon graph-rd
+      extract-features/lida-janelia-L5/axon/graph-rd
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/axon/graph-rd
+  features-lida-janelia-L5-graph-rd-basal:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv basal graph-rd
+      extract-features/lida-janelia-L5/basal/graph-rd
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/basal/graph-rd
+  features-lida-janelia-L5-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv all image-deepwalk
+      extract-features/lida-janelia-L5/all/image-deepwalk
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/all/image-deepwalk
+  features-lida-janelia-L5-image-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical image-deepwalk
+      extract-features/lida-janelia-L5/apical/image-deepwalk
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/apical/image-deepwalk
+  features-lida-janelia-L5-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv axon image-deepwalk
+      extract-features/lida-janelia-L5/axon/image-deepwalk
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/axon/image-deepwalk
+  features-lida-janelia-L5-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv basal image-deepwalk
+      extract-features/lida-janelia-L5/basal/image-deepwalk
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/basal/image-deepwalk
+  features-lida-janelia-L5-image-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv all image-tmd-rd
+      extract-features/lida-janelia-L5/all/image-tmd-rd
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/all/image-tmd-rd
+  features-lida-janelia-L5-image-tmd-rd-apical:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical image-tmd-rd
+      extract-features/lida-janelia-L5/apical/image-tmd-rd
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/apical/image-tmd-rd
+  features-lida-janelia-L5-image-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv axon image-tmd-rd
+      extract-features/lida-janelia-L5/axon/image-tmd-rd
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/axon/image-tmd-rd
+  features-lida-janelia-L5-image-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv basal image-tmd-rd
+      extract-features/lida-janelia-L5/basal/image-tmd-rd
+    deps:
+    - data/final/classes-janelia-L5.csv
+    - data/final/janelia
+    outs:
+    - extract-features/lida-janelia-L5/basal/image-tmd-rd
+  features-pc-L2-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      all diagram-deepwalk extract-features/pc-L2/all/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/all/diagram-deepwalk
+  features-pc-L2-diagram-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      apical diagram-deepwalk extract-features/pc-L2/apical/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/apical/diagram-deepwalk
+  features-pc-L2-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      axon diagram-deepwalk extract-features/pc-L2/axon/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/axon/diagram-deepwalk
+  features-pc-L2-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      basal diagram-deepwalk extract-features/pc-L2/basal/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/basal/diagram-deepwalk
+  features-pc-L2-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      all diagram-tmd-proj extract-features/pc-L2/all/diagram-tmd-proj
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/all/diagram-tmd-proj
+  features-pc-L2-diagram-tmd-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      apical diagram-tmd-proj extract-features/pc-L2/apical/diagram-tmd-proj
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/apical/diagram-tmd-proj
+  features-pc-L2-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      axon diagram-tmd-proj extract-features/pc-L2/axon/diagram-tmd-proj
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/axon/diagram-tmd-proj
+  features-pc-L2-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      basal diagram-tmd-proj extract-features/pc-L2/basal/diagram-tmd-proj
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/basal/diagram-tmd-proj
+  features-pc-L2-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      all graph-proj extract-features/pc-L2/all/graph-proj
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/all/graph-proj
+  features-pc-L2-graph-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      apical graph-proj extract-features/pc-L2/apical/graph-proj
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/apical/graph-proj
+  features-pc-L2-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      axon graph-proj extract-features/pc-L2/axon/graph-proj
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/axon/graph-proj
+  features-pc-L2-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      basal graph-proj extract-features/pc-L2/basal/graph-proj
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/basal/graph-proj
+  features-pc-L2-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      all image-deepwalk extract-features/pc-L2/all/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/all/image-deepwalk
+  features-pc-L2-image-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      apical image-deepwalk extract-features/pc-L2/apical/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/apical/image-deepwalk
+  features-pc-L2-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      axon image-deepwalk extract-features/pc-L2/axon/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/axon/image-deepwalk
+  features-pc-L2-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      basal image-deepwalk extract-features/pc-L2/basal/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/basal/image-deepwalk
+  features-pc-L2-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      all image-tmd-proj extract-features/pc-L2/all/image-tmd-proj
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/all/image-tmd-proj
+  features-pc-L2-image-tmd-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      apical image-tmd-proj extract-features/pc-L2/apical/image-tmd-proj
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/apical/image-tmd-proj
+  features-pc-L2-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      axon image-tmd-proj extract-features/pc-L2/axon/image-tmd-proj
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/axon/image-tmd-proj
+  features-pc-L2-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
+      basal image-tmd-proj extract-features/pc-L2/basal/image-tmd-proj
+    deps:
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2/basal/image-tmd-proj
+  features-pc-L3-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      all diagram-deepwalk extract-features/pc-L3/all/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/all/diagram-deepwalk
+  features-pc-L3-diagram-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      apical diagram-deepwalk extract-features/pc-L3/apical/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/apical/diagram-deepwalk
+  features-pc-L3-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      axon diagram-deepwalk extract-features/pc-L3/axon/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/axon/diagram-deepwalk
+  features-pc-L3-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      basal diagram-deepwalk extract-features/pc-L3/basal/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/basal/diagram-deepwalk
+  features-pc-L3-diagram-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      all diagram-tmd-rd extract-features/pc-L3/all/diagram-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/all/diagram-tmd-rd
+  features-pc-L3-diagram-tmd-rd-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      apical diagram-tmd-rd extract-features/pc-L3/apical/diagram-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/apical/diagram-tmd-rd
+  features-pc-L3-diagram-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      axon diagram-tmd-rd extract-features/pc-L3/axon/diagram-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/axon/diagram-tmd-rd
+  features-pc-L3-diagram-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      basal diagram-tmd-rd extract-features/pc-L3/basal/diagram-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/basal/diagram-tmd-rd
+  features-pc-L3-graph-rd-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      all graph-rd extract-features/pc-L3/all/graph-rd
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/all/graph-rd
+  features-pc-L3-graph-rd-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      apical graph-rd extract-features/pc-L3/apical/graph-rd
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/apical/graph-rd
+  features-pc-L3-graph-rd-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      axon graph-rd extract-features/pc-L3/axon/graph-rd
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/axon/graph-rd
+  features-pc-L3-graph-rd-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      basal graph-rd extract-features/pc-L3/basal/graph-rd
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/basal/graph-rd
+  features-pc-L3-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      all image-deepwalk extract-features/pc-L3/all/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/all/image-deepwalk
+  features-pc-L3-image-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      apical image-deepwalk extract-features/pc-L3/apical/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/apical/image-deepwalk
+  features-pc-L3-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      axon image-deepwalk extract-features/pc-L3/axon/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/axon/image-deepwalk
+  features-pc-L3-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      basal image-deepwalk extract-features/pc-L3/basal/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/basal/image-deepwalk
+  features-pc-L3-image-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      all image-tmd-rd extract-features/pc-L3/all/image-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/all/image-tmd-rd
+  features-pc-L3-image-tmd-rd-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      apical image-tmd-rd extract-features/pc-L3/apical/image-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/apical/image-tmd-rd
+  features-pc-L3-image-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      axon image-tmd-rd extract-features/pc-L3/axon/image-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/axon/image-tmd-rd
+  features-pc-L3-image-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
+      basal image-tmd-rd extract-features/pc-L3/basal/image-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L3
+    outs:
+    - extract-features/pc-L3/basal/image-tmd-rd
+  features-pc-L4-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      all diagram-deepwalk extract-features/pc-L4/all/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/all/diagram-deepwalk
+  features-pc-L4-diagram-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      apical diagram-deepwalk extract-features/pc-L4/apical/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/apical/diagram-deepwalk
+  features-pc-L4-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      axon diagram-deepwalk extract-features/pc-L4/axon/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/axon/diagram-deepwalk
+  features-pc-L4-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      basal diagram-deepwalk extract-features/pc-L4/basal/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/basal/diagram-deepwalk
+  features-pc-L4-diagram-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      all diagram-tmd-rd extract-features/pc-L4/all/diagram-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/all/diagram-tmd-rd
+  features-pc-L4-diagram-tmd-rd-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      apical diagram-tmd-rd extract-features/pc-L4/apical/diagram-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/apical/diagram-tmd-rd
+  features-pc-L4-diagram-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      axon diagram-tmd-rd extract-features/pc-L4/axon/diagram-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/axon/diagram-tmd-rd
+  features-pc-L4-diagram-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      basal diagram-tmd-rd extract-features/pc-L4/basal/diagram-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/basal/diagram-tmd-rd
+  features-pc-L4-graph-rd-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      all graph-rd extract-features/pc-L4/all/graph-rd
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/all/graph-rd
+  features-pc-L4-graph-rd-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      apical graph-rd extract-features/pc-L4/apical/graph-rd
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/apical/graph-rd
+  features-pc-L4-graph-rd-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      axon graph-rd extract-features/pc-L4/axon/graph-rd
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/axon/graph-rd
+  features-pc-L4-graph-rd-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      basal graph-rd extract-features/pc-L4/basal/graph-rd
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/basal/graph-rd
+  features-pc-L4-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      all image-deepwalk extract-features/pc-L4/all/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/all/image-deepwalk
+  features-pc-L4-image-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      apical image-deepwalk extract-features/pc-L4/apical/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/apical/image-deepwalk
+  features-pc-L4-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      axon image-deepwalk extract-features/pc-L4/axon/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/axon/image-deepwalk
+  features-pc-L4-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      basal image-deepwalk extract-features/pc-L4/basal/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/basal/image-deepwalk
+  features-pc-L4-image-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      all image-tmd-rd extract-features/pc-L4/all/image-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/all/image-tmd-rd
+  features-pc-L4-image-tmd-rd-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      apical image-tmd-rd extract-features/pc-L4/apical/image-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/apical/image-tmd-rd
+  features-pc-L4-image-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      axon image-tmd-rd extract-features/pc-L4/axon/image-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/axon/image-tmd-rd
+  features-pc-L4-image-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
+      basal image-tmd-rd extract-features/pc-L4/basal/image-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L4
+    outs:
+    - extract-features/pc-L4/basal/image-tmd-rd
+  features-pc-L5-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      all diagram-deepwalk extract-features/pc-L5/all/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/all/diagram-deepwalk
+  features-pc-L5-diagram-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      apical diagram-deepwalk extract-features/pc-L5/apical/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/apical/diagram-deepwalk
+  features-pc-L5-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      axon diagram-deepwalk extract-features/pc-L5/axon/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/axon/diagram-deepwalk
+  features-pc-L5-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      basal diagram-deepwalk extract-features/pc-L5/basal/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/basal/diagram-deepwalk
+  features-pc-L5-diagram-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      all diagram-tmd-rd extract-features/pc-L5/all/diagram-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/all/diagram-tmd-rd
+  features-pc-L5-diagram-tmd-rd-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      apical diagram-tmd-rd extract-features/pc-L5/apical/diagram-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/apical/diagram-tmd-rd
+  features-pc-L5-diagram-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      axon diagram-tmd-rd extract-features/pc-L5/axon/diagram-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/axon/diagram-tmd-rd
+  features-pc-L5-diagram-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      basal diagram-tmd-rd extract-features/pc-L5/basal/diagram-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/basal/diagram-tmd-rd
+  features-pc-L5-graph-rd-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      all graph-rd extract-features/pc-L5/all/graph-rd
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/all/graph-rd
+  features-pc-L5-graph-rd-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      apical graph-rd extract-features/pc-L5/apical/graph-rd
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/apical/graph-rd
+  features-pc-L5-graph-rd-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      axon graph-rd extract-features/pc-L5/axon/graph-rd
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/axon/graph-rd
+  features-pc-L5-graph-rd-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      basal graph-rd extract-features/pc-L5/basal/graph-rd
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/basal/graph-rd
+  features-pc-L5-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      all image-deepwalk extract-features/pc-L5/all/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/all/image-deepwalk
+  features-pc-L5-image-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      apical image-deepwalk extract-features/pc-L5/apical/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/apical/image-deepwalk
+  features-pc-L5-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      axon image-deepwalk extract-features/pc-L5/axon/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/axon/image-deepwalk
+  features-pc-L5-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      basal image-deepwalk extract-features/pc-L5/basal/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/basal/image-deepwalk
+  features-pc-L5-image-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      all image-tmd-rd extract-features/pc-L5/all/image-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/all/image-tmd-rd
+  features-pc-L5-image-tmd-rd-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      apical image-tmd-rd extract-features/pc-L5/apical/image-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/apical/image-tmd-rd
+  features-pc-L5-image-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      axon image-tmd-rd extract-features/pc-L5/axon/image-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/axon/image-tmd-rd
+  features-pc-L5-image-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
+      basal image-tmd-rd extract-features/pc-L5/basal/image-tmd-rd
+    deps:
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5/basal/image-tmd-rd
+  features-pc-L6-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      all diagram-deepwalk extract-features/pc-L6/all/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/all/diagram-deepwalk
+  features-pc-L6-diagram-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      apical diagram-deepwalk extract-features/pc-L6/apical/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/apical/diagram-deepwalk
+  features-pc-L6-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      axon diagram-deepwalk extract-features/pc-L6/axon/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/axon/diagram-deepwalk
+  features-pc-L6-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      basal diagram-deepwalk extract-features/pc-L6/basal/diagram-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/basal/diagram-deepwalk
+  features-pc-L6-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      all diagram-tmd-proj extract-features/pc-L6/all/diagram-tmd-proj
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/all/diagram-tmd-proj
+  features-pc-L6-diagram-tmd-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      apical diagram-tmd-proj extract-features/pc-L6/apical/diagram-tmd-proj
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/apical/diagram-tmd-proj
+  features-pc-L6-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      axon diagram-tmd-proj extract-features/pc-L6/axon/diagram-tmd-proj
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/axon/diagram-tmd-proj
+  features-pc-L6-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      basal diagram-tmd-proj extract-features/pc-L6/basal/diagram-tmd-proj
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/basal/diagram-tmd-proj
+  features-pc-L6-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      all graph-proj extract-features/pc-L6/all/graph-proj
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/all/graph-proj
+  features-pc-L6-graph-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      apical graph-proj extract-features/pc-L6/apical/graph-proj
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/apical/graph-proj
+  features-pc-L6-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      axon graph-proj extract-features/pc-L6/axon/graph-proj
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/axon/graph-proj
+  features-pc-L6-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      basal graph-proj extract-features/pc-L6/basal/graph-proj
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/basal/graph-proj
+  features-pc-L6-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      all image-deepwalk extract-features/pc-L6/all/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/all/image-deepwalk
+  features-pc-L6-image-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      apical image-deepwalk extract-features/pc-L6/apical/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/apical/image-deepwalk
+  features-pc-L6-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      axon image-deepwalk extract-features/pc-L6/axon/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/axon/image-deepwalk
+  features-pc-L6-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      basal image-deepwalk extract-features/pc-L6/basal/image-deepwalk
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/basal/image-deepwalk
+  features-pc-L6-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      all image-tmd-proj extract-features/pc-L6/all/image-tmd-proj
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/all/image-tmd-proj
+  features-pc-L6-image-tmd-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      apical image-tmd-proj extract-features/pc-L6/apical/image-tmd-proj
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/apical/image-tmd-proj
+  features-pc-L6-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      axon image-tmd-proj extract-features/pc-L6/axon/image-tmd-proj
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/axon/image-tmd-proj
+  features-pc-L6-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
+      basal image-tmd-proj extract-features/pc-L6/basal/image-tmd-proj
+    deps:
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6/basal/image-tmd-proj
+
+  train:
+    foreach: ${training}
+    do:
+      cmd: >-
+        morphoclass -v train
+        --dataset-config ${item.dataset-config}
+        --model-config ${item.model-config}
+        --splitter-config ${item.splitter-config}
+        --checkpoint-dir training/checkpoints/${key}
+      deps:
+        - ${item.dataset-dir}
+        - ${item.dataset-config}
+        - ${item.model-config}
+        - ${item.splitter-config}
+      outs:
+        - training/checkpoints/${key}
+  evaluate:
+    foreach: ${training}
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints/${key}/checkpoint.chk
+        evaluation/${key}.html
+      deps:
+        - training/checkpoints/${key}/checkpoint.chk
+      outs:
+        - evaluation/${key}.html
+        - evaluation/${key}
+  train-alt-neurites:
+    foreach: ${training-alt-neurites}
+    do:
+      cmd: >-
+        morphoclass -v train
+        --dataset-config ${item.dataset-config}
+        --model-config ${item.model-config}
+        --splitter-config ${item.splitter-config}
+        --checkpoint-dir training/checkpoints-alt-neurites/${key}
+      deps:
+        - ${item.dataset-dir}
+        - ${item.dataset-config}
+        - ${item.model-config}
+        - ${item.splitter-config}
+      outs:
+        - training/checkpoints-alt-neurites/${key}
+  evaluate-alt-neurites:
+    foreach: ${training-alt-neurites}
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints-alt-neurites/${key}/checkpoint.chk
+        evaluation/${key}.html
+      deps:
+        - training/checkpoints-alt-neurites/${key}/checkpoint.chk
+      outs:
+        - evaluation/${key}.html
+        - evaluation/${key}
+  train-merged-interneurons:
+    foreach:
+      - cnn-deepwalk
+      - cnn-tmd
+      - decisiontree-deepwalk
+      - decisiontree-tmd
+      - gnn-morphology
+      - perslay-deepwalk
+      - perslay-tmd
+      - xgb-deepwalk
+      - xgb-tmd
+    do:
+      cmd: >-
+        morphoclass -v train
+        --dataset-config training/extra-configs/interneurons-merged-layers.yaml
+        --model-config training/configs/model-${item}.yaml
+        --splitter-config training/configs/splitter-stratifKFold.yaml
+        --checkpoint-dir training/checkpoints-merged-interneurons/${item}
+      deps:
+        - data/final/interneurons-merged-layers.csv
+        - data/final/interneurons
+        - training/extra-configs/interneurons-merged-layers.yaml
+        - training/configs/model-${item}.yaml
+        - training/configs/splitter-stratifKFold.yaml
+      outs:
+        - training/checkpoints-merged-interneurons/${item}
+  evaluate-merged-interneurons:
+    foreach:
+      - cnn-deepwalk
+      - cnn-tmd
+      - decisiontree-deepwalk
+      - decisiontree-tmd
+      - gnn-morphology
+      - perslay-deepwalk
+      - perslay-tmd
+      - xgb-deepwalk
+      - xgb-tmd
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints-merged-interneurons/${item}/checkpoint.chk
+        evaluation/merged-interneurons/${item}.html
+      deps:
+        - training/checkpoints-merged-interneurons/${item}/checkpoint.chk
+      outs:
+        - evaluation/merged-interneurons/${item}.html
+        - evaluation/merged-interneurons/${item}
+  train-pc-L2-merged-classes:
+    foreach:
+      - cnn-deepwalk
+      - cnn-tmd
+      - decisiontree-deepwalk
+      - decisiontree-tmd
+      - gnn-morphology
+      - perslay-deepwalk
+      - perslay-tmd
+      - xgb-deepwalk
+      - xgb-tmd
+    do:
+      cmd: >-
+        morphoclass -v train
+        --dataset-config training/extra-configs/pc-L2-merged-classes.yaml
+        --model-config training/configs/model-${item}.yaml
+        --splitter-config training/configs/splitter-stratifKFold.yaml
+        --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L2-${item}-stratifKFold
+      deps:
+        - data/final/pc-L2-merged.csv
+        - data/final/pyramidal-cells/L2
+        - training/extra-configs/pc-L2-merged-classes.yaml
+        - training/configs/model-${item}.yaml
+        - training/configs/splitter-stratifKFold.yaml
+      outs:
+        - training/checkpoints-pc-merged-classes/pc-L2-${item}-stratifKFold
+  evaluate-pc-L2-merged-classes:
+    foreach:
+      - cnn-deepwalk
+      - cnn-tmd
+      - decisiontree-deepwalk
+      - decisiontree-tmd
+      - gnn-morphology
+      - perslay-deepwalk
+      - perslay-tmd
+      - xgb-deepwalk
+      - xgb-tmd
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints-pc-merged-classes/pc-L2-${item}-stratifKFold/checkpoint.chk
+        evaluation/pc-merged-classes/pc-L2-${item}-stratifKFold.html
+      deps:
+        - training/checkpoints-pc-merged-classes/pc-L2-${item}-stratifKFold/checkpoint.chk
+      outs:
+        - evaluation/pc-merged-classes/pc-L2-${item}-stratifKFold.html
+        - evaluation/pc-merged-classes/pc-L2-${item}-stratifKFold
+  train-pc-L5-merged-classes:
+    foreach:
+      - cnn-deepwalk
+      - cnn-tmd
+      - decisiontree-deepwalk
+      - decisiontree-tmd
+      - gnn-morphology
+      - perslay-deepwalk
+      - perslay-tmd
+      - xgb-deepwalk
+      - xgb-tmd
+    do:
+      cmd: >-
+        morphoclass -v train
+        --dataset-config training/extra-configs/pc-L5-merged-classes.yaml
+        --model-config training/configs/model-${item}.yaml
+        --splitter-config training/configs/splitter-stratifKFold.yaml
+        --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L5-${item}-stratifKFold
+      deps:
+        - data/final/pc-L5-merged.csv
+        - data/final/pyramidal-cells/L5
+        - training/extra-configs/pc-L5-merged-classes.yaml
+        - training/configs/model-${item}.yaml
+        - training/configs/splitter-stratifKFold.yaml
+      outs:
+        - training/checkpoints-pc-merged-classes/pc-L5-${item}-stratifKFold
+  evaluate-pc-L5-merged-classes:
+    foreach:
+      - cnn-deepwalk
+      - cnn-tmd
+      - decisiontree-deepwalk
+      - decisiontree-tmd
+      - gnn-morphology
+      - perslay-deepwalk
+      - perslay-tmd
+      - xgb-deepwalk
+      - xgb-tmd
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints-pc-merged-classes/pc-L5-${item}-stratifKFold/checkpoint.chk
+        evaluation/pc-merged-classes/pc-L5-${item}-stratifKFold.html
+      deps:
+        - training/checkpoints-pc-merged-classes/pc-L5-${item}-stratifKFold/checkpoint.chk
+      outs:
+        - evaluation/pc-merged-classes/pc-L5-${item}-stratifKFold.html
+        - evaluation/pc-merged-classes/pc-L5-${item}-stratifKFold
+  train-pc-L6-merged-classes:
+    foreach:
+      - cnn-deepwalk
+      - cnn-tmd
+      - decisiontree-deepwalk
+      - decisiontree-tmd
+      - gnn-morphology
+      - perslay-deepwalk
+      - perslay-tmd
+      - xgb-deepwalk
+      - xgb-tmd
+    do:
+      cmd: >-
+        morphoclass -v train
+        --dataset-config training/extra-configs/pc-L6-merged-classes.yaml
+        --model-config training/configs/model-${item}.yaml
+        --splitter-config training/configs/splitter-stratifKFold.yaml
+        --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L6-${item}-stratifKFold
+      deps:
+        - data/final/pc-L6-merged.csv
+        - data/final/pyramidal-cells/L6
+        - training/extra-configs/pc-L6-merged-classes.yaml
+        - training/configs/model-${item}.yaml
+        - training/configs/splitter-stratifKFold.yaml
+      outs:
+        - training/checkpoints-pc-merged-classes/pc-L6-${item}-stratifKFold
+  evaluate-pc-L6-merged-classes:
+    foreach:
+      - cnn-deepwalk
+      - cnn-tmd
+      - decisiontree-deepwalk
+      - decisiontree-tmd
+      - gnn-morphology
+      - perslay-deepwalk
+      - perslay-tmd
+      - xgb-deepwalk
+      - xgb-tmd
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints-pc-merged-classes/pc-L6-${item}-stratifKFold/checkpoint.chk
+        evaluation/pc-merged-classes/pc-L6-${item}-stratifKFold.html
+      deps:
+        - training/checkpoints-pc-merged-classes/pc-L6-${item}-stratifKFold/checkpoint.chk
+      outs:
+        - evaluation/pc-merged-classes/pc-L6-${item}-stratifKFold.html
+        - evaluation/pc-merged-classes/pc-L6-${item}-stratifKFold
+  train-lida-in-merged:
+    foreach:
+      - cnn-deepwalk
+      - cnn-tmd
+      - decisiontree-deepwalk
+      - decisiontree-tmd
+      - gnn-morphology
+      - perslay-deepwalk
+      - perslay-tmd
+      - xgb-deepwalk
+      - xgb-tmd
+    do:
+      cmd: >-
+        morphoclass -v train
+        --dataset-config training/extra-configs/lida-in-merged.yaml
+        --model-config training/configs/model-${item}.yaml
+        --splitter-config training/configs/splitter-stratifKFold.yaml
+        --checkpoint-dir training/checkpoints-lida/in-merged-${item}-stratifKFold
+      deps:
+        - data/final/IN_data.csv
+        - data/final/interneurons
+        - training/extra-configs/lida-in-merged.yaml
+        - training/configs/model-${item}.yaml
+        - training/configs/splitter-stratifKFold.yaml
+      outs:
+        - training/checkpoints-lida/in-merged-${item}-stratifKFold
+  evaluate-lida-in-merged:
+    foreach:
+      - cnn-deepwalk
+      - cnn-tmd
+      - decisiontree-deepwalk
+      - decisiontree-tmd
+      - gnn-morphology
+      - perslay-deepwalk
+      - perslay-tmd
+      - xgb-deepwalk
+      - xgb-tmd
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints-lida/in-merged-${item}-stratifKFold/checkpoint.chk
+        evaluation/checkpoints-lida/in-merged-${item}-stratifKFold.html
+      deps:
+        - training/checkpoints-lida/in-merged-${item}-stratifKFold/checkpoint.chk
+      outs:
+        - evaluation/checkpoints-lida/in-merged-${item}-stratifKFold.html
+        - evaluation/checkpoints-lida/in-merged-${item}-stratifKFold
+  train-lida-in-merged-bc-merged:
+    foreach:
+      - cnn-deepwalk
+      - cnn-tmd
+      - decisiontree-deepwalk
+      - decisiontree-tmd
+      - gnn-morphology
+      - perslay-deepwalk
+      - perslay-tmd
+      - xgb-deepwalk
+      - xgb-tmd
+    do:
+      cmd: >-
+        morphoclass -v train
+        --dataset-config training/extra-configs/lida-in-merged-bc-merged.yaml
+        --model-config training/configs/model-${item}.yaml
+        --splitter-config training/configs/splitter-stratifKFold.yaml
+        --checkpoint-dir training/checkpoints-lida/in-merged-bc-merged-${item}-stratifKFold
+      deps:
+        - data/final/IN_data.csv
+        - data/final/interneurons
+        - training/extra-configs/lida-in-merged-bc-merged.yaml
+        - training/configs/model-${item}.yaml
+        - training/configs/splitter-stratifKFold.yaml
+      outs:
+        - training/checkpoints-lida/in-merged-bc-merged-${item}-stratifKFold
+  evaluate-lida-in-merged-bc-merged:
+    foreach:
+      - cnn-deepwalk
+      - cnn-tmd
+      - decisiontree-deepwalk
+      - decisiontree-tmd
+      - gnn-morphology
+      - perslay-deepwalk
+      - perslay-tmd
+      - xgb-deepwalk
+      - xgb-tmd
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints-lida/in-merged-bc-merged-${item}-stratifKFold/checkpoint.chk
+        evaluation/checkpoints-lida/in-merged-bc-merged-${item}-stratifKFold.html
+      deps:
+        - training/checkpoints-lida/in-merged-bc-merged-${item}-stratifKFold/checkpoint.chk
+      outs:
+        - evaluation/checkpoints-lida/in-merged-bc-merged-${item}-stratifKFold.html
+        - evaluation/checkpoints-lida/in-merged-bc-merged-${item}-stratifKFold
+  train-lida-in-merged-no-nbc:
+    foreach:
+      - cnn-deepwalk
+      - cnn-tmd
+      - decisiontree-deepwalk
+      - decisiontree-tmd
+      - gnn-morphology
+      - perslay-deepwalk
+      - perslay-tmd
+      - xgb-deepwalk
+      - xgb-tmd
+    do:
+      cmd: >-
+        morphoclass -v train
+        --dataset-config training/extra-configs/lida-in-merged-no-nbc.yaml
+        --model-config training/configs/model-${item}.yaml
+        --splitter-config training/configs/splitter-stratifKFold.yaml
+        --checkpoint-dir training/checkpoints-lida/in-merged-no-nbc-${item}-stratifKFold
+      deps:
+        - data/final/IN_data.csv
+        - data/final/interneurons
+        - training/extra-configs/lida-in-merged-no-nbc.yaml
+        - training/configs/model-${item}.yaml
+        - training/configs/splitter-stratifKFold.yaml
+      outs:
+        - training/checkpoints-lida/in-merged-no-nbc-${item}-stratifKFold
+  evaluate-lida-in-merged-no-nbc:
+    foreach:
+      - cnn-deepwalk
+      - cnn-tmd
+      - decisiontree-deepwalk
+      - decisiontree-tmd
+      - gnn-morphology
+      - perslay-deepwalk
+      - perslay-tmd
+      - xgb-deepwalk
+      - xgb-tmd
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints-lida/in-merged-no-nbc-${item}-stratifKFold/checkpoint.chk
+        evaluation/checkpoints-lida/in-merged-no-nbc-${item}-stratifKFold.html
+      deps:
+        - training/checkpoints-lida/in-merged-no-nbc-${item}-stratifKFold/checkpoint.chk
+      outs:
+        - evaluation/checkpoints-lida/in-merged-no-nbc-${item}-stratifKFold.html
+        - evaluation/checkpoints-lida/in-merged-no-nbc-${item}-stratifKFold
+  train-janelia-L5:
+    foreach:
+      - cnn-deepwalk
+      - cnn-tmd
+      - decisiontree-deepwalk
+      - decisiontree-tmd
+      - gnn-morphology
+      - perslay-deepwalk
+      - perslay-tmd
+      - xgb-deepwalk
+      - xgb-tmd
+    do:
+      cmd: >-
+        morphoclass -v train
+        --dataset-config training/extra-configs/lida-janelia-L5.yaml
+        --model-config training/configs/model-${item}.yaml
+        --splitter-config training/configs/splitter-stratifKFold.yaml
+        --checkpoint-dir training/checkpoints-lida/janelia-L5-${item}-stratifKFold
+      deps:
+        - data/final/classes-janelia-L5.csv
+        - data/final/janelia
+        - training/extra-configs/lida-janelia-L5.yaml
+        - training/configs/model-${item}.yaml
+        - training/configs/splitter-stratifKFold.yaml
+      outs:
+        - training/checkpoints-lida/janelia-L5-${item}-stratifKFold
+  evaluate-janelia-L5:
+    foreach:
+      - cnn-deepwalk
+      - cnn-tmd
+      - decisiontree-deepwalk
+      - decisiontree-tmd
+      - gnn-morphology
+      - perslay-deepwalk
+      - perslay-tmd
+      - xgb-deepwalk
+      - xgb-tmd
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints-lida/janelia-L5-${item}-stratifKFold/checkpoint.chk
+        evaluation/janelia-L5/${item}-stratifKFold.html
+      deps:
+        - training/checkpoints-lida/janelia-L5-${item}-stratifKFold/checkpoint.chk
+      outs:
+        - evaluation/janelia-L5/${item}-stratifKFold.html
+        - evaluation/janelia-L5/${item}-stratifKFold

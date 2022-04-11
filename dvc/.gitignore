@@ -1,0 +1,4 @@
+# TODO: Either ignore the whole reports folder or track all reports
+/reports/performance-report/
+/reports/preprocess-dataset/
+/reports/plot-dataset-stats/

@@ -1,0 +1,4 @@
+id: stratifKFold
+splitter_class: sklearn.model_selection.StratifiedKFold
+splitter_params:
+  n_splits: 3

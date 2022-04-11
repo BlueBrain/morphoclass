@@ -1,0 +1,9 @@
+ipython<8
+# markupsafe==2.1.0 made a breaking change, jinja2 broken.
+# See https://github.com/pallets/markupsafe/issues/284
+# See https://github.com/dbt-labs/dbt-core/issues/4745
+# Might be fixed once jinja2 is upgraded to version >=3, see
+# https://jinja.palletsprojects.com/en/3.0.x/changes/#version-3-0-0
+MarkupSafe<2.1.0
+# pytest crashed with werkzeug==2.1.1, pinning to an older version...
+werkzeug==2.0.3

@@ -1,0 +1,9 @@
+batch_size: null
+feature_extractor_name: tmd
+id: decisiontree
+model_class: sklearn.tree.DecisionTreeClassifier
+model_params:
+  random_state: 113587
+n_epochs: null
+optimizer_class: null
+optimizer_params: {}

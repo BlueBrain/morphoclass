@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{{ report_title }}</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="center col-lg-12 col-md-12 col-sm-12">
+                <div class="page-header">
+                    <h1 id="tables">{{ report_title }}</h1>
+                </div>
+                <div class="bs-component">
+                    <div class="row">
+                        <div class="col-md-12">
+                            This file contains information and statistics about the dataset that will be sent to MCAR tool for cleaning the morphologies.
+                            It includes:<br/>
+                            <ul>
+                                <li>the list of duplicated files that are removed that are removed from the dataset.csv file,</li>
+                                <li>the list of files that have morpho with different names, but same morphology,</li>
+                                <li>the number of classes found for neurons to see if we got them all.</li>
+                            </ul>
+
+                            Dataset paths:
+                            <ul>
+                                <li>NeuroDB path: <code>{{ neurondb_path }}</code></li>
+                                <li>Morphology directory: <code>{{ morphology_dir }}</code></li>
+                                <li>Output dataset CSV file: <code>{{ csv_path }}</code></li>
+                                <li>Output report file: <code>{{ report_path }}</code></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Statistics</h3>
+                            The classes with less than 2 neurons are removed, but in the stats table below we leave it for reference.
+                            <ul>
+                                <li>Initial number of samples in NeuroDB: <code>{{ morphdb_size }}</code></li>
+                                <li>Initial number of morphology types: <code>{{ n_labels }}</code></li>
+                                <li>Removed samples with duplicate path: <code>{{ n_duplicate_files }}</code></li>
+                                <li>Removed labels with only one neuron: <code>{{ labels_one_neuron }}</code></li>
+                                <li>Number of total removed labels: <code>{{ n_labels_one_neuron }}</code></li>
+                                <li>
+                                    (Interneurons only) Dropped samples with labels containing
+                                    <code>PC</code> or <code>L4_SCC</code>:
+                                    <code>{{ dropped_by_label }}</code>
+                                </li>
+                                <li>(Interneurons only) Number of samples dropped by label: <code>{{ n_dropped_by_label }}</code></li>
+                            </ul>
+                            M-type counts:
+                            {{ df_mtype_counts }}
+                        </div>
+                    </div>
+                    <br /><br/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Samples with Duplicate Path</h3>
+                            The duplicated files are shown in the table. The values highlighted in red are the ones that were removed from the dataset.
+                            {{ df_duplicate_files }}
+                        </div>
+                    </div>
+                    <br /><br/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Duplicated Morphologies</h3>
+                            The items listed below might have different file names, but contain the same morphological data according to <code>morph_tool</code>.
+                            <br/>
+                            The duplicated morphologies are not removed automatically.
+                            If there are any values in the table below, please handle them manually.
+                            {{ df_duplicated_morphologies }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <hr/>
+    </div>
+</body>
+</html>

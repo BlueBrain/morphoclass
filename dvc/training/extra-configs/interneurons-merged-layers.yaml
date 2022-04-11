@@ -1,0 +1,5 @@
+dataset_name: interneurons
+id: in
+input_csv: data/final/interneurons-merged-layers.csv
+layer: none
+oversampling: false

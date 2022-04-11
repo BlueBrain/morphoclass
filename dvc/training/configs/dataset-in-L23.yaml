@@ -1,0 +1,5 @@
+dataset_name: interneurons
+id: in
+input_csv: data/final/interneurons/L23/dataset.csv
+layer: L23
+oversampling: false

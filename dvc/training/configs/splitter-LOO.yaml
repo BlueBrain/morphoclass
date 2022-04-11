@@ -1,0 +1,3 @@
+id: LOO
+splitter_class: sklearn.model_selection.LeaveOneOut
+splitter_params: {}

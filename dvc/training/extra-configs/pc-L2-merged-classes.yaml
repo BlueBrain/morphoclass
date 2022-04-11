@@ -1,0 +1,5 @@
+dataset_name: pyramidal-cells
+id: pc
+input_csv: data/final/pc-L2-merged.csv
+layer: L2
+oversampling: false

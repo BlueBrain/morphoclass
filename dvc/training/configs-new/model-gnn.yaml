@@ -1,0 +1,13 @@
+batch_size: 2
+model_class: morphoclass.models.ManNet
+model_params:
+  edge_weight_idx: null
+  flow: target_to_source
+  lambda_max: 3.0
+  n_features: 1
+  normalization: sym
+  pool_name: avg
+n_epochs: 150
+optimizer_class: torch.optim.Adam
+optimizer_params:
+  lr: 0.005

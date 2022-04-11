@@ -1,0 +1,6 @@
+dataset_name: pyramidal-cells
+id: pc
+input_csv: data/final/classes-janelia-L5.csv
+layer: L5
+neurite_type: apical
+oversampling: false

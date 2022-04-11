@@ -1,0 +1,1681 @@
+datasets:
+  in:
+    dataset_name: interneurons
+    id: in
+    input_dataset_directory: data/raw/interneurons
+    intermediary_directory: reports/data_preparation/interneurons
+    output_dataset_directory: data/prepared/interneurons
+    output_wildcard: '''data/prepared/interneurons/*/*/*.h5'''
+  pc:
+    dataset_name: pyramidal_cells
+    id: pc
+    input_dataset_directory: data/raw/pyramidal_cells
+    intermediary_directory: reports/data_preparation/pyramidal_cells
+    output_dataset_directory: data/prepared/pyramidal_cells
+    output_wildcard: '''data/prepared/pyramidal_cells/*/*/*.h5'''
+explain_models:
+  in_morphology_L6_stratifKFold_gnn_oversampled:
+    checkpoint_path: models/interneurons/L6/in_morphology_L6_stratifKFold_gnn_oversampled_results.chk
+    checkpoint_path_outs: reports/xai/interneurons/L6/in_morphology_L6_stratifKFold_gnn_oversampled/
+    id: in_morphology_L6_stratifKFold_gnn_oversampled
+    results_file: reports/xai/interneurons/L6/in_morphology_L6_stratifKFold_gnn_oversampled/xai_report.html
+  in_tmd_L6_stratifKFold_cnn_oversampled:
+    checkpoint_path: models/interneurons/L6/in_tmd_L6_stratifKFold_cnn_oversampled_results.chk
+    checkpoint_path_outs: reports/xai/interneurons/L6/in_tmd_L6_stratifKFold_cnn_oversampled/
+    id: in_tmd_L6_stratifKFold_cnn_oversampled
+    results_file: reports/xai/interneurons/L6/in_tmd_L6_stratifKFold_cnn_oversampled/xai_report.html
+  in_tmd_L6_stratifKFold_decisiontree:
+    checkpoint_path: models/interneurons/L6/in_tmd_L6_stratifKFold_decisiontree_results.chk
+    checkpoint_path_outs: reports/xai/interneurons/L6/in_tmd_L6_stratifKFold_decisiontree/
+    id: in_tmd_L6_stratifKFold_decisiontree
+    results_file: reports/xai/interneurons/L6/in_tmd_L6_stratifKFold_decisiontree/xai_report.html
+  in_tmd_L6_stratifKFold_perslay_oversampled:
+    checkpoint_path: models/interneurons/L6/in_tmd_L6_stratifKFold_perslay_oversampled_results.chk
+    checkpoint_path_outs: reports/xai/interneurons/L6/in_tmd_L6_stratifKFold_perslay_oversampled/
+    id: in_tmd_L6_stratifKFold_perslay_oversampled
+    results_file: reports/xai/interneurons/L6/in_tmd_L6_stratifKFold_perslay_oversampled/xai_report.html
+  pc_tmd_L2_stratifKFold_xgb_oversampled:
+    checkpoint_path: models/pyramidal_cells/L2/pc_tmd_L2_stratifKFold_xgb_oversampled_results.chk
+    checkpoint_path_outs: reports/xai/pyramidal_cells/L2/pc_tmd_L2_stratifKFold_xgb_oversampled/
+    id: pc_tmd_L2_stratifKFold_xgb_oversampled
+    results_file: reports/xai/pyramidal_cells/L2/pc_tmd_L2_stratifKFold_xgb_oversampled/xai_report.html
+feature_extractors:
+  in_deepwalk:
+    dataset_name: interneurons
+    feature_extractor_name: deepwalk
+    id: in_deepwalk
+    input_csv: data/prepared/interneurons/dataset_features_labels.csv
+    output_wildcard: '''data/prepared/interneurons/*/*/*_deepwalk.pickle'''
+  in_morph:
+    dataset_name: interneurons
+    feature_extractor_name: morphology
+    id: in_morph
+    input_csv: data/prepared/interneurons/dataset_features_labels.csv
+    output_wildcard: ''
+  in_tmd:
+    dataset_name: interneurons
+    feature_extractor_name: tmd
+    id: in_tmd
+    input_csv: data/prepared/interneurons/dataset_features_labels.csv
+    output_wildcard: '''data/prepared/interneurons/*/*/*_tmd.pickle'''
+  pc_deepwalk:
+    dataset_name: pyramidal_cells
+    feature_extractor_name: deepwalk
+    id: pc_deepwalk
+    input_csv: data/prepared/pyramidal_cells/dataset_features_labels.csv
+    output_wildcard: '''data/prepared/pyramidal_cells/*/*/*_deepwalk.pickle'''
+  pc_morph:
+    dataset_name: pyramidal_cells
+    feature_extractor_name: morphology
+    id: pc_morph
+    input_csv: data/prepared/pyramidal_cells/dataset_features_labels.csv
+    output_wildcard: ''
+  pc_tmd:
+    dataset_name: pyramidal_cells
+    feature_extractor_name: tmd
+    id: pc_tmd
+    input_csv: data/prepared/pyramidal_cells/dataset_features_labels.csv
+    output_wildcard: '''data/prepared/pyramidal_cells/*/*/*_tmd.pickle'''
+performance-report:
+  in_L6:
+    checkpoint_dir: models/interneurons/L6
+    output_dir: reports/performance-report/interneurons/L6
+  pc_L2:
+    checkpoint_dir: models/pyramidal_cells/L2
+    output_dir: reports/performance-report/pyramidal_cells/L2
+training:
+  in-deepwalk-L1-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-in-L1.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L1-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-in-L1.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L1-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-in-L1.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L1-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-in-L1.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L23-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-in-L23.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L23-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-in-L23.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L23-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-in-L23.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L23-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-in-L23.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L4-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-in-L4.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L4-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-in-L4.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L4-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-in-L4.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L4-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-in-L4.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L5-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-in-L5.yaml
+    dataset-dir: data/final/interneurons/L5
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L5-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-in-L5.yaml
+    dataset-dir: data/final/interneurons/L5
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L5-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-in-L5.yaml
+    dataset-dir: data/final/interneurons/L5
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L5-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-in-L5.yaml
+    dataset-dir: data/final/interneurons/L5
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L6-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-in-L6.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L6-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-in-L6.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L6-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-in-L6.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-deepwalk-L6-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-in-L6.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-morphology-L1-stratifKFold-gnn:
+    dataset-config: training/configs/dataset-in-L1.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-morphology-L23-stratifKFold-gnn:
+    dataset-config: training/configs/dataset-in-L23.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-morphology-L4-stratifKFold-gnn:
+    dataset-config: training/configs/dataset-in-L4.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-morphology-L5-stratifKFold-gnn:
+    dataset-config: training/configs/dataset-in-L5.yaml
+    dataset-dir: data/final/interneurons/L5
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-morphology-L6-stratifKFold-gnn:
+    dataset-config: training/configs/dataset-in-L6.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L1-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-in-L1.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L1-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-in-L1.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L1-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-in-L1.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L1-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-in-L1.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L23-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-in-L23.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L23-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-in-L23.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L23-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-in-L23.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L23-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-in-L23.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L4-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-in-L4.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L4-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-in-L4.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L4-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-in-L4.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L4-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-in-L4.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L5-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-in-L5.yaml
+    dataset-dir: data/final/interneurons/L5
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L5-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-in-L5.yaml
+    dataset-dir: data/final/interneurons/L5
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L5-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-in-L5.yaml
+    dataset-dir: data/final/interneurons/L5
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L5-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-in-L5.yaml
+    dataset-dir: data/final/interneurons/L5
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L6-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-in-L6.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L6-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-in-L6.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L6-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-in-L6.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-tmd-L6-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-in-L6.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L2-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-pc-L2.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L2-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-pc-L2.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L2-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-pc-L2.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L2-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-pc-L2.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L3-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-pc-L3.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L3-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-pc-L3.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L3-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-pc-L3.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L3-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-pc-L3.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L4-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-pc-L4.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L4-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-pc-L4.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L4-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-pc-L4.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L4-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-pc-L4.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L5-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-pc-L5.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L5-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-pc-L5.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L5-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-pc-L5.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L5-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-pc-L5.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L6-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-pc-L6.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L6-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-pc-L6.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L6-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-pc-L6.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-deepwalk-L6-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-pc-L6.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-morphology-L2-stratifKFold-gnn:
+    dataset-config: training/configs/dataset-pc-L2.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-morphology-L3-stratifKFold-gnn:
+    dataset-config: training/configs/dataset-pc-L3.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-morphology-L4-stratifKFold-gnn:
+    dataset-config: training/configs/dataset-pc-L4.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-morphology-L5-stratifKFold-gnn:
+    dataset-config: training/configs/dataset-pc-L5.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-morphology-L6-stratifKFold-gnn:
+    dataset-config: training/configs/dataset-pc-L6.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L2-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-pc-L2.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L2-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-pc-L2.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L2-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-pc-L2.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L2-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-pc-L2.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L3-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-pc-L3.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L3-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-pc-L3.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L3-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-pc-L3.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L3-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-pc-L3.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L4-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-pc-L4.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L4-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-pc-L4.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L4-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-pc-L4.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L4-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-pc-L4.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L5-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-pc-L5.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L5-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-pc-L5.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L5-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-pc-L5.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L5-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-pc-L5.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L6-stratifKFold-cnn:
+    dataset-config: training/configs/dataset-pc-L6.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L6-stratifKFold-decisiontree:
+    dataset-config: training/configs/dataset-pc-L6.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L6-stratifKFold-perslay:
+    dataset-config: training/configs/dataset-pc-L6.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-tmd-L6-stratifKFold-xgb:
+    dataset-config: training/configs/dataset-pc-L6.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+training-alt-neurites:
+  in-L1-basal-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-in-L1-basal.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L1-basal-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-in-L1-basal.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L1-basal-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-in-L1-basal.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L1-basal-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-in-L1-basal.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L1-basal-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-in-L1-basal.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L1-basal-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-in-L1-basal.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L1-basal-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-in-L1-basal.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L1-basal-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-in-L1-basal.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L1-basal-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-in-L1-basal.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L1-neurites-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-in-L1-neurites.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L1-neurites-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-in-L1-neurites.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L1-neurites-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-in-L1-neurites.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L1-neurites-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-in-L1-neurites.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L1-neurites-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-in-L1-neurites.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L1-neurites-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-in-L1-neurites.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L1-neurites-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-in-L1-neurites.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L1-neurites-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-in-L1-neurites.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L1-neurites-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-in-L1-neurites.yaml
+    dataset-dir: data/final/interneurons/L1
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L23-basal-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-in-L23-basal.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L23-basal-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-in-L23-basal.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L23-basal-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-in-L23-basal.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L23-basal-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-in-L23-basal.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L23-basal-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-in-L23-basal.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L23-basal-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-in-L23-basal.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L23-basal-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-in-L23-basal.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L23-basal-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-in-L23-basal.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L23-basal-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-in-L23-basal.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L23-neurites-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-in-L23-neurites.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L23-neurites-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-in-L23-neurites.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L23-neurites-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-in-L23-neurites.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L23-neurites-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-in-L23-neurites.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L23-neurites-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-in-L23-neurites.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L23-neurites-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-in-L23-neurites.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L23-neurites-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-in-L23-neurites.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L23-neurites-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-in-L23-neurites.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L23-neurites-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-in-L23-neurites.yaml
+    dataset-dir: data/final/interneurons/L23
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L4-basal-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-in-L4-basal.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L4-basal-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-in-L4-basal.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L4-basal-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-in-L4-basal.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L4-basal-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-in-L4-basal.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L4-basal-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-in-L4-basal.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L4-basal-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-in-L4-basal.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L4-basal-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-in-L4-basal.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L4-basal-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-in-L4-basal.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L4-basal-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-in-L4-basal.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L4-neurites-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-in-L4-neurites.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L4-neurites-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-in-L4-neurites.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L4-neurites-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-in-L4-neurites.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L4-neurites-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-in-L4-neurites.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L4-neurites-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-in-L4-neurites.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L4-neurites-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-in-L4-neurites.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L4-neurites-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-in-L4-neurites.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L4-neurites-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-in-L4-neurites.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L4-neurites-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-in-L4-neurites.yaml
+    dataset-dir: data/final/interneurons/L4
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+# There's a problem with one class having only one sample in "in-L5-basal".
+#  in-L5-basal-deepwalk-stratifKFold-cnn:
+#    dataset-config: training/extra-configs/dataset-in-L5-basal.yaml
+#    dataset-dir: data/final/interneurons/L5
+#    model-config: training/configs/model-cnn-deepwalk.yaml
+#    splitter-config: training/configs/splitter-stratifKFold.yaml
+#  in-L5-basal-deepwalk-stratifKFold-decisiontree:
+#    dataset-config: training/extra-configs/dataset-in-L5-basal.yaml
+#    dataset-dir: data/final/interneurons/L5
+#    model-config: training/configs/model-decisiontree-deepwalk.yaml
+#    splitter-config: training/configs/splitter-stratifKFold.yaml
+#  in-L5-basal-deepwalk-stratifKFold-perslay:
+#    dataset-config: training/extra-configs/dataset-in-L5-basal.yaml
+#    dataset-dir: data/final/interneurons/L5
+#    model-config: training/configs/model-perslay-deepwalk.yaml
+#    splitter-config: training/configs/splitter-stratifKFold.yaml
+#  in-L5-basal-deepwalk-stratifKFold-xgb:
+#    dataset-config: training/extra-configs/dataset-in-L5-basal.yaml
+#    dataset-dir: data/final/interneurons/L5
+#    model-config: training/configs/model-xgb-deepwalk.yaml
+#    splitter-config: training/configs/splitter-stratifKFold.yaml
+#  in-L5-basal-morphology-stratifKFold-gnn:
+#    dataset-config: training/extra-configs/dataset-in-L5-basal.yaml
+#    dataset-dir: data/final/interneurons/L5
+#    model-config: training/configs/model-gnn-morphology.yaml
+#    splitter-config: training/configs/splitter-stratifKFold.yaml
+#  in-L5-basal-tmd-stratifKFold-cnn:
+#    dataset-config: training/extra-configs/dataset-in-L5-basal.yaml
+#    dataset-dir: data/final/interneurons/L5
+#    model-config: training/configs/model-cnn-tmd.yaml
+#    splitter-config: training/configs/splitter-stratifKFold.yaml
+#  in-L5-basal-tmd-stratifKFold-decisiontree:
+#    dataset-config: training/extra-configs/dataset-in-L5-basal.yaml
+#    dataset-dir: data/final/interneurons/L5
+#    model-config: training/configs/model-decisiontree-tmd.yaml
+#    splitter-config: training/configs/splitter-stratifKFold.yaml
+#  in-L5-basal-tmd-stratifKFold-perslay:
+#    dataset-config: training/extra-configs/dataset-in-L5-basal.yaml
+#    dataset-dir: data/final/interneurons/L5
+#    model-config: training/configs/model-perslay-tmd.yaml
+#    splitter-config: training/configs/splitter-stratifKFold.yaml
+#  in-L5-basal-tmd-stratifKFold-xgb:
+#    dataset-config: training/extra-configs/dataset-in-L5-basal.yaml
+#    dataset-dir: data/final/interneurons/L5
+#    model-config: training/configs/model-xgb-tmd.yaml
+#    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L5-neurites-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-in-L5-neurites.yaml
+    dataset-dir: data/final/interneurons/L5
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L5-neurites-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-in-L5-neurites.yaml
+    dataset-dir: data/final/interneurons/L5
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L5-neurites-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-in-L5-neurites.yaml
+    dataset-dir: data/final/interneurons/L5
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L5-neurites-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-in-L5-neurites.yaml
+    dataset-dir: data/final/interneurons/L5
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L5-neurites-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-in-L5-neurites.yaml
+    dataset-dir: data/final/interneurons/L5
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L5-neurites-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-in-L5-neurites.yaml
+    dataset-dir: data/final/interneurons/L5
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L5-neurites-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-in-L5-neurites.yaml
+    dataset-dir: data/final/interneurons/L5
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L5-neurites-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-in-L5-neurites.yaml
+    dataset-dir: data/final/interneurons/L5
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L5-neurites-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-in-L5-neurites.yaml
+    dataset-dir: data/final/interneurons/L5
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L6-basal-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-in-L6-basal.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L6-basal-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-in-L6-basal.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L6-basal-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-in-L6-basal.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L6-basal-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-in-L6-basal.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L6-basal-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-in-L6-basal.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L6-basal-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-in-L6-basal.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L6-basal-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-in-L6-basal.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L6-basal-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-in-L6-basal.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L6-basal-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-in-L6-basal.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L6-neurites-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-in-L6-neurites.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L6-neurites-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-in-L6-neurites.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L6-neurites-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-in-L6-neurites.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L6-neurites-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-in-L6-neurites.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L6-neurites-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-in-L6-neurites.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L6-neurites-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-in-L6-neurites.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L6-neurites-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-in-L6-neurites.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L6-neurites-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-in-L6-neurites.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  in-L6-neurites-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-in-L6-neurites.yaml
+    dataset-dir: data/final/interneurons/L6
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-axon-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L2-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-axon-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L2-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-axon-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L2-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-axon-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L2-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-axon-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-pc-L2-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-axon-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L2-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-axon-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L2-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-axon-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L2-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-axon-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L2-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-basal-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L2-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-basal-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L2-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-basal-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L2-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-basal-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L2-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-basal-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-pc-L2-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-basal-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L2-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-basal-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L2-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-basal-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L2-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-basal-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L2-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-neurites-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L2-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-neurites-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L2-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-neurites-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L2-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-neurites-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L2-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-neurites-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-pc-L2-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-neurites-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L2-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-neurites-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L2-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-neurites-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L2-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L2-neurites-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L2-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L2
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-axon-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L3-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-axon-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L3-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-axon-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L3-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-axon-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L3-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-axon-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-pc-L3-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-axon-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L3-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-axon-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L3-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-axon-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L3-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-axon-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L3-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-basal-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L3-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-basal-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L3-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-basal-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L3-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-basal-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L3-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-basal-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-pc-L3-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-basal-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L3-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-basal-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L3-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-basal-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L3-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-basal-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L3-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-neurites-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L3-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-neurites-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L3-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-neurites-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L3-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-neurites-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L3-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-neurites-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-pc-L3-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-neurites-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L3-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-neurites-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L3-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-neurites-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L3-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L3-neurites-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L3-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L3
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-axon-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L4-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-axon-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L4-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-axon-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L4-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-axon-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L4-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-axon-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-pc-L4-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-axon-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L4-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-axon-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L4-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-axon-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L4-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-axon-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L4-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-basal-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L4-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-basal-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L4-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-basal-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L4-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-basal-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L4-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-basal-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-pc-L4-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-basal-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L4-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-basal-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L4-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-basal-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L4-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-basal-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L4-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-neurites-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L4-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-neurites-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L4-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-neurites-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L4-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-neurites-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L4-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-neurites-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-pc-L4-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-neurites-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L4-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-neurites-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L4-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-neurites-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L4-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L4-neurites-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L4-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L4
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-axon-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L5-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-axon-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L5-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-axon-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L5-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-axon-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L5-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-axon-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-pc-L5-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-axon-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L5-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-axon-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L5-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-axon-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L5-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-axon-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L5-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-basal-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L5-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-basal-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L5-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-basal-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L5-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-basal-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L5-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-basal-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-pc-L5-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-basal-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L5-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-basal-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L5-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-basal-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L5-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-basal-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L5-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-neurites-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L5-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-neurites-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L5-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-neurites-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L5-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-neurites-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L5-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-neurites-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-pc-L5-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-neurites-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L5-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-neurites-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L5-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-neurites-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L5-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L5-neurites-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L5-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L5
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-axon-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L6-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-axon-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L6-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-axon-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L6-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-axon-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L6-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-axon-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-pc-L6-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-axon-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L6-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-axon-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L6-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-axon-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L6-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-axon-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L6-axon.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-basal-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L6-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-basal-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L6-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-basal-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L6-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-basal-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L6-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-basal-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-pc-L6-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-basal-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L6-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-basal-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L6-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-basal-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L6-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-basal-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L6-basal.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-neurites-deepwalk-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L6-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-cnn-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-neurites-deepwalk-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L6-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-decisiontree-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-neurites-deepwalk-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L6-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-perslay-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-neurites-deepwalk-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L6-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-xgb-deepwalk.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-neurites-morphology-stratifKFold-gnn:
+    dataset-config: training/extra-configs/dataset-pc-L6-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-gnn-morphology.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-neurites-tmd-stratifKFold-cnn:
+    dataset-config: training/extra-configs/dataset-pc-L6-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-cnn-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-neurites-tmd-stratifKFold-decisiontree:
+    dataset-config: training/extra-configs/dataset-pc-L6-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-decisiontree-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-neurites-tmd-stratifKFold-perslay:
+    dataset-config: training/extra-configs/dataset-pc-L6-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-perslay-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+  pc-L6-neurites-tmd-stratifKFold-xgb:
+    dataset-config: training/extra-configs/dataset-pc-L6-neurites.yaml
+    dataset-dir: data/final/pyramidal-cells/L6
+    model-config: training/configs/model-xgb-tmd.yaml
+    splitter-config: training/configs/splitter-stratifKFold.yaml
+transfer_learning:
+  models:
+    in_morphology_L6_stratifKFold_gnn_oversampled:
+      batch_size: 2
+      checkpoint_paths_pretrained: models/*/*/*_morphology_*_stratifKFold_gnn_oversampled_results.chk
+      dataset_name: interneurons/L6
+      feature_extractor_name: morphology
+      id: in_morphology_L6_stratifKFold_gnn_oversampled
+      input_csv: data/prepared/interneurons/L6/dataset_features_labels.csv
+      model_class: morphoclass.models.ManNet
+      model_params: n_features=1 pool_name=avg lambda_max=3.0 normalization=sym flow=target_to_source
+        edge_weight_idx=None
+      n_epochs: 150
+      optimizer_class: torch.optim.Adam
+      optimizer_params: lr=5e-3
+      results_file: reports/transfer_learning/interneurons/L6/transfer_learning_report.html
+  shared_parameters:
+    seed: 113587

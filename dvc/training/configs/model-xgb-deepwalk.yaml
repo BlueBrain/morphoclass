@@ -1,0 +1,11 @@
+batch_size: null
+feature_extractor_name: deepwalk
+id: xgb
+model_class: xgboost.XGBClassifier
+model_params:
+  eval_metric: merror
+  objective: multi:softmax
+  random_state: 113587
+n_epochs: null
+optimizer_class: null
+optimizer_params: {}

@@ -1,0 +1,7 @@
+batch_size: null
+model_class: sklearn.tree.DecisionTreeClassifier
+model_params:
+  random_state: 113587
+n_epochs: null
+optimizer_class: null
+optimizer_params: {}

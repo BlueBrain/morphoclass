@@ -1,0 +1,41 @@
+# Byte-compiled / optimized / DLL files
+*$py.class
+*.png
+*.py[cod]
+__pycache__/
+cov.xml
+report.xml
+
+# Other python non-code
+.ipynb_checkpoints
+.ipython
+
+# Home folder files
+.bash_history
+.cache
+.keras
+.local
+.vscode
+
+# Egg files
+*.egg-info
+.eggs
+
+# pytest
+.coverage*
+.pytest_cache*
+htmlcov
+
+# Local files and folders
+*.log
+.DS_Store
+.env*
+!.env.example
+/.idea/
+/.tox/
+/build/
+/dist/
+/docs/build/
+/logs/
+/src/morphoclass/version.py
+/venv/

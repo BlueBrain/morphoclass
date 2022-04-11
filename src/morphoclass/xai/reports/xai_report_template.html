@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>XAI Report</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.min.css">
+</head>
+<body>
+    <div class="container-xl">
+        <br/><br/>
+        <H1>XAI Report</H1>
+        <br /><br/>
+        <p>
+            Every morphology subclass has a good representative and a bad representative.
+            They are defined based on the model probability. The probability model thinks this sample belongs to the expert label (ground-truth).
+            The good representative is the sample with the highest probability. The bad representative is the sample with the lowest probability.
+            We implement several techniques for explaining these samples.
+            The content table below shows the ones that are covered in this report.
+            Each of the techniques iterates through subclasses and then through good and bad representative.
+            An example: if good and bad samples have both high probability of belong to an expert class, this means the model agrees with the expert labels.
+        </p>
+        <H3>Content:</H3>
+        {{ content_html }}
+        <br/><br/><hr/><hr/><br/>
+        <div class="row">
+            <div class="center col-lg-12 col-md-12 col-sm-12">
+                <div class="bs-component">
+                    {{ xai_report_final }}
+                </div>
+            </div>
+        </div>
+        <br/>
+
+    </div>
+</body>
+</html>

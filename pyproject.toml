@@ -1,0 +1,30 @@
+[build-system]
+requires = [
+    "pip>=10",
+    "setuptools>=42",
+    "setuptools_scm[toml]>=3.4",
+    "wheel",
+]
+# https://setuptools.pypa.io/en/latest/build_meta.html#how-to-use-it
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+write_to = "src/morphoclass/version.py"
+write_to_template = """
+\"\"\"The package version.\"\"\"
+from __future__ import annotations
+
+__version__ = "{version}"
+"""
+local_scheme = "no-local-version"
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_incomplete_defs = true
+ignore_missing_imports = true
+show_error_codes = true
+strict_equality = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_ignores = true

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{{ report_title }}</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <br /><br/><br/>
+        <div class="row">
+            <div class="center col-lg-12 col-md-12 col-sm-12">
+                <div class="page-header">
+                    <h1 id="tables">{{ report_title }}</h1>
+                </div>
+                <div class="bs-component">
+                    <div class="row">
+                        <div class="col-md-12">
+                            This report is a collection of plots showing different
+                            properties of the given morphology dataset.
+                            <br/>
+                            The reports is based on the dataset in the following
+                            CSV file: <code>{{ dataset_csv_path }}</code>.
+                            <br/>
+                            The report includes:
+                            <ul>
+                                <li>Sample counts per morphology type</li>
+                                <li>Sample counts per layer</li>
+                                <li>Histograms for node counts in neurite graphs</li>
+                                <li>Point counts in corresponding persistence diagrams</li>
+                                <li>Renders of all morphologies</li>
+                                <li>Persistence diagrams of all morphologies</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <br /><br/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Count per m-type and per layer</h3>
+                            <div><img src="file:{{ counts_per_mtype }}"  width='80%' ></div>
+                            <div><img src="file:{{ counts_per_layer }}"  width='80%'></div>
+                        </div>
+                    </div>
+                    <br /><br/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Number of nodes in the graph for each neurite type</h3>
+                            <div><img src="file:{{ n_nodes_axon }}"  width='80%'></div>
+                            <div><img src="file:{{ n_nodes_basal }}"  width='80%'></div>
+                            <div><img src="file:{{ n_nodes_apical }}"  width='80%'></div>
+                            <div><img src="file:{{ n_nodes_neurites }}"  width='80%'></div>
+                        </div>
+                    </div>
+                    <br /><br/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Number of nodes in the graph (per layer) for each neurite type</h3>
+                            <div><img src="file:{{ n_nodes_per_layer_axon }}"  width='80%'></div>
+                            <div><img src="file:{{ n_nodes_per_layer_basal }}"  width='80%'></div>
+                            <div><img src="file:{{ n_nodes_per_layer_apical }}"  width='80%'></div>
+                            <div><img src="file:{{ n_nodes_per_layer_neurites }}"  width='80%'></div>
+                        </div>
+                    </div>
+                    <br /><br/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Number of nodes in the persistence diagram for each neurite type</h3>
+                            <div><img src="file:{{ n_nodes_pd_axon }}"  width='80%'></div>
+                            <div><img src="file:{{ n_nodes_pd_basal }}"  width='80%'></div>
+                            <div><img src="file:{{ n_nodes_pd_apical }}"  width='80%'></div>
+                            <div><img src="file:{{ n_nodes_pd_neurites }}"  width='80%'></div>
+                        </div>
+                    </div>
+                    <br /><br/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Number of nodes in the persistence diagram (per layer) for each neurite type</h3>
+                            <div><img src="file:{{ n_nodes_pd_per_layer_axon }}"  width='80%'></div>
+                            <div><img src="file:{{ n_nodes_pd_per_layer_basal }}"  width='80%'></div>
+                            <div><img src="file:{{ n_nodes_pd_per_layer_apical }}"  width='80%'></div>
+                            <div><img src="file:{{ n_nodes_pd_per_layer_neurites }}"  width='80%'></div>
+                        </div>
+                    </div>
+                    <br /><br/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Example morphologies per m-type</h3>
+                            {% for image_path in image_paths %}
+                            <div><img src="file:{{ image_path }}"  width='80%'></div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <br /><br/>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <hr/>
+    </div>
+</body>
+</html>

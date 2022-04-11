@@ -1,0 +1,9 @@
+batch_size: null
+model_class: xgboost.XGBClassifier
+model_params:
+  eval_metric: merror
+  objective: multi:softmax
+  random_state: 113587
+n_epochs: null
+optimizer_class: null
+optimizer_params: {}

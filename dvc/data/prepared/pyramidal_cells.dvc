@@ -1,0 +1,5 @@
+outs:
+- md5: bb99958d9e4070f3f177d54ddcff863f.dir
+  size: 180027776
+  nfiles: 1401
+  path: pyramidal_cells
