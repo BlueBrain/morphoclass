@@ -39,3 +39,7 @@ htmlcov
 /logs/
 /src/morphoclass/version.py
 /venv/
+
+# pyenv file
+.python-version
+

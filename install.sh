@@ -4,7 +4,7 @@ echo "Installing/upgrading pip, wheel, setuptools"
 pip install -U pip wheel setuptools
 
 echo "Installing morphoclass"
-pip install . -c constraints.txt
+pip install ".[docs,dev]" -c constraints.txt
 
 echo "Checking the PyTorch version"
 SED=$(which gsed || which sed)
