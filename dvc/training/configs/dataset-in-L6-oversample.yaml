@@ -1,5 +1,0 @@
-dataset_name: interneurons
-id: in
-input_csv: data/final/interneurons/L6/dataset.csv
-layer: L6
-oversampling: true
