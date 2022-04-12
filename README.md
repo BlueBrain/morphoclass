@@ -17,28 +17,6 @@ Install `morphoclass`
 ./install.sh
 ```
 
-## Installation on the BB5
-Allocate a node
-```sh
-ssh bbpv1
-salloc -N1 -A<projXXX> -t 2:00:00
-```
-
-Clone the repository and set up the virtual environment
-```sh
-git clone git@github.com:BlueBrain/morphoclass.git
-cd morphoclass
-module load unstable
-module load python
-python --version  # should be 3.8
-python -m venv venv
-. venv/bin/activate
-```
-
-Install `morphoclass`
-```sh
-./install.sh
-```
 
 ## Known Installation Issues
 In some cases the installation might fail because either `cmake` or `hdf5` are
