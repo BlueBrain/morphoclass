@@ -1,5 +1,6 @@
 # Morphology-Classification
-Classify neuron morphologies using deep learning.
+MorphoClass is a toolbox for neuronal morphologies processing and
+classification using machine learning.
 
 ## Installation
 Clone the repository and set up the virtual environment
@@ -74,13 +75,17 @@ Open the file `docs/build/html/index.html` to view the documentation.
 We provide a docker file that allows you to run `morphoclass` on a docker
 container. To build the docker image run the following command:
 ```sh
-docker build -f docker/morphoclass.Dockerfile -t morphoclass --build-arg MORPHOCLASS_USERS .
+docker build \
+    -f docker/morphoclass.Dockerfile \
+    -t morphoclass \
+    --build-arg MORPHOCLASS_USERS \
+    .
 ```
 Notice the `MORPHOCLASS_USERS` build argument, it allows you to add custom
 users to the container operating system. This way you'll be able to run your
 container as a given user, which can be useful when writing files to a
-bind-mounted volume. In this case you probably want to specify your own username
-and user ID and you should set
+bind-mounted volume. In this case you probably want to specify your own
+username and user ID and you should set
 ```sh
 export MORPHOCLASS_USERS="$(whoami)/$(id -u)"
 ```
@@ -119,5 +124,13 @@ You might want to pass additional flags to `docker run`:
 Just for reference, the `docker run` command with all flags included, the
 external port set to `35353`, and the container name to `my-container`:
 ```sh
-docker run -v $PWD:/workdir -p 35353:8888 --rm -it --gpus=all -u $USER --name my-container morphoclass
+docker run 
+    -v $PWD:/workdir \
+    -p 35353:8888 \
+    --rm \
+    -it \
+    --gpus=all \
+    -u $USER \
+    --name my-container \
+    morphoclass
 ```
