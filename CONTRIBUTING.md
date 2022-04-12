@@ -5,7 +5,7 @@ Before you open an issue or start working on a pull request, please make sure
 to read the following guidelines.
 
 1. [Creating Issues](#CreatingIssues)
-1.  [Creating Pull Requests](#CreatingPR)
+1. [Creating Pull Requests](#CreatingPR)
     1. [Refer to an issue](#Ptai)
     1. [Add unit test](#Aui)
     1. [Add type annotations](#Ata)
