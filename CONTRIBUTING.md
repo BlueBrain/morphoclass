@@ -75,7 +75,3 @@ request!
 We will get back to you as soon as possible with comments and feedback in the
 format of pull request reviews. A positive review from one of the maintainers
 is required for the pull request to be merged into the master.
-
-
-[ml-team-email]: mailto:bbp-ou-machinelearning@groupes.epfl.ch
-[github]: https://github.com/BlueBrain/morphoclass
