@@ -116,7 +116,7 @@ docker run
 # Examples
 
 MorphoClass functionalities can be accessed using either a command line
-interface or by import `morphoclass` as a Python module and using it as a
+interface or by importing `morphoclass` as a Python module and using it as a
 library.
 
 ## Command line interface
