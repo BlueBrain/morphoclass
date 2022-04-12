@@ -95,15 +95,9 @@ def cli(
     from morphoclass.training.cli import split_metrics
     from morphoclass.training.training_config import TrainingConfig
 
-    config = TrainingConfig.from_separate_configs(conf_model, conf_splitter)
-
-    if config.feature_extractor_name == "deepwalk":
-        logger.info("Checking if DeepWalk is installed")
-        from morphoclass import deepwalk
-
-        if not deepwalk.check_installed():
-            how_to_install = deepwalk.how_to_install_msg()
-            raise click.ClickException(f"DeepWalk is not installed. {how_to_install}")
+    config = TrainingConfig.from_separate_configs(
+        conf_model, conf_splitter, features_dir
+    )
 
     logger.info(f"Features    : {features_dir}")
     logger.info(f"Model       : {config.model_class}")

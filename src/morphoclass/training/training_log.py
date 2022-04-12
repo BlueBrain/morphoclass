@@ -113,7 +113,7 @@ class TrainingLog:
             splitter_class=data["splitter_class"],
             splitter_params=data["splitter_params"],
             dataset_name=data["dataset_name"],
-            feature_extractor_name=data["feature_extractor_name"],
+            features_dir=data["features_dir"],
             optimizer_class=data["optimizer_class"],
             optimizer_params=data["optimizer_params"],
             n_epochs=data["n_epochs"],

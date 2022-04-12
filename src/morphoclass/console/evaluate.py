@@ -59,7 +59,7 @@ def visualize_model_performance(
         F1-score macro: <b>{metrics['f1_macro']:.2%}</b><br/>
         accuracy: <b>{metrics['accuracy']:.2%}</b><br/>
         dataset: <b>{training_log.config.dataset_name}</b><br/>
-        feature extractor: <b>{training_log.config.feature_extractor_name}</b><br/>
+        features directory: <b>{training_log.config.features_dir}</b><br/>
         model class:
         <b>
         {training_log.config.model_class}({str_params(training_log.config.model_params)})
