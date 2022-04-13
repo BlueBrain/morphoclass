@@ -2044,12 +2044,12 @@ stages:
     do:
       cmd: >-
         morphoclass -v train
-        --features-dir extract-features/in-merged-layers/axon/${item.features}
+        --features-dir extract-features/in-merged-layers/axon/${item.features-rd}
         --model-config training/configs/model-${item.model}.yaml
         --splitter-config training/configs/splitter-stratified-k-fold.yaml
         --checkpoint-dir training/checkpoints-merged-interneurons/${key}
       deps:
-        - extract-features/in-merged-layers
+        - extract-features/in-merged-layers/axon/${item.features-rd}
         - training/configs/model-${item.model}.yaml
         - training/configs/splitter-stratified-k-fold.yaml
       outs:

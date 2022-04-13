@@ -42,31 +42,40 @@ explain_models:
 models-and-features:
   cnn-deepwalk:
     model: cnn
-    features: image-deepwalk
+    features-rd: image-deepwalk
+    features-proj: image-deepwalk
   cnn-tmd:
     model: cnn
-    features: image-tmd-rd
+    features-rd: image-tmd-rd
+    features-proj: image-tmd-proj
   decision-tree-deepwalk:
     model: decision-trees
-    features: image-deepwalk
+    features-rd: image-deepwalk
+    features-proj: image-deepwalk
   decision-tree-tmd:
     model: decision-trees
-    features: image-tmd-rd
+    features-rd: image-tmd-rd
+    features-proj: image-tmd-proj
   gnn-morphology:
     model: gnn
-    features: graph-rd
+    features-rd: graph-rd
+    features-proj: graph-proj
   perslay-deepwalk:
     model: perslay
-    features: diagram-deepwalk
+    features-rd: diagram-deepwalk
+    features-proj: diagram-deepwalk
   perslay-tmd:
     model: perslay
-    features: diagram-tmd-rd
+    features-rd: diagram-tmd-rd
+    features-proj: diagram-tmd-proj
   xgb-deepwalk:
     model: xgb
-    features: image-deepwalk
+    features-rd: image-deepwalk
+    features-proj: image-deepwalk
   xgb-tmd:
     model: xgb
-    features: image-tmd-rd
+    features-rd: image-tmd-rd
+    features-proj: image-tmd-proj
 feature_extractors:
   in_deepwalk:
     dataset_name: interneurons
