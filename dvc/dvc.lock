@@ -10309,8 +10309,8 @@ stages:
       size: 805523
       nfiles: 113
   features-lida-janelia-L5-image-tmd-rd-apical:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical image-tmd-rd
-      extract-features/lida-janelia-L5/apical/image-tmd-rd
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical
+      image-tmd-rd extract-features/lida-janelia-L5/apical/image-tmd-rd
     deps:
     - path: data/final/classes-janelia-L5.csv
       md5: 35948984a9f353ad6f73774382e1679c
@@ -10499,7 +10499,8 @@ stages:
       size: 341076
       nfiles: 156
   features-lida-in-merged-image-tmd-rd-axon:
-    cmd: morphoclass -v extract-features data/final/IN_data.csv axon image-tmd-rd extract-features/lida-in-merged/axon/image-tmd-rd
+    cmd: morphoclass -v extract-features data/final/IN_data.csv axon image-tmd-rd
+      extract-features/lida-in-merged/axon/image-tmd-rd
     deps:
     - path: data/final/IN_data.csv
       md5: 26881e08f84e3f9e13fbc60c5b8491ce
@@ -10979,8 +10980,8 @@ stages:
       size: 118397
       nfiles: 45
   features-lida-janelia-L5-graph-rd-apical:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical graph-rd
-      extract-features/lida-janelia-L5/apical/graph-rd
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical
+      graph-rd extract-features/lida-janelia-L5/apical/graph-rd
     deps:
     - path: data/final/classes-janelia-L5.csv
       md5: 35948984a9f353ad6f73774382e1679c
@@ -11513,8 +11514,8 @@ stages:
       size: 313675
       nfiles: 89
   features-lida-janelia-L5-diagram-deepwalk-apical:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical diagram-deepwalk
-      extract-features/lida-janelia-L5/apical/diagram-deepwalk
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical
+      diagram-deepwalk extract-features/lida-janelia-L5/apical/diagram-deepwalk
     deps:
     - path: data/final/classes-janelia-L5.csv
       md5: 35948984a9f353ad6f73774382e1679c
@@ -12079,8 +12080,8 @@ stages:
       size: 20032373
       nfiles: 423
   features-lida-janelia-L5-image-deepwalk-apical:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical image-deepwalk
-      extract-features/lida-janelia-L5/apical/image-deepwalk
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical
+      image-deepwalk extract-features/lida-janelia-L5/apical/image-deepwalk
     deps:
     - path: data/final/classes-janelia-L5.csv
       md5: 35948984a9f353ad6f73774382e1679c
@@ -12625,8 +12626,8 @@ stages:
       size: 3823598
       nfiles: 378
   features-lida-janelia-L5-diagram-tmd-rd-apical:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical diagram-tmd-rd
-      extract-features/lida-janelia-L5/apical/diagram-tmd-rd
+    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical
+      diagram-tmd-rd extract-features/lida-janelia-L5/apical/diagram-tmd-rd
     deps:
     - path: data/final/classes-janelia-L5.csv
       md5: 35948984a9f353ad6f73774382e1679c
@@ -12988,3 +12989,963 @@ stages:
       md5: d4c6f64330c01a93bff2cde6beafc9d0.dir
       size: 1041461
       nfiles: 423
+  features-pc-L2-merged-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal image-deepwalk
+      extract-features/pc-L2-merged/basal/image-deepwalk
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/basal/image-deepwalk
+      md5: c3ac3e107e169784f21011581dd520b2.dir
+      size: 1803585
+      nfiles: 43
+  features-pc-L5-merged-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all image-deepwalk
+      extract-features/pc-L5-merged/all/image-deepwalk
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/all/image-deepwalk
+      md5: 160b4e18ff26f9f72cf6f725481d85c0.dir
+      size: 7194336
+      nfiles: 160
+  features-pc-L5-merged-image-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv apical image-deepwalk
+      extract-features/pc-L5-merged/apical/image-deepwalk
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/apical/image-deepwalk
+      md5: 767dbacb9fcdc425ba926fe4f111e0bc.dir
+      size: 6841504
+      nfiles: 160
+  features-pc-L2-merged-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon diagram-tmd-proj
+      extract-features/pc-L2-merged/axon/diagram-tmd-proj
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/axon/diagram-tmd-proj
+      md5: 35f6f362819f965a9dd30e1b0cfcb438.dir
+      size: 95335
+      nfiles: 41
+  features-pc-L5-merged-graph-rd-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv apical graph-rd
+      extract-features/pc-L5-merged/apical/graph-rd
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/apical/graph-rd
+      md5: f31cd1ac29541878bb92323bcb4de6c7.dir
+      size: 489632
+      nfiles: 160
+  features-pc-L5-merged-graph-rd-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv axon graph-rd
+      extract-features/pc-L5-merged/axon/graph-rd
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/axon/graph-rd
+      md5: 4c7a4761301008e7bea2c2af1fad606f.dir
+      size: 441248
+      nfiles: 160
+  features-pc-L5-merged-diagram-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv basal diagram-tmd-rd
+      extract-features/pc-L5-merged/basal/diagram-tmd-rd
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/basal/diagram-tmd-rd
+      md5: b99a58acb63c521d4737abbd6fb99b56.dir
+      size: 375968
+      nfiles: 160
+  features-pc-L2-merged-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all graph-proj
+      extract-features/pc-L2-merged/all/graph-proj
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/all/graph-proj
+      md5: 0c85813ecfbe57808d65a9c2f75da821.dir
+      size: 177345
+      nfiles: 43
+  features-pc-L2-merged-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon graph-proj
+      extract-features/pc-L2-merged/axon/graph-proj
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/axon/graph-proj
+      md5: 820d082b4770bd4fdb124c953a1727f3.dir
+      size: 96123
+      nfiles: 41
+  features-pc-L6-merged-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv basal graph-proj
+      extract-features/pc-L6-merged/basal/graph-proj
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/basal/graph-proj
+      md5: ff5ef57949b0765ff57ee0471b6fd5b2.dir
+      size: 226179
+      nfiles: 129
+  features-pc-L6-merged-diagram-tmd-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv apical diagram-tmd-proj
+      extract-features/pc-L6-merged/apical/diagram-tmd-proj
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/apical/diagram-tmd-proj
+      md5: e8fc9ae7ee10152c124702cae94abe6f.dir
+      size: 281219
+      nfiles: 129
+  features-pc-L5-merged-diagram-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv apical diagram-deepwalk
+      extract-features/pc-L5-merged/apical/diagram-deepwalk
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/apical/diagram-deepwalk
+      md5: 80fb74d1ea0145c7b6f8b79e61589d98.dir
+      size: 551264
+      nfiles: 160
+  features-pc-L2-merged-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal image-tmd-proj
+      extract-features/pc-L2-merged/basal/image-tmd-proj
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/basal/image-tmd-proj
+      md5: 83cd362dc4a2a2776f32e2a6d0c4d852.dir
+      size: 1803585
+      nfiles: 43
+  features-pc-L5-merged-diagram-tmd-rd-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv apical diagram-tmd-rd
+      extract-features/pc-L5-merged/apical/diagram-tmd-rd
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/apical/diagram-tmd-rd
+      md5: 2c6087375c256dd2d134f6dc9b54e3c0.dir
+      size: 490464
+      nfiles: 160
+  features-pc-L5-merged-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv axon diagram-deepwalk
+      extract-features/pc-L5-merged/axon/diagram-deepwalk
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/axon/diagram-deepwalk
+      md5: a2d71c6911737254ccd30256224e8cc5.dir
+      size: 493408
+      nfiles: 160
+  features-pc-L5-merged-image-tmd-rd-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv apical image-tmd-rd
+      extract-features/pc-L5-merged/apical/image-tmd-rd
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/apical/image-tmd-rd
+      md5: 39484e054cd90ecc98163ab64a22aadc.dir
+      size: 6841504
+      nfiles: 160
+  features-pc-L6-merged-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv basal diagram-deepwalk
+      extract-features/pc-L6-merged/basal/diagram-deepwalk
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/basal/diagram-deepwalk
+      md5: 5612ade9548a02f8aef65ee4fffdf8c1.dir
+      size: 248067
+      nfiles: 129
+  features-pc-L6-merged-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv basal diagram-tmd-proj
+      extract-features/pc-L6-merged/basal/diagram-tmd-proj
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/basal/diagram-tmd-proj
+      md5: 7354f07919a057cc53baa60b3d92dbf9.dir
+      size: 231427
+      nfiles: 129
+  features-pc-L5-merged-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all diagram-deepwalk
+      extract-features/pc-L5-merged/all/diagram-deepwalk
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/all/diagram-deepwalk
+      md5: 5f481062b391af7651040ef65a483ae8.dir
+      size: 1088416
+      nfiles: 160
+  features-pc-L5-merged-image-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv basal image-tmd-rd
+      extract-features/pc-L5-merged/basal/image-tmd-rd
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/basal/image-tmd-rd
+      md5: 15e8208f8a68642485802b2dffcd854e.dir
+      size: 6746528
+      nfiles: 160
+  features-pc-L6-merged-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv all diagram-deepwalk
+      extract-features/pc-L6-merged/all/diagram-deepwalk
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/all/diagram-deepwalk
+      md5: 9eac34a01e54f8b9feeb7753550c9e4c.dir
+      size: 535811
+      nfiles: 129
+  features-pc-L6-merged-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv all diagram-tmd-proj
+      extract-features/pc-L6-merged/all/diagram-tmd-proj
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/all/diagram-tmd-proj
+      md5: 810215513c8c052e38bb7f7ae8c5b595.dir
+      size: 470019
+      nfiles: 129
+  features-pc-L6-merged-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv basal image-deepwalk
+      extract-features/pc-L6-merged/basal/image-deepwalk
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/basal/image-deepwalk
+      md5: b1583dc53ae9e9ec58dd54926b2f0c64.dir
+      size: 5379971
+      nfiles: 129
+  features-pc-L2-merged-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all diagram-tmd-proj
+      extract-features/pc-L2-merged/all/diagram-tmd-proj
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/all/diagram-tmd-proj
+      md5: 3e750b911109c4d02e3006eea40387ab.dir
+      size: 177793
+      nfiles: 43
+  features-pc-L5-merged-graph-rd-all:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all graph-rd
+      extract-features/pc-L5-merged/all/graph-rd
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/all/graph-rd
+      md5: 578ad750ffb0c3836d3d844a7c739af1.dir
+      size: 934112
+      nfiles: 160
+  features-pc-L2-merged-image-tmd-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical image-tmd-proj
+      extract-features/pc-L2-merged/apical/image-tmd-proj
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/apical/image-tmd-proj
+      md5: 25f5c1dc077af58b15b2f69157cf31c6.dir
+      size: 1806273
+      nfiles: 43
+  features-pc-L6-merged-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv axon image-tmd-proj
+      extract-features/pc-L6-merged/axon/image-tmd-proj
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/axon/image-tmd-proj
+      md5: b9d02ea65b3a356d6a94847883d70a07.dir
+      size: 5086253
+      nfiles: 125
+  features-pc-L2-merged-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal diagram-tmd-proj
+      extract-features/pc-L2-merged/basal/diagram-tmd-proj
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/basal/diagram-tmd-proj
+      md5: 29fa79afb293820999dd7dd9b7f4f9f1.dir
+      size: 88193
+      nfiles: 43
+  features-pc-L5-merged-graph-rd-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv basal graph-rd
+      extract-features/pc-L5-merged/basal/graph-rd
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/basal/graph-rd
+      md5: 144045f4f4d4cb7956dc04143da90c3e.dir
+      size: 375200
+      nfiles: 160
+  features-pc-L2-merged-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon image-deepwalk
+      extract-features/pc-L2-merged/axon/image-deepwalk
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/axon/image-deepwalk
+      md5: 705a9a076370e643097aeb8be5396820.dir
+      size: 1649127
+      nfiles: 41
+  features-pc-L2-merged-graph-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical graph-proj
+      extract-features/pc-L2-merged/apical/graph-proj
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/apical/graph-proj
+      md5: f3a96feab2183c21f8a5beb84199cd95.dir
+      size: 90817
+      nfiles: 43
+  features-pc-L5-merged-diagram-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all diagram-tmd-rd
+      extract-features/pc-L5-merged/all/diagram-tmd-rd
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/all/diagram-tmd-rd
+      md5: 6782a4165111af69ecf661cf350e209b.dir
+      size: 935456
+      nfiles: 160
+  features-pc-L6-merged-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv axon diagram-deepwalk
+      extract-features/pc-L6-merged/axon/diagram-deepwalk
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/axon/diagram-deepwalk
+      md5: 8f6b7b9ff13588e368ec9dae286af49e.dir
+      size: 288950
+      nfiles: 128
+  features-pc-L6-merged-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv basal image-tmd-proj
+      extract-features/pc-L6-merged/basal/image-tmd-proj
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/basal/image-tmd-proj
+      md5: 59d04c4811f22e409df733c7614f5efa.dir
+      size: 5299136
+      nfiles: 128
+  features-pc-L2-merged-diagram-tmd-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical diagram-tmd-proj
+      extract-features/pc-L2-merged/apical/diagram-tmd-proj
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/apical/diagram-tmd-proj
+      md5: 44fcaf3ed26fb34c4473a1b0cfbf5cc8.dir
+      size: 90689
+      nfiles: 43
+  features-pc-L5-merged-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv basal image-deepwalk
+      extract-features/pc-L5-merged/basal/image-deepwalk
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/basal/image-deepwalk
+      md5: 53305bbaa91e0e65a074aa56f1f29cea.dir
+      size: 6746528
+      nfiles: 160
+  features-pc-L6-merged-diagram-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv apical diagram-deepwalk
+      extract-features/pc-L6-merged/apical/diagram-deepwalk
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/apical/diagram-deepwalk
+      md5: 243e12f3971409e491ddf1196b31be2d.dir
+      size: 306627
+      nfiles: 129
+  features-pc-L6-merged-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv all graph-proj
+      extract-features/pc-L6-merged/all/graph-proj
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/all/graph-proj
+      md5: 8f5d2242cfd483e72dd97ae4c066f000.dir
+      size: 464963
+      nfiles: 129
+  features-pc-L2-merged-image-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical image-deepwalk
+      extract-features/pc-L2-merged/apical/image-deepwalk
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/apical/image-deepwalk
+      md5: dbcda2da35b682e78747c978a7c5b757.dir
+      size: 1806273
+      nfiles: 43
+  features-pc-L2-merged-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all diagram-deepwalk
+      extract-features/pc-L2-merged/all/diagram-deepwalk
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/all/diagram-deepwalk
+      md5: b9f5ddc7d37891932d44f968a4e8f422.dir
+      size: 204097
+      nfiles: 43
+  features-pc-L2-merged-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all image-tmd-proj
+      extract-features/pc-L2-merged/all/image-tmd-proj
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/all/image-tmd-proj
+      md5: 0800ae96b7a74bacb63def6245492826.dir
+      size: 1874689
+      nfiles: 43
+  features-pc-L2-merged-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal diagram-deepwalk
+      extract-features/pc-L2-merged/basal/diagram-deepwalk
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/basal/diagram-deepwalk
+      md5: a494a078c84478bbc12ffe355ba3fe49.dir
+      size: 96193
+      nfiles: 43
+  features-pc-L5-merged-image-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all image-tmd-rd
+      extract-features/pc-L5-merged/all/image-tmd-rd
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/all/image-tmd-rd
+      md5: 7f58597dc8ef5740db4408f7c4cd357b.dir
+      size: 7194336
+      nfiles: 160
+  features-pc-L6-merged-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv axon diagram-tmd-proj
+      extract-features/pc-L6-merged/axon/diagram-tmd-proj
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/axon/diagram-tmd-proj
+      md5: b67d824f8a17168ed16f695fb1704327.dir
+      size: 266614
+      nfiles: 128
+  features-pc-L2-merged-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all image-deepwalk
+      extract-features/pc-L2-merged/all/image-deepwalk
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/all/image-deepwalk
+      md5: 1dca20f7eb39c252ec75614178a7bf03.dir
+      size: 1874689
+      nfiles: 43
+  features-pc-L5-merged-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv axon image-deepwalk
+      extract-features/pc-L5-merged/axon/image-deepwalk
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/axon/image-deepwalk
+      md5: e9db3b779692063235c91b63cae7eb41.dir
+      size: 6803040
+      nfiles: 160
+  features-pc-L6-merged-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv all image-deepwalk
+      extract-features/pc-L6-merged/all/image-deepwalk
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/all/image-deepwalk
+      md5: 2f3b4cc0784526294ba4bf380c23a7b0.dir
+      size: 5570051
+      nfiles: 129
+  features-pc-L5-merged-diagram-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv axon diagram-tmd-rd
+      extract-features/pc-L5-merged/axon/diagram-tmd-rd
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/axon/diagram-tmd-rd
+      md5: be136967ebddfc629d40d2215176caa4.dir
+      size: 441824
+      nfiles: 160
+  features-pc-L5-merged-image-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv axon image-tmd-rd
+      extract-features/pc-L5-merged/axon/image-tmd-rd
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/axon/image-tmd-rd
+      md5: 6259643c31b0a67ae3dc00b54cc099de.dir
+      size: 6803040
+      nfiles: 160
+  features-pc-L6-merged-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv all image-tmd-proj
+      extract-features/pc-L6-merged/all/image-tmd-proj
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/all/image-tmd-proj
+      md5: f6cd126f0cd293379053322c6062c626.dir
+      size: 5570051
+      nfiles: 129
+  features-pc-L5-merged-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv basal diagram-deepwalk
+      extract-features/pc-L5-merged/basal/diagram-deepwalk
+    deps:
+    - path: data/final/pc-L5-merged.csv
+      md5: 9780c3e5740539cfdd4ec48aa5b2acff
+      size: 7715
+    - path: data/final/pyramidal-cells/L5
+      md5: 1830d966e47f8899c4d7ca88134127af.dir
+      size: 48337679
+      nfiles: 161
+    outs:
+    - path: extract-features/pc-L5-merged/basal/diagram-deepwalk
+      md5: b56df96f5aefe0ab581af66ab9cd86a7.dir
+      size: 416672
+      nfiles: 160
+  features-pc-L6-merged-graph-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv apical graph-proj
+      extract-features/pc-L6-merged/apical/graph-proj
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/apical/graph-proj
+      md5: 8c7efa8c044b4e3f904b5602baf6ca31.dir
+      size: 276291
+      nfiles: 129
+  features-pc-L6-merged-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv axon graph-proj
+      extract-features/pc-L6-merged/axon/graph-proj
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/axon/graph-proj
+      md5: 0ab9599be860a73a075bb3e46c7925df.dir
+      size: 261504
+      nfiles: 128
+  features-pc-L6-merged-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv axon image-deepwalk
+      extract-features/pc-L6-merged/axon/image-deepwalk
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/axon/image-deepwalk
+      md5: beadb4f5cb688d36fd1ee83fa7fc95f6.dir
+      size: 5329654
+      nfiles: 128
+  features-pc-L2-merged-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon image-tmd-proj
+      extract-features/pc-L2-merged/axon/image-tmd-proj
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/axon/image-tmd-proj
+      md5: 5d77250d88c6708e781ba4f94b3b245e.dir
+      size: 1567908
+      nfiles: 40
+  features-pc-L2-merged-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal graph-proj
+      extract-features/pc-L2-merged/basal/graph-proj
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/basal/graph-proj
+      md5: 2db534ccc118f91b6f36bb135103ead2.dir
+      size: 88065
+      nfiles: 43
+  features-pc-L6-merged-image-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv apical image-deepwalk
+      extract-features/pc-L6-merged/apical/image-deepwalk
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/apical/image-deepwalk
+      md5: 221dc78515431947d97ea1e4fd5621c8.dir
+      size: 5421571
+      nfiles: 129
+  features-pc-L6-merged-image-tmd-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv apical image-tmd-proj
+      extract-features/pc-L6-merged/apical/image-tmd-proj
+    deps:
+    - path: data/final/pc-L6-merged.csv
+      md5: 4e8c9beebeb12383c68453f566c44964
+      size: 7574
+    - path: data/final/pyramidal-cells/L6
+      md5: f281af9f4e25a09dc1ea64ef4660fadd.dir
+      size: 20496105
+      nfiles: 130
+    outs:
+    - path: extract-features/pc-L6-merged/apical/image-tmd-proj
+      md5: 9623e8327be21f8fef51234c327b944e.dir
+      size: 5421571
+      nfiles: 129
+  features-pc-L2-merged-diagram-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical diagram-deepwalk
+      extract-features/pc-L2-merged/apical/diagram-deepwalk
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/apical/diagram-deepwalk
+      md5: ae39c7cdf090fb3bb7c5fe65e5eadd3e.dir
+      size: 99073
+      nfiles: 43
+  features-pc-L2-merged-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon diagram-deepwalk
+      extract-features/pc-L2-merged/axon/diagram-deepwalk
+    deps:
+    - path: data/final/pc-L2-merged.csv
+      md5: ebc1772addb5bcb82e2a334fb259847e
+      size: 2188
+    - path: data/final/pyramidal-cells/L2
+      md5: 2ef6ba25eff161164841b7064d6d882d.dir
+      size: 7419249
+      nfiles: 44
+    outs:
+    - path: extract-features/pc-L2-merged/axon/diagram-deepwalk
+      md5: 2199fc88f03698327492a5d0b47d54d8.dir
+      size: 104999
+      nfiles: 41
