@@ -112,7 +112,6 @@ class TrainingConfig:
             "checkpoint_path_pretrained": None,
             "dataset_name": "<obsolete>",  # TODO: remove this
         }
-        data.pop("id")
         return cls.from_dict(data, workdir)
 
     def resolve_paths(self, workdir: pathlib.Path) -> None:
