@@ -49,11 +49,11 @@ models-and-features:
     features-rd: image-tmd-rd
     features-proj: image-tmd-proj
   decision-tree-deepwalk:
-    model: decision-trees
+    model: decision-tree
     features-rd: image-deepwalk
     features-proj: image-deepwalk
   decision-tree-tmd:
-    model: decision-trees
+    model: decision-tree
     features-rd: image-tmd-rd
     features-proj: image-tmd-proj
   gnn-morphology:
