@@ -1990,13 +1990,12 @@ stages:
     do:
       cmd: >-
         morphoclass -v train
-        --dataset-config ${item.dataset-config}
+        --features-dir ${item.features-dir}
         --model-config ${item.model-config}
         --splitter-config ${item.splitter-config}
         --checkpoint-dir training/checkpoints/${key}
       deps:
-        - ${item.dataset-dir}
-        - ${item.dataset-config}
+        - ${item.features-dir}
         - ${item.model-config}
         - ${item.splitter-config}
       outs:
@@ -2018,13 +2017,12 @@ stages:
     do:
       cmd: >-
         morphoclass -v train
-        --dataset-config ${item.dataset-config}
+        --features-dir ${item.features-dir}
         --model-config ${item.model-config}
         --splitter-config ${item.splitter-config}
         --checkpoint-dir training/checkpoints-alt-neurites/${key}
       deps:
-        - ${item.dataset-dir}
-        - ${item.dataset-config}
+        - ${item.features-dir}
         - ${item.model-config}
         - ${item.splitter-config}
       outs:
