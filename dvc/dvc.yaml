@@ -1424,6 +1424,166 @@ stages:
     - data/final/pyramidal-cells/L2
     outs:
     - extract-features/pc-L2/basal/image-tmd-proj
+  features-pc-L2-merged-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all diagram-deepwalk
+      extract-features/pc-L2-merged/all/diagram-deepwalk
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/all/diagram-deepwalk
+  features-pc-L2-merged-diagram-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical diagram-deepwalk
+      extract-features/pc-L2-merged/apical/diagram-deepwalk
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/apical/diagram-deepwalk
+  features-pc-L2-merged-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon diagram-deepwalk
+      extract-features/pc-L2-merged/axon/diagram-deepwalk
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/axon/diagram-deepwalk
+  features-pc-L2-merged-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal diagram-deepwalk
+      extract-features/pc-L2-merged/basal/diagram-deepwalk
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/basal/diagram-deepwalk
+  features-pc-L2-merged-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all diagram-tmd-proj
+      extract-features/pc-L2-merged/all/diagram-tmd-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/all/diagram-tmd-proj
+  features-pc-L2-merged-diagram-tmd-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical diagram-tmd-proj
+      extract-features/pc-L2-merged/apical/diagram-tmd-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/apical/diagram-tmd-proj
+  features-pc-L2-merged-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon diagram-tmd-proj
+      extract-features/pc-L2-merged/axon/diagram-tmd-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/axon/diagram-tmd-proj
+  features-pc-L2-merged-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal diagram-tmd-proj
+      extract-features/pc-L2-merged/basal/diagram-tmd-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/basal/diagram-tmd-proj
+  features-pc-L2-merged-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all graph-proj
+      extract-features/pc-L2-merged/all/graph-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/all/graph-proj
+  features-pc-L2-merged-graph-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical graph-proj
+      extract-features/pc-L2-merged/apical/graph-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/apical/graph-proj
+  features-pc-L2-merged-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon graph-proj
+      extract-features/pc-L2-merged/axon/graph-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/axon/graph-proj
+  features-pc-L2-merged-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal graph-proj
+      extract-features/pc-L2-merged/basal/graph-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/basal/graph-proj
+  features-pc-L2-merged-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all image-deepwalk
+      extract-features/pc-L2-merged/all/image-deepwalk
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/all/image-deepwalk
+  features-pc-L2-merged-image-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical image-deepwalk
+      extract-features/pc-L2-merged/apical/image-deepwalk
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/apical/image-deepwalk
+  features-pc-L2-merged-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon image-deepwalk
+      extract-features/pc-L2-merged/axon/image-deepwalk
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/axon/image-deepwalk
+  features-pc-L2-merged-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal image-deepwalk
+      extract-features/pc-L2-merged/basal/image-deepwalk
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/basal/image-deepwalk
+  features-pc-L2-merged-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all image-tmd-proj
+      extract-features/pc-L2-merged/all/image-tmd-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/all/image-tmd-proj
+  features-pc-L2-merged-image-tmd-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical image-tmd-proj
+      extract-features/pc-L2-merged/apical/image-tmd-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/apical/image-tmd-proj
+  features-pc-L2-merged-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon image-tmd-proj
+      extract-features/pc-L2-merged/axon/image-tmd-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/axon/image-tmd-proj
+  features-pc-L2-merged-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal image-tmd-proj
+      extract-features/pc-L2-merged/basal/image-tmd-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/basal/image-tmd-proj
   features-pc-L3-diagram-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
       all diagram-deepwalk extract-features/pc-L3/all/diagram-deepwalk
@@ -1844,6 +2004,166 @@ stages:
     - data/final/pyramidal-cells/L5
     outs:
     - extract-features/pc-L5/basal/image-tmd-rd
+  features-pc-L5-merged-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all diagram-deepwalk
+      extract-features/pc-L5-merged/all/diagram-deepwalk
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/all/diagram-deepwalk
+  features-pc-L5-merged-diagram-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv apical diagram-deepwalk
+      extract-features/pc-L5-merged/apical/diagram-deepwalk
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/apical/diagram-deepwalk
+  features-pc-L5-merged-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv axon diagram-deepwalk
+      extract-features/pc-L5-merged/axon/diagram-deepwalk
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/axon/diagram-deepwalk
+  features-pc-L5-merged-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv basal diagram-deepwalk
+      extract-features/pc-L5-merged/basal/diagram-deepwalk
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/basal/diagram-deepwalk
+  features-pc-L5-merged-diagram-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all diagram-tmd-rd
+      extract-features/pc-L5-merged/all/diagram-tmd-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/all/diagram-tmd-rd
+  features-pc-L5-merged-diagram-tmd-rd-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv apical diagram-tmd-rd
+      extract-features/pc-L5-merged/apical/diagram-tmd-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/apical/diagram-tmd-rd
+  features-pc-L5-merged-diagram-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv axon diagram-tmd-rd
+      extract-features/pc-L5-merged/axon/diagram-tmd-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/axon/diagram-tmd-rd
+  features-pc-L5-merged-diagram-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv basal diagram-tmd-rd
+      extract-features/pc-L5-merged/basal/diagram-tmd-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/basal/diagram-tmd-rd
+  features-pc-L5-merged-graph-rd-all:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all graph-rd
+      extract-features/pc-L5-merged/all/graph-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/all/graph-rd
+  features-pc-L5-merged-graph-rd-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv apical graph-rd
+      extract-features/pc-L5-merged/apical/graph-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/apical/graph-rd
+  features-pc-L5-merged-graph-rd-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv axon graph-rd
+      extract-features/pc-L5-merged/axon/graph-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/axon/graph-rd
+  features-pc-L5-merged-graph-rd-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv basal graph-rd
+      extract-features/pc-L5-merged/basal/graph-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/basal/graph-rd
+  features-pc-L5-merged-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all image-deepwalk
+      extract-features/pc-L5-merged/all/image-deepwalk
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/all/image-deepwalk
+  features-pc-L5-merged-image-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv apical image-deepwalk
+      extract-features/pc-L5-merged/apical/image-deepwalk
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/apical/image-deepwalk
+  features-pc-L5-merged-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv axon image-deepwalk
+      extract-features/pc-L5-merged/axon/image-deepwalk
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/axon/image-deepwalk
+  features-pc-L5-merged-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv basal image-deepwalk
+      extract-features/pc-L5-merged/basal/image-deepwalk
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/basal/image-deepwalk
+  features-pc-L5-merged-image-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all image-tmd-rd
+      extract-features/pc-L5-merged/all/image-tmd-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/all/image-tmd-rd
+  features-pc-L5-merged-image-tmd-rd-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv apical image-tmd-rd
+      extract-features/pc-L5-merged/apical/image-tmd-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/apical/image-tmd-rd
+  features-pc-L5-merged-image-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv axon image-tmd-rd
+      extract-features/pc-L5-merged/axon/image-tmd-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/axon/image-tmd-rd
+  features-pc-L5-merged-image-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv basal image-tmd-rd
+      extract-features/pc-L5-merged/basal/image-tmd-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/basal/image-tmd-rd
   features-pc-L6-diagram-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
       all diagram-deepwalk extract-features/pc-L6/all/diagram-deepwalk
@@ -1984,6 +2304,166 @@ stages:
     - data/final/pyramidal-cells/L6
     outs:
     - extract-features/pc-L6/basal/image-tmd-proj
+  features-pc-L6-merged-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv all diagram-deepwalk
+      extract-features/pc-L6-merged/all/diagram-deepwalk
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/all/diagram-deepwalk
+  features-pc-L6-merged-diagram-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv apical diagram-deepwalk
+      extract-features/pc-L6-merged/apical/diagram-deepwalk
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/apical/diagram-deepwalk
+  features-pc-L6-merged-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv axon diagram-deepwalk
+      extract-features/pc-L6-merged/axon/diagram-deepwalk
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/axon/diagram-deepwalk
+  features-pc-L6-merged-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv basal diagram-deepwalk
+      extract-features/pc-L6-merged/basal/diagram-deepwalk
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/basal/diagram-deepwalk
+  features-pc-L6-merged-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv all diagram-tmd-proj
+      extract-features/pc-L6-merged/all/diagram-tmd-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/all/diagram-tmd-proj
+  features-pc-L6-merged-diagram-tmd-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv apical diagram-tmd-proj
+      extract-features/pc-L6-merged/apical/diagram-tmd-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/apical/diagram-tmd-proj
+  features-pc-L6-merged-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv axon diagram-tmd-proj
+      extract-features/pc-L6-merged/axon/diagram-tmd-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/axon/diagram-tmd-proj
+  features-pc-L6-merged-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv basal diagram-tmd-proj
+      extract-features/pc-L6-merged/basal/diagram-tmd-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/basal/diagram-tmd-proj
+  features-pc-L6-merged-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv all graph-proj
+      extract-features/pc-L6-merged/all/graph-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/all/graph-proj
+  features-pc-L6-merged-graph-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv apical graph-proj
+      extract-features/pc-L6-merged/apical/graph-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/apical/graph-proj
+  features-pc-L6-merged-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv axon graph-proj
+      extract-features/pc-L6-merged/axon/graph-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/axon/graph-proj
+  features-pc-L6-merged-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv basal graph-proj
+      extract-features/pc-L6-merged/basal/graph-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/basal/graph-proj
+  features-pc-L6-merged-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv all image-deepwalk
+      extract-features/pc-L6-merged/all/image-deepwalk
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/all/image-deepwalk
+  features-pc-L6-merged-image-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv apical image-deepwalk
+      extract-features/pc-L6-merged/apical/image-deepwalk
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/apical/image-deepwalk
+  features-pc-L6-merged-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv axon image-deepwalk
+      extract-features/pc-L6-merged/axon/image-deepwalk
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/axon/image-deepwalk
+  features-pc-L6-merged-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv basal image-deepwalk
+      extract-features/pc-L6-merged/basal/image-deepwalk
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/basal/image-deepwalk
+  features-pc-L6-merged-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv all image-tmd-proj
+      extract-features/pc-L6-merged/all/image-tmd-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/all/image-tmd-proj
+  features-pc-L6-merged-image-tmd-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv apical image-tmd-proj
+      extract-features/pc-L6-merged/apical/image-tmd-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/apical/image-tmd-proj
+  features-pc-L6-merged-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv axon image-tmd-proj
+      extract-features/pc-L6-merged/axon/image-tmd-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/axon/image-tmd-proj
+  features-pc-L6-merged-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv basal image-tmd-proj
+      extract-features/pc-L6-merged/basal/image-tmd-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/basal/image-tmd-proj
 
   train:
     foreach: ${training}
