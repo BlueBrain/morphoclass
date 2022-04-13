@@ -2601,52 +2601,32 @@ stages:
         - evaluation/pc-merged-classes/pc-L5-${key}-stratified-k-fold.html
         - evaluation/pc-merged-classes/pc-L5-${key}-stratified-k-fold
   train-pc-L6-merged-classes:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v train
-        --dataset-config training/extra-configs/pc-L6-merged-classes.yaml
-        --model-config training/configs/model-${item}.yaml
-        --splitter-config training/configs/splitter-stratifKFold.yaml
-        --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L6-${item}-stratifKFold
+        --features-dir extract-features/pc-L6-merged/apical/${item.features-proj}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L6-${key}-stratified-k-fold
       deps:
-        - data/final/pc-L6-merged.csv
-        - data/final/pyramidal-cells/L6
-        - training/extra-configs/pc-L6-merged-classes.yaml
-        - training/configs/model-${item}.yaml
-        - training/configs/splitter-stratifKFold.yaml
+        - extract-features/pc-L6-merged/apical/${item.features-proj}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
       outs:
-        - training/checkpoints-pc-merged-classes/pc-L6-${item}-stratifKFold
+        - training/checkpoints-pc-merged-classes/pc-L6-${key}-stratified-k-fold
   evaluate-pc-L6-merged-classes:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v evaluate performance
-        training/checkpoints-pc-merged-classes/pc-L6-${item}-stratifKFold/checkpoint.chk
-        evaluation/pc-merged-classes/pc-L6-${item}-stratifKFold.html
+        training/checkpoints-pc-merged-classes/pc-L6-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/pc-merged-classes/pc-L6-${key}-stratified-k-fold.html
       deps:
-        - training/checkpoints-pc-merged-classes/pc-L6-${item}-stratifKFold/checkpoint.chk
+        - training/checkpoints-pc-merged-classes/pc-L6-${key}-stratified-k-fold/checkpoint.chk
       outs:
-        - evaluation/pc-merged-classes/pc-L6-${item}-stratifKFold.html
-        - evaluation/pc-merged-classes/pc-L6-${item}-stratifKFold
+        - evaluation/pc-merged-classes/pc-L6-${key}-stratified-k-fold.html
+        - evaluation/pc-merged-classes/pc-L6-${key}-stratified-k-fold
   train-lida-in-merged:
     foreach:
       - cnn-deepwalk
