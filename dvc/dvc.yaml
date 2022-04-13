@@ -2709,49 +2709,29 @@ stages:
         - evaluation/checkpoints-lida/in-merged-no-nbc-${key}-stratified-k-fold.html
         - evaluation/checkpoints-lida/in-merged-no-nbc-${key}-stratified-k-fold
   train-janelia-L5:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v train
-        --dataset-config training/extra-configs/lida-janelia-L5.yaml
-        --model-config training/configs/model-${item}.yaml
-        --splitter-config training/configs/splitter-stratifKFold.yaml
-        --checkpoint-dir training/checkpoints-lida/janelia-L5-${item}-stratifKFold
+        --features-dir extract-features/lida-janelia-L5/apical/${item.features-rd}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-lida/janelia-L5-${key}-stratified-k-fold
       deps:
-        - data/final/classes-janelia-L5.csv
-        - data/final/janelia
-        - training/extra-configs/lida-janelia-L5.yaml
-        - training/configs/model-${item}.yaml
-        - training/configs/splitter-stratifKFold.yaml
+        - extract-features/lida-janelia-L5/apical/${item.features-rd}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
       outs:
-        - training/checkpoints-lida/janelia-L5-${item}-stratifKFold
+        - training/checkpoints-lida/janelia-L5-${key}-stratified-k-fold
   evaluate-janelia-L5:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v evaluate performance
-        training/checkpoints-lida/janelia-L5-${item}-stratifKFold/checkpoint.chk
-        evaluation/janelia-L5/${item}-stratifKFold.html
+        training/checkpoints-lida/janelia-L5-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/janelia-L5/${key}-stratified-k-fold.html
       deps:
-        - training/checkpoints-lida/janelia-L5-${item}-stratifKFold/checkpoint.chk
+        - training/checkpoints-lida/janelia-L5-${key}-stratified-k-fold
       outs:
-        - evaluation/janelia-L5/${item}-stratifKFold.html
-        - evaluation/janelia-L5/${item}-stratifKFold
+        - evaluation/janelia-L5/${key}-stratified-k-fold.html
+        - evaluation/janelia-L5/${key}-stratified-k-fold
