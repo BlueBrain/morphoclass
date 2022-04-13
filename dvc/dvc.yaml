@@ -2040,52 +2040,32 @@ stages:
         - evaluation/${key}.html
         - evaluation/${key}
   train-merged-interneurons:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v train
-        --dataset-config training/extra-configs/interneurons-merged-layers.yaml
-        --model-config training/configs/model-${item}.yaml
-        --splitter-config training/configs/splitter-stratifKFold.yaml
-        --checkpoint-dir training/checkpoints-merged-interneurons/${item}
+        --features-dir extract-features/in-merged-layers/axon/${item.features}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-merged-interneurons/${key}
       deps:
-        - data/final/interneurons-merged-layers.csv
-        - data/final/interneurons
-        - training/extra-configs/interneurons-merged-layers.yaml
-        - training/configs/model-${item}.yaml
-        - training/configs/splitter-stratifKFold.yaml
+        - extract-features/in-merged-layers
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
       outs:
-        - training/checkpoints-merged-interneurons/${item}
+        - training/checkpoints-merged-interneurons/${key}
   evaluate-merged-interneurons:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v evaluate performance
-        training/checkpoints-merged-interneurons/${item}/checkpoint.chk
-        evaluation/merged-interneurons/${item}.html
+        training/checkpoints-merged-interneurons/${key}/checkpoint.chk
+        evaluation/merged-interneurons/${key}.html
       deps:
-        - training/checkpoints-merged-interneurons/${item}/checkpoint.chk
+        - training/checkpoints-merged-interneurons/${key}/checkpoint.chk
       outs:
-        - evaluation/merged-interneurons/${item}.html
-        - evaluation/merged-interneurons/${item}
+        - evaluation/merged-interneurons/${key}.html
+        - evaluation/merged-interneurons/${key}
   train-pc-L2-merged-classes:
     foreach:
       - cnn-deepwalk
