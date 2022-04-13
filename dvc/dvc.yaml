@@ -2628,52 +2628,32 @@ stages:
         - evaluation/pc-merged-classes/pc-L6-${key}-stratified-k-fold.html
         - evaluation/pc-merged-classes/pc-L6-${key}-stratified-k-fold
   train-lida-in-merged:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v train
-        --dataset-config training/extra-configs/lida-in-merged.yaml
-        --model-config training/configs/model-${item}.yaml
-        --splitter-config training/configs/splitter-stratifKFold.yaml
-        --checkpoint-dir training/checkpoints-lida/in-merged-${item}-stratifKFold
+        --features-dir extract-features/lida-in-merged/axon/${item.features-rd}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-lida/in-merged-${key}-stratified-k-fold
       deps:
-        - data/final/IN_data.csv
-        - data/final/interneurons
-        - training/extra-configs/lida-in-merged.yaml
-        - training/configs/model-${item}.yaml
-        - training/configs/splitter-stratifKFold.yaml
+        - extract-features/lida-in-merged/axon/${item.features-rd}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
       outs:
-        - training/checkpoints-lida/in-merged-${item}-stratifKFold
+        - training/checkpoints-lida/in-merged-${key}-stratified-k-fold
   evaluate-lida-in-merged:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v evaluate performance
-        training/checkpoints-lida/in-merged-${item}-stratifKFold/checkpoint.chk
-        evaluation/checkpoints-lida/in-merged-${item}-stratifKFold.html
+        training/checkpoints-lida/in-merged-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/checkpoints-lida/in-merged-${key}-stratified-k-fold.html
       deps:
-        - training/checkpoints-lida/in-merged-${item}-stratifKFold/checkpoint.chk
+        - training/checkpoints-lida/in-merged-${key}-stratified-k-fold/checkpoint.chk
       outs:
-        - evaluation/checkpoints-lida/in-merged-${item}-stratifKFold.html
-        - evaluation/checkpoints-lida/in-merged-${item}-stratifKFold
+        - evaluation/checkpoints-lida/in-merged-${key}-stratified-k-fold.html
+        - evaluation/checkpoints-lida/in-merged-${key}-stratified-k-fold
   train-lida-in-merged-bc-merged:
     foreach:
       - cnn-deepwalk
