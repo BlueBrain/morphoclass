@@ -216,7 +216,7 @@ def cli(
         yscale = max(abs(ymax), abs(ymin))
         scale = np.array([[xscale, yscale]])
         for sample, diagram in zip(dataset.data, diagrams):
-            sample.diagram = torch.tensor(diagram / scale)
+            sample.diagram = torch.tensor(diagram / scale).float()
 
         if feature.startswith("image-"):
             logger.info("Converting diagrams to images")
