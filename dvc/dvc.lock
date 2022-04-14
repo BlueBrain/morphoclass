@@ -13949,3 +13949,1803 @@ stages:
       md5: b40a49566ea6441183c978ded0c1f354.dir
       size: 106171
       nfiles: 41
+  train@pc-L6-apical-diagram-tmd-proj-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L6/apical/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L6-apical-diagram-tmd-proj-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L6/apical/diagram-tmd-proj
+      md5: c6ccd9f70feee4084f217d3b77b43ac8.dir
+      size: 281411
+      nfiles: 129
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L6-apical-diagram-tmd-proj-perslay-stratified-k-fold
+      md5: 042ae959cfd4bc58eb45f998b1294bf4.dir
+      size: 3552240
+      nfiles: 13
+  train@in-L5-axon-image-tmd-rd-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/axon/image-tmd-rd
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L5-axon-image-tmd-rd-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/axon/image-tmd-rd
+      md5: 33fe97da2bfaee65af66c78384e75067.dir
+      size: 5090573
+      nfiles: 111
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L5-axon-image-tmd-rd-decision-tree-stratified-k-fold
+      md5: cfec7e8457689741f1818ea51a651542.dir
+      size: 45321591
+      nfiles: 13
+  train@pc-L3-apical-diagram-tmd-rd-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L3/apical/diagram-tmd-rd
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L3-apical-diagram-tmd-rd-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L3/apical/diagram-tmd-rd
+      md5: 0da729fdd27998ccffbf4996bb7de00d.dir
+      size: 82628
+      nfiles: 44
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L3-apical-diagram-tmd-rd-perslay-stratified-k-fold
+      md5: ae10689495a2c0c391703fb318dc4e2d.dir
+      size: 3385215
+      nfiles: 13
+  train@in-L23-axon-image-deepwalk-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/axon/image-deepwalk
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L23-axon-image-deepwalk-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/axon/image-deepwalk
+      md5: 46e3c49a9e57479d89e03eda8050c5b5.dir
+      size: 7345940
+      nfiles: 156
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L23-axon-image-deepwalk-cnn-stratified-k-fold
+      md5: c476c75f5404cc354e65c2417b915e64.dir
+      size: 8324587
+      nfiles: 13
+  train@pc-L5-apical-diagram-deepwalk-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L5/apical/diagram-deepwalk
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L5-apical-diagram-deepwalk-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L5/apical/diagram-deepwalk
+      md5: f851821204cd53c04d1068d944ce0782.dir
+      size: 551392
+      nfiles: 160
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L5-apical-diagram-deepwalk-perslay-stratified-k-fold
+      md5: 06236205a77f2a1b4d869a7ce93ee467.dir
+      size: 3542153
+      nfiles: 13
+  train@pc-L4-apical-image-tmd-rd-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L4/apical/image-tmd-rd
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L4-apical-image-tmd-rd-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L4/apical/image-tmd-rd
+      md5: 2aac16702947eca8142214b589cf3d96.dir
+      size: 3705483
+      nfiles: 89
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L4-apical-image-tmd-rd-cnn-stratified-k-fold
+      md5: 30ebff8e98495fd78276ba27f7203657.dir
+      size: 6081841
+      nfiles: 13
+  train@pc-L6-apical-image-deepwalk-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L6/apical/image-deepwalk
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L6-apical-image-deepwalk-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L6/apical/image-deepwalk
+      md5: 67c544908c7d2c81204ac305f83ae3bd.dir
+      size: 5421635
+      nfiles: 129
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L6-apical-image-deepwalk-cnn-stratified-k-fold
+      md5: 908802f997ce7f51e97654d97cc18ec5.dir
+      size: 7410368
+      nfiles: 13
+  train@in-L4-axon-image-tmd-rd-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/axon/image-tmd-rd
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L4-axon-image-tmd-rd-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/axon/image-tmd-rd
+      md5: 2e2675122f33072d44d8015cdb8a647c.dir
+      size: 5198163
+      nfiles: 113
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L4-axon-image-tmd-rd-xgb-stratified-k-fold
+      md5: 212650fda717749fdfdcf6bbfecfe2ac.dir
+      size: 45923779
+      nfiles: 13
+  train@pc-L3-apical-image-deepwalk-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L3/apical/image-deepwalk
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L3-apical-image-deepwalk-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L3/apical/image-deepwalk
+      md5: 53fe8aa8a90aa1dd1e9366df63712702.dir
+      size: 1839876
+      nfiles: 44
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L3-apical-image-deepwalk-decision-tree-stratified-k-fold
+      md5: dd500ad6ea7dc7186173f75426d22b1f.dir
+      size: 19601151
+      nfiles: 13
+  train@pc-L6-apical-image-tmd-proj-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L6/apical/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L6-apical-image-tmd-proj-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L6/apical/image-tmd-proj
+      md5: b56989d08e08a9fc416946d78927351d.dir
+      size: 5421635
+      nfiles: 129
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L6-apical-image-tmd-proj-cnn-stratified-k-fold
+      md5: ce9ef0b702127ae3172430434af3f243.dir
+      size: 7425818
+      nfiles: 13
+  train@in-L4-axon-image-deepwalk-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/axon/image-deepwalk
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L4-axon-image-deepwalk-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/axon/image-deepwalk
+      md5: dfa9757b2331b4dfbd847c11cc1fb607.dir
+      size: 5198163
+      nfiles: 113
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L4-axon-image-deepwalk-xgb-stratified-k-fold
+      md5: 8358663e4662a3419c7915442247185c.dir
+      size: 48475725
+      nfiles: 13
+  train@in-L4-axon-image-tmd-rd-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/axon/image-tmd-rd
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L4-axon-image-tmd-rd-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/axon/image-tmd-rd
+      md5: 2e2675122f33072d44d8015cdb8a647c.dir
+      size: 5198163
+      nfiles: 113
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L4-axon-image-tmd-rd-cnn-stratified-k-fold
+      md5: b8d2e4caefead949ef0c7d550c5515a5.dir
+      size: 7005810
+      nfiles: 13
+  train@pc-L4-apical-image-deepwalk-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L4/apical/image-deepwalk
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L4-apical-image-deepwalk-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L4/apical/image-deepwalk
+      md5: 256cedb0853285a8c24c7c7313a047e1.dir
+      size: 3705483
+      nfiles: 89
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L4-apical-image-deepwalk-decision-tree-stratified-k-fold
+      md5: ede9449f7e48b51c5984d1365e5bc139.dir
+      size: 35410299
+      nfiles: 13
+  train@in-L5-axon-image-deepwalk-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/axon/image-deepwalk
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L5-axon-image-deepwalk-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/axon/image-deepwalk
+      md5: 200bc4b0cba67fefccbea3c2098fa1ce.dir
+      size: 5090573
+      nfiles: 111
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L5-axon-image-deepwalk-decision-tree-stratified-k-fold
+      md5: 119a5ca82333d893c47f01223a89cfe6.dir
+      size: 45765727
+      nfiles: 13
+  train@pc-L2-apical-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L2/apical/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L2-apical-image-tmd-proj-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L2/apical/image-tmd-proj
+      md5: dead850eea3775cb03eace6036237195.dir
+      size: 1806337
+      nfiles: 43
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L2-apical-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: fd6d444bae38956f162482bbb4e09d59.dir
+      size: 20445294
+      nfiles: 13
+  train@pc-L4-apical-image-tmd-rd-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L4/apical/image-tmd-rd
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L4-apical-image-tmd-rd-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L4/apical/image-tmd-rd
+      md5: 2aac16702947eca8142214b589cf3d96.dir
+      size: 3705483
+      nfiles: 89
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L4-apical-image-tmd-rd-decision-tree-stratified-k-fold
+      md5: 40ac3ca9f6c2072dc6228cd08a99fd8a.dir
+      size: 38034188
+      nfiles: 13
+  train@pc-L4-apical-image-deepwalk-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L4/apical/image-deepwalk
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L4-apical-image-deepwalk-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L4/apical/image-deepwalk
+      md5: 256cedb0853285a8c24c7c7313a047e1.dir
+      size: 3705483
+      nfiles: 89
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L4-apical-image-deepwalk-cnn-stratified-k-fold
+      md5: 864d879ca89bfeda79676b12a1dcaa6c.dir
+      size: 6082234
+      nfiles: 13
+  train@pc-L2-apical-image-deepwalk-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L2/apical/image-deepwalk
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L2-apical-image-deepwalk-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L2/apical/image-deepwalk
+      md5: 262e133df412789b641136af9d863b5d.dir
+      size: 1806337
+      nfiles: 43
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L2-apical-image-deepwalk-cnn-stratified-k-fold
+      md5: 937539e309b5a3f98d9dfbf5ca3f0324.dir
+      size: 4680548
+      nfiles: 13
+  train@pc-L3-apical-image-tmd-rd-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L3/apical/image-tmd-rd
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L3-apical-image-tmd-rd-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L3/apical/image-tmd-rd
+      md5: 376b7a9c536e3269909baa07a8e79f02.dir
+      size: 1839876
+      nfiles: 44
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L3-apical-image-tmd-rd-xgb-stratified-k-fold
+      md5: a6b8c74bfaa592f5cfe82f5683a078c5.dir
+      size: 21595687
+      nfiles: 13
+  train@in-L6-axon-diagram-deepwalk-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/axon/diagram-deepwalk
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L6-axon-diagram-deepwalk-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/axon/diagram-deepwalk
+      md5: bd759f86e1784279438ea106c7a24316.dir
+      size: 543290
+      nfiles: 62
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L6-axon-diagram-deepwalk-perslay-stratified-k-fold
+      md5: bbcd6369beb0913b7d740a2e3b9512ff.dir
+      size: 3432302
+      nfiles: 13
+  train@pc-L4-apical-image-tmd-rd-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L4/apical/image-tmd-rd
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L4-apical-image-tmd-rd-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L4/apical/image-tmd-rd
+      md5: 2aac16702947eca8142214b589cf3d96.dir
+      size: 3705483
+      nfiles: 89
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L4-apical-image-tmd-rd-xgb-stratified-k-fold
+      md5: c4d2706d839ad624226b668862eb9bdf.dir
+      size: 38702041
+      nfiles: 13
+  train@in-L6-axon-image-deepwalk-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/axon/image-deepwalk
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L6-axon-image-deepwalk-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/axon/image-deepwalk
+      md5: cd40b393abf3b2954c8b8f43d984be5c.dir
+      size: 2870266
+      nfiles: 62
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L6-axon-image-deepwalk-decision-tree-stratified-k-fold
+      md5: e9eb9f5db3c6291a521088e930ed2083.dir
+      size: 27051169
+      nfiles: 13
+  train@in-L5-axon-graph-rd-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/axon/graph-rd
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L5-axon-graph-rd-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/axon/graph-rd
+      md5: f3d1adde4f91c35cfe24a44576732151.dir
+      size: 770381
+      nfiles: 111
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L5-axon-graph-rd-gnn-stratified-k-fold
+      md5: 902e041ce4ca71b7136e078cad910d64.dir
+      size: 9624151
+      nfiles: 13
+  train@pc-L5-apical-image-deepwalk-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L5/apical/image-deepwalk
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L5-apical-image-deepwalk-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L5/apical/image-deepwalk
+      md5: fa0b3bec959410b1b101f0b22024b2ce.dir
+      size: 6842656
+      nfiles: 160
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L5-apical-image-deepwalk-cnn-stratified-k-fold
+      md5: 297531c001d5f083bda8952041891421.dir
+      size: 8269394
+      nfiles: 13
+  train@pc-L6-apical-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L6/apical/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L6-apical-image-tmd-proj-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L6/apical/image-tmd-proj
+      md5: b56989d08e08a9fc416946d78927351d.dir
+      size: 5421635
+      nfiles: 129
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L6-apical-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: ff9d1157eb238e2b49c17baa69d976c2.dir
+      size: 53480272
+      nfiles: 13
+  train@in-L1-axon-image-deepwalk-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/axon/image-deepwalk
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L1-axon-image-deepwalk-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/axon/image-deepwalk
+      md5: 4a65d32a48c0cb2a027a34f6f1e7b64b.dir
+      size: 4690363
+      nfiles: 105
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L1-axon-image-deepwalk-xgb-stratified-k-fold
+      md5: 4d9786ce3de042774a67afe4c36f62e0.dir
+      size: 44790176
+      nfiles: 13
+  train@pc-L2-apical-diagram-tmd-proj-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L2/apical/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L2-apical-diagram-tmd-proj-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L2/apical/diagram-tmd-proj
+      md5: 21e319c5f1d66cafb3bfe957a363d8df.dir
+      size: 91521
+      nfiles: 43
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L2-apical-diagram-tmd-proj-perslay-stratified-k-fold
+      md5: 389ed4f5d0a3daa43097c737f59887cc.dir
+      size: 3397168
+      nfiles: 13
+  train@in-L23-axon-diagram-tmd-rd-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/axon/diagram-tmd-rd
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L23-axon-diagram-tmd-rd-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/axon/diagram-tmd-rd
+      md5: 8c5599dad008a88e69e41b227bbd8f98.dir
+      size: 1324500
+      nfiles: 156
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L23-axon-diagram-tmd-rd-perslay-stratified-k-fold
+      md5: 76235097bdc44b1e6b0bca01162e35dc.dir
+      size: 3613567
+      nfiles: 13
+  train@in-L23-axon-graph-rd-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/axon/graph-rd
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L23-axon-graph-rd-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/axon/graph-rd
+      md5: 8a30eb61cda22ea377d5b0ae19652950.dir
+      size: 1322900
+      nfiles: 156
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L23-axon-graph-rd-gnn-stratified-k-fold
+      md5: ee49ae9391b6781a610e2ce94e6f2ea6.dir
+      size: 10032723
+      nfiles: 13
+  train@pc-L4-apical-diagram-deepwalk-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L4/apical/diagram-deepwalk
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L4-apical-diagram-deepwalk-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L4/apical/diagram-deepwalk
+      md5: 3895612fef262eaed77023ad477c1b77.dir
+      size: 157835
+      nfiles: 89
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L4-apical-diagram-deepwalk-perslay-stratified-k-fold
+      md5: dbaffd52b3a7c9c7c7d43762b6f2ccc7.dir
+      size: 3458729
+      nfiles: 13
+  train@in-L5-axon-image-deepwalk-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/axon/image-deepwalk
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L5-axon-image-deepwalk-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/axon/image-deepwalk
+      md5: 200bc4b0cba67fefccbea3c2098fa1ce.dir
+      size: 5090573
+      nfiles: 111
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L5-axon-image-deepwalk-xgb-stratified-k-fold
+      md5: 6d1b709ab2bd11ca82c49a0bf7dba83a.dir
+      size: 47586832
+      nfiles: 13
+  train@pc-L4-apical-diagram-tmd-rd-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L4/apical/diagram-tmd-rd
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L4-apical-diagram-tmd-rd-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L4/apical/diagram-tmd-rd
+      md5: f51a99dbd933bb53454325e09fe19474.dir
+      size: 148683
+      nfiles: 89
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L4-apical-diagram-tmd-rd-perslay-stratified-k-fold
+      md5: 8dcbb111e77b9c0906047822bc77b0d1.dir
+      size: 3444466
+      nfiles: 13
+  train@pc-L3-apical-image-deepwalk-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L3/apical/image-deepwalk
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L3-apical-image-deepwalk-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L3/apical/image-deepwalk
+      md5: 53fe8aa8a90aa1dd1e9366df63712702.dir
+      size: 1839876
+      nfiles: 44
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L3-apical-image-deepwalk-cnn-stratified-k-fold
+      md5: dfa87301217224ac1303263458bdd56c.dir
+      size: 4677816
+      nfiles: 13
+  train@in-L23-axon-image-deepwalk-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/axon/image-deepwalk
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L23-axon-image-deepwalk-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/axon/image-deepwalk
+      md5: 46e3c49a9e57479d89e03eda8050c5b5.dir
+      size: 7345940
+      nfiles: 156
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L23-axon-image-deepwalk-decision-tree-stratified-k-fold
+      md5: aa830a99506f80357c4e90a40b4f5eab.dir
+      size: 63060256
+      nfiles: 13
+  train@pc-L5-apical-image-tmd-rd-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L5/apical/image-tmd-rd
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L5-apical-image-tmd-rd-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L5/apical/image-tmd-rd
+      md5: 72059313834ba2a91751c8b03c3fc8fd.dir
+      size: 6842656
+      nfiles: 160
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L5-apical-image-tmd-rd-cnn-stratified-k-fold
+      md5: feb2322400526cb10319b3db31a76c93.dir
+      size: 8267783
+      nfiles: 13
+  train@in-L6-axon-diagram-tmd-rd-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/axon/diagram-tmd-rd
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L6-axon-diagram-tmd-rd-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/axon/diagram-tmd-rd
+      md5: e1fda953d5682bd8c90aa7e419201cf1.dir
+      size: 464826
+      nfiles: 62
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L6-axon-diagram-tmd-rd-perslay-stratified-k-fold
+      md5: 1eb5548903a332cd769e994e1e92c2f9.dir
+      size: 3432497
+      nfiles: 13
+  train@pc-L4-apical-image-deepwalk-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L4/apical/image-deepwalk
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L4-apical-image-deepwalk-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L4/apical/image-deepwalk
+      md5: 256cedb0853285a8c24c7c7313a047e1.dir
+      size: 3705483
+      nfiles: 89
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L4-apical-image-deepwalk-xgb-stratified-k-fold
+      md5: 7b811b2706b7b1ffff0cf2d4c97c5b91.dir
+      size: 36177410
+      nfiles: 13
+  train@in-L23-axon-image-tmd-rd-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/axon/image-tmd-rd
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L23-axon-image-tmd-rd-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/axon/image-tmd-rd
+      md5: 3c793ed288bd5dfc2dbbb5fba5078d90.dir
+      size: 7345940
+      nfiles: 156
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L23-axon-image-tmd-rd-decision-tree-stratified-k-fold
+      md5: 0d138bcae671d46357edb9656ab0a893.dir
+      size: 59867629
+      nfiles: 13
+  train@pc-L2-apical-image-tmd-proj-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L2/apical/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L2-apical-image-tmd-proj-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L2/apical/image-tmd-proj
+      md5: dead850eea3775cb03eace6036237195.dir
+      size: 1806337
+      nfiles: 43
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L2-apical-image-tmd-proj-cnn-stratified-k-fold
+      md5: 4f0f185b745e97a5dba12f523ffbd880.dir
+      size: 4695178
+      nfiles: 13
+  train@pc-L4-apical-graph-rd-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L4/apical/graph-rd
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L4-apical-graph-rd-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L4/apical/graph-rd
+      md5: b074e986111361e002e0cdf7d4cdb1d9.dir
+      size: 148427
+      nfiles: 89
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L4-apical-graph-rd-gnn-stratified-k-fold
+      md5: c1b4b842d41b3f14fa9faf1e8d3998a0.dir
+      size: 9362030
+      nfiles: 13
+  train@pc-L5-apical-image-deepwalk-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L5/apical/image-deepwalk
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L5-apical-image-deepwalk-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L5/apical/image-deepwalk
+      md5: fa0b3bec959410b1b101f0b22024b2ce.dir
+      size: 6842656
+      nfiles: 160
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L5-apical-image-deepwalk-decision-tree-stratified-k-fold
+      md5: 7dac8d53eee57bfc120b64511799bc8c.dir
+      size: 63291142
+      nfiles: 13
+  train@pc-L5-apical-diagram-tmd-rd-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L5/apical/diagram-tmd-rd
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L5-apical-diagram-tmd-rd-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L5/apical/diagram-tmd-rd
+      md5: 9b05c50c0a6a062411b6c2512cde39f3.dir
+      size: 490592
+      nfiles: 160
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L5-apical-diagram-tmd-rd-perslay-stratified-k-fold
+      md5: 9e4086b4261cd048939e0e3ba7a35253.dir
+      size: 3553043
+      nfiles: 13
+  train@in-L1-axon-image-tmd-rd-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/axon/image-tmd-rd
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L1-axon-image-tmd-rd-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/axon/image-tmd-rd
+      md5: 8645dc9249b21e98ae6fa27a937fae8f.dir
+      size: 4690363
+      nfiles: 105
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L1-axon-image-tmd-rd-decision-tree-stratified-k-fold
+      md5: cd7d859e71096a97f49957cca54bc7d7.dir
+      size: 42936333
+      nfiles: 13
+  train@in-L4-axon-image-tmd-rd-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/axon/image-tmd-rd
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L4-axon-image-tmd-rd-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/axon/image-tmd-rd
+      md5: 2e2675122f33072d44d8015cdb8a647c.dir
+      size: 5198163
+      nfiles: 113
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L4-axon-image-tmd-rd-decision-tree-stratified-k-fold
+      md5: 8c31dd325f1576efdc8425f766580f63.dir
+      size: 44265743
+      nfiles: 13
+  train@in-L6-axon-image-deepwalk-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/axon/image-deepwalk
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L6-axon-image-deepwalk-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/axon/image-deepwalk
+      md5: cd40b393abf3b2954c8b8f43d984be5c.dir
+      size: 2870266
+      nfiles: 62
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L6-axon-image-deepwalk-xgb-stratified-k-fold
+      md5: e1d7440b653f153eef377b6f8b35d8f1.dir
+      size: 28110806
+      nfiles: 13
+  train@in-L5-axon-image-deepwalk-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/axon/image-deepwalk
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L5-axon-image-deepwalk-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/axon/image-deepwalk
+      md5: 200bc4b0cba67fefccbea3c2098fa1ce.dir
+      size: 5090573
+      nfiles: 111
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L5-axon-image-deepwalk-cnn-stratified-k-fold
+      md5: e4f42b2f3fb4c4c177dae4fc48a56642.dir
+      size: 6941943
+      nfiles: 13
+  train@in-L5-axon-diagram-deepwalk-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/axon/diagram-deepwalk
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L5-axon-diagram-deepwalk-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/axon/diagram-deepwalk
+      md5: 6d9b68687dae2ebc7b5e1cd2a7167f99.dir
+      size: 899213
+      nfiles: 111
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L5-axon-diagram-deepwalk-perslay-stratified-k-fold
+      md5: 4dae2ffa945c88947d46a37388a69dac.dir
+      size: 3539949
+      nfiles: 13
+  train@pc-L3-apical-image-deepwalk-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L3/apical/image-deepwalk
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L3-apical-image-deepwalk-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L3/apical/image-deepwalk
+      md5: 53fe8aa8a90aa1dd1e9366df63712702.dir
+      size: 1839876
+      nfiles: 44
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L3-apical-image-deepwalk-xgb-stratified-k-fold
+      md5: 01eea1dd8a9fd124be22bc8c9bf46096.dir
+      size: 19992297
+      nfiles: 13
+  train@in-L4-axon-graph-rd-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/axon/graph-rd
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L4-axon-graph-rd-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/axon/graph-rd
+      md5: da5126c21459e359879cb215507ede47.dir
+      size: 805523
+      nfiles: 113
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L4-axon-graph-rd-gnn-stratified-k-fold
+      md5: 6154805dfa30f99d805f6181649076d0.dir
+      size: 9635516
+      nfiles: 13
+  train@pc-L6-apical-graph-proj-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L6/apical/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L6-apical-graph-proj-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L6/apical/graph-proj
+      md5: a4c2dcfaad28d182242abe4b638e42c8.dir
+      size: 276035
+      nfiles: 129
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L6-apical-graph-proj-gnn-stratified-k-fold
+      md5: 870f9e786f1a79ae28046b373f92990b.dir
+      size: 9745971
+      nfiles: 13
+  train@in-L5-axon-diagram-tmd-rd-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/axon/diagram-tmd-rd
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L5-axon-diagram-tmd-rd-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/axon/diagram-tmd-rd
+      md5: d961ec1259bfa063ea3484c5ba7e8b42.dir
+      size: 770701
+      nfiles: 111
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L5-axon-diagram-tmd-rd-perslay-stratified-k-fold
+      md5: c232dcaed80f0307674c3f01a8b8a875.dir
+      size: 3539761
+      nfiles: 13
+  train@in-L6-axon-image-tmd-rd-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/axon/image-tmd-rd
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L6-axon-image-tmd-rd-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/axon/image-tmd-rd
+      md5: b975edeb2b431a5538757ea43eb396af.dir
+      size: 2870266
+      nfiles: 62
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L6-axon-image-tmd-rd-cnn-stratified-k-fold
+      md5: f9860c8583e9bf8b3858a8d5b4de97e5.dir
+      size: 5327103
+      nfiles: 13
+  train@in-L5-axon-image-tmd-rd-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/axon/image-tmd-rd
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L5-axon-image-tmd-rd-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/axon/image-tmd-rd
+      md5: 33fe97da2bfaee65af66c78384e75067.dir
+      size: 5090573
+      nfiles: 111
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L5-axon-image-tmd-rd-xgb-stratified-k-fold
+      md5: d8c7469e1b4a7566b441479a02364253.dir
+      size: 47004354
+      nfiles: 13
+  train@pc-L2-apical-graph-proj-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L2/apical/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L2-apical-graph-proj-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L2/apical/graph-proj
+      md5: 07a483e49719ade6cc3420189f3a8997.dir
+      size: 90881
+      nfiles: 43
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L2-apical-graph-proj-gnn-stratified-k-fold
+      md5: 288cb41c8a837fac018dc571d4b9fbb6.dir
+      size: 8958165
+      nfiles: 13
+  train@in-L1-axon-diagram-deepwalk-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/axon/diagram-deepwalk
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L1-axon-diagram-deepwalk-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/axon/diagram-deepwalk
+      md5: 8118b47594a55915f607a40be1f0ce5e.dir
+      size: 662651
+      nfiles: 105
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L1-axon-diagram-deepwalk-perslay-stratified-k-fold
+      md5: 3281a0e5ad8268771b3618eb43a96548.dir
+      size: 3507496
+      nfiles: 13
+  train@pc-L2-apical-image-deepwalk-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L2/apical/image-deepwalk
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L2-apical-image-deepwalk-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L2/apical/image-deepwalk
+      md5: 262e133df412789b641136af9d863b5d.dir
+      size: 1806337
+      nfiles: 43
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L2-apical-image-deepwalk-xgb-stratified-k-fold
+      md5: 6553b9ed804fe7b126e6133727afdc75.dir
+      size: 19892711
+      nfiles: 13
+  train@pc-L2-apical-diagram-deepwalk-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L2/apical/diagram-deepwalk
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L2-apical-diagram-deepwalk-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L2/apical/diagram-deepwalk
+      md5: ff694b59e6f821e19f55192d4969ef44.dir
+      size: 99777
+      nfiles: 43
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L2-apical-diagram-deepwalk-perslay-stratified-k-fold
+      md5: a940cc6d40d1857450f3c44bad6d7b64.dir
+      size: 3387837
+      nfiles: 13
+  train@in-L23-axon-image-tmd-rd-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/axon/image-tmd-rd
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L23-axon-image-tmd-rd-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/axon/image-tmd-rd
+      md5: 3c793ed288bd5dfc2dbbb5fba5078d90.dir
+      size: 7345940
+      nfiles: 156
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L23-axon-image-tmd-rd-cnn-stratified-k-fold
+      md5: b99a44db710b6418f684d87f38097a25.dir
+      size: 8348951
+      nfiles: 13
+  train@in-L1-axon-graph-rd-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/axon/graph-rd
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L1-axon-graph-rd-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/axon/graph-rd
+      md5: 8cc24ff50408880a78772537e7b325ff.dir
+      size: 571963
+      nfiles: 105
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L1-axon-graph-rd-gnn-stratified-k-fold
+      md5: e88daab617c8066335033863d28a6606.dir
+      size: 9536145
+      nfiles: 13
+  train@in-L1-axon-image-deepwalk-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/axon/image-deepwalk
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L1-axon-image-deepwalk-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/axon/image-deepwalk
+      md5: 4a65d32a48c0cb2a027a34f6f1e7b64b.dir
+      size: 4690363
+      nfiles: 105
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L1-axon-image-deepwalk-cnn-stratified-k-fold
+      md5: 59a6bd4ed8fe31206cae0fff6cd68ab6.dir
+      size: 6686796
+      nfiles: 13
+  train@pc-L5-apical-image-deepwalk-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L5/apical/image-deepwalk
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L5-apical-image-deepwalk-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L5/apical/image-deepwalk
+      md5: fa0b3bec959410b1b101f0b22024b2ce.dir
+      size: 6842656
+      nfiles: 160
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L5-apical-image-deepwalk-xgb-stratified-k-fold
+      md5: 58e40e2d18b32a592ee241c496ad325a.dir
+      size: 64484907
+      nfiles: 13
+  train@in-L4-axon-image-deepwalk-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/axon/image-deepwalk
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L4-axon-image-deepwalk-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/axon/image-deepwalk
+      md5: dfa9757b2331b4dfbd847c11cc1fb607.dir
+      size: 5198163
+      nfiles: 113
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L4-axon-image-deepwalk-cnn-stratified-k-fold
+      md5: eb62092fc9205ef86cc425fdb0e694e9.dir
+      size: 6998838
+      nfiles: 13
+  train@pc-L6-apical-image-tmd-proj-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L6/apical/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L6-apical-image-tmd-proj-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L6/apical/image-tmd-proj
+      md5: b56989d08e08a9fc416946d78927351d.dir
+      size: 5421635
+      nfiles: 129
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L6-apical-image-tmd-proj-xgb-stratified-k-fold
+      md5: 6fc1e72ec091efae34819b76b1fcbba6.dir
+      size: 54703690
+      nfiles: 13
+  train@pc-L5-apical-image-tmd-rd-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L5/apical/image-tmd-rd
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L5-apical-image-tmd-rd-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L5/apical/image-tmd-rd
+      md5: 72059313834ba2a91751c8b03c3fc8fd.dir
+      size: 6842656
+      nfiles: 160
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L5-apical-image-tmd-rd-decision-tree-stratified-k-fold
+      md5: cb7075e1eb1ce5d0e6c5377b97e92601.dir
+      size: 67528383
+      nfiles: 13
+  train@pc-L2-apical-image-tmd-proj-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L2/apical/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L2-apical-image-tmd-proj-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L2/apical/image-tmd-proj
+      md5: dead850eea3775cb03eace6036237195.dir
+      size: 1806337
+      nfiles: 43
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L2-apical-image-tmd-proj-xgb-stratified-k-fold
+      md5: 87cc95bc77c13faeb6f07f43fec69d00.dir
+      size: 21030862
+      nfiles: 13
+  train@in-L1-axon-image-deepwalk-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/axon/image-deepwalk
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L1-axon-image-deepwalk-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/axon/image-deepwalk
+      md5: 4a65d32a48c0cb2a027a34f6f1e7b64b.dir
+      size: 4690363
+      nfiles: 105
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L1-axon-image-deepwalk-decision-tree-stratified-k-fold
+      md5: 81d5640f2e9f7f6d676cfceb646c2c2a.dir
+      size: 43331867
+      nfiles: 13
+  train@pc-L3-apical-image-tmd-rd-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L3/apical/image-tmd-rd
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L3-apical-image-tmd-rd-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L3/apical/image-tmd-rd
+      md5: 376b7a9c536e3269909baa07a8e79f02.dir
+      size: 1839876
+      nfiles: 44
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L3-apical-image-tmd-rd-decision-tree-stratified-k-fold
+      md5: 2d5354824a97df40707d91a210616847.dir
+      size: 21212118
+      nfiles: 13
+  train@pc-L3-apical-graph-rd-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L3/apical/graph-rd
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L3-apical-graph-rd-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L3/apical/graph-rd
+      md5: db66042063c764251aebda7bc8200224.dir
+      size: 82244
+      nfiles: 44
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L3-apical-graph-rd-gnn-stratified-k-fold
+      md5: cb2b2e7749585a51a0efa52f4e91fbaa.dir
+      size: 8951917
+      nfiles: 13
+  train@in-L1-axon-image-tmd-rd-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/axon/image-tmd-rd
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L1-axon-image-tmd-rd-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/axon/image-tmd-rd
+      md5: 8645dc9249b21e98ae6fa27a937fae8f.dir
+      size: 4690363
+      nfiles: 105
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L1-axon-image-tmd-rd-xgb-stratified-k-fold
+      md5: 8866549d9f420fe88c8a5255de7fe6ab.dir
+      size: 44272822
+      nfiles: 13
+  train@in-L6-axon-image-tmd-rd-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/axon/image-tmd-rd
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L6-axon-image-tmd-rd-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/axon/image-tmd-rd
+      md5: b975edeb2b431a5538757ea43eb396af.dir
+      size: 2870266
+      nfiles: 62
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L6-axon-image-tmd-rd-decision-tree-stratified-k-fold
+      md5: f016938f0dc7dd94a9319a81d302555a.dir
+      size: 26072244
+      nfiles: 13
+  train@in-L6-axon-image-deepwalk-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/axon/image-deepwalk
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L6-axon-image-deepwalk-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/axon/image-deepwalk
+      md5: cd40b393abf3b2954c8b8f43d984be5c.dir
+      size: 2870266
+      nfiles: 62
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L6-axon-image-deepwalk-cnn-stratified-k-fold
+      md5: 1b8fb03ed88266cc6992ec6f36d24026.dir
+      size: 5335001
+      nfiles: 13
+  train@in-L23-axon-diagram-deepwalk-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/axon/diagram-deepwalk
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L23-axon-diagram-deepwalk-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/axon/diagram-deepwalk
+      md5: 67502727fe79100adea2742871934447.dir
+      size: 1552468
+      nfiles: 156
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L23-axon-diagram-deepwalk-perslay-stratified-k-fold
+      md5: 94caa040f9773a131ebb3bb719352e2b.dir
+      size: 3613764
+      nfiles: 13
+  train@pc-L6-apical-image-deepwalk-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L6/apical/image-deepwalk
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L6-apical-image-deepwalk-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L6/apical/image-deepwalk
+      md5: 67c544908c7d2c81204ac305f83ae3bd.dir
+      size: 5421635
+      nfiles: 129
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L6-apical-image-deepwalk-xgb-stratified-k-fold
+      md5: 4fa4d2f1795bf96e8534d8c2a118fdb3.dir
+      size: 52763841
+      nfiles: 13
+  train@in-L6-axon-graph-rd-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/axon/graph-rd
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L6-axon-graph-rd-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/axon/graph-rd
+      md5: 64d22139315073b7208ac17eb820498b.dir
+      size: 462970
+      nfiles: 62
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L6-axon-graph-rd-gnn-stratified-k-fold
+      md5: c4988e89a6db2886f1ce59024f2bcff4.dir
+      size: 9146606
+      nfiles: 13
+  train@pc-L3-apical-image-tmd-rd-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L3/apical/image-tmd-rd
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L3-apical-image-tmd-rd-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L3/apical/image-tmd-rd
+      md5: 376b7a9c536e3269909baa07a8e79f02.dir
+      size: 1839876
+      nfiles: 44
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L3-apical-image-tmd-rd-cnn-stratified-k-fold
+      md5: 26de710d2dfee2ef30f44c652b61b6e1.dir
+      size: 4683114
+      nfiles: 13
+  train@pc-L6-apical-diagram-deepwalk-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L6/apical/diagram-deepwalk
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L6-apical-diagram-deepwalk-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L6/apical/diagram-deepwalk
+      md5: 2883580ca78d87220d958466170ef63d.dir
+      size: 306755
+      nfiles: 129
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L6-apical-diagram-deepwalk-perslay-stratified-k-fold
+      md5: 5ff07e008f900e8346c42159c7e358b8.dir
+      size: 3546417
+      nfiles: 13
+  train@in-L23-axon-image-deepwalk-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/axon/image-deepwalk
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L23-axon-image-deepwalk-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/axon/image-deepwalk
+      md5: 46e3c49a9e57479d89e03eda8050c5b5.dir
+      size: 7345940
+      nfiles: 156
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L23-axon-image-deepwalk-xgb-stratified-k-fold
+      md5: 253d97d922e74e4a21f2c5e99ea3ad61.dir
+      size: 65134585
+      nfiles: 13
+  train@in-L6-axon-image-tmd-rd-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/axon/image-tmd-rd
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L6-axon-image-tmd-rd-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/axon/image-tmd-rd
+      md5: b975edeb2b431a5538757ea43eb396af.dir
+      size: 2870266
+      nfiles: 62
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L6-axon-image-tmd-rd-xgb-stratified-k-fold
+      md5: 06476d207225f2c853f11a9743743446.dir
+      size: 27051987
+      nfiles: 13
+  train@in-L4-axon-image-deepwalk-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/axon/image-deepwalk
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L4-axon-image-deepwalk-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/axon/image-deepwalk
+      md5: dfa9757b2331b4dfbd847c11cc1fb607.dir
+      size: 5198163
+      nfiles: 113
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L4-axon-image-deepwalk-decision-tree-stratified-k-fold
+      md5: 81ed751f642443176032b046523752d8.dir
+      size: 46620154
+      nfiles: 13
+  train@pc-L3-apical-diagram-deepwalk-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L3/apical/diagram-deepwalk
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L3-apical-diagram-deepwalk-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L3/apical/diagram-deepwalk
+      md5: 42f3e61e28ba526ec19d772ce25126fc.dir
+      size: 88964
+      nfiles: 44
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L3-apical-diagram-deepwalk-perslay-stratified-k-fold
+      md5: 26bfc8da9eb36ec5ffbebab7c616cc39.dir
+      size: 3394322
+      nfiles: 13
+  train@pc-L5-apical-image-tmd-rd-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L5/apical/image-tmd-rd
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L5-apical-image-tmd-rd-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L5/apical/image-tmd-rd
+      md5: 72059313834ba2a91751c8b03c3fc8fd.dir
+      size: 6842656
+      nfiles: 160
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L5-apical-image-tmd-rd-xgb-stratified-k-fold
+      md5: 6b782989182e09d2ee51351366c96026.dir
+      size: 68540037
+      nfiles: 13
+  train@in-L4-axon-diagram-deepwalk-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/axon/diagram-deepwalk
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L4-axon-diagram-deepwalk-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/axon/diagram-deepwalk
+      md5: 8e727836040f9c27a62fd5ae133e1c01.dir
+      size: 940691
+      nfiles: 113
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L4-axon-diagram-deepwalk-perslay-stratified-k-fold
+      md5: a873b1172ecb41836ab42f82be618165.dir
+      size: 3529067
+      nfiles: 13
+  train@in-L1-axon-diagram-tmd-rd-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/axon/diagram-tmd-rd
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L1-axon-diagram-tmd-rd-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/axon/diagram-tmd-rd
+      md5: 3b7c4f5db5254a390abd995749d9f38a.dir
+      size: 572987
+      nfiles: 105
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L1-axon-diagram-tmd-rd-perslay-stratified-k-fold
+      md5: 7a14419b0f013fa681bb5db5ce92e78b.dir
+      size: 3507683
+      nfiles: 13
+  train@pc-L6-apical-image-deepwalk-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L6/apical/image-deepwalk
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L6-apical-image-deepwalk-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L6/apical/image-deepwalk
+      md5: 67c544908c7d2c81204ac305f83ae3bd.dir
+      size: 5421635
+      nfiles: 129
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L6-apical-image-deepwalk-decision-tree-stratified-k-fold
+      md5: db6ceed1436beb82cb8ec01bb2a8e683.dir
+      size: 51299780
+      nfiles: 13
+  train@in-L4-axon-diagram-tmd-rd-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/axon/diagram-tmd-rd
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L4-axon-diagram-tmd-rd-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/axon/diagram-tmd-rd
+      md5: caac7c419cf9a4d63f783c954e33c240.dir
+      size: 806291
+      nfiles: 113
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L4-axon-diagram-tmd-rd-perslay-stratified-k-fold
+      md5: 43e8b0469fa30097881575ab36fee0c1.dir
+      size: 3529316
+      nfiles: 13
+  train@pc-L2-apical-image-deepwalk-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L2/apical/image-deepwalk
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L2-apical-image-deepwalk-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L2/apical/image-deepwalk
+      md5: 262e133df412789b641136af9d863b5d.dir
+      size: 1806337
+      nfiles: 43
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L2-apical-image-deepwalk-decision-tree-stratified-k-fold
+      md5: 868b0d8791f06fa11879942e8ea83592.dir
+      size: 19312486
+      nfiles: 13
+  train@in-L23-axon-image-tmd-rd-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/axon/image-tmd-rd
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L23-axon-image-tmd-rd-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/axon/image-tmd-rd
+      md5: 3c793ed288bd5dfc2dbbb5fba5078d90.dir
+      size: 7345940
+      nfiles: 156
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L23-axon-image-tmd-rd-xgb-stratified-k-fold
+      md5: 6e65391e2faaa8024a3eeea6cafc732f.dir
+      size: 61618135
+      nfiles: 13
+  train@pc-L5-apical-graph-rd-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/pc-L5/apical/graph-rd
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/pc-L5-apical-graph-rd-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/pc-L5/apical/graph-rd
+      md5: b7aaceee90ef3edc233d45b471064809.dir
+      size: 489760
+      nfiles: 160
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/pc-L5-apical-graph-rd-gnn-stratified-k-fold
+      md5: bdda75f596effb7ac476638a74792996.dir
+      size: 9977687
+      nfiles: 13
+  train@in-L1-axon-image-tmd-rd-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/axon/image-tmd-rd
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L1-axon-image-tmd-rd-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/axon/image-tmd-rd
+      md5: 8645dc9249b21e98ae6fa27a937fae8f.dir
+      size: 4690363
+      nfiles: 105
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L1-axon-image-tmd-rd-cnn-stratified-k-fold
+      md5: 7c943bbcffa643576c217ed25e7cc593.dir
+      size: 6687611
+      nfiles: 13
+  train@in-L5-axon-image-tmd-rd-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/axon/image-tmd-rd
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L5-axon-image-tmd-rd-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/axon/image-tmd-rd
+      md5: 33fe97da2bfaee65af66c78384e75067.dir
+      size: 5090573
+      nfiles: 111
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L5-axon-image-tmd-rd-cnn-stratified-k-fold
+      md5: 1cff601a7c29b0115209509be711167e.dir
+      size: 6938743
+      nfiles: 13
