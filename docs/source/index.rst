@@ -14,6 +14,7 @@ from the provided ecosystem.
    :maxdepth: 2
 
    Installation<_sections/installation>
+   Docker<_sections/docker>
    Data<_sections/data>
    Models - GNNs<_sections/using_gnn>
    Models - CNNs<_sections/using_cnn>
