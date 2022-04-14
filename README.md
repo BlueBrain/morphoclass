@@ -17,21 +17,6 @@ Install `morphoclass`
 ./install.sh
 ```
 
-
-## Known Installation Issues
-In some cases the installation might fail because either `cmake` or `hdf5` are
-missing. On macOS these can be installed using `brew`:
-`cmake` and `hdf5` via
-```sh
-brew install cmake hdf5
-```
-
-In some instances an incompatibility of certain compilers was reported.
-Installing the following conda packages resolved the problem:
-```sh
-conda install clang_osx-64 clangxx_osx-64 gfortran_osx-64
-```
-
 ## Documentation
 The documentation can be generated using `sphinx`.
 Follow the steps below to generate the documentation.
@@ -102,7 +87,7 @@ You might want to pass additional flags to `docker run`:
 Just for reference, the `docker run` command with all flags included, the
 external port set to `35353`, and the container name to `my-container`:
 ```sh
-docker run 
+docker run
     -v $PWD:/workdir \
     -p 35353:8888 \
     --rm \
@@ -133,9 +118,9 @@ Usage: morphoclass [OPTIONS] COMMAND [ARGS]...
   about their functionality call the corresponding sub-command with the --help
   flag to see a detailed description.
 
-Options:  
+Options:
   ...
-  
+
 Commands:
   ...
 ```
@@ -166,9 +151,9 @@ Help on class CorianderNet in module morphoclass.models.coriander_net:
 
 class CorianderNet(torch.nn.modules.module.Module)
  |  CorianderNet(n_classes=4, n_features=64, dropout=False)
- |  
+ |
  |  A PersLay-based neural network for neuron m-type classification.
- |  
+ |
  |  Parameters
  |  ----------
  ...
@@ -176,11 +161,10 @@ class CorianderNet(torch.nn.modules.module.Module)
 
 
 # Funding & Acknowledgment
- 
+
 The development of this software was supported by funding to the Blue Brain
 Project, a research center of the École polytechnique fédérale de Lausanne
 (EPFL), from the Swiss government's ETH Board of the Swiss Federal Institutes
 of Technology.
- 
-Copyright © 2022 Blue Brain Project/EPFL
 
+Copyright © 2022 Blue Brain Project/EPFL
