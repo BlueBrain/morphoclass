@@ -17,21 +17,6 @@ Install `morphoclass`
 ./install.sh
 ```
 
-## Documentation
-The documentation can be generated using `sphinx`.
-Follow the steps below to generate the documentation.
-
-First make sure the stubs for the API documentation are up-to-date by
-generating fresh ones.
-```sh
-tox -e apidoc
-```
-
-Then use sphinx to build the documentation.
-```sh
-make -C docs clean html
-```
-
 Open the file `docs/build/html/index.html` to view the documentation.
 
 # Examples
