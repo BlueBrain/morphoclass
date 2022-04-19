@@ -49,11 +49,11 @@ Development
 The basic approach described above is in theory also suitable for development,
 except that it fails to do three things:
 
-* Install the ``dev`` and ``docs`` extras
-* Pin the versions of all dependencies as specified in ``requirements.txt``
-* The installation is not done in editable mode
+* Installing the ``dev`` and ``docs`` extras
+* Pinning the versions of all dependencies as specified in ``requirements.txt``
+* The installation is not in editable mode
 
-To fix this, instead of just running `./install.sh` above please run
+To fix this, instead of just running ``./install.sh`` above please run
 
 .. code-block:: sh
 
@@ -61,8 +61,8 @@ To fix this, instead of just running `./install.sh` above please run
     ./install.sh
     pip install -e '.[dev,docs]'
 
-If you're planning to contribute to the code you should activate ``pre-commit``
-before making your first commit:
+If you're planning to contribute to the code you should also activate
+``pre-commit`` before making your first commit:
 
 .. code-block:: sh
 
@@ -71,23 +71,23 @@ before making your first commit:
 Why an Installation Script?
 ---------------------------
 You may wonder why an installation script is required. The root of the problem
-is the fact that two packages that we depend on, ``torch`` and
+is the fact that two packages that MorphoClass depends on, ``torch`` and
 ``torch-geometric`` come in different flavours and need to be installed
 differently depending on the operating system, the presence of a GPU, etc. To
 get an overview on the installation options for these two packages please
-consult
+see their corresponding docs:
 
 * https://pytorch.org/get-started/locally
 * https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html
 
 Because of this the installation happens in three different steps
 
-1. Install the ``morphoclass`` package as usual
-2. Install/re-install ``torch`` manually
-3. Install ``torch-geometric`` manually
+1. Installing the ``morphoclass`` package as usual
+2. Installing/re-installing ``torch`` manually
+3. Installing ``torch-geometric`` manually
 
 You can follow the instructions below to install ``morphoclass`` from scratch
-using these three steps. This install will be suitable for development.
+using these three steps. This installation will be suitable for development.
 
 1. Install the ``morphoclass`` package as usual
 ...............................................
