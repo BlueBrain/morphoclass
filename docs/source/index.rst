@@ -17,13 +17,14 @@ from the provided ecosystem.
     Project Tree <sections/project_tree>
     Docker <sections/docker>
     Building the Documentation <sections/building_docs>
+    CLI <sections/cli>
+    DVC <sections/dvc>
     Data <sections/data>
     Models - GNNs <sections/using_gnn>
     Models - CNNs <sections/using_cnn>
     Models - PersLay <sections/using_perslay>
     Custom Models and Layers <sections/custom_models_layers>
     Example - Design a GNN <sections/example_gnn>
-    CLI <sections/cli>
 
 .. toctree::
    :caption: API
