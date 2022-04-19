@@ -5,6 +5,7 @@ Before you open an issue or start working on a pull request, please make sure
 to read the following guidelines.
 
 1. [Creating Issues](#creating-issues)
+1. [Working on the Code](#working-on-the-code)
 1. [Creating Pull Requests](#creating-pull-requests)
     1. [Refer to an issue](#refer-to-an-issue)
     1. [Add unit test](#add-unit-tests)
@@ -22,33 +23,51 @@ to your question, this can allow you to collect a list of related issues that
 you can link in your new issue.
 
 Once you have verified that no similar issues exist yet, feel free to open a
-new issue. 
+new issue.
 
+## Working on the Code
+Our extended documentation on https://morphoclass.readthedocs.io has a
+dedicated installation section that will guide you through a development
+installation of MorphoClass. Please follow it to prepare your environment.
+
+When working on the code please keep the following points in mind:
+
+* enable pre-commit (`pre-commit install`)
+* use `black` and `isort` to auto-format
+	* `pre-commit` should normally do that for you automatically
+	* check via `tox -e lint` (also runs `flake8`)
+	* trigger formatting for all files via `tox -e format`
+* apply PEP8, check via `tox -e lint`
+* adding type annotations is preferred, use `tox -e type` for checking
+* re-generate the API docs for new modules via `tox -e apidoc`, check using `tox -e apidoc-check`
+* write unit tests, test by running `pytest tests` in the project root
+* add docstrings (NumPy style)
+* work on branches, don't push to `main`.
 
 ## Creating Pull Requests
 If you wish to contribute to the code base, opening a pull request on GitHub is
 the right thing to do!
- 
+
 Please read the following paragraphs to make sure that your work can be
-considered for a potential integration in our source code. 
+considered for a potential integration in our source code.
 
 ### Refer to an issue
 In general, every pull request should refer to a specific issue. If you would
-like to provide your contribution on a untracked issue, please create first an
-issue as explained [here](#CreatingIssues) so that we can discuss the value of
+like to provide your contribution to an untracked issue, please create first an
+issue as explained [here](#creating-issues) so that we can discuss the value of
 the proposed contribution and its implementation.
 
 ### Add unit tests
 Concerning CI tests, we are running various checks on linting, unit tests,
 docs, and packaging. If you are adding or modifying a functionality in the
 code, you are also expected to provide a unit test demonstrating and checking
-the new behavior. 
+the new behavior.
 
 ### Add type annotations
 We are gradually introducing type annotations to our code, and our CI performs
 type checking with [mypy](https://mypy.readthedocs.io/en/stable/index.html). If
 your PR introduces a new function or heavily modifies an existing function, you
-should also add type annotations for such function.   
+should also add type annotations for such function.
 
 ### Update dependencies
 If your PR introduces a dependency on a new python package, this should be
@@ -60,7 +79,7 @@ tests](https://github.com/BlueBrain/morphoclass/actions?query=workflow%3A%22ci+t
 Once you open a PR, the workflow that runs all CI tests is automatically
 triggered. This workflow is also triggered every time a new commit is pushed to
 that PR branch. If you want to push a commit without triggering the CI tests
-(e.g. if a feature is still work in progress and you want to save time), your
+(e.g. if a feature is still work in progress, and you want to save time), your
 commit message should include an appropriate label like `[skip ci]`, `[ci
 skip]`, `[no ci]` etc. (see
 [here](https://github.blog/changelog/2021-02-08-github-actions-skip-pull-request-and-push-workflows-with-skip-ci/)
