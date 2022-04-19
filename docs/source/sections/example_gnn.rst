@@ -335,7 +335,7 @@ the training loop::
 
 A possible figure produced by this code might look as follows:
 
-.. image:: ../_static/net_training_curves.png
+.. image:: ../static/net_training_curves.png
     :align: center
 
 We can see that the model is learning something over time and that the loss is decreasing.
