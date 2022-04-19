@@ -14,14 +14,15 @@ from the provided ecosystem.
    :maxdepth: 2
 
     Installation <sections/installation>
+    Project Tree <sections/project_tree>
     Docker <sections/docker>
-    Building the Documentation <sections/building_docs.rst>
+    Building the Documentation <sections/building_docs>
     Data <sections/data>
     Models - GNNs <sections/using_gnn>
     Models - CNNs <sections/using_cnn>
     Models - PersLay <sections/using_perslay>
     Custom Models and Layers <sections/custom_models_layers>
-    Example - Design a GNN <sections/example_gnn.rst>
+    Example - Design a GNN <sections/example_gnn>
     CLI <sections/cli>
 
 .. toctree::
