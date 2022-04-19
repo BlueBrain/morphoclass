@@ -1,3 +1,7 @@
+# Morphology-Classification
+MorphoClass is a toolbox for neuronal morphologies processing and
+classification using machine learning.
+
 <table>
     <tr>
         <td>Documentation</td>
@@ -39,10 +43,6 @@
     </tr>
 </table>
 
-
-# Morphology-Classification
-MorphoClass is a toolbox for neuronal morphologies processing and
-classification using machine learning.
 
 # Installation
 Clone the repository and set up the virtual environment
