@@ -14,5 +14,7 @@ python:
   install:
     - method: pip
       path: .
+
+    # inspired by: https://github.com/pyg-team/pytorch_geometric/blob/master/docs/requirements.txt
     - requirements: docs/requirements.txt
   system_packages: true
