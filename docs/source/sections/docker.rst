@@ -1,5 +1,3 @@
-.. _docker:
-
 Docker
 ======
 We provide a docker file that allows you to run ``morphoclass`` on a docker

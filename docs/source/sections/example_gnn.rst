@@ -37,7 +37,7 @@ filenames and labels have been saved in two separate CSV files::
 
 Note that both the training and validation sets need to be labeled, which is why
 the CSV files have to contain two columns -- one with the file paths, and one with the
-labels, see the :ref:`data` section for more details.
+labels, see the :doc:`data` section for more details.
 
 Next we need to decide how to pre-process the data, and which data features to use
 for training and evaluation. In this example we would like to carry out the following
@@ -48,7 +48,7 @@ steps:
 - Extract first feature: the path distance from the soma to the nodes
 - Extract the second feature: the apical tree diameters at nodes.
 
-As described in the :ref:`data` section we need to define transforms that will transform
+As described in the :doc:`data` section we need to define transforms that will transform
 the raw input morphologies to the features just described::
 
     morphology_loader = transforms.Compose([
@@ -88,7 +88,7 @@ and fit two different scalers for each of the two features::
     scaler_path_distances.fit(ds_train)
     scaler_diameters.fit(ds_train)
 
-Now these scalers need to be integrated into the transform pipeline. In the :ref:`Data` section
+Now these scalers need to be integrated into the transform pipeline. In the :doc:`data` section
 we showed that this can be done by replacing the ``transform`` attribute of the dataset
 instance. Here we show a different method: the datasets can be reloaded from disk, but this
 time with the transforms containing the fitted scalers::
@@ -274,7 +274,7 @@ in the machine learning community.
 There are a number of libraries that aim at removing the boiler-plate of the training loop
 in PyTorch, the most notable at the moment are Ignite_ and PyTorch-Lighning_. Also
 ``morphoclass`` provides such abstractions, which we saw in for om the trainer classes in the
-sections :ref:`gnn`, :ref:`cnn`, and :ref:`perslay`.
+sections :doc:`using_gnn`, :doc:`using_cnn`, and :doc:`using_perslay`.
 
 You may have noted that above we used a helper function that computed the accuracies
 and losses on the training and validation sets. Here is its implementation::

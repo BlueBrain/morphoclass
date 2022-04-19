@@ -1,5 +1,3 @@
-.. _building_docs:
-
 Building the Documentation
 ==========================
 The documentation can be generated using ``sphinx``.

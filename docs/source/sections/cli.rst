@@ -37,7 +37,7 @@ gives an overview over the available options. The mandatory parameters are:
   - XGB
 
 - ``-i`` ``--input-csv``: the CSV file specifying the input morphologies. See
-  the :ref:`data` section for the details on the formatting.
+  the :doc:`data` section for the details on the formatting.
 - ``-o`` or ``--output-dir``: the output directory for the model checkpoint.
 
 The optional parameters are:
@@ -81,7 +81,7 @@ embeddings) are written to a JSON file in the specified output directory. See
 The mandatory parameters for ``morphoclass predict`` are the following:
 
 - ``-i`` or ``--input-csv``: the CSV file specifying the input morphologies. See
-  the :ref:`data` section for the details on the formatting.
+  the :doc:`data` section for the details on the formatting.
 - ``-c`` or ``--checkpoint``: the path to the pre-trained model checkpoint. This should
   point to a checkpoint file produced by ``morphoclass train``.
 - ``-o`` or ``--output-dir``: the output directory for the predictions.
