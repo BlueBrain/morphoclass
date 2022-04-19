@@ -141,10 +141,10 @@ follows:
 
 |pic1| |pic2|
 
-.. |pic1| image:: ../static/my_xai_node_saliency.png
+.. |pic1| image:: ../static/xai_node_saliency.png
    :width: 45%
 
-.. |pic2| image:: ../static/my_xai_node_heatmap.png
+.. |pic2| image:: ../static/xai_node_heatmap.png
    :width: 45%
 
 These images are two different representations of the same data and show that in this
