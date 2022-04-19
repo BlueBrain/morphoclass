@@ -17,7 +17,6 @@ Install `morphoclass`
 ./install.sh
 ```
 
-
 ## Known Installation Issues
 In some cases the installation might fail because either `cmake` or `hdf5` are
 missing. On macOS these can be installed using `brew`:
@@ -36,18 +35,25 @@ conda install clang_osx-64 clangxx_osx-64 gfortran_osx-64
 The documentation can be generated using `sphinx`.
 Follow the steps below to generate the documentation.
 
-First make sure the stubs for the API documentation are up-to-date by
-generating fresh ones.
+To build the docs we will need some extra dependencies, so please run the
+following.
+```shell
+pip install -e ".[docs]"
+```
+
+Now, first of all make sure the stubs for the API documentation are up-to-date
+by generating fresh ones.
 ```sh
 tox -e apidoc
 ```
 
-Then use sphinx to build the documentation.
+Finally, use sphinx to build the documentation.
 ```sh
 make -C docs clean html
 ```
 
-Open the file `docs/build/html/index.html` to view the documentation.
+You can now open the file `docs/build/html/index.html` to view the
+documentation.
 
 ## Docker
 We provide a docker file that allows you to run `morphoclass` on a docker
@@ -112,6 +118,7 @@ docker run
     --name my-container \
     morphoclass
 ```
+
 
 # Examples
 
