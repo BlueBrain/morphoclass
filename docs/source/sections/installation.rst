@@ -178,3 +178,24 @@ version is ``1.7.1`` (check ``requirements.txt`` for the correct version):
 
 At this point you should have a complete development installation of
 MorphoClass.
+
+DeepWalk and CleanLab
+---------------------
+Some parts of MorphoClass's code make reference to ``deepwalk`` and
+``cleanlab``. However, the corresponding packages are not installed as part
+of MorphoClass's installation because of licensing issues. Please install
+them manually if you wish to use the functionality related to them.
+
+To check if ``deepwalk`` is installed and to get instructions on how to
+install it in case it is not please run the following command:
+
+.. code-block:: sh
+
+    $ python -c 'from morphoclass import deepwalk; deepwalk.warn_if_not_installed()'
+
+To check if ``cleanlab`` is installed and to get instructions on how to
+install it in case it is not please run the following command:
+
+.. code-block:: sh
+
+    $ python -c 'from morphoclass import cleanlab; cleanlab.warn_if_not_installed()'
