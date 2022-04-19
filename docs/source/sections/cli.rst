@@ -56,10 +56,9 @@ Currently used - done refactoring / being refactored:
 
 To refactor:
 
-* ``feature-extraction``  Extract the features from dataset.
-* ``explain-models``      Create an XAI report.
-* ``outlier-detection``   This is the outlier-detection help message.
-* ``transfer-learning``   Transfer learning.
+* ``explain-models``      XAI
+* ``outlier-detection``   Outlier detection
+* ``transfer-learning``   Transfer learning
 
 
 Old / obsolete:
