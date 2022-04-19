@@ -15,7 +15,7 @@ Please provide here instructions on how to test the changes introduced by this P
   (if it is not the case, please create an issue first).
 - [ ] Unit tests added.
   (if needed)
-- [ ] `setup.py` and `requirements.txt` updated with new dependencies.
+- [ ] `setup.cfg`, `requirements.txt`, and `constraints.txt` updated with new dependencies.
   (if needed)
 - [ ] Type annotations added.
   (if a function is added or modified)
