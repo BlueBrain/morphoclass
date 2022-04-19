@@ -40,7 +40,7 @@ To test the CLI, run the main entrypoint in the terminal:
 
 .. code-block:: sh
 
-    deepmorphs --version
+    morphoclass --version
 
 This should print something like ``morphoclass, version x.x.x``.
 
