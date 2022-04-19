@@ -1,11 +1,11 @@
 # Copyright © 2022 Blue Brain Project/EPFL
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -86,17 +86,19 @@ class Preprocessor:
 
         In this method, user is able to modify the dataset depending on
         specific requirements. Some things that can be modified are:
-        - `ml_data.df_morph` is a dataframe with columns: `name`, `mtype`,
-         `path`, and user can filter out the rows containing morphologes
-          not needed in this dataset (e.g. interneurons dataset contained
-          some PC cells).
-        - `ml_data.template_vars` is a jinja2 dictionary that will be used
-          to generate the report with raw data statistics (report_rawdata.pdf).
-          If you add new keys, don't forget to modify the corresponding
-          `report_template.html`. Be careful, to add new key, use:
-          `ml_data.template_vars.update({"new_key":"new_value"})`
-          which won't overwrite already existing values in the dictionary.
-        - For other options, check out the `data.OrganizeMLData` class.
+
+        * ``ml_data.df_morph`` is a dataframe with columns: ``name``,
+          ``mtype``, ``path``, and user can filter out the rows containing
+          morphologies not needed in this dataset (e.g. interneurons dataset
+          contained some PC cells).
+        * ``ml_data.template_vars`` is a ``jinja2`` dictionary that will be
+          used to generate the report with raw data statistics
+          (``report_rawdata.pdf``). If you add new keys, don't forget to
+          modify the corresponding ``report_template.html``. Be careful,
+          to add new key, use:
+          ``ml_data.template_vars.update({"new_key":"new_value"})`` which
+          won't overwrite already existing values in the dictionary.
+        * For other options, check out the ``data.OrganizeMLData`` class.
         """
         if dataset_type == DatasetType.pyramidal:
             self._preprocess_pyramidal_cells()

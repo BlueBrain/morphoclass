@@ -1,8 +1,6 @@
-.. perslay:
-
 PersLay
 =======
-The persistence images that were used in the :ref:`cnn` section were derived by first
+The persistence images that were used in the :doc:`using_cnn` section were derived by first
 computing the so-called persistence diagrams. Since these diagrams can be considered
 as the pure topological representation of the apical graph, without the arbitrariness
 that is introduced during the transition to images, one may wonder if it is possible
@@ -25,7 +23,7 @@ Data Loading
 ------------
 Loading morphology data, and transforming it into persistence images -- and diagrams -- was
 covered in the previous sections, and we can use the helper function defined
-in the :ref:`cnn` section::
+in the :doc:`using_cnn` section::
 
     diagrams, images, labels = load_persistence_dataset(input_csv_train)
 
@@ -34,7 +32,7 @@ We will only need the diagrams and the labels.
 Training
 --------
 Overall the logic of training the PersLay model is very similar to the one
-presented in the :ref:`cnn` section::
+presented in the :doc:`using_cnn` section::
 
     import torch.optim
 
@@ -70,7 +68,7 @@ than that for other models by a factor of about 100, which was determined empiri
 
 Evaluation
 ----------
-Also the evaluation is similar to that in the :ref:`CNN` section::
+Also the evaluation is similar to that in the :doc:`using_cnn` section::
 
     import numpy as np
     import torch

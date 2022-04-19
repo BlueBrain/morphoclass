@@ -13,20 +13,24 @@ from the provided ecosystem.
    :caption: Contents
    :maxdepth: 2
 
-   Installation<_sections/installation>
-   Data<_sections/data>
-   Models - GNNs<_sections/using_gnn>
-   Models - CNNs<_sections/using_cnn>
-   Models - PersLay<_sections/using_perslay>
-   Custom Models and Layers<_sections/custom_models_layers>
-   Example - Design a GNN<_sections/example_gnn.rst>
-   CLI<_sections/cli>
+    Installation <sections/installation>
+    Project Tree <sections/project_tree>
+    Docker <sections/docker>
+    Building the Documentation <sections/building_docs>
+    CLI <sections/cli>
+    DVC <sections/dvc>
+    Data <sections/data>
+    Models - GNNs <sections/using_gnn>
+    Models - CNNs <sections/using_cnn>
+    Models - PersLay <sections/using_perslay>
+    Custom Models and Layers <sections/custom_models_layers>
+    Example - Design a GNN <sections/example_gnn>
 
 .. toctree::
    :caption: API
    :maxdepth: 2
 
-   morphoclass<_api/morphoclass>
+    morphoclass<api/morphoclass>
 
 Indices and tables
 ------------------

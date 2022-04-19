@@ -1,9 +1,7 @@
-.. cnn:
-
 CNN
 ===
 The overall idea of training a convolutional neural network (CNN)
-is quite similar to the one for the GNN described in section :ref:`gnn`.
+is quite similar to the one for the GNN described in section :doc:`using_gnn`.
 
 At the moment there are some differences in the interface that arose for
 historical reasons and might be adjusted in the future if necessary
@@ -42,7 +40,7 @@ data and transforming it into image data::
 
         return dataset_pi
 
-As described in section :ref:`data`, we first create a `MorphologyDataset` class, and
+As described in section :doc:`data`, we first create a `MorphologyDataset` class, and
 then used the ``dataset.to_persistence_dataset`` helper function to transform it to
 persistence images.
 
