@@ -1,3 +1,16 @@
+# Copyright © 2022 Blue Brain Project/EPFL
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 """Explain model layers using GradShap."""
 from __future__ import annotations
 
@@ -23,7 +36,7 @@ from morphoclass.training import reset_seeds
 from morphoclass.vis import plot_barcode_enhanced
 from morphoclass.vis import plot_diagram_enhanced
 from morphoclass.vis import plot_tree
-from morphoclass.xai.plot_node_saliency import plot_node_saliency
+from morphoclass.xai.node_saliency import plot_node_saliency
 
 # from captum.attr import GradientShap
 
@@ -32,9 +45,11 @@ def gnn_model_attributions(model, dataset, sample_id, interpretability_method_cl
     """Explain GNN model.
 
     Plot with two rows:
-    - Original graph and graph with GradShap values within the nodes.
-    - Heatmap of the original graph (zero-values) and heatmap of
+
+    * Original graph and graph with GradShap values within the nodes.
+    * Heatmap of the original graph (zero-values) and heatmap of
       the GradShap values on the graph.
+
     Only one morphology sample is visualized.
 
     Parameters
@@ -400,11 +415,12 @@ def perslay_model_attributions(
     """Explain PersLay model.
 
     Plot with 3 rows:
-    - Barcodes: The original barcode and GradShap weighted barcode (colored bar)
+
+    * Barcodes: The original barcode and GradShap weighted barcode (colored bar)
       after each feature extraction layer.
-    - Persistence diagrams: The original PD and GradShap weighted PD (colored dot)
+    * Persistence diagrams: The original PD and GradShap weighted PD (colored dot)
       after each feature extraction layer.
-    - Graph: The original graph and GradShap weighted graph (colored edge)
+    * Graph: The original graph and GradShap weighted graph (colored edge)
       after each feature extraction layer.
 
     Parameters

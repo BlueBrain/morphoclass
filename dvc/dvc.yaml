@@ -39,6 +39,14 @@ stages:
       deps:
         - data/preprocessed-${item}.csv
         - data/raw/${item}/morphologies
+  plot-dataset-stats-janelia:
+    cmd: >
+      morphoclass -v plot-dataset-stats
+      --input-csv-path data/preprocessed-janelia.csv
+      --output-report-path reports/plot-dataset-stats/janelia.html
+    deps:
+      - data/preprocessed-janelia.csv
+      - data/raw/janelia/mouselight_isocortex_ASCII_Files
   mcar-curation:
     foreach:
       - pyramidal-cells

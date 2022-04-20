@@ -1,0 +1,4 @@
+[core]
+    remote = bbpv1-proj78-ddr
+['remote "bbpv1-proj78-ddr"']
+    url = ssh://bbpv1.bbp.epfl.ch/gpfs/bbp.cscs.ch/data/project/proj78/deepmorphs-datasets-remote

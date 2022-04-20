@@ -1,0 +1,3 @@
+- [Jelena Banjac](https://github.com/JelenaBanjac) @ Blue Brain Project, EPFL
+- [Francesco Casalegno](https://github.com/FrancescoCasalegno) @ Blue Brain Project, EPFL
+- [Stanislav Schmidt](https://github.com/Stannislav) @ Blue Brain Project, EPFL

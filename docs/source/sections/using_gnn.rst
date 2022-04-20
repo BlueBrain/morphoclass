@@ -1,5 +1,3 @@
-.. gnn:
-
 GNN
 ===
 
@@ -11,7 +9,7 @@ do the forward and backward passes.
 Loading Data
 ------------
 Before training any model one needs to load the data, which is described in the
-:ref:`data` section. Here is an example of how this could be done for the
+:doc:`data` section. Here is an example of how this could be done for the
 concrete use case at hand.
 
 First we define a helper function for data loading::
@@ -57,7 +55,7 @@ scaler is fitted to the data, otherwise the one provided will be used.
 
 One can see that internally a new function, ``mc.training.make_transform``, is called. Its
 purpose is to combine feature extraction and feature scaling into one transform, more or less
-along the same lines that were presented in the :ref:`data` section. For maximal additional
+along the same lines that were presented in the :doc:`data` section. For maximal additional
 details see the API documentation and the source code.
 
 Given this helper function the data can be loaded as follows::
@@ -76,7 +74,7 @@ is ``mc.models.ManNet``. It can be trained on the data loaded above in a few lin
     import torch.optim
     from tqdm import tqdm
 
-    import morphoclass as dm
+    import morphoclass as mc
     import morphoclass.models
     import morphoclass.training
     import morphoclass.utils

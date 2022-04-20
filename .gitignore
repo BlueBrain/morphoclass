@@ -1,6 +1,5 @@
 # Byte-compiled / optimized / DLL files
 *$py.class
-*.png
 *.py[cod]
 __pycache__/
 cov.xml
@@ -39,3 +38,6 @@ htmlcov
 /logs/
 /src/morphoclass/version.py
 /venv/
+
+# pyenv file
+.python-version

@@ -1,4 +1,17 @@
-"""Utilities for working with the TNS package."""
+# Copyright © 2022 Blue Brain Project/EPFL
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+"""Utilities for working with the NeuroTS package."""
 from __future__ import annotations
 
 import json
@@ -6,7 +19,7 @@ import pathlib
 import shutil
 import tempfile
 
-import tns.extract_input
+import neurots.extract_input
 
 
 def tns_distributions_from_dataset(
@@ -22,7 +35,7 @@ def tns_distributions_from_dataset(
 
     Parameters
     ----------
-    dataset : MorphologyDataset
+    dataset : morphoclass.data.morphology_dataset.MorphologyDataset
         morphology dataset for which to compute the TNS distributions
     ids : list, optional
         indices specifying a subset of the given dataset (e.g. the indices of
@@ -53,7 +66,7 @@ def tns_distributions_from_dataset(
             shutil.copy(str(file), str(out_file))
         for layer in sorted(pathlib.Path(temp_dir).iterdir()):
             print(f"Generating distributions for {layer.name}...")
-            distributions[layer.name] = tns.extract_input.distributions(
+            distributions[layer.name] = neurots.extract_input.distributions(
                 str(layer), feature=feature, neurite_types=neurite_types
             )
 

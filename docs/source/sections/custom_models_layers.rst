@@ -1,5 +1,3 @@
-.. customization:
-
 Custom Models
 =============
 
@@ -41,7 +39,7 @@ The following graph-convolution layers are pre-defined:
 
   Both additions aim to reduce the number of parameters by making the convolutions "more sparse".
 
-- ``BidirectionalBlock`` -- the layer used in ``ManNet`` that was described in the :ref:`gnn`
+- ``BidirectionalBlock`` -- the layer used in ``ManNet`` that was described in the :doc:`using_gnn`
   section. It only makes sense on directed graphs (where the adjacency matrix is not symmetric)
   and performs two ChebConvs in parallel, one of them with the reversed edge orientation. The
   result of both convolutions is then concatenated channel-wise.
@@ -107,7 +105,7 @@ can be found in the
 The attention layer, in contrast, is a viable alternative to the sum and average pooling and
 in some case may yield better results. In contrast to these layers it computes a weighted
 sum of the node features where the weights depend on learnable parameters. Note that the
-``ManNet`` model presented in the :ref:`gnn` section used the average pooling by default, but
+``ManNet`` model presented in the :doc:`using_gnn` section used the average pooling by default, but
 can be forced to use the attention pool instead by passing the parameter ``pool_name="att"``
 in the constructor.
 
@@ -138,7 +136,7 @@ introduced in the previous sections. Here we give an overview of all remaining m
 All models can be found in the ``morphoclass.models`` module.
 
 There are a number of models that are related to the ``ManNet`` model presented in the
-:ref:`gnn` section. The models ``MultiAdjNet`` and ``BidirectionalNet`` are precursors
+:doc:`using_gnn` section. The models ``MultiAdjNet`` and ``BidirectionalNet`` are precursors
 of the ``ManNet`` model with fewer customization possibilities than the latter. In fact,
 the word `man` in ``ManNet`` was initially an abbreviation for ``MultiAdjNet``.
 
@@ -160,7 +158,7 @@ The ``HBNet`` has the same feature extractor as the ``BidirectionalNet``, but ut
 hierarchical version of the classifier that tracks the hierarchy in the class labels.
 
 Apart from the graph-convolution based models from above and the non-graph models shown in
-sections :ref:`cnn` and :ref:`perslay` there are also two composite models that combine the
+sections :doc:`using_gnn` and :doc:`using_perslay` there are also two composite models that combine the
 feature extractors based on graph-convolutions, regular convolutions, and PersLay layers.
 
 The first one is called ``ConcateCNNet`` (with the trainer class ``ConcateCNNetTrainer``) and

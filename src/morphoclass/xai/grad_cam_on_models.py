@@ -1,3 +1,16 @@
+# Copyright © 2022 Blue Brain Project/EPFL
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 """Explain model layers using GradCam."""
 from __future__ import annotations
 
@@ -16,16 +29,18 @@ from morphoclass.vis import plot_barcode_enhanced
 from morphoclass.vis import plot_diagram_enhanced
 from morphoclass.vis import plot_tree
 from morphoclass.xai import GradCAMExplainer
-from morphoclass.xai.plot_node_saliency import plot_node_saliency
+from morphoclass.xai.node_saliency import plot_node_saliency
 
 
 def grad_cam_gnn_model(model, dataset, sample_id):
     """Explain GNN model.
 
     Plot with two rows:
-    - Original graph and graph with GradCam values within the nodes.
-    - Heatmap of the original graph (zero-values) and heatmap of
+
+    * Original graph and graph with GradCam values within the nodes.
+    * Heatmap of the original graph (zero-values) and heatmap of
       the GradCam values on the graph.
+
     Only one morphology sample is visualized.
 
     Parameters
@@ -129,7 +144,7 @@ def grad_cam_cnn_model(model, dataset, sample_id):
     """Explain CNN model.
 
     Plot with feature maps after each feature extractor layer.
-    Starting from original image to the last featrue extractor layer.
+    Starting from original image to the last feature extractor layer.
     Only one morphology sample is visualized.
 
     Parameters
@@ -227,11 +242,12 @@ def grad_cam_perslay_model(model, dataset, sample_id):
     """Explain PersLay model.
 
     Plot with 3 rows:
-    - Barcodes: The original barcode and GradCam weighted barcode (colored bar)
+
+    * Barcodes: The original barcode and GradCam weighted barcode (colored bar)
       after each feature extraction layer.
-    - Persistence diagrams: The original PD and GradCam weighted PD (colored dot)
+    * Persistence diagrams: The original PD and GradCam weighted PD (colored dot)
       after each feature extraction layer.
-    - Graph: The original graph and GradCam weighted graph (colored edge)
+    * Graph: The original graph and GradCam weighted graph (colored edge)
       after each feature extraction layer.
 
     Parameters
