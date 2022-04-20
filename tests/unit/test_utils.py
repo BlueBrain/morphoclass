@@ -1,11 +1,11 @@
 # Copyright © 2022 Blue Brain Project/EPFL
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -112,7 +112,6 @@ def test_tmd_to_morphio():
         ("tests/data/", "L5/UPC", "rp101228_L5-2_idD.h5", 2),
         ("tests/data/", "L5/UPC", "rp101228_L5-2_idD.h5", 3),
         ("tests/data/", "L5/UPC", "empty.txt", 0),
-        ("tests/data/pickled/", "L5/UPC", "rp101228_L5-2_idD.pickle", 1),
     ],
 )
 def test_read_apical_from_file(data_path, mtype, neuron_file, n_apicals, monkeypatch):
