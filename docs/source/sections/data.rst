@@ -1,5 +1,3 @@
-.. _data:
-
 Data
 ====
 
@@ -273,7 +271,7 @@ random jitter is indeed applied::
 
 An example output may look as follows:
 
-.. image:: ../_static/morphology_with_jitter.png
+.. image:: ../static/morphology_with_jitter.png
     :align: center
 
 Feature Extraction and Adjacency Matrix

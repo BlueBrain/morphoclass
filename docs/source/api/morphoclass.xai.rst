@@ -20,7 +20,7 @@ Submodules
    morphoclass.xai.grad_cam_explainer
    morphoclass.xai.grad_cam_on_models
    morphoclass.xai.model_attributions
-   morphoclass.xai.plot_node_saliency
+   morphoclass.xai.node_saliency
 
 Module contents
 ---------------

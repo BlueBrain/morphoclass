@@ -1,6 +1,5 @@
 # Byte-compiled / optimized / DLL files
 *$py.class
-*.png
 *.py[cod]
 __pycache__/
 cov.xml
@@ -42,4 +41,3 @@ htmlcov
 
 # pyenv file
 .python-version
-
