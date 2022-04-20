@@ -181,5 +181,7 @@ class TrainingLog:
     @classmethod
     def load(cls, path: pathlib.Path) -> TrainingLog:
         """Load the training log from disk."""
-        data = torch.load(path)
+        device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+        data = torch.load(path, map_location=device)
         return cls.from_dict(data)
