@@ -74,7 +74,7 @@ is ``mc.models.ManNet``. It can be trained on the data loaded above in a few lin
     import torch.optim
     from tqdm import tqdm
 
-    import morphoclass as dm
+    import morphoclass as mc
     import morphoclass.models
     import morphoclass.training
     import morphoclass.utils
