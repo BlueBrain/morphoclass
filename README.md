@@ -2,6 +2,48 @@
 MorphoClass is a toolbox for neuronal morphologies processing and
 classification using machine learning.
 
+<table>
+    <tr>
+        <td>Documentation</td>
+        <td>
+            <a href="https://morphoclass.readthedocs.io/en/latest/">
+                <img src="https://readthedocs.org/projects/morphoclass/badge/?version=latest" alt="Docs">
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>License</td>
+        <td>
+            <a href="https://github.com/BlueBrain/morphoclass/blob/master/LICENSE.txt">
+                <img src="https://img.shields.io/github/license/BlueBrain/morphoclass" alt="License" />
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>Static Typing</td>
+        <td>
+            <a href="http://mypy-lang.org/">
+                <img src="http://www.mypy-lang.org/static/mypy_badge.svg" alt="Mypy">
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>Code Style</td>
+        <td>
+            <a href="https://github.com/psf/black">
+                <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Black">
+            </a>
+            <a href="https://pycqa.github.io/isort/">
+                <img src="https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336" alt="Isort">
+            </a>
+            <a href="https://flake8.pycqa.org/">
+                <img src="https://img.shields.io/badge/PEP8-flake8-informational" alt="Pydocstyle">
+            </a>
+        </td>
+    </tr>
+</table>
+
+
 # Installation
 Clone the repository and set up the virtual environment
 ```sh
