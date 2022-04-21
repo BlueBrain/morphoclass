@@ -56,7 +56,7 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install tox
-          pip install $(grep 'torch==' requirements.txt)+cpu --no-cache-dir -f https://download.pytorch.org/whl/torch_stable.html
+          pip install $(grep 'torch==' requirements.txt) --no-cache-dir -f https://download.pytorch.org/whl/torch_stable.html
           pip install -r requirements.txt -c constraints.txt
           pip install $PWD
           CUDA=cpu
