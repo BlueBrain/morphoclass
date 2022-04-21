@@ -1,11 +1,11 @@
 # Copyright © 2022 Blue Brain Project/EPFL
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,6 +22,7 @@ import click
 import morphoclass
 from morphoclass.console import cmd_evaluate
 from morphoclass.console import cmd_extract_features
+from morphoclass.console import cmd_morphometrics
 from morphoclass.console import cmd_organise_dataset
 from morphoclass.console import cmd_performance_report
 from morphoclass.console import cmd_performance_table
@@ -143,3 +144,4 @@ cli.add_command(cmd_train.cli)
 cli.add_command(cmd_evaluate.cli)
 cli.add_command(cmd_performance_table.cli)
 cli.add_command(cmd_extract_features.cli)
+cli.add_command(cmd_morphometrics.cli)
