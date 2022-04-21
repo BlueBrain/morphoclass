@@ -5,5 +5,6 @@ ipython<8
 # Might be fixed once jinja2 is upgraded to version >=3, see
 # https://jinja.palletsprojects.com/en/3.0.x/changes/#version-3-0-0
 MarkupSafe<2.1.0
+itsdangerous<2.1.0
 # pytest crashed with werkzeug==2.1.1, pinning to an older version...
 werkzeug==2.0.3
