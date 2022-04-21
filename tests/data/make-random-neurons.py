@@ -3,12 +3,10 @@
 from __future__ import annotations
 
 import collections
-import copy
 import itertools
 import pathlib
 import random
 import sys
-from collections.abc import MutableSequence
 from collections.abc import Sequence
 from typing import Tuple
 
@@ -76,7 +74,7 @@ def write(neuron: Sequence[SWCLine], path: pathlib.Path) -> None:
             fh.write(line)
 
 
-def make_tree(*, n_points: int, scale: float) -> Sequence[TreeNode]:
+def make_tree(*, n_points: int, scale: float) -> list[TreeNode]:
     """Generate a random 3D tree.
 
     Parameters
@@ -89,7 +87,7 @@ def make_tree(*, n_points: int, scale: float) -> Sequence[TreeNode]:
 
     Returns
     -------
-    Sequence[Tuple[float, ...]]
+    list[TreeNode]
         A sequence of tree nodes. Each node is a tuple with four elements:
         The three spacial coordinates x, y, z, and the index of the parent
         node.
@@ -118,13 +116,13 @@ def make_tree(*, n_points: int, scale: float) -> Sequence[TreeNode]:
 
 
 def attach_neurite(
-    neuron: MutableSequence[SWCLine],
+    neuron: Sequence[SWCLine],
     tree: Sequence[TreeNode],
     *,
     kind: int,
     min_radius: float = 0.1,
     max_radius: float = 0.3,
-) -> MutableSequence[SWCLine]:
+) -> list[SWCLine]:
     """Attach a new neurite to a neuron.
 
     The branch radius value will be randomly sampled.
@@ -154,14 +152,14 @@ def attach_neurite(
 
     Returns
     -------
-    MutableSequence[SWCLine]
+    list[SWCLine]
         The updated neuron.
     """
     # The parent value refers to the position in the list. As we append
     # the points to the neuron their index shifts.
     shift = len(neuron) - 1
-    new_neuron = copy.deepcopy(neuron)
-    for x, y, z, parent in itertools.islice(tree, 1, None):
+    new_neuron = list(neuron)  # shallow copy, convert to mutable type
+    for x, y, z, parent in itertools.islice(tree, 1, None):  # drop tree root
         if parent != 0:  # the soma stays at index 0
             parent += shift
         radius = random.random() * (max_radius - min_radius) + min_radius
@@ -170,16 +168,16 @@ def attach_neurite(
     return new_neuron
 
 
-def random_neuron() -> Sequence[SWCLine]:
+def random_neuron() -> list[SWCLine]:
     """Generate a random neuron.
 
     Returns
     -------
-    Sequence[SWCLine]
+    list[SWCLine]
         A random neuron.
     """
     # type, x, y, z, radius, parent
-    neuron: MutableSequence[SWCLine] = [(1, 0.0, 0.0, 0.0, 0.2, -1)]  # the soma point
+    neuron: list[SWCLine] = [(1, 0.0, 0.0, 0.0, 0.2, -1)]  # the soma point
     neuron = attach_neurite(neuron, make_tree(n_points=300, scale=15), kind=2)
     neuron = attach_neurite(neuron, make_tree(n_points=50, scale=5), kind=3)
     neuron = attach_neurite(neuron, make_tree(n_points=50, scale=5), kind=3)
