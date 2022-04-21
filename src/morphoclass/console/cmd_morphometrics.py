@@ -71,12 +71,16 @@ def extract_features(
     output_features_dir,
 ) -> None:
     """Run the `morphometrics extract-features` subcommand."""
-    logger.info("Start extracting morphometrics features.")
-    logger.info(f"Input organised data path  : {organised_dataset_dir}")
-    logger.info(f"Morphometrics config       : {morphometrics_config_file}")
-    logger.info(f"Output features path       : {output_features_dir}")
+    logger.info("Morphometrics feature extraction started...")
+    logger.info(f" - Input organised data path  : {organised_dataset_dir}")
+    logger.info(f" - Morphometrics config       : {morphometrics_config_file}")
+    logger.info(f" - Output features path       : {output_features_dir}")
 
     logger.debug("Read morphometrics config file.")
+    if not morphometrics_config_file.is_file():
+        raise click.ClickException(
+            f"Morphometrics config file not found: {morphometrics_config_file}"
+        )
     with morphometrics_config_file.open() as fh:
         morphometrics_config = yaml.safe_load(fh)
     logger.debug(f"Morphometrics configurations: {morphometrics_config}")
@@ -84,22 +88,26 @@ def extract_features(
     for layer_dir in sorted(f for f in organised_dataset_dir.iterdir() if f.is_dir()):
         logger.info(f"Process morphologies in layer {layer_dir}")
 
+        logger.debug(" - Read CSV file with dataset.")
         dataset_csv = layer_dir / "dataset.csv"
         if not dataset_csv.is_file():
             raise click.ClickException(f"No dataset.csv file found in {layer_dir}")
 
+        logger.debug(" - Load morphologies with NeuroM.")
         df = pd.read_csv(dataset_csv, names=["filepath", "m_type"])
         paths = [layer_dir / file_path for file_path in df["filepath"]]
-
         population = neurom.load_morphologies(paths)
-        df_metrics = morph_stats.extract_dataframe(population, morphometrics_config)
-        df_metrics.columns = df_metrics.columns.map("|".join).str.strip("|")
 
+        logger.debug(" - Extract morphometrics features.")
+        df_metrics = morph_stats.extract_dataframe(population, morphometrics_config)
+
+        df_metrics.columns = df_metrics.columns.map("|".join).str.strip("|")
         df["property|name"] = df["filepath"].str.split("/").str[-1]
         df_metrics = df_metrics.merge(df, how="inner", on="property|name")
 
+        logger.debug(f" - Write results to {output_features_dir}.")
         output_features_dir.mkdir(exist_ok=True, parents=True)
-        output_file = output_features_dir / f"features_{layer_dir.stem}.csv"
+        output_file = output_features_dir / f"{layer_dir.stem}.csv"
         df_metrics.to_csv(output_file, index=False)
 
     logger.info("Done!")
