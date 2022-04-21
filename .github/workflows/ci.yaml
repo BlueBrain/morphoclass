@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        tox-env: [lint, type, docs, apidoc-check]
+        tox-env: [lint, type, apidoc-check]
     steps:
       - name: Checkout latest commit
         uses: actions/checkout@v2
