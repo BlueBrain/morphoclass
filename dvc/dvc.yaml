@@ -2437,5 +2437,5 @@ stages:
         --morphometrics-config ./morphometrics/morphometrics_config.yaml
         --output-features-directory ./morphometrics/features/${item}
       outs:
-        - morphometrics/${item}
+        - morphometrics/features/${item}
       desc: ${item}
