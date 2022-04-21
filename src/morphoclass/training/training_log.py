@@ -1,11 +1,11 @@
 # Copyright © 2022 Blue Brain Project/EPFL
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -126,7 +126,7 @@ class TrainingLog:
             splitter_class=data["splitter_class"],
             splitter_params=data["splitter_params"],
             dataset_name=data["dataset_name"],
-            feature_extractor_name=data["feature_extractor_name"],
+            features_dir=data["features_dir"],
             optimizer_class=data["optimizer_class"],
             optimizer_params=data["optimizer_params"],
             n_epochs=data["n_epochs"],
@@ -181,5 +181,7 @@ class TrainingLog:
     @classmethod
     def load(cls, path: pathlib.Path) -> TrainingLog:
         """Load the training log from disk."""
-        data = torch.load(path)
+        device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+        data = torch.load(path, map_location=device)
         return cls.from_dict(data)

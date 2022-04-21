@@ -2,6 +2,8 @@ FROM nvidia/cuda:10.2-runtime
 
 ENV http_proxy="http://bbpproxy.epfl.ch:80"
 ENV https_proxy="http://bbpproxy.epfl.ch:80"
+ENV HTTP_PROXY="http://bbpproxy.epfl.ch:80"
+ENV HTTPS_PROXY="http://bbpproxy.epfl.ch:80"
 ENV PIP_INDEX_URL="https://bbpteam.epfl.ch/repository/devpi/simple"
 
 # Debian's default LANG=C breaks python3.

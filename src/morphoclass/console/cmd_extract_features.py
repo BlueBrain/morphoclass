@@ -1,11 +1,11 @@
 # Copyright © 2022 Blue Brain Project/EPFL
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -228,8 +228,8 @@ def cli(
         xscale = max(abs(xmax), abs(xmin))
         yscale = max(abs(ymax), abs(ymin))
         scale = np.array([[xscale, yscale]])
-        for sample, diagram in zip(dataset.data, diagrams):
-            sample.diagram = torch.tensor(diagram / scale)
+        for sample, diagram in zip(dataset, diagrams):
+            sample.diagram = torch.tensor(diagram / scale).float()
 
         if feature.startswith("image-"):
             logger.info("Converting diagrams to images")
@@ -259,7 +259,7 @@ def cli(
             xmin_normalized = min(xmin, 0)
             ymin_normalized = min(ymin, 0)
 
-            for sample, diagram in zip(dataset.data, diagrams):
+            for sample, diagram in zip(dataset, diagrams):
                 image = get_persistence_image_data(
                     diagram,
                     xlims=(xmin_normalized, xmax),

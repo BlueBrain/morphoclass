@@ -41,6 +41,14 @@ classification using machine learning.
             </a>
         </td>
     </tr>
+    <tr>
+        <td>CI</td>
+        <td>
+            <a href="https://github.com/BlueBrain/morphoclass/actions/workflows/ci.yaml?query=branch:main">
+                <img src="https://img.shields.io/github/workflow/status/BlueBrain/morphoclass/CI/main" alt="CI Status">
+            </a>
+        </td>
+    </tr>
 </table>
 
 

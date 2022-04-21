@@ -1,11 +1,11 @@
 # Copyright © 2022 Blue Brain Project/EPFL
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -311,15 +311,16 @@ def train_ml_model(model, dataset, train_idx, val_idx):
         The training history with the keys "model", "predictions",
         "ground_truths", "probabilities", "latent_features".
     """
-    labels_train = np.array([sample.y for sample in dataset.index_select(train_idx)])
-    labels_val = np.array([sample.y for sample in dataset.index_select(val_idx)])
+    ds_train = dataset.index_select(train_idx)
+    ds_val = dataset.index_select(val_idx)
 
-    images_train = np.array(
-        [sample.image for sample in dataset.index_select(train_idx)]
-    )
-    images_val = np.array([sample.image for sample in dataset.index_select(val_idx)])
-    images_train = images_train.reshape(-1, 10000)
-    images_val = images_val.reshape(-1, 10000)
+    labels_train = np.array([sample.y for sample in ds_train])
+    labels_val = np.array([sample.y for sample in ds_val])
+
+    images_train = np.array([sample.image.numpy() for sample in ds_train])
+    images_val = np.array([sample.image.numpy() for sample in ds_val])
+    images_train = images_train.reshape(-1, 10_000)
+    images_val = images_val.reshape(-1, 10_000)
 
     model.fit(images_train, labels_train)
 

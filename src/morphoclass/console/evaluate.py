@@ -1,11 +1,11 @@
 # Copyright © 2022 Blue Brain Project/EPFL
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -72,7 +72,7 @@ def visualize_model_performance(
         F1-score macro: <b>{metrics['f1_macro']:.2%}</b><br/>
         accuracy: <b>{metrics['accuracy']:.2%}</b><br/>
         dataset: <b>{training_log.config.dataset_name}</b><br/>
-        feature extractor: <b>{training_log.config.feature_extractor_name}</b><br/>
+        features directory: <b>{training_log.config.features_dir}</b><br/>
         model class:
         <b>
         {training_log.config.model_class}({str_params(training_log.config.model_params)})

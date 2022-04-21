@@ -1,11 +1,11 @@
 # Copyright © 2022 Blue Brain Project/EPFL
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -108,15 +108,9 @@ def cli(
     from morphoclass.training.cli import split_metrics
     from morphoclass.training.training_config import TrainingConfig
 
-    config = TrainingConfig.from_separate_configs(conf_model, conf_splitter)
-
-    if config.feature_extractor_name == "deepwalk":
-        logger.info("Checking if DeepWalk is installed")
-        from morphoclass import deepwalk
-
-        if not deepwalk.check_installed():
-            how_to_install = deepwalk.how_to_install_msg()
-            raise click.ClickException(f"DeepWalk is not installed. {how_to_install}")
+    config = TrainingConfig.from_separate_configs(
+        conf_model, conf_splitter, features_dir
+    )
 
     logger.info(f"Features    : {features_dir}")
     logger.info(f"Model       : {config.model_class}")

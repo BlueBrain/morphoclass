@@ -1,11 +1,11 @@
 # Copyright © 2022 Blue Brain Project/EPFL
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -94,7 +94,7 @@ def transfer_learning_curves(
             splitter_class=splitter_class,
             splitter_params=splitter_params,
             dataset_name=dataset_name,
-            feature_extractor_name=feature_extractor_name,
+            features_dir=feature_extractor_name,  # TODO put the actual directory
             optimizer_class=optimizer_class,
             optimizer_params=optimizer_params,
             n_epochs=n_epochs,
@@ -141,7 +141,7 @@ def transfer_learning_curves(
                 splitter_class=splitter_class,
                 splitter_params=splitter_params,
                 dataset_name=dataset_name,
-                feature_extractor_name=feature_extractor_name,
+                features_dir=feature_extractor_name,  # TODO put the actual directory
                 optimizer_class=optimizer_class,
                 optimizer_params=optimizer_params,
                 n_epochs=n_epochs,
