@@ -59,7 +59,7 @@ jobs:
           key: ${{ matrix.python-version }}-${{ matrix.os }}
       - name: Set up environment
         run: |
-          pip install --upgrade pip
+          pip install --upgrade pip wheel setuptools
           pip install tox
           pip install $(grep 'torch==' requirements.txt) --no-cache-dir -f https://download.pytorch.org/whl/torch_stable.html
           pip install -r requirements.txt -c constraints.txt
