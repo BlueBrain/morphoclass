@@ -3,6 +3,11 @@ on:
   pull_request:
   push:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        description: "Run the build with tmate debugging enabled"
+        required: false
 jobs:
   tox:
     runs-on: ubuntu-latest
@@ -67,5 +72,8 @@ jobs:
           pip install torch-spline-conv --no-index -f https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html
           pip install "torch-geometric<2"
           pip install pytest pytest-cov pytest-mock
+      - name: Set up tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
       - name: Run unit tests
         run: pytest --verbose --durations=15 --cov -ra
