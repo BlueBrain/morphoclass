@@ -1,0 +1,71 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  tox:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        tox-env: [lint, type, docs, apidoc-check]
+    steps:
+      - name: Checkout latest commit
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # fetch all history with version tags
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+      - name: Set up pip cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ matrix.tox-env }}-${{ runner.os }}-${{ hashFiles('tox.ini') }}
+      - name: Set up environment
+        run: |
+          pip install --upgrade pip wheel setuptools
+          pip install tox
+      - name: Run tox ${{ matrix.tox-env }}
+        run: tox -vv -e ${{ matrix.tox-env }}
+  unit-tests:
+    runs-on: ${{ matrix.os }}
+    env:
+      PIP_CACHE_DIR: .cache/pip
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: [3.8]
+    steps:
+      - name: Checkout latest commit
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # fetch all history with version tags
+      - name: Set up python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Set up pip cache
+        uses: actions/cache@v2
+        with:
+          path: .cache/pip
+          key: ${{ matrix.python-version }}-${{ matrix.os }}
+      - name: Set up environment
+        run: |
+          pip install --upgrade pip
+          pip install tox
+          pip install $(grep 'torch==' requirements.txt)+cpu --no-cache-dir -f https://download.pytorch.org/whl/torch_stable.html
+          pip install -r requirements.txt -c constraints.txt
+          pip install $PWD
+          CUDA=cpu
+          TORCH=$(pip freeze | grep torch== | sed -re "s/torch==([^+]+).*/\1/")
+          pip install torch-scatter --no-index -f https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html
+          pip install torch-sparse --no-index -f https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html
+          pip install torch-cluster --no-index -f https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html
+          pip install torch-spline-conv --no-index -f https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html
+          pip install "torch-geometric<2"
+          pip install pytest pytest-cov pytest-mock
+      - name: Run unit tests
+        run: pytest --verbose --durations=15 --cov -ra
