@@ -63,7 +63,13 @@ jobs:
           TORCH=$(grep 'torch==' requirements.txt | sed -re "s/torch==([^+]+).*/\1/")
           CUDA=cpu
           PYG_FIND_LINKS="https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html"
-          pip install torch==${TORCH}+cpu --find-links "https://download.pytorch.org/whl/torch_stable.html"
+          if [ "${{ matrix.os }}" == "ubuntu-latest" ]
+          then
+            TORCH_FLAVOUR="+$CUDA"
+          else
+            TORCH_FLAVOUR=""
+          fi
+          pip install torch==${TORCH}${TORCH_FLAVOUR} --find-links "https://download.pytorch.org/whl/torch_stable.html"
           pip install -r requirements.txt -c constraints.txt
           pip install $PWD -c constraints.txt
           pip install torch-scatter torch-sparse torch-cluster torch-spline-conv --no-index --find-links $PYG_FIND_LINKS
