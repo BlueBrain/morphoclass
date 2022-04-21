@@ -2435,7 +2435,7 @@ stages:
         morphoclass -vv morphometrics extract-features
         --organised-dataset-directory ./data/final/${item}
         --morphometrics-config ./morphometrics/morphometrics_config.yaml
-        --output-features-directory ./morphometrics/${item}
+        --output-features-directory ./morphometrics/features/${item}
       outs:
         - morphometrics/${item}
       desc: ${item}
