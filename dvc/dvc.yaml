@@ -2432,7 +2432,7 @@ stages:
       - janelia
     do:
       cmd: >-
-        morphoclass -vv morphometrics feature-extraction
+        morphoclass -vv morphometrics extract-features
         --organised-dataset-directory ./data/final/${item}
         --morphometrics-config ./morphometrics/morphometrics_config.yaml
         --output-features-directory ./morphometrics/${item}
