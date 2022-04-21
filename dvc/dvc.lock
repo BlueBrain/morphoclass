@@ -20053,3 +20053,30 @@ stages:
       md5: 60e1f948dc63880886440ba2fa966dab.dir
       size: 45243761
       nfiles: 13
+  morphometrics-feature-extraction@pyramidal-cells:
+    cmd: morphoclass -vv morphometrics extract-features --organised-dataset-directory
+      ./data/final/pyramidal-cells --morphometrics-config ./morphometrics/morphometrics_config.yaml
+      --output-features-directory ./morphometrics/features/pyramidal-cells
+    outs:
+    - path: morphometrics/features/pyramidal-cells
+      md5: 0dcb61176c8359097793b2941e7b4b9a.dir
+      size: 1119622
+      nfiles: 5
+  morphometrics-feature-extraction@janelia:
+    cmd: morphoclass -vv morphometrics extract-features --organised-dataset-directory
+      ./data/final/janelia --morphometrics-config ./morphometrics/morphometrics_config.yaml
+      --output-features-directory ./morphometrics/features/janelia
+    outs:
+    - path: morphometrics/features/janelia
+      md5: 7e5c65736085a40b6b4b66f6f5866fc2.dir
+      size: 262824
+      nfiles: 2
+  morphometrics-feature-extraction@interneurons:
+    cmd: morphoclass -vv morphometrics extract-features --organised-dataset-directory
+      ./data/final/interneurons --morphometrics-config ./morphometrics/morphometrics_config.yaml
+      --output-features-directory ./morphometrics/features/interneurons
+    outs:
+    - path: morphometrics/features/interneurons
+      md5: 640484ca01b80c36c5fbaa5201e6efdf.dir
+      size: 953818
+      nfiles: 5
