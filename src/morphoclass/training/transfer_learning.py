@@ -94,7 +94,7 @@ def transfer_learning_curves(
             splitter_class=splitter_class,
             splitter_params=splitter_params,
             dataset_name=dataset_name,
-            feature_extractor_name=feature_extractor_name,
+            features_dir=feature_extractor_name,  # TODO put the actual directory
             optimizer_class=optimizer_class,
             optimizer_params=optimizer_params,
             n_epochs=n_epochs,
@@ -141,7 +141,7 @@ def transfer_learning_curves(
                 splitter_class=splitter_class,
                 splitter_params=splitter_params,
                 dataset_name=dataset_name,
-                feature_extractor_name=feature_extractor_name,
+                features_dir=feature_extractor_name,  # TODO put the actual directory
                 optimizer_class=optimizer_class,
                 optimizer_params=optimizer_params,
                 n_epochs=n_epochs,
