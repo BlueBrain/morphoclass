@@ -60,21 +60,14 @@ jobs:
       - name: Set up environment
         run: |
           pip install --upgrade pip wheel setuptools
+          TORCH=$(grep 'torch==' requirements.txt | sed -re "s/torch==([^+]+).*/\1/")
+          CUDA=cpu
+          PYG_FIND_LINKS="https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html"
+          pip install torch==${TORCH}+cpu --find-links "https://download.pytorch.org/whl/torch_stable.html"
           pip install -r requirements.txt -c constraints.txt
           pip install $PWD -c constraints.txt
-          CUDA_VERSION=$(python -c "import torch; print(torch.version.cuda or '')")
-          if [ -z "$CUDA_VERSION" ]
-          then
-            CUDA="cpu"
-          else
-            CUDA="cu${CUDA_VERSION/./}"
-          fi
-          TORCH=$(pip freeze | grep torch== | sed -re "s/torch==([^+]+).*/\1/")
-          pip install torch-scatter --no-index -f https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html
-          pip install torch-sparse --no-index -f https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html
-          pip install torch-cluster --no-index -f https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html
-          pip install torch-spline-conv --no-index -f https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html
-          pip install "torch-geometric<2"
+          pip install torch-scatter torch-sparse torch-cluster torch-spline-conv --no-index --find-links $PYG_FIND_LINKS
+          pip install 'torch-geometric<2'
           pip install pytest pytest-cov pytest-mock
       - name: Set up tmate session
         uses: mxschmitt/action-tmate@v3
