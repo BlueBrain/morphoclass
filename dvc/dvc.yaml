@@ -2425,3 +2425,17 @@ stages:
       outs:
         - evaluation/janelia-L5/${item}-stratifKFold.html
         - evaluation/janelia-L5/${item}-stratifKFold
+  morphometrics-feature-extraction:
+    foreach:
+      - pyramidal-cells
+      - interneurons
+      - janelia
+    do:
+      cmd: >-
+        morphoclass -vv morphometrics feature-extraction
+        --organised-dataset-directory ./data/final/${item}
+        --morphometrics-config ./morphometrics/morphometrics_config.yaml
+        --output-features-directory ./morphometrics/${item}
+      outs:
+        - morphometrics/${item}
+      desc: ${item}
