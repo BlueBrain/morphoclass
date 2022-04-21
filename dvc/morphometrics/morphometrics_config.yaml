@@ -1,0 +1,113 @@
+morphology:
+  max_radial_distance:
+  - mean
+  number_of_neurites:
+  - mean
+  number_of_sections_per_neurite:
+  - mean
+  soma_radius:
+  - mean
+  soma_surface_area:
+  - mean
+  soma_volume:
+  - mean
+  total_area_per_neurite:
+  - mean
+  total_depth:
+  - mean
+  total_height:
+  - mean
+  total_length_per_neurite:
+  - mean
+  total_volume_per_neurite:
+  - mean
+  total_width:
+  - mean
+neurite:
+  local_bifurcation_angles:
+  - mean
+  number_of_bifurcations:
+  - mean
+  number_of_leaves:
+  - mean
+  number_of_neurites:
+  - mean
+  number_of_sections:
+  - mean
+  number_of_segments:
+  - mean
+  partition_asymmetry:
+  - mean
+  partition_asymmetry_length:
+  - mean
+  principal_direction_extents:
+  - max
+  remote_bifurcation_angles:
+  - mean
+  section_areas:
+  - mean
+  section_bif_lengths:
+  - min
+  - max
+  - mean
+  section_bif_radial_distances:
+  - mean
+  section_branch_orders:
+  - min
+  - max
+  - mean
+  section_end_distances:
+  - mean
+  section_lengths:
+  - min
+  - max
+  - mean
+  section_path_distances:
+  - min
+  - max
+  - mean
+  - median
+  section_radial_distances:
+  - mean
+  section_strahler_orders:
+  - max
+  - mean
+  section_term_lengths:
+  - min
+  - max
+  - mean
+  section_term_radial_distances:
+  - mean
+  section_tortuosity:
+  - mean
+  section_volumes:
+  - mean
+  segment_meander_angles:
+  - mean
+  terminal_path_lengths:
+  - mean
+  total_area:
+  - mean
+  - sum
+  total_area_per_neurite:
+  - min
+  - max
+  - mean
+  total_length:
+  - mean
+  - sum
+  total_length_per_neurite:
+  - min
+  - max
+  - mean
+  total_volume:
+  - mean
+  - sum
+  total_volume_per_neurite:
+  - min
+  - max
+  - mean
+neurite_type:
+- AXON
+- BASAL_DENDRITE
+- APICAL_DENDRITE
