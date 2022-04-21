@@ -1,5 +1,0 @@
-dataset_name: interneurons
-id: in
-input_csv: data/final/IN_data.csv
-layer: none
-oversampling: false

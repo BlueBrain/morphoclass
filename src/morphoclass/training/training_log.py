@@ -126,7 +126,7 @@ class TrainingLog:
             splitter_class=data["splitter_class"],
             splitter_params=data["splitter_params"],
             dataset_name=data["dataset_name"],
-            feature_extractor_name=data["feature_extractor_name"],
+            features_dir=data["features_dir"],
             optimizer_class=data["optimizer_class"],
             optimizer_params=data["optimizer_params"],
             n_epochs=data["n_epochs"],
@@ -181,5 +181,7 @@ class TrainingLog:
     @classmethod
     def load(cls, path: pathlib.Path) -> TrainingLog:
         """Load the training log from disk."""
-        data = torch.load(path)
+        device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+        data = torch.load(path, map_location=device)
         return cls.from_dict(data)

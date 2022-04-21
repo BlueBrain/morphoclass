@@ -1,6 +1,0 @@
-dataset_name: pyramidal-cells
-id: pc
-input_csv: data/final/pyramidal-cells/L6/dataset.csv
-layer: L6
-neurite_type: neurites
-oversampling: false

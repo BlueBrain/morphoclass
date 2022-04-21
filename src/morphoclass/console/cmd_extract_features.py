@@ -228,8 +228,8 @@ def cli(
         xscale = max(abs(xmax), abs(xmin))
         yscale = max(abs(ymax), abs(ymin))
         scale = np.array([[xscale, yscale]])
-        for sample, diagram in zip(dataset.data, diagrams):
-            sample.diagram = torch.tensor(diagram / scale)
+        for sample, diagram in zip(dataset, diagrams):
+            sample.diagram = torch.tensor(diagram / scale).float()
 
         if feature.startswith("image-"):
             logger.info("Converting diagrams to images")
@@ -259,7 +259,7 @@ def cli(
             xmin_normalized = min(xmin, 0)
             ymin_normalized = min(ymin, 0)
 
-            for sample, diagram in zip(dataset.data, diagrams):
+            for sample, diagram in zip(dataset, diagrams):
                 image = get_persistence_image_data(
                     diagram,
                     xlims=(xmin_normalized, xmax),

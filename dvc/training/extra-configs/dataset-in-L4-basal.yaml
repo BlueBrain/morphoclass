@@ -1,6 +1,0 @@
-dataset_name: interneurons
-id: in
-input_csv: data/final/interneurons/L4/dataset.csv
-layer: L4
-neurite_type: basal
-oversampling: false

@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import dataclasses
 import importlib
+import os
 import pathlib
 from typing import Callable
 
@@ -26,18 +27,18 @@ import yaml
 class TrainingConfig:
     """A training configuration."""
 
-    input_csv: pathlib.Path | None
     model_class: str
     model_params: dict
     splitter_class: str
     splitter_params: dict
     dataset_name: str
-    feature_extractor_name: str
+    features_dir: pathlib.Path | None
     optimizer_class: str
     optimizer_params: dict
     n_epochs: int
     batch_size: int
     seed: int
+    input_csv: pathlib.Path | None = None  # Might be obsolete
     oversampling: bool = False  # This used to be set by the dataset config
     neurite_type: str | None = None  # if None then fall back to default of dataset type
     train_all_samples: bool = False
@@ -48,6 +49,8 @@ class TrainingConfig:
         """Run post-initialisation steps."""
         if self.input_csv:
             self.input_csv = pathlib.Path(self.input_csv)
+        if self.features_dir:
+            self.features_dir = pathlib.Path(self.features_dir)
 
     @staticmethod
     def import_obj(obj_full_name: str) -> object:
@@ -108,19 +111,20 @@ class TrainingConfig:
         cls,
         conf_model: dict,
         conf_splitter: dict,
+        features_dir: str | os.PathLike,
         workdir: pathlib.Path | None = None,
     ) -> TrainingConfig:
         """Construct a training config from separate configs."""
         data = {
             **conf_model,
             **conf_splitter,
+            "features_dir": features_dir,
             "seed": 113587,
             "train_all_samples": True,
             "frozen_backbone": False,
             "checkpoint_path_pretrained": None,
             "dataset_name": "<obsolete>",  # TODO: remove this
         }
-        data.pop("id")
         return cls.from_dict(data, workdir)
 
     def resolve_paths(self, workdir: pathlib.Path) -> None:
@@ -128,5 +132,7 @@ class TrainingConfig:
         # TODO: might need to check if they paths are relative.
         if self.input_csv:
             self.input_csv = workdir / self.input_csv
+        if self.features_dir:
+            self.features_dir = workdir / self.features_dir
         if self.checkpoint_path_pretrained is not None:
             self.checkpoint_path_pretrained = workdir / self.checkpoint_path_pretrained

@@ -1432,6 +1432,166 @@ stages:
     - data/final/pyramidal-cells/L2
     outs:
     - extract-features/pc-L2/basal/image-tmd-proj
+  features-pc-L2-merged-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all diagram-deepwalk
+      extract-features/pc-L2-merged/all/diagram-deepwalk
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/all/diagram-deepwalk
+  features-pc-L2-merged-diagram-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical diagram-deepwalk
+      extract-features/pc-L2-merged/apical/diagram-deepwalk
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/apical/diagram-deepwalk
+  features-pc-L2-merged-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon diagram-deepwalk
+      extract-features/pc-L2-merged/axon/diagram-deepwalk
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/axon/diagram-deepwalk
+  features-pc-L2-merged-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal diagram-deepwalk
+      extract-features/pc-L2-merged/basal/diagram-deepwalk
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/basal/diagram-deepwalk
+  features-pc-L2-merged-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all diagram-tmd-proj
+      extract-features/pc-L2-merged/all/diagram-tmd-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/all/diagram-tmd-proj
+  features-pc-L2-merged-diagram-tmd-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical diagram-tmd-proj
+      extract-features/pc-L2-merged/apical/diagram-tmd-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/apical/diagram-tmd-proj
+  features-pc-L2-merged-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon diagram-tmd-proj
+      extract-features/pc-L2-merged/axon/diagram-tmd-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/axon/diagram-tmd-proj
+  features-pc-L2-merged-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal diagram-tmd-proj
+      extract-features/pc-L2-merged/basal/diagram-tmd-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/basal/diagram-tmd-proj
+  features-pc-L2-merged-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all graph-proj
+      extract-features/pc-L2-merged/all/graph-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/all/graph-proj
+  features-pc-L2-merged-graph-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical graph-proj
+      extract-features/pc-L2-merged/apical/graph-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/apical/graph-proj
+  features-pc-L2-merged-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon graph-proj
+      extract-features/pc-L2-merged/axon/graph-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/axon/graph-proj
+  features-pc-L2-merged-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal graph-proj
+      extract-features/pc-L2-merged/basal/graph-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/basal/graph-proj
+  features-pc-L2-merged-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all image-deepwalk
+      extract-features/pc-L2-merged/all/image-deepwalk
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/all/image-deepwalk
+  features-pc-L2-merged-image-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical image-deepwalk
+      extract-features/pc-L2-merged/apical/image-deepwalk
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/apical/image-deepwalk
+  features-pc-L2-merged-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon image-deepwalk
+      extract-features/pc-L2-merged/axon/image-deepwalk
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/axon/image-deepwalk
+  features-pc-L2-merged-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal image-deepwalk
+      extract-features/pc-L2-merged/basal/image-deepwalk
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/basal/image-deepwalk
+  features-pc-L2-merged-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all image-tmd-proj
+      extract-features/pc-L2-merged/all/image-tmd-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/all/image-tmd-proj
+  features-pc-L2-merged-image-tmd-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical image-tmd-proj
+      extract-features/pc-L2-merged/apical/image-tmd-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/apical/image-tmd-proj
+  features-pc-L2-merged-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon image-tmd-proj
+      extract-features/pc-L2-merged/axon/image-tmd-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/axon/image-tmd-proj
+  features-pc-L2-merged-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal image-tmd-proj
+      extract-features/pc-L2-merged/basal/image-tmd-proj
+    deps:
+    - data/final/pc-L2-merged.csv
+    - data/final/pyramidal-cells/L2
+    outs:
+    - extract-features/pc-L2-merged/basal/image-tmd-proj
   features-pc-L3-diagram-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
       all diagram-deepwalk extract-features/pc-L3/all/diagram-deepwalk
@@ -1852,6 +2012,166 @@ stages:
     - data/final/pyramidal-cells/L5
     outs:
     - extract-features/pc-L5/basal/image-tmd-rd
+  features-pc-L5-merged-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all diagram-deepwalk
+      extract-features/pc-L5-merged/all/diagram-deepwalk
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/all/diagram-deepwalk
+  features-pc-L5-merged-diagram-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv apical diagram-deepwalk
+      extract-features/pc-L5-merged/apical/diagram-deepwalk
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/apical/diagram-deepwalk
+  features-pc-L5-merged-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv axon diagram-deepwalk
+      extract-features/pc-L5-merged/axon/diagram-deepwalk
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/axon/diagram-deepwalk
+  features-pc-L5-merged-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv basal diagram-deepwalk
+      extract-features/pc-L5-merged/basal/diagram-deepwalk
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/basal/diagram-deepwalk
+  features-pc-L5-merged-diagram-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all diagram-tmd-rd
+      extract-features/pc-L5-merged/all/diagram-tmd-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/all/diagram-tmd-rd
+  features-pc-L5-merged-diagram-tmd-rd-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv apical diagram-tmd-rd
+      extract-features/pc-L5-merged/apical/diagram-tmd-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/apical/diagram-tmd-rd
+  features-pc-L5-merged-diagram-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv axon diagram-tmd-rd
+      extract-features/pc-L5-merged/axon/diagram-tmd-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/axon/diagram-tmd-rd
+  features-pc-L5-merged-diagram-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv basal diagram-tmd-rd
+      extract-features/pc-L5-merged/basal/diagram-tmd-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/basal/diagram-tmd-rd
+  features-pc-L5-merged-graph-rd-all:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all graph-rd
+      extract-features/pc-L5-merged/all/graph-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/all/graph-rd
+  features-pc-L5-merged-graph-rd-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv apical graph-rd
+      extract-features/pc-L5-merged/apical/graph-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/apical/graph-rd
+  features-pc-L5-merged-graph-rd-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv axon graph-rd
+      extract-features/pc-L5-merged/axon/graph-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/axon/graph-rd
+  features-pc-L5-merged-graph-rd-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv basal graph-rd
+      extract-features/pc-L5-merged/basal/graph-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/basal/graph-rd
+  features-pc-L5-merged-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all image-deepwalk
+      extract-features/pc-L5-merged/all/image-deepwalk
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/all/image-deepwalk
+  features-pc-L5-merged-image-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv apical image-deepwalk
+      extract-features/pc-L5-merged/apical/image-deepwalk
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/apical/image-deepwalk
+  features-pc-L5-merged-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv axon image-deepwalk
+      extract-features/pc-L5-merged/axon/image-deepwalk
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/axon/image-deepwalk
+  features-pc-L5-merged-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv basal image-deepwalk
+      extract-features/pc-L5-merged/basal/image-deepwalk
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/basal/image-deepwalk
+  features-pc-L5-merged-image-tmd-rd-all:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all image-tmd-rd
+      extract-features/pc-L5-merged/all/image-tmd-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/all/image-tmd-rd
+  features-pc-L5-merged-image-tmd-rd-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv apical image-tmd-rd
+      extract-features/pc-L5-merged/apical/image-tmd-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/apical/image-tmd-rd
+  features-pc-L5-merged-image-tmd-rd-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv axon image-tmd-rd
+      extract-features/pc-L5-merged/axon/image-tmd-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/axon/image-tmd-rd
+  features-pc-L5-merged-image-tmd-rd-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv basal image-tmd-rd
+      extract-features/pc-L5-merged/basal/image-tmd-rd
+    deps:
+    - data/final/pc-L5-merged.csv
+    - data/final/pyramidal-cells/L5
+    outs:
+    - extract-features/pc-L5-merged/basal/image-tmd-rd
   features-pc-L6-diagram-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
       all diagram-deepwalk extract-features/pc-L6/all/diagram-deepwalk
@@ -1992,19 +2312,178 @@ stages:
     - data/final/pyramidal-cells/L6
     outs:
     - extract-features/pc-L6/basal/image-tmd-proj
+  features-pc-L6-merged-diagram-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv all diagram-deepwalk
+      extract-features/pc-L6-merged/all/diagram-deepwalk
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/all/diagram-deepwalk
+  features-pc-L6-merged-diagram-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv apical diagram-deepwalk
+      extract-features/pc-L6-merged/apical/diagram-deepwalk
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/apical/diagram-deepwalk
+  features-pc-L6-merged-diagram-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv axon diagram-deepwalk
+      extract-features/pc-L6-merged/axon/diagram-deepwalk
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/axon/diagram-deepwalk
+  features-pc-L6-merged-diagram-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv basal diagram-deepwalk
+      extract-features/pc-L6-merged/basal/diagram-deepwalk
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/basal/diagram-deepwalk
+  features-pc-L6-merged-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv all diagram-tmd-proj
+      extract-features/pc-L6-merged/all/diagram-tmd-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/all/diagram-tmd-proj
+  features-pc-L6-merged-diagram-tmd-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv apical diagram-tmd-proj
+      extract-features/pc-L6-merged/apical/diagram-tmd-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/apical/diagram-tmd-proj
+  features-pc-L6-merged-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv axon diagram-tmd-proj
+      extract-features/pc-L6-merged/axon/diagram-tmd-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/axon/diagram-tmd-proj
+  features-pc-L6-merged-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv basal diagram-tmd-proj
+      extract-features/pc-L6-merged/basal/diagram-tmd-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/basal/diagram-tmd-proj
+  features-pc-L6-merged-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv all graph-proj
+      extract-features/pc-L6-merged/all/graph-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/all/graph-proj
+  features-pc-L6-merged-graph-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv apical graph-proj
+      extract-features/pc-L6-merged/apical/graph-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/apical/graph-proj
+  features-pc-L6-merged-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv axon graph-proj
+      extract-features/pc-L6-merged/axon/graph-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/axon/graph-proj
+  features-pc-L6-merged-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv basal graph-proj
+      extract-features/pc-L6-merged/basal/graph-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/basal/graph-proj
+  features-pc-L6-merged-image-deepwalk-all:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv all image-deepwalk
+      extract-features/pc-L6-merged/all/image-deepwalk
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/all/image-deepwalk
+  features-pc-L6-merged-image-deepwalk-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv apical image-deepwalk
+      extract-features/pc-L6-merged/apical/image-deepwalk
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/apical/image-deepwalk
+  features-pc-L6-merged-image-deepwalk-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv axon image-deepwalk
+      extract-features/pc-L6-merged/axon/image-deepwalk
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/axon/image-deepwalk
+  features-pc-L6-merged-image-deepwalk-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv basal image-deepwalk
+      extract-features/pc-L6-merged/basal/image-deepwalk
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/basal/image-deepwalk
+  features-pc-L6-merged-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv all image-tmd-proj
+      extract-features/pc-L6-merged/all/image-tmd-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/all/image-tmd-proj
+  features-pc-L6-merged-image-tmd-proj-apical:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv apical image-tmd-proj
+      extract-features/pc-L6-merged/apical/image-tmd-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/apical/image-tmd-proj
+  features-pc-L6-merged-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv axon image-tmd-proj
+      extract-features/pc-L6-merged/axon/image-tmd-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/axon/image-tmd-proj
+  features-pc-L6-merged-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv basal image-tmd-proj
+      extract-features/pc-L6-merged/basal/image-tmd-proj
+    deps:
+    - data/final/pc-L6-merged.csv
+    - data/final/pyramidal-cells/L6
+    outs:
+    - extract-features/pc-L6-merged/basal/image-tmd-proj
 
   train:
     foreach: ${training}
     do:
       cmd: >-
         morphoclass -v train
-        --dataset-config ${item.dataset-config}
+        --features-dir ${item.features-dir}
         --model-config ${item.model-config}
         --splitter-config ${item.splitter-config}
         --checkpoint-dir training/checkpoints/${key}
       deps:
-        - ${item.dataset-dir}
-        - ${item.dataset-config}
+        - ${item.features-dir}
         - ${item.model-config}
         - ${item.splitter-config}
       outs:
@@ -2026,13 +2505,12 @@ stages:
     do:
       cmd: >-
         morphoclass -v train
-        --dataset-config ${item.dataset-config}
+        --features-dir ${item.features-dir}
         --model-config ${item.model-config}
         --splitter-config ${item.splitter-config}
         --checkpoint-dir training/checkpoints-alt-neurites/${key}
       deps:
-        - ${item.dataset-dir}
-        - ${item.dataset-config}
+        - ${item.features-dir}
         - ${item.model-config}
         - ${item.splitter-config}
       outs:
@@ -2050,378 +2528,218 @@ stages:
         - evaluation/${key}.html
         - evaluation/${key}
   train-merged-interneurons:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v train
-        --dataset-config training/extra-configs/interneurons-merged-layers.yaml
-        --model-config training/configs/model-${item}.yaml
-        --splitter-config training/configs/splitter-stratifKFold.yaml
-        --checkpoint-dir training/checkpoints-merged-interneurons/${item}
+        --features-dir extract-features/in-merged-layers/axon/${item.features-rd}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-merged-interneurons/${key}
       deps:
-        - data/final/interneurons-merged-layers.csv
-        - data/final/interneurons
-        - training/extra-configs/interneurons-merged-layers.yaml
-        - training/configs/model-${item}.yaml
-        - training/configs/splitter-stratifKFold.yaml
+        - extract-features/in-merged-layers/axon/${item.features-rd}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
       outs:
-        - training/checkpoints-merged-interneurons/${item}
+        - training/checkpoints-merged-interneurons/${key}
   evaluate-merged-interneurons:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v evaluate performance
-        training/checkpoints-merged-interneurons/${item}/checkpoint.chk
-        evaluation/merged-interneurons/${item}.html
+        training/checkpoints-merged-interneurons/${key}/checkpoint.chk
+        evaluation/merged-interneurons/${key}.html
       deps:
-        - training/checkpoints-merged-interneurons/${item}/checkpoint.chk
+        - training/checkpoints-merged-interneurons/${key}/checkpoint.chk
       outs:
-        - evaluation/merged-interneurons/${item}.html
-        - evaluation/merged-interneurons/${item}
+        - evaluation/merged-interneurons/${key}.html
+        - evaluation/merged-interneurons/${key}
   train-pc-L2-merged-classes:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v train
-        --dataset-config training/extra-configs/pc-L2-merged-classes.yaml
-        --model-config training/configs/model-${item}.yaml
-        --splitter-config training/configs/splitter-stratifKFold.yaml
-        --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L2-${item}-stratifKFold
+        --features-dir extract-features/pc-L2-merged/apical/${item.features-proj}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L2-${key}-stratified-k-fold
       deps:
-        - data/final/pc-L2-merged.csv
-        - data/final/pyramidal-cells/L2
-        - training/extra-configs/pc-L2-merged-classes.yaml
-        - training/configs/model-${item}.yaml
-        - training/configs/splitter-stratifKFold.yaml
+        - extract-features/pc-L2-merged/apical/${item.features-proj}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
       outs:
-        - training/checkpoints-pc-merged-classes/pc-L2-${item}-stratifKFold
+        - training/checkpoints-pc-merged-classes/pc-L2-${key}-stratified-k-fold
   evaluate-pc-L2-merged-classes:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v evaluate performance
-        training/checkpoints-pc-merged-classes/pc-L2-${item}-stratifKFold/checkpoint.chk
-        evaluation/pc-merged-classes/pc-L2-${item}-stratifKFold.html
+        training/checkpoints-pc-merged-classes/pc-L2-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/pc-merged-classes/pc-L2-${key}-stratified-k-fold.html
       deps:
-        - training/checkpoints-pc-merged-classes/pc-L2-${item}-stratifKFold/checkpoint.chk
+        - training/checkpoints-pc-merged-classes/pc-L2-${key}-stratified-k-fold/checkpoint.chk
       outs:
-        - evaluation/pc-merged-classes/pc-L2-${item}-stratifKFold.html
-        - evaluation/pc-merged-classes/pc-L2-${item}-stratifKFold
+        - evaluation/pc-merged-classes/pc-L2-${key}-stratified-k-fold.html
+        - evaluation/pc-merged-classes/pc-L2-${key}-stratified-k-fold
   train-pc-L5-merged-classes:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v train
-        --dataset-config training/extra-configs/pc-L5-merged-classes.yaml
-        --model-config training/configs/model-${item}.yaml
-        --splitter-config training/configs/splitter-stratifKFold.yaml
-        --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L5-${item}-stratifKFold
+        --features-dir extract-features/pc-L5-merged/apical/${item.features-rd}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L5-${key}-stratified-k-fold
       deps:
-        - data/final/pc-L5-merged.csv
-        - data/final/pyramidal-cells/L5
-        - training/extra-configs/pc-L5-merged-classes.yaml
-        - training/configs/model-${item}.yaml
-        - training/configs/splitter-stratifKFold.yaml
+        - extract-features/pc-L5-merged/apical/${item.features-rd}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
       outs:
-        - training/checkpoints-pc-merged-classes/pc-L5-${item}-stratifKFold
+        - training/checkpoints-pc-merged-classes/pc-L5-${key}-stratified-k-fold
   evaluate-pc-L5-merged-classes:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v evaluate performance
-        training/checkpoints-pc-merged-classes/pc-L5-${item}-stratifKFold/checkpoint.chk
-        evaluation/pc-merged-classes/pc-L5-${item}-stratifKFold.html
+        training/checkpoints-pc-merged-classes/pc-L5-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/pc-merged-classes/pc-L5-${key}-stratified-k-fold.html
       deps:
-        - training/checkpoints-pc-merged-classes/pc-L5-${item}-stratifKFold/checkpoint.chk
+        - training/checkpoints-pc-merged-classes/pc-L5-${key}-stratified-k-fold/checkpoint.chk
       outs:
-        - evaluation/pc-merged-classes/pc-L5-${item}-stratifKFold.html
-        - evaluation/pc-merged-classes/pc-L5-${item}-stratifKFold
+        - evaluation/pc-merged-classes/pc-L5-${key}-stratified-k-fold.html
+        - evaluation/pc-merged-classes/pc-L5-${key}-stratified-k-fold
   train-pc-L6-merged-classes:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v train
-        --dataset-config training/extra-configs/pc-L6-merged-classes.yaml
-        --model-config training/configs/model-${item}.yaml
-        --splitter-config training/configs/splitter-stratifKFold.yaml
-        --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L6-${item}-stratifKFold
+        --features-dir extract-features/pc-L6-merged/apical/${item.features-proj}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L6-${key}-stratified-k-fold
       deps:
-        - data/final/pc-L6-merged.csv
-        - data/final/pyramidal-cells/L6
-        - training/extra-configs/pc-L6-merged-classes.yaml
-        - training/configs/model-${item}.yaml
-        - training/configs/splitter-stratifKFold.yaml
+        - extract-features/pc-L6-merged/apical/${item.features-proj}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
       outs:
-        - training/checkpoints-pc-merged-classes/pc-L6-${item}-stratifKFold
+        - training/checkpoints-pc-merged-classes/pc-L6-${key}-stratified-k-fold
   evaluate-pc-L6-merged-classes:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v evaluate performance
-        training/checkpoints-pc-merged-classes/pc-L6-${item}-stratifKFold/checkpoint.chk
-        evaluation/pc-merged-classes/pc-L6-${item}-stratifKFold.html
+        training/checkpoints-pc-merged-classes/pc-L6-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/pc-merged-classes/pc-L6-${key}-stratified-k-fold.html
       deps:
-        - training/checkpoints-pc-merged-classes/pc-L6-${item}-stratifKFold/checkpoint.chk
+        - training/checkpoints-pc-merged-classes/pc-L6-${key}-stratified-k-fold/checkpoint.chk
       outs:
-        - evaluation/pc-merged-classes/pc-L6-${item}-stratifKFold.html
-        - evaluation/pc-merged-classes/pc-L6-${item}-stratifKFold
+        - evaluation/pc-merged-classes/pc-L6-${key}-stratified-k-fold.html
+        - evaluation/pc-merged-classes/pc-L6-${key}-stratified-k-fold
   train-lida-in-merged:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v train
-        --dataset-config training/extra-configs/lida-in-merged.yaml
-        --model-config training/configs/model-${item}.yaml
-        --splitter-config training/configs/splitter-stratifKFold.yaml
-        --checkpoint-dir training/checkpoints-lida/in-merged-${item}-stratifKFold
+        --features-dir extract-features/lida-in-merged/axon/${item.features-rd}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-lida/in-merged-${key}-stratified-k-fold
       deps:
-        - data/final/IN_data.csv
-        - data/final/interneurons
-        - training/extra-configs/lida-in-merged.yaml
-        - training/configs/model-${item}.yaml
-        - training/configs/splitter-stratifKFold.yaml
+        - extract-features/lida-in-merged/axon/${item.features-rd}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
       outs:
-        - training/checkpoints-lida/in-merged-${item}-stratifKFold
+        - training/checkpoints-lida/in-merged-${key}-stratified-k-fold
   evaluate-lida-in-merged:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v evaluate performance
-        training/checkpoints-lida/in-merged-${item}-stratifKFold/checkpoint.chk
-        evaluation/checkpoints-lida/in-merged-${item}-stratifKFold.html
+        training/checkpoints-lida/in-merged-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/checkpoints-lida/in-merged-${key}-stratified-k-fold.html
       deps:
-        - training/checkpoints-lida/in-merged-${item}-stratifKFold/checkpoint.chk
+        - training/checkpoints-lida/in-merged-${key}-stratified-k-fold/checkpoint.chk
       outs:
-        - evaluation/checkpoints-lida/in-merged-${item}-stratifKFold.html
-        - evaluation/checkpoints-lida/in-merged-${item}-stratifKFold
+        - evaluation/checkpoints-lida/in-merged-${key}-stratified-k-fold.html
+        - evaluation/checkpoints-lida/in-merged-${key}-stratified-k-fold
   train-lida-in-merged-bc-merged:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v train
-        --dataset-config training/extra-configs/lida-in-merged-bc-merged.yaml
-        --model-config training/configs/model-${item}.yaml
-        --splitter-config training/configs/splitter-stratifKFold.yaml
-        --checkpoint-dir training/checkpoints-lida/in-merged-bc-merged-${item}-stratifKFold
+        --features-dir extract-features/lida-in-merged-bc-merged/axon/${item.features-rd}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-lida/in-merged-bc-merged-${key}-stratified-k-fold
       deps:
-        - data/final/IN_data.csv
-        - data/final/interneurons
-        - training/extra-configs/lida-in-merged-bc-merged.yaml
-        - training/configs/model-${item}.yaml
-        - training/configs/splitter-stratifKFold.yaml
+        - extract-features/lida-in-merged-bc-merged/axon/${item.features-rd}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
       outs:
-        - training/checkpoints-lida/in-merged-bc-merged-${item}-stratifKFold
+        - training/checkpoints-lida/in-merged-bc-merged-${key}-stratified-k-fold
   evaluate-lida-in-merged-bc-merged:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v evaluate performance
-        training/checkpoints-lida/in-merged-bc-merged-${item}-stratifKFold/checkpoint.chk
-        evaluation/checkpoints-lida/in-merged-bc-merged-${item}-stratifKFold.html
+        training/checkpoints-lida/in-merged-bc-merged-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/checkpoints-lida/in-merged-bc-merged-${key}-stratified-k-fold.html
       deps:
-        - training/checkpoints-lida/in-merged-bc-merged-${item}-stratifKFold/checkpoint.chk
+        - training/checkpoints-lida/in-merged-bc-merged-${key}-stratified-k-fold/checkpoint.chk
       outs:
-        - evaluation/checkpoints-lida/in-merged-bc-merged-${item}-stratifKFold.html
-        - evaluation/checkpoints-lida/in-merged-bc-merged-${item}-stratifKFold
+        - evaluation/checkpoints-lida/in-merged-bc-merged-${key}-stratified-k-fold.html
+        - evaluation/checkpoints-lida/in-merged-bc-merged-${key}-stratified-k-fold
   train-lida-in-merged-no-nbc:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v train
-        --dataset-config training/extra-configs/lida-in-merged-no-nbc.yaml
-        --model-config training/configs/model-${item}.yaml
-        --splitter-config training/configs/splitter-stratifKFold.yaml
-        --checkpoint-dir training/checkpoints-lida/in-merged-no-nbc-${item}-stratifKFold
+        --features-dir extract-features/lida-in-merged-no-nbc/axon/${item.features-rd}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-lida/in-merged-no-nbc-${key}-stratified-k-fold
       deps:
-        - data/final/IN_data.csv
-        - data/final/interneurons
-        - training/extra-configs/lida-in-merged-no-nbc.yaml
-        - training/configs/model-${item}.yaml
-        - training/configs/splitter-stratifKFold.yaml
+        - extract-features/lida-in-merged-no-nbc/axon/${item.features-rd}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
       outs:
-        - training/checkpoints-lida/in-merged-no-nbc-${item}-stratifKFold
+        - training/checkpoints-lida/in-merged-no-nbc-${key}-stratified-k-fold
   evaluate-lida-in-merged-no-nbc:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v evaluate performance
-        training/checkpoints-lida/in-merged-no-nbc-${item}-stratifKFold/checkpoint.chk
-        evaluation/checkpoints-lida/in-merged-no-nbc-${item}-stratifKFold.html
+        training/checkpoints-lida/in-merged-no-nbc-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/checkpoints-lida/in-merged-no-nbc-${key}-stratified-k-fold.html
       deps:
-        - training/checkpoints-lida/in-merged-no-nbc-${item}-stratifKFold/checkpoint.chk
+        - training/checkpoints-lida/in-merged-no-nbc-${key}-stratified-k-fold/checkpoint.chk
       outs:
-        - evaluation/checkpoints-lida/in-merged-no-nbc-${item}-stratifKFold.html
-        - evaluation/checkpoints-lida/in-merged-no-nbc-${item}-stratifKFold
+        - evaluation/checkpoints-lida/in-merged-no-nbc-${key}-stratified-k-fold.html
+        - evaluation/checkpoints-lida/in-merged-no-nbc-${key}-stratified-k-fold
   train-janelia-L5:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v train
-        --dataset-config training/extra-configs/lida-janelia-L5.yaml
-        --model-config training/configs/model-${item}.yaml
-        --splitter-config training/configs/splitter-stratifKFold.yaml
-        --checkpoint-dir training/checkpoints-lida/janelia-L5-${item}-stratifKFold
+        --features-dir extract-features/lida-janelia-L5/apical/${item.features-rd}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-lida/janelia-L5-${key}-stratified-k-fold
       deps:
-        - data/final/classes-janelia-L5.csv
-        - data/final/janelia
-        - training/extra-configs/lida-janelia-L5.yaml
-        - training/configs/model-${item}.yaml
-        - training/configs/splitter-stratifKFold.yaml
+        - extract-features/lida-janelia-L5/apical/${item.features-rd}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
       outs:
-        - training/checkpoints-lida/janelia-L5-${item}-stratifKFold
+        - training/checkpoints-lida/janelia-L5-${key}-stratified-k-fold
   evaluate-janelia-L5:
-    foreach:
-      - cnn-deepwalk
-      - cnn-tmd
-      - decisiontree-deepwalk
-      - decisiontree-tmd
-      - gnn-morphology
-      - perslay-deepwalk
-      - perslay-tmd
-      - xgb-deepwalk
-      - xgb-tmd
+    foreach: ${models-and-features}
     do:
       cmd: >-
         morphoclass -v evaluate performance
-        training/checkpoints-lida/janelia-L5-${item}-stratifKFold/checkpoint.chk
-        evaluation/janelia-L5/${item}-stratifKFold.html
+        training/checkpoints-lida/janelia-L5-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/janelia-L5/${key}-stratified-k-fold.html
       deps:
-        - training/checkpoints-lida/janelia-L5-${item}-stratifKFold/checkpoint.chk
+        - training/checkpoints-lida/janelia-L5-${key}-stratified-k-fold
       outs:
-        - evaluation/janelia-L5/${item}-stratifKFold.html
-        - evaluation/janelia-L5/${item}-stratifKFold
+        - evaluation/janelia-L5/${key}-stratified-k-fold.html
+        - evaluation/janelia-L5/${key}-stratified-k-fold
