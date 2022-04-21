@@ -1,11 +1,11 @@
 # Copyright © 2022 Blue Brain Project/EPFL
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,7 +30,7 @@ import morphoclass.vis
 # call collection.set_offset_transform(transOffset) explicitly.
 @pytest.mark.filterwarnings(r"ignore:Passing \*transOffset\*:DeprecationWarning")
 def test_plot_tree():
-    neuron = load_neuron("tests/data/L5/TPC_A/C050896A-P3.h5")
+    neuron = load_neuron("tests/data/L5/TPC_A/random1.swc")
     tree = neuron.neurites[0]
 
     fig = Figure()

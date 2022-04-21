@@ -1,11 +1,11 @@
 # Copyright © 2022 Blue Brain Project/EPFL
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -54,14 +54,14 @@ def test_multi_adj_net(dataset):
     out = model(batch)
     assert out.shape == (8, 4)
     assert model.pool.last_a_j is not None
-    assert model.pool.last_a_j.shape == (720, 1)
+    assert model.pool.last_a_j.shape == (140, 1)
 
     # Test attention + per_feature + save_attention
     model = MultiAdjNet(attention=True, attention_per_feature=True, save_attention=True)
     out = model(batch)
     assert out.shape == (8, 4)
     assert model.pool.last_a_j is not None
-    assert model.pool.last_a_j.shape == (720, 512)
+    assert model.pool.last_a_j.shape == (140, 512)
 
 
 def test_man_net(dataset):

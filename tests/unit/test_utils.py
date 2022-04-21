@@ -65,15 +65,15 @@ def test_load_var(random_arr, tmp_file):
 def test_tmd_to_morphio():
     """Testing the conversion from MorphIO to TMD and the inverse
     NB: Pay attention to the points duplicated by the MorphIO method"""
-    morphio_neuron = nm.load_morphology("tests/data/L5/UPC/rp101228_L5-2_idD.h5")
+    morphio_neuron = nm.load_morphology("tests/data/L5/UPC/random7.swc")
     tmd_new_neuron = morphoclass.utils.from_morphio_to_tmd(morphio_neuron)
     morphio_new_neuron = morphoclass.utils.from_tmd_to_morphio(tmd_new_neuron)
     assert len(morphio_neuron.root_sections) == len(morphio_new_neuron.root_sections)
     assert len(morphio_neuron.sections) == len(morphio_new_neuron.sections)
 
-    test_tmd_neuron = load_neuron("tests/data/L5/TPC_C/C231296A-P4A2.h5")
+    test_tmd_neuron = load_neuron("tests/data/L5/TPC_C/random5.swc")
     test_morphio_neuron = morphoclass.utils.from_tmd_to_morphio(test_tmd_neuron)
-    test_morpho = nm.load_morphology("tests/data/L5/TPC_C/C231296A-P4A2.h5")
+    test_morpho = nm.load_morphology("tests/data/L5/TPC_C/random5.swc")
     sum1 = np.sum(
         [
             test_morphio_neuron.sections[i].points.shape[0]
@@ -93,24 +93,24 @@ def test_tmd_to_morphio():
         morphio_neuron, remove_duplicates=True
     )
 
-    # Check that after remove the duplicates some trees contain fewer points
-    comparisons = []
+    size_ratios = []
     for n1, n2 in zip(tmd_new_neuron.neurites, tmd_new_neuron_no_dup.neurites):
-        ratio = len(n2.x) / len(n1.x)
-        assert (
-            ratio > 0.9
-        )  # Heuristic to make sure we're comparing the right pair of neurites
-        comparisons.append(ratio < 1.0)
-    assert any(comparisons)
+        size_ratios.append(len(n2.x) / len(n1.x))
+    # Check that after removing the duplicates some trees contain fewer points
+    assert any(ratio < 1 for ratio in size_ratios)
+    # Heuristic sanity check - size reduction shouldn't be drastic as we
+    # are expecting that most points aren't duplicate (only branching
+    # points are)
+    assert all(ratio > 0.7 for ratio in size_ratios)
 
 
 @pytest.mark.parametrize(
     "data_path, mtype, neuron_file, n_apicals",
     [
-        ("tests/data/", "L5/UPC", "rp101228_L5-2_idD.h5", 0),
-        ("tests/data/", "L5/UPC", "rp101228_L5-2_idD.h5", 1),
-        ("tests/data/", "L5/UPC", "rp101228_L5-2_idD.h5", 2),
-        ("tests/data/", "L5/UPC", "rp101228_L5-2_idD.h5", 3),
+        ("tests/data/", "L5/UPC", "random7.swc", 0),
+        ("tests/data/", "L5/UPC", "random7.swc", 1),
+        ("tests/data/", "L5/UPC", "random7.swc", 2),
+        ("tests/data/", "L5/UPC", "random7.swc", 3),
         ("tests/data/", "L5/UPC", "empty.txt", 0),
     ],
 )
@@ -167,7 +167,7 @@ def test_get_loader():
 
 
 def test_nodes_features():
-    path = "tests/data/L5/TPC_A/C050896A-P3.h5"
+    path = "tests/data/L5/TPC_A/random1.swc"
     label = 0
     nodes_features = [
         "radial_dist",

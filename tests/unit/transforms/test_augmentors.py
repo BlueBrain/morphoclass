@@ -1,11 +1,11 @@
 # Copyright © 2022 Blue Brain Project/EPFL
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -141,7 +141,7 @@ def test_extract_node_reduction_masks():
 
     for sample in dataset:
         intermediate = sample.x.detach().cpu().numpy().squeeze().astype(int)
-        branching = sample.tmd_neurites_masks[0]
+        branching = np.concatenate(sample.tmd_neurites_masks)
         assert np.all(intermediate == ~branching)
 
 
@@ -164,8 +164,8 @@ def test_add_random_points_to_reduction_mask():
     )
 
     for i in range(len(dataset)):
-        mask_before = dataset.data[i].tmd_neurites_masks[0].copy()
-        mask_after = dataset[i].tmd_neurites_masks[0]
+        mask_before = np.concatenate(dataset.data[i].tmd_neurites_masks)
+        mask_after = np.concatenate(dataset[i].tmd_neurites_masks)
         assert mask_after.sum() == mask_before.sum() + n_points
 
 
