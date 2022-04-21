@@ -58,7 +58,7 @@ jobs:
           pip install tox
           pip install $(grep 'torch==' requirements.txt) --no-cache-dir -f https://download.pytorch.org/whl/torch_stable.html
           pip install -r requirements.txt -c constraints.txt
-          pip install $PWD
+          pip install $PWD -c constraints.txt
           CUDA=cpu
           TORCH=$(pip freeze | grep torch== | sed -re "s/torch==([^+]+).*/\1/")
           pip install torch-scatter --no-index -f https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html
