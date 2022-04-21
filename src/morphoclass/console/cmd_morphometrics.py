@@ -23,6 +23,9 @@ import pandas as pd
 import yaml
 from neurom.apps import morph_stats
 
+from morphoclass.training.training_log import TrainingConfig
+from morphoclass.training.training_log import TrainingLog
+
 logger = logging.getLogger(__name__)
 
 
@@ -69,7 +72,7 @@ def extract_features(
     organised_dataset_dir,
     morphometrics_config_file,
     output_features_dir,
-) -> None:
+):
     """Run the `morphometrics extract-features` subcommand."""
     logger.info("Morphometrics feature extraction started...")
     logger.info(f" - Input organised data path  : {organised_dataset_dir}")
@@ -117,34 +120,179 @@ def extract_features(
     name="train",
     short_help="Train classification model based on morphometrics.",
 )
-@click.argument("checkpoint_path", type=click.Path(dir_okay=False, exists=True))
-@click.argument("report_path", type=click.Path(dir_okay=False, exists=False))
-def train():
+@click.option(
+    "--morphometrics-features",
+    "morphometrics_features_file",
+    type=click.Path(
+        exists=True, file_okay=False, dir_okay=True, path_type=pathlib.Path
+    ),
+    required=True,
+    help="The CSV file with pre-extracted morphology features.",
+)
+@click.option(
+    "--model-config",
+    "model_config_file",
+    type=click.Path(
+        exists=True, file_okay=True, dir_okay=False, path_type=pathlib.Path
+    ),
+    required=True,
+    help="The model configuration file.",
+)
+@click.option(
+    "--splitter-config",
+    "splitter_config_file",
+    type=click.Path(
+        exists=True, file_okay=True, dir_okay=False, path_type=pathlib.Path
+    ),
+    required=True,
+    help="The splitter configuration file.",
+)
+@click.option(
+    "-o",
+    "--output-checkpoint-directory",
+    "output_checkpoint_dir",
+    type=click.Path(file_okay=False),
+    required=True,
+    help="The checkpoint output directory.",
+)
+def train(
+    morphometrics_features_file,
+    model_config_file,
+    splitter_config_file,
+    output_checkpoint_dir,
+):
     """Run the `morphometrics train` subcommand."""
-    # logger.info("Setting up paths")
-    # checkpoint_path = pathlib.Path(checkpoint_path)
-    # report_path = pathlib.Path(report_path)
-    # if not report_path.suffix.lower() == ".html":
-    #     raise click.ClickException('The report path must have the extension ".html"')
-    #
-    # logger.info("Loading libraries")
-    # from morphoclass import cleanlab
-    #
-    # if not cleanlab.check_installed():
-    #     how_to_install = cleanlab.how_to_install_msg()
-    #     raise click.ClickException(f"CleanLab not installed. {how_to_install}")
-    # from morphoclass.console.evaluate import visualize_latent_features
-    # from morphoclass.training.training_log import TrainingLog
-    #
-    # logger.info("Loading the checkpoint")
-    # training_log = TrainingLog.load(checkpoint_path)
-    #
-    # logger.info("Running CleanLab analysis")
-    # errors, self_confidence = cleanlab.analysis(
-    #     training_log.targets, training_log.probas
-    # )
-    #
-    # logger.info("Generating the report")
-    # visualize_latent_features(training_log, errors, self_confidence, report_path)
+    from morphoclass.training.cli import collect_metrics
+    from morphoclass.training.cli import split_metrics
 
-    logger.info("Done.")
+    logger.info("Morphometrics model training started...")
+    logger.info(
+        f" - Input morphometrics features file  : {morphometrics_features_file}"
+    )
+    logger.info(f" - Model config                       : {model_config_file}")
+    logger.info(f" - Splitter config                    : {splitter_config_file}")
+    logger.info(f" - Output checkpoint dir              : {output_checkpoint_dir}")
+
+    logger.info("Reading config files for model and splitter.")
+    with model_config_file.open() as fh:
+        model_config = yaml.safe_load(fh)
+    with splitter_config_file.open() as fh:
+        splitter_config = yaml.safe_load(fh)
+
+    from morphoclass.training.training_config import TrainingConfig
+
+    training_config = TrainingConfig.from_separate_configs(
+        conf_model=model_config, conf_splitter=splitter_config
+    )
+
+    logger.info("Reading morphometrics features file.")
+    df_morphometrics = pd.read_csv(morphometrics_features_file)
+
+    logger.info("Training")
+    training_log = run_training(df_morphometrics, training_config)
+
+    logger.info("Evaluation")
+    # TODO: metrics should be computed at evaluation time, not during training
+    # compute metrics
+    for i in range(len(training_log.split_history)):
+        metrics_dict = collect_metrics(
+            training_log.split_history[i]["ground_truths"],
+            training_log.split_history[i]["predictions"],
+            training_log.labels_str,
+        )
+        training_log.split_history[i].update(metrics_dict)
+        # TODO: ugly renaming accuracy => val_acc_final
+        acc = training_log.split_history[i].pop("accuracy")
+        training_log.split_history[i]["val_acc_final"] = acc
+    metrics_dict = collect_metrics(
+        training_log.targets,
+        training_log.preds,
+        training_log.labels_str,
+    )
+    training_log.set_metrics(metrics_dict, split_metrics(training_log.split_history))
+
+    logger.info(f"Saving checkpoint to {output_checkpoint_dir}")
+    output_checkpoint_dir.parent.mkdir(exist_ok=True, parents=True)
+    training_log.save(output_checkpoint_dir)
+
+    logger.info("Done!")
+
+
+# TODO: This function (and the following ones) adapt the content of
+#  morphoclass.training.cli. We had to re-implement those functionalities because
+#  here we are working with morphometrics,
+#  so we cannot have a morphoclass.data.MorphologyDataset.
+#  It would however be nice to merge these functionalities together, by creating
+#  more generic functions that are independent from the type of Dataset being used.
+def run_training(
+    df_morphometrics: pd.DataFrame, training_config: TrainingConfig
+) -> TrainingLog:
+    """Training and evaluation of the model."""
+    import numpy as np
+    from sklearn.preprocessing import LabelEncoder
+
+    from morphoclass.training._helpers import reset_seeds
+    from morphoclass.utils import make_torch_deterministic
+
+    make_torch_deterministic()
+
+    label_enc = LabelEncoder()
+    x_features = df_morphometrics.drop(columns=["property|name", "filepath", "m_type"])
+    all_labels = label_enc.fit_transform(
+        df_morphometrics["m_type"]
+    )  # [0, 1, 2, 1, 1, ...]
+    labels_unique_str = sorted(df_morphometrics["m_type"])
+
+    if training_config.model_class.startswith("xgboost"):
+        training_config.model_params["num_class"] = len(labels_unique_str)
+        training_config.model_params["use_label_encoder"] = False  # suppress warning
+    elif training_config.model_class.startswith("morphoclass"):
+        training_config.model_params["n_classes"] = len(labels_unique_str)
+
+    if training_config.seed is not None:
+        reset_seeds(numpy_seed=training_config.seed, torch_seed=training_config.seed)
+
+    splitter = training_config.splitter_cls(**training_config.splitter_params)
+    split = splitter.split(X=all_labels, y=all_labels)  # X doesn't matter
+    n_splits = splitter.get_n_splits(X=all_labels, y=all_labels)
+
+    probabilities = np.empty((len(all_labels), len(all_labels.unique())))
+    predictions = np.empty(len(all_labels), dtype=int)
+
+    training_log = TrainingLog(config=training_config, labels_str=labels_unique_str)
+    # SPLIT MODEL
+    for n, (train_idx, val_idx) in enumerate(split):
+        logger.info(f"Split {n + 1}/{n_splits}, ratio: {len(train_idx)}:{len(val_idx)}")
+        history = train_model(
+            training_config, train_idx, val_idx, x_features, all_labels
+        )
+        history["ground_truths"] = all_labels[val_idx]
+        history["train_idx"] = list(train_idx)
+        history["val_idx"] = list(val_idx)
+
+        all_labels[val_idx] = history["ground_truths"]
+        predictions[val_idx] = history["predictions"]
+        probabilities[val_idx] = np.array(history["probabilities"])
+
+        # Save split history
+        training_log.add_split(history)
+
+    # collect results
+    training_log.set_y(all_labels, predictions, probabilities)
+
+    # MODEL ALL
+    if training_config.train_all_samples:
+        logger.info("Fit model on all samples")
+        train_idx = np.arange(len(all_labels))
+
+        history = train_model(
+            training_config, train_idx, val_idx, x_features, all_labels
+        )
+        training_log.set_all_history(history)
+
+    return training_log
+
+
+def train_model(config, train_idx, val_idx, x_features, all_labels) -> dict:
+    """Train a model."""
+    pass
