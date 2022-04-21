@@ -60,11 +60,15 @@ jobs:
       - name: Set up environment
         run: |
           pip install --upgrade pip wheel setuptools
-          pip install tox
-          pip install $(grep 'torch==' requirements.txt)+cpu --no-cache-dir -f https://download.pytorch.org/whl/torch_stable.html
           pip install -r requirements.txt -c constraints.txt
           pip install $PWD -c constraints.txt
-          CUDA=cpu
+          CUDA_VERSION=$(python -c "import torch; print(torch.version.cuda or '')")
+          if [ -z "$CUDA_VERSION" ]
+          then
+            CUDA="cpu"
+          else
+            CUDA="cu${CUDA_VERSION/./}"
+          fi
           TORCH=$(pip freeze | grep torch== | sed -re "s/torch==([^+]+).*/\1/")
           pip install torch-scatter --no-index -f https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html
           pip install torch-sparse --no-index -f https://pytorch-geometric.com/whl/torch-${TORCH}+${CUDA}.html
