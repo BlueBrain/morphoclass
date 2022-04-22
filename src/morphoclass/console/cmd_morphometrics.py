@@ -18,13 +18,6 @@ import logging
 import pathlib
 
 import click
-import neurom
-import pandas as pd
-import yaml
-from neurom.apps import morph_stats
-
-from morphoclass.training.training_log import TrainingConfig
-from morphoclass.training.training_log import TrainingLog
 
 logger = logging.getLogger(__name__)
 
@@ -74,6 +67,11 @@ def extract_features(
     output_features_dir,
 ):
     """Run the `morphometrics extract-features` subcommand."""
+    import neurom
+    import pandas as pd
+    import yaml
+    from neurom.apps import morph_stats
+
     logger.info("Morphometrics feature extraction started...")
     logger.info(f" - Input organised data path  : {organised_dataset_dir}")
     logger.info(f" - Morphometrics config       : {morphometrics_config_file}")
@@ -162,6 +160,9 @@ def train(
     output_checkpoint_dir,
 ):
     """Run the `morphometrics train` subcommand."""
+    import pandas as pd
+    import yaml
+
     from morphoclass.training.cli import collect_metrics
     from morphoclass.training.cli import split_metrics
 
@@ -226,14 +227,13 @@ def train(
 #  so we cannot have a morphoclass.data.MorphologyDataset.
 #  It would however be nice to merge these functionalities together, by creating
 #  more generic functions that are independent from the type of Dataset being used.
-def run_training(
-    df_morphometrics: pd.DataFrame, training_config: TrainingConfig
-) -> TrainingLog:
+def run_training(df_morphometrics, training_config):
     """Training and evaluation of the model."""
     import numpy as np
     from sklearn.preprocessing import LabelEncoder
 
     from morphoclass.training._helpers import reset_seeds
+    from morphoclass.training.training_log import TrainingLog
     from morphoclass.utils import make_torch_deterministic
 
     make_torch_deterministic()
