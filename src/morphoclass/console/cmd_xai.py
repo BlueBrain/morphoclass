@@ -14,6 +14,7 @@
 """XAI subcommands."""
 from __future__ import annotations
 
+import os
 import pathlib
 import tempfile
 from datetime import datetime
@@ -38,21 +39,18 @@ def cli():
 
 @cli.command(name="report", help="Create an XAI report.")
 @click.option(
-    "--results-file",
-    default="params.yaml",
-    required=True,
-    type=click.Path(dir_okay=False),
-    help="The HTML report output path.",
-)
-@click.option(
     "--checkpoint-path",
     type=click.Path(dir_okay=False),
     required=True,
     help="Path to a model checkpoint.",
 )
-def report(
-    results_file: str | pathlib.Path, checkpoint_path: str | pathlib.Path
-) -> None:
+@click.option(
+    "--results-file",
+    required=True,
+    type=click.Path(dir_okay=False),
+    help="The HTML report output path.",
+)
+def report(results_file: str | os.PathLike, checkpoint_path: str | os.PathLike) -> None:
     """Create an XAI report.
 
     Parameters
