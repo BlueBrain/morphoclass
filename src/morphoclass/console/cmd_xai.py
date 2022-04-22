@@ -69,21 +69,11 @@ def report(results_file: str | os.PathLike, checkpoint_path: str | os.PathLike) 
 
     logger.info("Loading the checkpoint")
     training_log = TrainingLog.load(pathlib.Path(checkpoint_path))
-    model_class = training_log.config.model_class
-    model_params = training_log.config.model_params
-    model_old = training_log.all_history["model"]
-    seed = training_log.config.seed
 
     logger.info("Creating the XAI report")
     morphoclass.xai.report.make_report(
         results_file,
-        dataset_name="DELETE",
-        feature_extractor_name="DELETE",
-        input_csv="DELETE",
-        model_class=model_class,
-        model_params=model_params,
-        model_old=model_old,
-        seed=seed,
+        training_log=training_log,
     )
 
 

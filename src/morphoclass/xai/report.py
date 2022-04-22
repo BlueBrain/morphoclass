@@ -14,8 +14,6 @@
 """XAI report creation."""
 from __future__ import annotations
 
-import copy
-import importlib
 import logging
 import pathlib
 import textwrap
@@ -27,7 +25,8 @@ from captum.attr import GradientShap
 from captum.attr import IntegratedGradients
 from captum.attr import Saliency
 
-from morphoclass.constants import DatasetType
+from morphoclass.data.morphology_data import MorphologyData
+from morphoclass.data.morphology_dataset import MorphologyDataset
 from morphoclass.training import reset_seeds
 from morphoclass.utils import make_torch_deterministic
 from morphoclass.utils import warn_if_nondeterministic
@@ -46,12 +45,7 @@ logger = logging.getLogger(__name__)
 
 def make_report(
     results_file,
-    dataset_name,
-    feature_extractor_name,
-    input_csv,
-    model_class,
-    model_params,
-    model_old,
+    training_log,
     seed=None,
 ):
     """Generate XAI report.
@@ -65,12 +59,8 @@ def make_report(
 
     results_file : str or pathlib.Path
         Path to the report file.
-    dataset_name : str
-        Name of the dataset.
-    feature_extractor_name : str
-        Name of a feature extractor.
-    input_csv : str or pathlib.Path
-        Path to the input csv file.
+    dataset
+        A morphology dataset.
     model_class : str
         Name of the model class.
     model_params : dict
@@ -88,33 +78,11 @@ def make_report(
 
     make_torch_deterministic()
 
-    # import feature_extractor
-    if DatasetType(dataset_name) == DatasetType.pyramidal:
-        # from morphoclass.feature_extractors.pyramidal_cells import feature_extractor
-        import morphoclass.feature_extractors.pyramidal_cells
-
-        feature_extractor = (
-            morphoclass.feature_extractors.pyramidal_cells.feature_extractor
-        )
-    elif DatasetType(dataset_name) == DatasetType.interneurons:
-        # from morphoclass.feature_extractors.interneurons import(#type:ignore[no-redef]
-        #     feature_extractor,
-        # )
-        import morphoclass.feature_extractors.interneurons
-
-        feature_extractor = (
-            morphoclass.feature_extractors.interneurons.feature_extractor
-        )
-    else:
-        raise ValueError(
-            f"Feature extractor for dataset {dataset_name} is not implemented."
-        )
-
-    dataset, loader_cls, _ = feature_extractor(
-        file_name_suffix=feature_extractor_name,
-        input_csv=input_csv,
-        embedding_type=feature_extractor_name,
-    )
+    logger.info("Restoring the dataset from pre-computed features")
+    data = []
+    for path in sorted(training_log.config.features_dir.glob("*.features")):
+        data.append(MorphologyData.load(path))
+    dataset = MorphologyDataset(data)
 
     labels_ids = sorted(dataset.y_to_label.keys())
     labels_str = [dataset.y_to_label[s] for s in labels_ids]
@@ -125,8 +93,9 @@ def make_report(
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     warn_if_nondeterministic(device)
 
+    model_class = training_log.config.model_class
     if model_class.startswith("sklearn") or model_class.startswith("xgboost"):
-        model = copy.deepcopy(model_old)
+        model = training_log.all_history["model"]
         val_idx = np.arange(len(dataset))
         images_val = np.array(
             [sample.image for sample in dataset.index_select(val_idx)]
@@ -134,19 +103,27 @@ def make_report(
         images_val = images_val.reshape(-1, 10000)
         probabilities = model.predict_proba(images_val)
     elif model_class.startswith("morphoclass"):
-        module_name, _, class_name = model_class.rpartition(".")
-        model_cls = getattr(importlib.import_module(module_name), class_name)
-        model = model_cls(**model_params)
-        model.load_state_dict(model_old)
+        model = training_log.config.model_cls(**training_log.config.model_params)
+        model.load_state_dict(training_log.all_history["model"])
+
+        optimizer = training_log.config.optimizer_cls(
+            **training_log.config.optimizer_params
+        )
 
         # Forward prop
+        from morphoclass.data.morphology_data_loader import MorphologyDataLoader
         from morphoclass.training.trainers import Trainer
 
         trainer = Trainer(
-            net=model, dataset=dataset, loader_class=loader_cls, optimizer=None
+            net=model,
+            dataset=dataset,
+            loader_class=MorphologyDataLoader,
+            optimizer=optimizer,
         )
         _, probabilities_t, _ = trainer.predict(idx=np.arange(len(dataset)))
         probabilities = probabilities_t.cpu().numpy()
+    else:
+        raise ValueError(f"Unknown model class: {model_class}")
 
     labels_all = np.array([sample.y_str for sample in dataset])
 
