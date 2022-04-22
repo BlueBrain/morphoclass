@@ -64,8 +64,8 @@ def report(results_file: str | os.PathLike, checkpoint_path: str | os.PathLike) 
         Path to a model checkpoint.
     """
     logger.info("Loading libraries and modules")
+    import morphoclass.xai.report
     from morphoclass.training.training_log import TrainingLog
-    from morphoclass.xai.reports.xai_report import xai_report
 
     logger.info("Loading the checkpoint")
     training_log = TrainingLog.load(pathlib.Path(checkpoint_path))
@@ -75,7 +75,7 @@ def report(results_file: str | os.PathLike, checkpoint_path: str | os.PathLike) 
     seed = training_log.config.seed
 
     logger.info("Creating the XAI report")
-    xai_report(
+    morphoclass.xai.report.make_report(
         results_file,
         dataset_name="DELETE",
         feature_extractor_name="DELETE",

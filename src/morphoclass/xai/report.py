@@ -44,7 +44,7 @@ from morphoclass.xai import sklearn_model_attributions_tree
 logger = logging.getLogger(__name__)
 
 
-def xai_report(
+def make_report(
     results_file,
     dataset_name,
     feature_extractor_name,
