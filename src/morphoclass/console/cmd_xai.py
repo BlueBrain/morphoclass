@@ -40,7 +40,7 @@ def cli():
     pass
 
 
-@cli.command(name="report", help="Create an XAI report.")
+@cli.command(name="report", help="Create an XAI report")
 @click.option(
     "--checkpoint-path",
     type=click.Path(dir_okay=False),
