@@ -201,8 +201,8 @@ def make_report(
             sample_good = np.where(
                 probabilities == probabilities[indices, label_id].max()
             )[0][-1]
-            morphology_name_bad = dataset.morph_names[sample_bad]
-            morphology_name_good = dataset.morph_names[sample_good]
+            morphology_name_bad = dataset[sample_bad].path
+            morphology_name_good = dataset[sample_good].path
 
             # GradCam
             fig_bad_filename_gradcam = images_directory / f"{label_str}_gradcam_bad.png"
