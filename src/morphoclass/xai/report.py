@@ -116,6 +116,7 @@ def make_report(
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     warn_if_nondeterministic(device)
 
+    logger.info("Predicting probabilities")
     model_class = training_log.config.model_class
     if model_class.startswith("sklearn") or model_class.startswith("xgboost"):
         model = training_log.all_history["model"]
@@ -152,6 +153,7 @@ def make_report(
 
     content_html = ""
     xai_report_final = ""
+    logger.info("Generating XAI reports")
     if model.__module__.startswith("sklearn.tree"):
         fig = sklearn_model_attributions_tree(model, dataset)
         if fig:
