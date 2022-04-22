@@ -103,7 +103,7 @@ def make_report(
         model.load_state_dict(training_log.all_history["model"])
 
         optimizer = training_log.config.optimizer_cls(
-            **training_log.config.optimizer_params
+            model.parameters(), **training_log.config.optimizer_params
         )
 
         # Forward prop
