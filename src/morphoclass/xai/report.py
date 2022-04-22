@@ -19,6 +19,7 @@ import os
 import pathlib
 import textwrap
 
+import neurom as nm
 import numpy as np
 import torch
 from captum.attr import Deconvolution  # DeepLiftShap,; GuidedBackprop,; InputXGradient,
@@ -26,6 +27,7 @@ from captum.attr import GradientShap
 from captum.attr import IntegratedGradients
 from captum.attr import Saliency
 
+from morphoclass import transforms
 from morphoclass.data.morphology_data import MorphologyData
 from morphoclass.data.morphology_dataset import MorphologyDataset
 from morphoclass.training import reset_seeds
@@ -79,6 +81,31 @@ def make_report(
     for path in sorted(training_log.config.features_dir.glob("*.features")):
         data.append(MorphologyData.load(path))
     dataset = MorphologyDataset(data)
+
+    logger.info("Restoring the original neurites")
+    # Get the neurite type that the features correspond to. Assuming that
+    # the features dir has the form ".../<neurite-type>/<feature-type>"
+    # TODO: this is an ad-hoc solution and assumes a certain form of the
+    #  directory path where the features are stored. One should think about
+    #  a better way of coupling the extracted features with the original
+    #  morphologies and their neurites.
+    features_dir = pathlib.Path(training_log.config.features_dir)
+    neurite_type = features_dir.parent.name
+    # TODO: as with the features directory above, this makes assumptions and
+    #  does not generalise. This configuration is taken from the
+    #  "extract-features" command, where it's configured via the command
+    #  line arguments, but the configuration is not stored anywhere, so here
+    #  we take the one that has always been used in our experiments.
+    transform = transforms.Compose(
+        [
+            transforms.ExtractTMDNeurites(neurite_type=neurite_type),
+            transforms.OrientApicals(),
+            transforms.BranchingOnlyNeurites(),
+        ]
+    )
+    for data in dataset:
+        data.morphology = nm.load_morphology(str(data.path))
+        transform(data)
 
     labels_ids = sorted(dataset.y_to_label.keys())
     labels_str = [dataset.y_to_label[s] for s in labels_ids]
