@@ -526,27 +526,14 @@ def _write_xai_report(output_path, content_html, xai_report_final):
     xai_report_final : str
         The ``xai_report_final`` part of the XAI report template.
     """
-    from jinja2 import Environment
-    from jinja2 import FileSystemLoader
+    import morphoclass as mc
+    import morphoclass.report
 
-    # Prepare the template file path
-    template_dir = pathlib.Path(__file__).parent.resolve()
-    template_name = "xai_report_template.html"
-    template_path = template_dir / template_name
-    if not template_path.is_file():
-        raise FileNotFoundError(f"XAI report template not found in {template_path}")
-
-    # Load the jinja template
-    env = Environment(loader=FileSystemLoader(template_dir))
-    template = env.get_template(template_name)
-
-    # Render the template
     template_vars = {
         "content_html": content_html,
         "xai_report_final": xai_report_final,
     }
-    html_out = template.render(template_vars, zip=zip)
 
-    # Save to file
-    with open(output_path, "w") as fh:
-        fh.write(html_out)
+    template = mc.report.load_template("xai-report")
+    mc.report.render(template, template_vars, output_path)
+    logger.info(f"Report stored in: {output_path.resolve().as_uri()}")
