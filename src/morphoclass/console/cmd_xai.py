@@ -64,29 +64,25 @@ def report(results_file: str | os.PathLike, checkpoint_path: str | os.PathLike) 
         Path to a model checkpoint.
     """
     logger.info("Loading libraries and modules")
-    import torch
-
+    from morphoclass.training.training_log import TrainingLog
     from morphoclass.xai.reports.xai_report import xai_report
 
     logger.info("Loading the checkpoint")
-    checkpoint = torch.load(checkpoint_path)
-    dataset_name = checkpoint["dataset_name"]
-    feature_extractor_name = checkpoint["feature_extractor_name"]
-    input_csv = checkpoint["input_csv"]
-    model_class = checkpoint["model_class"]
-    model_params = checkpoint["model_params"]
-    model_old = checkpoint["all"]["model"]
-    seed = checkpoint["seed"]
+    training_log = TrainingLog.load(pathlib.Path(checkpoint_path))
+    model_class = training_log.config.model_class
+    model_params = training_log.config.model_params
+    model_old = training_log.all_history["model"]
+    seed = training_log.config.seed
 
     logger.info("Creating the XAI report")
     xai_report(
         results_file,
-        dataset_name,
-        feature_extractor_name,
-        input_csv,
-        model_class,
-        model_params,
-        model_old,
+        dataset_name="DELETE",
+        feature_extractor_name="DELETE",
+        input_csv="DELETE",
+        model_class=model_class,
+        model_params=model_params,
+        model_old=model_old,
         seed=seed,
     )
 
