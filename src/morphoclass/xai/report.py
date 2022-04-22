@@ -15,6 +15,7 @@
 from __future__ import annotations
 
 import logging
+import os
 import pathlib
 import textwrap
 
@@ -28,6 +29,7 @@ from captum.attr import Saliency
 from morphoclass.data.morphology_data import MorphologyData
 from morphoclass.data.morphology_dataset import MorphologyDataset
 from morphoclass.training import reset_seeds
+from morphoclass.training.training_log import TrainingLog
 from morphoclass.utils import make_torch_deterministic
 from morphoclass.utils import warn_if_nondeterministic
 from morphoclass.xai import cnn_model_attributions
@@ -44,10 +46,10 @@ logger = logging.getLogger(__name__)
 
 
 def make_report(
-    results_file,
-    training_log,
-    seed=None,
-):
+    results_file: str | os.PathLike,
+    training_log: TrainingLog,
+    seed: int | None = None,
+) -> None:
     """Generate XAI report.
 
     GradCam and GradShap are available for the morphoclass models only.
@@ -57,18 +59,12 @@ def make_report(
     and worst class representatives based on the prediction
     probability.
 
-    results_file : str or pathlib.Path
-        Path to the report file.
-    dataset
-        A morphology dataset.
-    model_class : str
-        Name of the model class.
-    model_params : dict
-        Model parameters.
-    model_old : dict
-        Model's state dictionary.
-    seed : int, optional
-        Seed.
+    results_file
+        The path of the output results report.
+    training_log
+        The training log with the data and model information.
+    seed
+        A shared NumPy and PyTorch seed.
     """
     results_file = pathlib.Path(results_file)
     results_directory = results_file.parent
