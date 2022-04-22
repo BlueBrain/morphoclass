@@ -422,14 +422,12 @@ def make_report(
                     )
 
         # Collect GradCAM
-        gradcam_xai_html_str = ""
         if len(gradcam_xai_html) == 1:
             gradcam_xai_html_str = ""
         else:
             gradcam_xai_html_str = "<br/><br/><hr/><br/>".join(gradcam_xai_html)
         xai_report_final += gradcam_xai_html_str
         # collect shap
-        shap_xai_html_str = ""
         if len(shap_xai_html) == 1:
             shap_xai_html_str = ""
         else:
@@ -437,7 +435,6 @@ def make_report(
         xai_report_final += shap_xai_html_str
         # collect captum
         for k, v in xai_html.items():
-            xai_html_str = ""
             if len(xai_html[k]) == 1:
                 xai_html_str = ""
             else:
