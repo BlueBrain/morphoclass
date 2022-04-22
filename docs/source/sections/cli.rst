@@ -53,6 +53,7 @@ Currently used - done refactoring / being refactored:
 * ``train``               Train a morphology classification model.
 * ``evaluate``            Evaluate a trained checkpoint.
 * ``performance-table``   Generate a summary report of the performance of...
+* ``morphometrics``       Run the morphometrics subcommand.
 
 To refactor:
 
