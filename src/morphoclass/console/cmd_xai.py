@@ -187,7 +187,7 @@ def single(input_file, checkpoint_file, output_dir, results_name):
     import morphoclass.models
     import morphoclass.transforms
     import morphoclass.xai
-    from morphoclass.console._data import get_datasets
+    from morphoclass.data.morphology_data_loader import MorphologyDataLoader
 
     click.secho("✔ Loading model...", fg="green", bold=True)
     model_cls = getattr(mc.models, checkpoint["model_class"])
@@ -215,7 +215,7 @@ def single(input_file, checkpoint_file, output_dir, results_name):
     explainer = mc.xai.GradCAMExplainer(model, model.embedder.bi2)
     logits, cam = explainer.get_cam(
         sample,
-        loader_cls=mc.data.MorphologyDataLoader,
+        loader_cls=MorphologyDataLoader,
         cls_idx=None,
         relu_weights=False,
         relu_cam=True,
@@ -294,3 +294,107 @@ def check_overwrite_file(file_path):
             click.secho("You chose to overwrite, proceeding...", fg="red")
             return True
     return True
+
+
+def get_datasets(input_csv, fitted_scaler=None):
+    """Load datasets from a CSV file."""
+    import morphoclass as mc
+    import morphoclass.data
+    import morphoclass.training
+    import morphoclass.transforms
+
+    pre_transform = mc.transforms.Compose(
+        [
+            mc.transforms.ExtractTMDNeurites(neurite_type="apical"),
+            mc.transforms.OrientApicals(
+                special_treatment_ipcs=False, special_treatment_hpcs=False
+            ),
+            mc.transforms.BranchingOnlyNeurites(),
+            mc.transforms.ExtractEdgeIndex(),
+        ]
+    )
+
+    dataset = mc.data.MorphologyDataset.from_csv(
+        csv_file=input_csv, pre_transform=pre_transform
+    )
+
+    if dataset.guess_layer() in [2, 6]:
+        feature = "projection"
+        feature_extractor = mc.transforms.ExtractVerticalDistances(
+            vertical_axis="y", negative_ipcs=False, negative_bpcs=False
+        )
+    else:
+        feature = "radial_distances"
+        feature_extractor = mc.transforms.ExtractRadialDistances(
+            negative_ipcs=False, negative_bpcs=False
+        )
+    logger.info(f"Using feature: {feature}")
+
+    if len(dataset) > 0:
+        transform, fitted_scaler = mc.training.make_transform(
+            dataset=dataset,
+            feature_extractor=feature_extractor,
+            n_features=1,
+            fitted_scaler=fitted_scaler,
+        )
+        dataset.transform = transform
+        dataset_pi = to_persistence_dataset(dataset, feature=feature)
+    else:
+        dataset_pi = [None, None, None]
+        fitted_scaler = None
+
+    return dataset, dataset_pi, fitted_scaler
+
+
+def to_persistence_dataset(dataset, feature="radial_distances"):
+    """Create a persistence dataset from MorphologyDataset.
+
+    Parameters
+    ----------
+    dataset
+        an instance of `MorphologyDataset`
+    feature
+        which feature to use as a filtration function. The default
+         feature 'radial_distances' should be used for all datasets
+         except those containing inverted cells (IPCs). For the
+         inverted cells the feature 'projection' might be more useful
+         as it retains information about orientation. Note, however,
+         that 'projection' is not rotation-invariant, so the cells
+         have to be properly oriented. For more information on this
+         parameter see `get_persistence_diagram` in the `tmd` package.
+
+    Returns
+    -------
+        diagrams
+            persistence diagrams
+        images
+            persistence images
+        labels
+            labels
+    """
+    import numpy as np
+    from tmd.Topology.analysis import get_limits
+    from tmd.Topology.analysis import get_persistence_image_data
+    from tmd.Topology.methods import get_persistence_diagram
+
+    # Get the labels
+    labels = np.array([sample.y for sample in dataset])
+
+    # Compute persistence diagrams
+    diagrams = [
+        get_persistence_diagram(sample.tmd_apicals[0], feature=feature)
+        for sample in dataset
+    ]
+    diagrams = [np.array(diagram) for diagram in diagrams]
+
+    # Compute persistence diagrams limits
+    xlims, ylims = get_limits(diagrams)
+
+    # Compute persistence images
+    images = [
+        get_persistence_image_data(pd, xlims=xlims, ylims=ylims) for pd in diagrams
+    ]
+    images = [np.rot90(img) for img in images]
+    images = np.array(images)
+
+    return diagrams, images, labels
