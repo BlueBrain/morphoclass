@@ -14,12 +14,15 @@
 """XAI subcommands."""
 from __future__ import annotations
 
+import logging
 import os
 import pathlib
 import tempfile
 from datetime import datetime
 
 import click
+
+logger = logging.getLogger(__name__)
 
 
 @click.group(
@@ -60,10 +63,12 @@ def report(results_file: str | os.PathLike, checkpoint_path: str | os.PathLike) 
     checkpoint_path
         Path to a model checkpoint.
     """
+    logger.info("Loading libraries and modules")
     import torch
 
     from morphoclass.xai.reports.xai_report import xai_report
 
+    logger.info("Loading the checkpoint")
     checkpoint = torch.load(checkpoint_path)
     dataset_name = checkpoint["dataset_name"]
     feature_extractor_name = checkpoint["feature_extractor_name"]
@@ -73,6 +78,7 @@ def report(results_file: str | os.PathLike, checkpoint_path: str | os.PathLike) 
     model_old = checkpoint["all"]["model"]
     seed = checkpoint["seed"]
 
+    logger.info("Creating the XAI report")
     xai_report(
         results_file,
         dataset_name,
