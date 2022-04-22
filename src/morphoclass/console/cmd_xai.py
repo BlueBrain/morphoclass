@@ -19,7 +19,22 @@ import pathlib
 import click
 
 
-@click.command(name="explain-models", help="Create an XAI report.")
+@click.group(
+    name="xai",
+    short_help="Explain model predictions",
+    help="""
+    Use explainable AI (XAI) to understand the model predictions.
+
+    Please use one of the available commands listed below.
+    """,
+    add_help_option=False,
+)
+def cli():
+    """Run the "xai" subcommand."""
+    pass
+
+
+@cli.command(name="report", help="Create an XAI report.")
 @click.option(
     "--results-file",
     default="params.yaml",
@@ -33,7 +48,9 @@ import click
     required=True,
     help="Path to a model checkpoint.",
 )
-def cli(results_file: str | pathlib.Path, checkpoint_path: str | pathlib.Path) -> None:
+def report(
+    results_file: str | pathlib.Path, checkpoint_path: str | pathlib.Path
+) -> None:
     """Create an XAI report.
 
     Parameters
