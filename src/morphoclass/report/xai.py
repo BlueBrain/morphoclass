@@ -20,10 +20,10 @@ import pathlib
 import textwrap
 
 import captum.attr
-import matplotlib
 import neurom as nm
 import numpy as np
 import torch
+from matplotlib.figure import Figure
 
 from morphoclass import training
 from morphoclass import transforms
@@ -43,9 +43,9 @@ class XAIReport:
     def __init__(self, output_dir: str | os.PathLike) -> None:
         self.output_dir = pathlib.Path(output_dir).resolve()
         self.img_dir = self.output_dir / "images"
-        self.sections = {}
-        self.titles = {}
-        self.figures = []  # (fig, file_stem)
+        self.sections: dict[str, str] = {}
+        self.titles: dict[str, str] = {}
+        self.figures: list[tuple[Figure, pathlib.Path]] = []
 
     def add_section(self, title: str, _id: str, section_html: str) -> None:
         """Add a new XAI section to the report."""
@@ -53,7 +53,7 @@ class XAIReport:
         self.titles[_id] = title.strip()
         self.sections[_id] = textwrap.dedent(section_html).strip()
 
-    def add_figure(self, fig: matplotlib.figure.Figure, name: str) -> pathlib.Path:
+    def add_figure(self, fig: Figure, name: str) -> pathlib.Path:
         """Add a new figure to the report.
 
         The figure will be kept in memory until the ``write()`` call. It
@@ -104,7 +104,7 @@ class XAIReport:
 
         return {"toc_html": toc_html, "report_html": report_html}
 
-    def write(self, file_stem: str):
+    def write(self, file_stem: str) -> None:
         """Render and write the XAI report to disk."""
         if file_stem.lower().endswith(".html"):
             raise ValueError(
@@ -117,8 +117,8 @@ class XAIReport:
 
         logger.info(f"Writing {len(self.figures)} figures")
         self.img_dir.mkdir(exist_ok=True)
-        for fig, file_name in self.figures:
-            fig.savefig(file_name)
+        for fig, path in self.figures:
+            fig.savefig(path)
 
         report_path = (self.output_dir / file_stem).with_suffix(".html")
         logger.info(f"Writing report to {report_path.as_uri()}")

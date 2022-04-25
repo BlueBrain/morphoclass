@@ -310,6 +310,7 @@ def get_datasets(input_csv, fitted_scaler=None):
         csv_file=input_csv, pre_transform=pre_transform
     )
 
+    feature_extractor: mc.transforms.ExtractDistances
     if dataset.guess_layer() in [2, 6]:
         feature = "projection"
         feature_extractor = mc.transforms.ExtractVerticalDistances(
