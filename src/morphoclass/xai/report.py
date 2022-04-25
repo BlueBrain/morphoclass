@@ -48,7 +48,7 @@ from morphoclass.xai import sklearn_model_attributions_tree
 logger = logging.getLogger(__name__)
 
 
-def make_report(training_log: TrainingLog, output_dir: str | os.PathLike) -> XAIReport:
+def populate_report(training_log: TrainingLog, xai_report: XAIReport) -> XAIReport:
     """Generate XAI report.
 
     GradCam and GradShap are available for the morphoclass models only.
@@ -62,8 +62,8 @@ def make_report(training_log: TrainingLog, output_dir: str | os.PathLike) -> XAI
     ----------
     training_log
         The training log with the data and model information.
-    output_dir
-        The report output directory.
+    xai_report
+        The XAI report to populate.
 
     Returns
     -------
@@ -82,7 +82,6 @@ def make_report(training_log: TrainingLog, output_dir: str | os.PathLike) -> XAI
     logger.info("Restoring the model and computing probabilities")
     model, probas = _get_model_and_probas(training_log, dataset)
 
-    xai_report = XAIReport("xai-report", output_dir)
     logger.info("Generating XAI reports")
     if model.__module__.startswith("sklearn.tree"):
         logger.info("A tree-model found - computing sklearn attributions for trees")
