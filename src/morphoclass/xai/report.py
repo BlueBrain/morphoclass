@@ -488,29 +488,28 @@ def _make_cnn_report(model, dataset, img_dir, target_dir):
     return report, (cnn_link_title, cnn_anchor)
 
 
-def _write_xai_report(output_path, content_html, xai_report_final):
+def _write_xai_report(report_path, toc_html, report_html):
     """Render and write the XAI report to disk.
 
     Parameters
     ----------
-    output_path : str or pathlib.Path
-        Write the XAI report to this file.
-    content_html : str
-        The ``content_html`` part of the XAI report template.
-    xai_report_final : str
-        The ``xai_report_final`` part of the XAI report template.
+    report_path : str or pathlib.Path
+        The output HTML file path.
+    toc_html : str
+        The table of contents of the XAI report.
+    report_html : str
+        The report part of the XAI report.
     """
     import morphoclass as mc
     import morphoclass.report
 
-    template_vars = {
-        "content_html": content_html,
-        "xai_report_final": xai_report_final,
-    }
-
     template = mc.report.load_template("xai-report")
-    mc.report.render(template, template_vars, output_path)
-    logger.info(f"Report stored in: {output_path.resolve().as_uri()}")
+    template_vars = {
+        "toc_html": toc_html,
+        "report_html": report_html,
+    }
+    mc.report.render(template, template_vars, report_path)
+    logger.info(f"XAI report saved to: {report_path.resolve().as_uri()}")
 
 
 def _str_path(path: pathlib.Path | None, base_dir: pathlib.Path | None) -> str:
