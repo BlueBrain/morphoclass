@@ -161,10 +161,12 @@ def populate_report(training_log: TrainingLog, xai_report: XAIReport) -> XAIRepo
 
     logger.info("Generating XAI reports")
     if model.__module__.startswith("sklearn.tree"):
-        logger.info("A tree-model found - computing sklearn attributions for trees")
+        logger.info(
+            "Generating reports for a tree model - computing sklearn attributions"
+        )
         _add_tree_report(model, dataset, xai_report)
     else:
-        logger.info("A non-tree model found")
+        logger.info("Generating reports for a non-tree model")
         _add_non_tree_report(model, dataset, probas, xai_report)
 
     if model.__module__.startswith("morphoclass.models.cnnet"):
@@ -280,11 +282,9 @@ def _add_non_tree_report(model, dataset, probas, xai_report):
         # captum.attr.InputXGradient,
     ]
 
-    logger.info("Creating HTML headings")
     gradcam_parts: list[str] = []
     shap_parts: list[str] = []
     captum_parts_d: dict[str, list[str]] = {}
-
     for y in unique_ys:
         label = dataset.y_to_label[y]
         logger.info(f"Processing label {label}")
