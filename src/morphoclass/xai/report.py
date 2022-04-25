@@ -59,11 +59,11 @@ class XAIReport:
                 f'therefore cannot end on ".html". Got name: {name!r}'
             )
         self.base_dir = pathlib.Path(base_dir).resolve()
-        self.img_dir = self.base_dir / name
-        self.report_path = self.img_dir.with_suffix(".html")
+        self.img_dir = self.base_dir / f"{name}-images"
+        self.report_path = (self.base_dir / name).with_suffix(".html")
         self.sections = {}
         self.titles = {}
-        self.figures = []  # (fig, file_name)
+        self.figures = []  # (fig, file_stem)
 
     def add_section(self, title: str, _id: str, section_html: str) -> None:
         """Add a new XAI section to the report."""
