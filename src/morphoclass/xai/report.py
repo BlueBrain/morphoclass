@@ -48,7 +48,7 @@ from morphoclass.xai import sklearn_model_attributions_tree
 logger = logging.getLogger(__name__)
 
 
-def make_report(training_log: TrainingLog, output_dir: str | os.PathLike) -> None:
+def make_report(training_log: TrainingLog, output_dir: str | os.PathLike) -> XAIReport:
     """Generate XAI report.
 
     GradCam and GradShap are available for the morphoclass models only.
@@ -58,10 +58,17 @@ def make_report(training_log: TrainingLog, output_dir: str | os.PathLike) -> Non
     and worst class representatives based on the prediction
     probability.
 
+    Parameters
+    ----------
     training_log
         The training log with the data and model information.
     output_dir
         The report output directory.
+
+    Returns
+    -------
+    XAIReport
+        The generated XAI report.
     """
     logger.info("Ensuring reproducibility")
     reset_seeds(numpy_seed=1234, torch_seed=5678)
@@ -88,8 +95,7 @@ def make_report(training_log: TrainingLog, output_dir: str | os.PathLike) -> Non
         logger.info("Generating the neuron population SHAP report for CNN")
         _add_cnn_report(model, dataset, xai_report)
 
-    logger.info("Rendering the XAI report and writing it to disk")
-    xai_report.write()
+    return xai_report
 
 
 def _restore_dataset(training_log):

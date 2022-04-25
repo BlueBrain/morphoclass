@@ -71,7 +71,10 @@ def report(checkpoint_path: str | os.PathLike, output_dir: str | os.PathLike) ->
     training_log = TrainingLog.load(pathlib.Path(checkpoint_path))
 
     logger.info("Creating the XAI report")
-    morphoclass.xai.report.make_report(training_log, output_dir)
+    xai_report = morphoclass.xai.report.make_report(training_log, output_dir)
+
+    logger.info("Rendering the XAI report and writing it to disk")
+    xai_report.write()
 
 
 @cli.command(
