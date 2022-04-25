@@ -289,22 +289,22 @@ def _add_non_tree_report(model, dataset, probas, xai_report):
         label = dataset.y_to_label[y]
         logger.info(f"Processing label {label}")
         (ids,) = np.where(all_ys == y)
-        sample_good = ids[probas[ids, y].argmax()]
-        sample_bad = ids[probas[ids, y].argmin()]
-        morphology_name_bad = dataset[sample_bad].path
-        morphology_name_good = dataset[sample_good].path
+        good_idx = ids[probas[ids, y].argmax()]
+        bad_idx = ids[probas[ids, y].argmin()]
+        morphology_name_bad = dataset[bad_idx].path
+        morphology_name_good = dataset[good_idx].path
 
         # GradCam
         logger.info("> Running GradCAM analysis")
         if model_mod == "morphoclass.models.man_net":
-            fig_gradcam_bad = xai.grad_cam_gnn_model(model, dataset, sample_bad)
-            fig_gradcam_good = xai.grad_cam_gnn_model(model, dataset, sample_good)
+            fig_gradcam_bad = xai.grad_cam_gnn_model(model, dataset, bad_idx)
+            fig_gradcam_good = xai.grad_cam_gnn_model(model, dataset, good_idx)
         elif model_mod == "morphoclass.models.coriander_net":
-            fig_gradcam_bad = xai.grad_cam_perslay_model(model, dataset, sample_bad)
-            fig_gradcam_good = xai.grad_cam_perslay_model(model, dataset, sample_good)
+            fig_gradcam_bad = xai.grad_cam_perslay_model(model, dataset, bad_idx)
+            fig_gradcam_good = xai.grad_cam_perslay_model(model, dataset, good_idx)
         elif model_mod == "morphoclass.models.cnnet":
-            fig_gradcam_bad = xai.grad_cam_cnn_model(model, dataset, sample_bad)
-            fig_gradcam_good = xai.grad_cam_cnn_model(model, dataset, sample_good)
+            fig_gradcam_bad = xai.grad_cam_cnn_model(model, dataset, bad_idx)
+            fig_gradcam_good = xai.grad_cam_cnn_model(model, dataset, good_idx)
         elif model_mod.startswith("sklearn") or model_mod.startswith("xgboost"):
             fig_gradcam_bad = fig_gradcam_good = None
         else:
@@ -322,13 +322,13 @@ def _add_non_tree_report(model, dataset, probas, xai_report):
                 <h4>Good Representative</h4>
                 <p>Morphology name: <b>{morphology_name_good}</b></p>
                 <p>Probability of belonging to this class:
-                    <b>{probas[sample_good, y]:.2%}</b>
+                    <b>{probas[good_idx, y]:.2%}</b>
                 </p>
                 <img src='file:{path_good}' width='90%'>
                 <h4>Bad Representative</h4>
                 <p>Morphology name: <b>{morphology_name_bad}</b></p>
                 <p>Probability of belonging to this class:
-                    <b>{probas[sample_bad, y]:.2%}</b>
+                    <b>{probas[bad_idx, y]:.2%}</b>
                 </p>
                 <img src='file:{path_bad}' width='90%'>
                 </div>
@@ -340,10 +340,10 @@ def _add_non_tree_report(model, dataset, probas, xai_report):
         logger.info("> Running SHAP analysis")
         if model_mod.startswith("sklearn") or model_mod.startswith("xgboost"):
             fig_bad_shap, text_bad = xai.sklearn_model_attributions_shap(
-                model, dataset, sample_bad
+                model, dataset, bad_idx
             )
             fig_good_shap, text_good = xai.sklearn_model_attributions_shap(
-                model, dataset, sample_good
+                model, dataset, good_idx
             )
         elif "morphoclass" in model_mod:
             fig_good_shap = fig_bad_shap = None
@@ -366,14 +366,14 @@ def _add_non_tree_report(model, dataset, probas, xai_report):
                 <p>Morphology name: <b>{morphology_name_good}</b></p>
                 <p>Pixels: <b>{text_good}</b></p>
                 <p>Probability of belonging to this class:
-                    <b>{probas[sample_good, y]:.2%}</b>
+                    <b>{probas[good_idx, y]:.2%}</b>
                 </p>
                 <img src='file:{path_good}' width='90%'>
                 <h4>Bad Representative</h4>
                 <p>Morphology name: <b>{morphology_name_bad}</b></p>
                 <p>Pixels: <b>{text_bad}</b></p>
                 <p>Probability of belonging to this class:
-                    <b>{probas[sample_bad, y]:.2%}</b>
+                    <b>{probas[bad_idx, y]:.2%}</b>
                 </p>
                 <img src= 'file:{path_bad}' width='90%'>
                 </div>
@@ -391,39 +391,39 @@ def _add_non_tree_report(model, dataset, probas, xai_report):
                 fig_good = xai.gnn_model_attributions(
                     model,
                     dataset,
-                    sample_id=sample_good,
+                    sample_id=good_idx,
                     interpretability_method_cls=captum_cls,
                 )
                 fig_bad = xai.gnn_model_attributions(
                     model,
                     dataset,
-                    sample_id=sample_bad,
+                    sample_id=bad_idx,
                     interpretability_method_cls=captum_cls,
                 )
             elif model_mod == "morphoclass.models.coriander_net":
                 fig_good = xai.perslay_model_attributions(
                     model,
                     dataset,
-                    sample_id=sample_good,
+                    sample_id=good_idx,
                     interpretability_method_cls=captum_cls,
                 )
                 fig_bad = xai.perslay_model_attributions(
                     model,
                     dataset,
-                    sample_id=sample_bad,
+                    sample_id=bad_idx,
                     interpretability_method_cls=captum_cls,
                 )
             elif model_mod == "morphoclass.models.cnnet":
                 fig_good = xai.cnn_model_attributions(
                     model,
                     dataset,
-                    sample_id=sample_good,
+                    sample_id=good_idx,
                     interpretability_method_cls=captum_cls,
                 )
                 fig_bad = xai.cnn_model_attributions(
                     model,
                     dataset,
-                    sample_id=sample_bad,
+                    sample_id=bad_idx,
                     interpretability_method_cls=captum_cls,
                 )
             elif model_mod.startswith("sklearn") or model_mod.startswith("xgboost"):
@@ -449,13 +449,13 @@ def _add_non_tree_report(model, dataset, probas, xai_report):
                     <h4>Good Representative</h4>
                     <p>Morphology name: <b>{morphology_name_good}</b></p>
                     <p>Probability of belonging to this class:
-                        <b>{probas[sample_good, y]:.2%}</b>
+                        <b>{probas[good_idx, y]:.2%}</b>
                     </p>
                     <img src='file:{path_good}' width='100%'>
                     <h4>Bad Representative</h4>
                     <p>Morphology name: <b>{morphology_name_bad}</b></p>
                     <p>Probability of belonging to this class:
-                        <b>{probas[sample_bad, y]:.2%}</b>
+                        <b>{probas[bad_idx, y]:.2%}</b>
                     </p>
                     <img src='file:{path_bad}' width='100%'>
                     </div>
