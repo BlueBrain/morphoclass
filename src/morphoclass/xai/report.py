@@ -26,7 +26,9 @@ from captum.attr import Deconvolution  # DeepLiftShap,; GuidedBackprop,; InputXG
 from captum.attr import GradientShap
 from captum.attr import IntegratedGradients
 from captum.attr import Saliency
+from matplotlib.figure import Figure
 
+from morphoclass import report
 from morphoclass import transforms
 from morphoclass.data.morphology_data import MorphologyData
 from morphoclass.data.morphology_dataset import MorphologyDataset
@@ -47,11 +49,94 @@ from morphoclass.xai import sklearn_model_attributions_tree
 logger = logging.getLogger(__name__)
 
 
-def make_report(
-    report_path: str | os.PathLike,
-    training_log: TrainingLog,
-    seed: int | None = None,
-) -> None:
+class XAIReport:
+    """XAI report manager."""
+
+    def __init__(self, name: str, base_dir: str | os.PathLike) -> None:
+        if name.lower().endswith(".html"):
+            raise ValueError(
+                "The report name must not contain the file extension and "
+                f'therefore cannot end on ".html". Got name: {name!r}'
+            )
+        self.base_dir = pathlib.Path(base_dir).resolve()
+        self.img_dir = self.base_dir / name
+        self.report_path = self.img_dir.with_suffix(".html")
+        self.sections = {}
+        self.titles = {}
+        self.figures = []  # (fig, file_name)
+
+    def add_section(self, title: str, _id: str, section_html: str) -> None:
+        """Add a new XAI section to the report."""
+        _id = _id.replace(" ", "-")
+        self.titles[_id] = title.strip()
+        self.sections[_id] = textwrap.dedent(section_html).strip()
+
+    def add_figure(self, fig: Figure, name: str) -> pathlib.Path:
+        """Add a new figure to the report.
+
+        The figure will be kept in memory until the ``write()`` call. It
+        is only when ``write()`` is called that the figures will be written
+        to disk together with the actual report.
+
+        This method returns a path that can be used to reference the
+        figure image file on disk.
+
+        Parameters
+        ----------
+        fig
+            A matplotlib figure.
+        name
+            The name of the figure. This will be used as the file name of
+            the image file saved to disk. The name should not contain
+            a file extension - it will be added automatically.
+
+        Returns
+        -------
+        pathlib.Path
+            The path under which the image will be stored on disk. This path
+            is relative to the base directory for reproducibility reasons
+            and can be used to refer to the figure image file in HTML blocks.
+        """
+        fig_path = (self.img_dir / name).with_suffix(".png")
+        self.figures.append((fig, fig_path))
+
+        return fig_path.relative_to(self.base_dir)
+
+    @property
+    def _template_vars(self):
+        toc_lines = []
+        section_blocks = []
+        for _id, toc_title in self.titles.items():
+            toc_lines.append(f"<a href='#{_id}'>{toc_title}</a>")
+
+            # Prepend a section header to each section block
+            section_header = f"""
+            <div class="page-header">
+                <h1 id="{_id}">{self.titles[_id]}</h1>
+            </div>
+            """
+            section_header = textwrap.dedent(section_header).strip()
+            section_blocks.append(f"{section_header}<br/>{self.sections[_id]}")
+        toc_html = "<br/>".join(toc_lines)
+        report_html = "<br/><br/><hr/><br/>".join(section_blocks)
+
+        return {"toc_html": toc_html, "report_html": report_html}
+
+    def write(self):
+        """Render and write the XAI report to disk."""
+        template = report.load_template("xai-report")
+        self.base_dir.mkdir(exist_ok=True, parents=True)
+
+        logger.info(f"Writing {len(self.figures)} figures")
+        self.img_dir.mkdir(exist_ok=True)
+        for fig, file_name in self.figures:
+            fig.savefig(file_name)
+
+        logger.info(f"Writing report to {self.report_path.as_uri()}")
+        report.render(template, self._template_vars, self.report_path)
+
+
+def make_report(report_path: str | os.PathLike, training_log: TrainingLog) -> None:
     """Generate XAI report.
 
     GradCam and GradShap are available for the morphoclass models only.
@@ -68,14 +153,37 @@ def make_report(
     seed
         A shared NumPy and PyTorch seed.
     """
-    report_path = pathlib.Path(report_path).with_suffix(".html")
-    results_dir = report_path.parent
-    results_dir.mkdir(exist_ok=True, parents=True)
-    img_dir = report_path.with_suffix("")
-    img_dir.mkdir(exist_ok=True)
-
+    logger.info("Ensuring reproducibility")
+    reset_seeds(numpy_seed=1234, torch_seed=5678)
     make_torch_deterministic()
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    warn_if_nondeterministic(device)
 
+    logger.info("Restoring the dataset")
+    dataset = _restore_dataset(training_log)
+
+    logger.info("Restoring the model and computing probabilities")
+    model, probas = _get_model_and_probas(training_log, dataset)
+
+    report_path = pathlib.Path(report_path).with_suffix(".html")
+    xai_report = XAIReport(report_path.stem, report_path.parent)
+    logger.info("Generating XAI reports")
+    if model.__module__.startswith("sklearn.tree"):
+        logger.info("A tree-model found - computing sklearn attributions for trees")
+        _add_tree_report(model, dataset, xai_report)
+    else:
+        logger.info("A non-tree model found")
+        _add_non_tree_report(model, dataset, probas, xai_report)
+
+    if model.__module__.startswith("morphoclass.models.cnnet"):
+        logger.info("Generating the neuron population SHAP report for CNN")
+        _add_cnn_report(model, dataset, xai_report)
+
+    logger.info("Rendering the XAI report and writing it to disk")
+    xai_report.write()
+
+
+def _restore_dataset(training_log):
     logger.info("Restoring the dataset from pre-computed features")
     data = []
     for path in sorted(training_log.config.features_dir.glob("*.features")):
@@ -85,354 +193,7 @@ def make_report(
     logger.info("Restoring the original neurites")
     _restore_neurites(training_log.config.features_dir, dataset)
 
-    if seed is not None:
-        reset_seeds(numpy_seed=seed, torch_seed=seed)
-
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    warn_if_nondeterministic(device)
-
-    logger.info("Predicting probabilities")
-    model_class = training_log.config.model_class
-    if model_class.startswith("sklearn") or model_class.startswith("xgboost"):
-        model = training_log.all_history["model"]
-        val_idx = np.arange(len(dataset))
-        images_val = np.array(
-            [sample.image for sample in dataset.index_select(val_idx)]
-        )
-        images_val = images_val.reshape(-1, 10000)
-        probabilities = model.predict_proba(images_val)
-    elif model_class.startswith("morphoclass"):
-        model = training_log.config.model_cls(**training_log.config.model_params)
-        model.load_state_dict(training_log.all_history["model"])
-
-        optimizer = training_log.config.optimizer_cls(
-            model.parameters(), **training_log.config.optimizer_params
-        )
-
-        # Forward prop
-        from morphoclass.data.morphology_data_loader import MorphologyDataLoader
-        from morphoclass.training.trainers import Trainer
-
-        trainer = Trainer(
-            net=model,
-            dataset=dataset,
-            loader_class=MorphologyDataLoader,
-            optimizer=optimizer,
-        )
-        _, probabilities_t, _ = trainer.predict(idx=np.arange(len(dataset)))
-        probabilities = probabilities_t.cpu().numpy()
-    else:
-        raise ValueError(f"Unknown model class: {model_class}")
-
-    report_parts: list[str] = []
-    section_refs: list[tuple[str, str]] = []  # title, HTML tag ID
-    logger.info("Generating XAI reports")
-    if model.__module__.startswith("sklearn.tree"):
-        logger.info("A tree-model found - computing sklearn attributions for trees")
-        fig = sklearn_model_attributions_tree(model, dataset)
-        if fig:
-            img_path = img_dir / "tree.png"
-            fig.savefig(img_path)
-            img_rel_path = img_path.relative_to(results_dir)
-        else:
-            img_rel_path = ""
-
-        report_parts.append(
-            f"""
-            <br/>
-            <div class="row">
-            <img class="center-block" src='file:{img_rel_path}' width='150%'>
-            </div>
-            """
-        )
-    else:
-        logger.info("A non-tree model found")
-        non_tree_report_parts, non_tree_section_refs = _xai_non_tree(
-            dataset,
-            model,
-            probabilities,
-            results_dir,
-            img_dir,
-        )
-        section_refs.extend(non_tree_section_refs)
-        report_parts.extend(non_tree_report_parts)
-
-    # CNN population
-    if model.__module__.startswith("morphoclass.models.cnnet"):
-        logger.info("Generating the neuron population SHAP report for CNN")
-        cnn_report, cnn_section_ref = _make_cnn_report(
-            model,
-            dataset,
-            img_dir,
-            results_dir,
-        )
-        section_refs.append(cnn_section_ref)
-        report_parts.append(cnn_report)
-
-    toc_html = "<br/>\n".join(
-        f"<a href='#{_id}'>{title}</a>" for title, _id in section_refs
-    )
-    report_html = "\n".join(textwrap.dedent(part).strip() for part in report_parts)
-
-    logger.info("Rendering the XAI report and writing it to disk")
-    _write_xai_report(report_path, toc_html, report_html)
-    logger.info(f"XAI report written to {report_path.resolve().as_uri()}")
-
-
-def _xai_non_tree(dataset, model, probas, base_dir, img_dir):
-    unique_ys = sorted(dataset.y_to_label)
-    all_ys = np.array([sample.y for sample in dataset])
-    model_mod = model.__module__
-
-    section_refs: list[tuple[str, str]] = []  # title, href
-    report_parts: list[str] = []
-
-    captum_clss = [
-        Deconvolution,
-        IntegratedGradients,
-        GradientShap,
-        Saliency,
-        # GuidedBackprop,
-        # DeepLiftShap,
-        # InputXGradient,
-    ]
-
-    logger.info("Creating HTML headings")
-    gradcam_parts = [
-        """
-        <div class="page-header">
-            <h1 id="grad-cam">GradCam XAI Report</h1>
-        </div>
-        """
-    ]
-    section_refs.append(("GradCam", "grad-cam"))
-
-    shap_parts = [
-        """
-        <div class="page-header">
-            <h1 id="shap">Shap XAI Report</h1>
-        </div>
-        """
-    ]
-    section_refs.append(("SHAP", "shap"))
-
-    captum_parts_d: dict[str, list] = {}
-    for captum_cls in captum_clss:
-        method_name = captum_cls.__name__
-        captum_parts_d[method_name] = [
-            f"""
-            <div class="page-header">
-                <h1 id="{method_name}">{method_name} XAI Report</h1>
-            </div>
-            """
-        ]
-        section_refs.append((method_name, method_name))
-
-    for y in unique_ys:
-        label = dataset.y_to_label[y]
-        logger.info(f"Processing sample at index {y}")
-        ids = np.where(all_ys == y)[0]
-        sample_bad = np.where(probas == probas[ids, y].min())[0][-1]
-        sample_good = np.where(probas == probas[ids, y].max())[0][-1]
-        morphology_name_bad = dataset[sample_bad].path
-        morphology_name_good = dataset[sample_good].path
-
-        # GradCam
-        logger.info("> Generating GradCAM figures")
-        if model_mod == "morphoclass.models.man_net":
-            fig_gradcam_bad = grad_cam_gnn_model(model, dataset, sample_bad)
-            fig_gradcam_good = grad_cam_gnn_model(model, dataset, sample_good)
-        elif model_mod == "morphoclass.models.coriander_net":
-            fig_gradcam_bad = grad_cam_perslay_model(model, dataset, sample_bad)
-            fig_gradcam_good = grad_cam_perslay_model(model, dataset, sample_good)
-        elif model_mod == "morphoclass.models.cnnet":
-            fig_gradcam_bad = grad_cam_cnn_model(model, dataset, sample_bad)
-            fig_gradcam_good = grad_cam_cnn_model(model, dataset, sample_good)
-        elif model_mod.startswith("sklearn") or model_mod.startswith("xgboost"):
-            fig_gradcam_bad = fig_gradcam_good = None
-        else:
-            raise ValueError("There is no GradCAM supported for this model")
-
-        logger.info("> Saving figures")
-        if all([fig_gradcam_bad, fig_gradcam_good]):
-            path_bad = img_dir / f"{label}_gradcam_bad.png"
-            path_good = img_dir / f"{label}_gradcam_good.png"
-            fig_gradcam_bad.savefig(path_bad)
-            fig_gradcam_good.savefig(path_good)
-            gradcam_parts.append(
-                f"""
-                <br/>
-                <div class="row">
-                <div class='col-md-12'>
-                <h3>Morphology type {label}</h3><br/>
-                <h4>Good Representative</h4>
-                <p>Morphology name: <b>{morphology_name_good}</b></p>
-                <p>Probability of belonging to this class:
-                    <b>{probas[sample_good, y]:.2%}</b>
-                </p>
-                <img
-                    src='file:{path_good.relative_to(base_dir)}'
-                    width='90%'
-                >
-                <h4>Bad Representative</h4>
-                <p>Morphology name: <b>{morphology_name_bad}</b></p>
-                <p>Probability of belonging to this class:
-                    <b>{probas[sample_bad, y]:.2%}</b>
-                </p>
-                <img
-                    src='file:{path_bad.relative_to(base_dir)}'
-                    width='90%'
-                >
-                </div>
-                </div>
-                """
-            )
-
-        # sklearn
-        logger.info("> Computing SHAP")
-        if model_mod.startswith("sklearn") or model_mod.startswith("xgboost"):
-            fig_bad_shap, text_bad = sklearn_model_attributions_shap(
-                model, dataset, sample_bad
-            )
-            fig_good_shap, text_good = sklearn_model_attributions_shap(
-                model, dataset, sample_good
-            )
-        elif "morphoclass" in model_mod:
-            fig_good_shap = fig_bad_shap = None
-            text_good = text_bad = None
-        else:
-            raise ValueError("There is no sklearn supported for this model")
-
-        if all([fig_good_shap, fig_bad_shap]):
-            good_path = img_dir / f"{label}_shap_good.png"
-            bad_path = img_dir / f"{label}_shap_bad.png"
-
-            fig_good_shap.savefig(good_path)
-            fig_bad_shap.savefig(bad_path)
-
-            text_good = text_good.replace("\n", "<br/>")
-            text_bad = text_bad.replace("\n", "<br/>")
-            shap_parts.append(
-                f"""
-                <br/>
-                <div class="row">
-                <div class='col-md-12'>
-                <h3>Morphology type {label}</h3><br/>
-                <h4>Good Representative</h4>
-                <p>Morphology name: <b>{morphology_name_good}</b></p>
-                <p>Pixels: <b>{text_good}</b></p>
-                <p>Probability of belonging to this class:
-                    <b>{probas[sample_good, y]}</b>
-                </p>
-                <img src='file:{good_path.relative_to(base_dir)}' width='90%'>
-                <h4>Bad Representative</h4>
-                <p>Morphology name: <b>{morphology_name_bad}</b></p>
-                <p>Pixels: <b>{text_bad}</b></p>
-                <p>Probability of belonging to this class:
-                    <b>{probas[sample_bad, y]}</b>
-                </p>
-                <img src= 'file:{bad_path.relative_to(base_dir)}' width='90%'>
-                </div>
-                </div>
-                """
-            )
-
-        logger.info("> Captum interpretability methods")
-        # captum interpretability models
-        for captum_cls in captum_clss:
-            method_name = captum_cls.__name__
-            logger.info(f">> Running method {method_name}")
-
-            if model_mod == "morphoclass.models.man_net":
-                fig_bad = gnn_model_attributions(
-                    model,
-                    dataset,
-                    sample_id=sample_bad,
-                    interpretability_method_cls=captum_cls,
-                )
-                fig_good = gnn_model_attributions(
-                    model,
-                    dataset,
-                    sample_id=sample_good,
-                    interpretability_method_cls=captum_cls,
-                )
-            elif model_mod == "morphoclass.models.coriander_net":
-                fig_bad = perslay_model_attributions(
-                    model,
-                    dataset,
-                    sample_id=sample_bad,
-                    interpretability_method_cls=captum_cls,
-                )
-                fig_good = perslay_model_attributions(
-                    model,
-                    dataset,
-                    sample_id=sample_good,
-                    interpretability_method_cls=captum_cls,
-                )
-            elif model_mod == "morphoclass.models.cnnet":
-                fig_bad = cnn_model_attributions(
-                    model,
-                    dataset,
-                    sample_id=sample_bad,
-                    interpretability_method_cls=captum_cls,
-                )
-                fig_good = cnn_model_attributions(
-                    model,
-                    dataset,
-                    sample_id=sample_good,
-                    interpretability_method_cls=captum_cls,
-                )
-            elif model_mod.startswith("sklearn") or model_mod.startswith("xgboost"):
-                fig_bad = fig_good = None
-            else:
-                raise ValueError("There is no GradCAM supported for this model")
-
-            if all([fig_bad, fig_good]):
-                bad_path = img_dir / f"{label}_{method_name}_bad.png"
-                good_path = img_dir / f"{label}_{method_name}_good.png"
-
-                fig_bad.savefig(bad_path)
-                fig_good.savefig(good_path)
-
-                captum_parts_d[method_name].append(
-                    f"""
-                    <br/>
-                    <div class="row">
-                    <div class='col-md-12'>
-                    <h3>Morphology type {label}</h3><br/>
-                    <h4>Good Representative</h4>
-                    <p>Morphology name: <b>{morphology_name_good}</b></p>
-                    <p>Probability of belonging to this class:
-                        <b>{probas[sample_good, y]}</b>
-                    </p>
-                    <img src='file:{good_path.relative_to(base_dir)}' width='100%'>
-                    <h4>Bad Representative</h4>
-                    <p>Morphology name: <b>{morphology_name_bad}</b></p>
-                    <p>Probability of belonging to this class:
-                        <b>{probas[sample_bad, y]}</b>
-                    </p>
-                    <img src='file:{bad_path.relative_to(base_dir)}' width='100%'>
-                    </div>
-                    </div>
-                    """
-                )
-            break  # debug
-        break  # debug
-
-    def join_parts(parts: list[str]) -> str:
-        if len(parts) == 1:  # only header, no content
-            return ""
-        return "<br/><br/><hr/><br/>".join(
-            textwrap.dedent(part).strip() for part in parts
-        )
-
-    logger.info("Collecting report parts")
-    report_parts.append(join_parts(gradcam_parts))
-    report_parts.append(join_parts(shap_parts))
-    for captum_parts in captum_parts_d.values():
-        report_parts.append(join_parts(captum_parts))
-
-    return report_parts, section_refs
+    return dataset
 
 
 def _restore_neurites(
@@ -464,75 +225,280 @@ def _restore_neurites(
         transform(data)
 
 
-def _make_cnn_report(model, dataset, img_dir, target_dir):
+def _get_model_and_probas(training_log, dataset):
+    model_class = training_log.config.model_class
+    if model_class.startswith("sklearn") or model_class.startswith("xgboost"):
+        model = training_log.all_history["model"]
+        val_idx = np.arange(len(dataset))
+        images_val = np.array(
+            [sample.image for sample in dataset.index_select(val_idx)]
+        )
+        images_val = images_val.reshape(-1, 10000)
+        probas = model.predict_proba(images_val)
+    elif model_class.startswith("morphoclass"):
+        model = training_log.config.model_cls(**training_log.config.model_params)
+        model.load_state_dict(training_log.all_history["model"])
+
+        optimizer = training_log.config.optimizer_cls(
+            model.parameters(), **training_log.config.optimizer_params
+        )
+
+        # Forward prop
+        from morphoclass.data.morphology_data_loader import MorphologyDataLoader
+        from morphoclass.training.trainers import Trainer
+
+        trainer = Trainer(
+            net=model,
+            dataset=dataset,
+            loader_class=MorphologyDataLoader,
+            optimizer=optimizer,
+        )
+        _, probas_tensor, _ = trainer.predict(idx=np.arange(len(dataset)))
+        probas = probas_tensor.cpu().numpy()
+    else:
+        raise ValueError(f"Unknown model class: {model_class}")
+
+    return model, probas
+
+
+def _add_tree_report(model, dataset, xai_report):
+    fig = sklearn_model_attributions_tree(model, dataset)
+    if fig:
+        img_path = xai_report.add_figure(fig, "tree")
+        html = f"""
+            <br/>
+            <div class="row">
+            <img class="center-block" src='file:{img_path}' width='150%'>
+            </div>
+            """
+        xai_report.add_section("Model Attributions", "model-attrib", html)
+
+
+def _add_non_tree_report(model, dataset, probas, xai_report):
+    unique_ys = sorted(dataset.y_to_label)
+    all_ys = np.array([sample.y for sample in dataset])
+    model_mod = model.__module__
+
+    captum_classes = [
+        Deconvolution,
+        IntegratedGradients,
+        GradientShap,
+        Saliency,
+        # GuidedBackprop,
+        # DeepLiftShap,
+        # InputXGradient,
+    ]
+
+    logger.info("Creating HTML headings")
+    gradcam_parts: list[str] = []
+    shap_parts: list[str] = []
+    captum_parts_d: dict[str, list[str]] = {}
+
+    for y in unique_ys:
+        label = dataset.y_to_label[y]
+        logger.info(f"Processing label {label}")
+        (ids,) = np.where(all_ys == y)
+        sample_bad = np.where(probas == probas[ids, y].min())[0][-1]
+        sample_good = np.where(probas == probas[ids, y].max())[0][-1]
+        morphology_name_bad = dataset[sample_bad].path
+        morphology_name_good = dataset[sample_good].path
+
+        # GradCam
+        logger.info("> Running GradCAM analysis")
+        if model_mod == "morphoclass.models.man_net":
+            fig_gradcam_bad = grad_cam_gnn_model(model, dataset, sample_bad)
+            fig_gradcam_good = grad_cam_gnn_model(model, dataset, sample_good)
+        elif model_mod == "morphoclass.models.coriander_net":
+            fig_gradcam_bad = grad_cam_perslay_model(model, dataset, sample_bad)
+            fig_gradcam_good = grad_cam_perslay_model(model, dataset, sample_good)
+        elif model_mod == "morphoclass.models.cnnet":
+            fig_gradcam_bad = grad_cam_cnn_model(model, dataset, sample_bad)
+            fig_gradcam_good = grad_cam_cnn_model(model, dataset, sample_good)
+        elif model_mod.startswith("sklearn") or model_mod.startswith("xgboost"):
+            fig_gradcam_bad = fig_gradcam_good = None
+        else:
+            raise ValueError("There is no GradCAM supported for this model")
+
+        if all([fig_gradcam_bad, fig_gradcam_good]):
+            path_good = xai_report.add_figure(fig_gradcam_good, f"{label}_gradcam_good")
+            path_bad = xai_report.add_figure(fig_gradcam_bad, f"{label}_gradcam_bad")
+            gradcam_parts.append(
+                f"""
+                <br/>
+                <div class="row">
+                <div class='col-md-12'>
+                <h3>Morphology type {label}</h3><br/>
+                <h4>Good Representative</h4>
+                <p>Morphology name: <b>{morphology_name_good}</b></p>
+                <p>Probability of belonging to this class:
+                    <b>{probas[sample_good, y]:.2%}</b>
+                </p>
+                <img src='file:{path_good}' width='90%'>
+                <h4>Bad Representative</h4>
+                <p>Morphology name: <b>{morphology_name_bad}</b></p>
+                <p>Probability of belonging to this class:
+                    <b>{probas[sample_bad, y]:.2%}</b>
+                </p>
+                <img src='file:{path_bad}' width='90%'>
+                </div>
+                </div>
+                """
+            )
+
+        # sklearn
+        logger.info("> Running SHAP analysis")
+        if model_mod.startswith("sklearn") or model_mod.startswith("xgboost"):
+            fig_bad_shap, text_bad = sklearn_model_attributions_shap(
+                model, dataset, sample_bad
+            )
+            fig_good_shap, text_good = sklearn_model_attributions_shap(
+                model, dataset, sample_good
+            )
+        elif "morphoclass" in model_mod:
+            fig_good_shap = fig_bad_shap = None
+            text_good = text_bad = None
+        else:
+            raise ValueError("There is no sklearn supported for this model")
+
+        if all([fig_good_shap, fig_bad_shap]):
+            path_good = xai_report.add_figure(fig_good_shap, f"{label}_shap_good")
+            path_bad = xai_report.add_figure(fig_bad_shap, f"{label}_shap_bad")
+            text_good = text_good.replace("\n", "<br/>")
+            text_bad = text_bad.replace("\n", "<br/>")
+            shap_parts.append(
+                f"""
+                <br/>
+                <div class="row">
+                <div class='col-md-12'>
+                <h3>Morphology type {label}</h3><br/>
+                <h4>Good Representative</h4>
+                <p>Morphology name: <b>{morphology_name_good}</b></p>
+                <p>Pixels: <b>{text_good}</b></p>
+                <p>Probability of belonging to this class:
+                    <b>{probas[sample_good, y]}</b>
+                </p>
+                <img src='file:{path_good}' width='90%'>
+                <h4>Bad Representative</h4>
+                <p>Morphology name: <b>{morphology_name_bad}</b></p>
+                <p>Pixels: <b>{text_bad}</b></p>
+                <p>Probability of belonging to this class:
+                    <b>{probas[sample_bad, y]}</b>
+                </p>
+                <img src= 'file:{path_bad}' width='90%'>
+                </div>
+                </div>
+                """
+            )
+
+        logger.info("> Running various captum interpretability analyses")
+        # captum interpretability models
+        for captum_cls in captum_classes:
+            method_name = captum_cls.__name__
+            logger.info(f">> Running method {method_name!r}")
+
+            if model_mod == "morphoclass.models.man_net":
+                fig_good = gnn_model_attributions(
+                    model,
+                    dataset,
+                    sample_id=sample_good,
+                    interpretability_method_cls=captum_cls,
+                )
+                fig_bad = gnn_model_attributions(
+                    model,
+                    dataset,
+                    sample_id=sample_bad,
+                    interpretability_method_cls=captum_cls,
+                )
+            elif model_mod == "morphoclass.models.coriander_net":
+                fig_good = perslay_model_attributions(
+                    model,
+                    dataset,
+                    sample_id=sample_good,
+                    interpretability_method_cls=captum_cls,
+                )
+                fig_bad = perslay_model_attributions(
+                    model,
+                    dataset,
+                    sample_id=sample_bad,
+                    interpretability_method_cls=captum_cls,
+                )
+            elif model_mod == "morphoclass.models.cnnet":
+                fig_good = cnn_model_attributions(
+                    model,
+                    dataset,
+                    sample_id=sample_good,
+                    interpretability_method_cls=captum_cls,
+                )
+                fig_bad = cnn_model_attributions(
+                    model,
+                    dataset,
+                    sample_id=sample_bad,
+                    interpretability_method_cls=captum_cls,
+                )
+            elif model_mod.startswith("sklearn") or model_mod.startswith("xgboost"):
+                fig_bad = fig_good = None
+            else:
+                raise ValueError("There is no GradCAM supported for this model")
+
+            if all([fig_bad, fig_good]):
+                path_good = xai_report.add_figure(
+                    fig_good, f"{label}_{method_name}_good"
+                )
+                path_bad = xai_report.add_figure(fig_bad, f"{label}_{method_name}_bad")
+
+                key = f"Captum - {method_name}"
+                if key not in captum_parts_d:
+                    captum_parts_d[key] = []
+                captum_parts_d[key].append(
+                    f"""
+                    <br/>
+                    <div class="row">
+                    <div class='col-md-12'>
+                    <h3>Morphology type {label}</h3><br/>
+                    <h4>Good Representative</h4>
+                    <p>Morphology name: <b>{morphology_name_good}</b></p>
+                    <p>Probability of belonging to this class:
+                        <b>{probas[sample_good, y]}</b>
+                    </p>
+                    <img src='file:{path_good}' width='100%'>
+                    <h4>Bad Representative</h4>
+                    <p>Morphology name: <b>{morphology_name_bad}</b></p>
+                    <p>Probability of belonging to this class:
+                        <b>{probas[sample_bad, y]}</b>
+                    </p>
+                    <img src='file:{path_bad}' width='100%'>
+                    </div>
+                    </div>
+                    """
+                )
+
+    def join_parts(parts: list[str]) -> str:
+        return "<br/>".join(textwrap.dedent(part).strip() for part in parts)
+
+    logger.info("Collecting report parts")
+    if gradcam_parts:
+        xai_report.add_section("GradCAM", "grad-cam", join_parts(gradcam_parts))
+    if shap_parts:
+        xai_report.add_section("SHAP", "shap", join_parts(shap_parts))
+    for title, captum_parts in captum_parts_d.items():
+        if captum_parts:
+            _id = title.lower().replace(" ", "-")
+            xai_report.add_section(title, _id, join_parts(captum_parts))
+
+
+def _add_cnn_report(model, dataset, xai_report):
     # Generate figures
     figures, labels = cnn_model_attributions_population(model, dataset)
 
     # Save figures
-    fig_paths = []
+    img_lines = []
     for fig, label in zip(figures, labels):
-        fig_path = img_dir / f"{label}_population_compared_to_others.png"
-        fig.savefig(fig_path)
-        fig_paths.append(fig_path)
+        fig_path = xai_report.add_figure(fig, f"{label}_population_compared_to_others")
+        img_lines.append(f"<img src='file:{fig_path}' width='120%'>")
 
     # Generate the report HTML data
-    cnn_title = "Compare population of neurons with SHAP"
-    cnn_link_title = "Neuron Population - SHAP of CNN model"
-    cnn_anchor = "population-cnn"
-    report_parts = [f"<h3 id='{cnn_anchor}'>{cnn_title}</h3>"]
-    for fig_path in fig_paths:
-        img_rel_path = fig_path.relative_to(target_dir)
-        report_parts.append(f"<img src='file:{img_rel_path}' width='120%'>")
-    report = "<br/><br/><hr/><br/>".join(report_parts)
-
-    return report, (cnn_link_title, cnn_anchor)
-
-
-def _write_xai_report(report_path, toc_html, report_html):
-    """Render and write the XAI report to disk.
-
-    Parameters
-    ----------
-    report_path : str or pathlib.Path
-        The output HTML file path.
-    toc_html : str
-        The table of contents of the XAI report.
-    report_html : str
-        The report part of the XAI report.
-    """
-    import morphoclass as mc
-    import morphoclass.report
-
-    template = mc.report.load_template("xai-report")
-    template_vars = {
-        "toc_html": toc_html,
-        "report_html": report_html,
-    }
-    mc.report.render(template, template_vars, report_path)
-    logger.info(f"XAI report saved to: {report_path.resolve().as_uri()}")
-
-
-def _str_path(path: pathlib.Path | None, base_dir: pathlib.Path | None) -> str:
-    """Convert path to string, potentially relative to a base directory.
-
-    Parameters
-    ----------
-    path
-        The path to convert.
-    base_dir
-        If provided the path will be relative to this directory.
-
-    Returns
-    -------
-    str
-        If ``path`` is ``None`` then an empty string is returned. Otherwise,
-        a string representation of the path is returned, potentially relative
-        to ``base_dir`` if the latter is provided.
-    """
-    if path is None:
-        return ""
-
-    if base_dir is not None:
-        path = path.relative_to(base_dir)
-
-    return str(path)
+    xai_report.add_section(
+        "Compare neuron population with SHAP of CNN",
+        "population-cnn",
+        "<br/><br/><hr/><br/>".join(img_lines),
+    )
