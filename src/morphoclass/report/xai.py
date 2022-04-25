@@ -462,8 +462,6 @@ def _add_non_tree_report(model, dataset, probas, xai_report):
                     </div>
                     """
                 )
-            break
-        break
 
     def join_parts(parts: list[str]) -> str:
         return "<br/>".join(textwrap.dedent(part).strip() for part in parts)
