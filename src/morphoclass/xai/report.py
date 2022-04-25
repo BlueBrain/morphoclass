@@ -250,8 +250,8 @@ def _get_model_and_probas(training_log, dataset):
             loader_class=MorphologyDataLoader,
             optimizer=optimizer,
         )
-        _, probas_tensor, _ = trainer.predict(idx=np.arange(len(dataset)))
-        probas = probas_tensor.cpu().numpy()
+        _, logits, _ = trainer.predict(idx=np.arange(len(dataset)))
+        probas = logits.exp().cpu().numpy()
     else:
         raise ValueError(f"Unknown model class: {model_class}")
 
@@ -468,6 +468,8 @@ def _add_non_tree_report(model, dataset, probas, xai_report):
                     </div>
                     """
                 )
+            break
+        break
 
     def join_parts(parts: list[str]) -> str:
         return "<br/>".join(textwrap.dedent(part).strip() for part in parts)
