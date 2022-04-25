@@ -48,7 +48,7 @@ logger = logging.getLogger(__name__)
 
 
 def make_report(
-    results_file: str | os.PathLike,
+    report_path: str | os.PathLike,
     training_log: TrainingLog,
     seed: int | None = None,
 ) -> None:
@@ -68,11 +68,11 @@ def make_report(
     seed
         A shared NumPy and PyTorch seed.
     """
-    results_file = pathlib.Path(results_file)
-    results_directory = results_file.parent
-    results_directory.mkdir(exist_ok=True, parents=True)
-    images_directory = results_directory / "images"
-    images_directory.mkdir(exist_ok=True, parents=True)
+    report_path = pathlib.Path(report_path).with_suffix(".html")
+    results_dir = report_path.parent
+    results_dir.mkdir(exist_ok=True, parents=True)
+    img_dir = report_path.with_suffix("")
+    img_dir.mkdir(exist_ok=True)
 
     make_torch_deterministic()
 
@@ -131,9 +131,9 @@ def make_report(
         logger.info("A tree-model found - computing sklearn attributions for trees")
         fig = sklearn_model_attributions_tree(model, dataset)
         if fig:
-            img_path = images_directory / "tree.png"
-            _save_figure(fig, img_path)
-            img_rel_path = img_path.relative_to(results_directory)
+            img_path = img_dir / "tree.png"
+            fig.savefig(img_path)
+            img_rel_path = img_path.relative_to(results_dir)
         else:
             img_rel_path = ""
 
@@ -151,8 +151,8 @@ def make_report(
             dataset,
             model,
             probabilities,
-            results_directory,
-            images_directory,
+            results_dir,
+            img_dir,
         )
         section_refs.extend(non_tree_section_refs)
         report_parts.extend(non_tree_report_parts)
@@ -163,8 +163,8 @@ def make_report(
         cnn_report, cnn_section_ref = _make_cnn_report(
             model,
             dataset,
-            images_directory,
-            results_directory,
+            img_dir,
+            results_dir,
         )
         section_refs.append(cnn_section_ref)
         report_parts.append(cnn_report)
@@ -175,18 +175,30 @@ def make_report(
     report_html = "\n".join(textwrap.dedent(part).strip() for part in report_parts)
 
     logger.info("Rendering the XAI report and writing it to disk")
-    _write_xai_report(results_file, toc_html, report_html)
-    logger.info(f"XAI report written to {results_file.resolve().as_uri()}")
+    _write_xai_report(report_path, toc_html, report_html)
+    logger.info(f"XAI report written to {report_path.resolve().as_uri()}")
 
 
-def _xai_non_tree(dataset, model, probabilities, results_directory, images_directory):
-    labels_ids = sorted(dataset.y_to_label.keys())
-    labels_str = [dataset.y_to_label[s] for s in labels_ids]
-    labels_all = np.array([sample.y_str for sample in dataset])
+def _xai_non_tree(dataset, model, probas, results_dir, img_dir):
+    unique_ys = sorted(dataset.y_to_label)
+    all_ys = np.array([sample.y for sample in dataset])
+    model_mod = model.__module__
 
     section_refs: list[tuple[str, str]] = []  # title, href
     report_parts: list[str] = []
+    xai_html: dict[str, list] = {}
 
+    interpretability_method_classes = [
+        Deconvolution,
+        IntegratedGradients,
+        GradientShap,
+        Saliency,
+        # GuidedBackprop,
+        # DeepLiftShap,
+        # InputXGradient,
+    ]
+
+    logger.info("Creating HTML headings")
     gradcam_xai_html = [
         """
         <div class="page-header">
@@ -205,92 +217,76 @@ def _xai_non_tree(dataset, model, probabilities, results_directory, images_direc
     ]
     section_refs.append(("SHAP", "shap"))
 
-    xai_html: dict[str, list] = {}
-    interpretability_method_classes = [
-        Deconvolution,
-        IntegratedGradients,
-        GradientShap,
-        Saliency,
-        # GuidedBackprop,
-        # DeepLiftShap,
-        # InputXGradient,
-    ]
-
     for interpretability_method_cls in interpretability_method_classes:
-        xai_html[interpretability_method_cls.__name__] = [
+        method_name = interpretability_method_cls.__name__
+        xai_html[method_name] = [
             f"""
             <div class="page-header">
-                <h1 id="{interpretability_method_cls.__name__}">
-                {interpretability_method_cls.__name__} XAI Report</h1>
+                <h1 id="{method_name}">{method_name} XAI Report</h1>
             </div>
             """
         ]
-        section_refs.append(
-            (interpretability_method_cls.__name__, interpretability_method_cls.__name__)
-        )
+        section_refs.append((method_name, method_name))
 
-    for label_id, label_str in zip(labels_ids, labels_str):
-        indices = np.where(labels_all == label_str)[0]
-        sample_bad = np.where(probabilities == probabilities[indices, label_id].min())[
-            0
-        ][-1]
-        sample_good = np.where(probabilities == probabilities[indices, label_id].max())[
-            0
-        ][-1]
+    for y in unique_ys:
+        label = dataset.y_to_label[y]
+        logger.info(f"Processing sample at index {y}")
+        ids = np.where(all_ys == y)[0]
+        sample_bad = np.where(probas == probas[ids, y].min())[0][-1]
+        sample_good = np.where(probas == probas[ids, y].max())[0][-1]
         morphology_name_bad = dataset[sample_bad].path
         morphology_name_good = dataset[sample_good].path
 
         # GradCam
-        fig_bad_filename_gradcam = images_directory / f"{label_str}_gradcam_bad.png"
-        fig_good_filename_gradcam = images_directory / f"{label_str}_gradcam_good.png"
-
-        if model.__module__ == "morphoclass.models.man_net":
-            fig_bad_gradcam = grad_cam_gnn_model(model, dataset, sample_id=sample_bad)
-            fig_good_gradcam = grad_cam_gnn_model(model, dataset, sample_id=sample_good)
-        elif model.__module__ == "morphoclass.models.coriander_net":
-            fig_bad_gradcam = grad_cam_perslay_model(
+        logger.info("> Generating GradCAM figures")
+        if model_mod == "morphoclass.models.man_net":
+            fig_gradcam_bad = grad_cam_gnn_model(model, dataset, sample_id=sample_bad)
+            fig_gradcam_good = grad_cam_gnn_model(model, dataset, sample_id=sample_good)
+        elif model_mod == "morphoclass.models.coriander_net":
+            fig_gradcam_bad = grad_cam_perslay_model(
                 model, dataset, sample_id=sample_bad
             )
-            fig_good_gradcam = grad_cam_perslay_model(
+            fig_gradcam_good = grad_cam_perslay_model(
                 model, dataset, sample_id=sample_good
             )
-        elif model.__module__ == "morphoclass.models.cnnet":
-            fig_bad_gradcam = grad_cam_cnn_model(model, dataset, sample_id=sample_bad)
-            fig_good_gradcam = grad_cam_cnn_model(model, dataset, sample_id=sample_good)
-        elif model.__module__.startswith("sklearn") or model.__module__.startswith(
-            "xgboost"
-        ):
-            fig_bad_gradcam = None
-            fig_good_gradcam = None
+        elif model_mod == "morphoclass.models.cnnet":
+            fig_gradcam_bad = grad_cam_cnn_model(model, dataset, sample_id=sample_bad)
+            fig_gradcam_good = grad_cam_cnn_model(model, dataset, sample_id=sample_good)
+        elif model_mod.startswith("sklearn") or model_mod.startswith("xgboost"):
+            fig_gradcam_bad = None
+            fig_gradcam_good = None
         else:
             raise ValueError("There is no GradCam supported for this model")
 
-        if None not in [fig_bad_gradcam, fig_good_gradcam]:
-            _save_figure(fig_bad_gradcam, fig_bad_filename_gradcam)
-            _save_figure(fig_good_gradcam, fig_good_filename_gradcam)
+        logger.info("> Saving figures")
+        fig_gradcam_bad_path = img_dir / f"{label}_gradcam_bad.png"
+        fig_gradcam_good_path = img_dir / f"{label}_gradcam_good.png"
+        if all([fig_gradcam_bad, fig_gradcam_good]):
+            fig_gradcam_bad.savefig(fig_gradcam_bad_path)
+            fig_gradcam_good.savefig(fig_gradcam_good_path)
 
-        if None not in [fig_bad_gradcam, fig_good_gradcam]:
+        if all([fig_gradcam_bad, fig_gradcam_good]):
             gradcam_xai_html.append(
                 f"""
                 <br/>
                 <div class="row">
                 <div class='col-md-12'>
-                <h3>Morphology type {label_str}</h3><br/>
+                <h3>Morphology type {label}</h3><br/>
                 <h4>Good Representative</h4>
                 <p>Morphology name: <b>{morphology_name_good}</b></p>
                 <p>Probability of belonging to this class:
-                    <b>{probabilities[sample_good, label_id]}</b></p>
+                    <b>{probas[sample_good, y]}</b></p>
                 <img src=
-                    'file:{fig_good_filename_gradcam.relative_to(
-                            results_directory) if fig_good_gradcam else ''}'
+                    'file:{fig_gradcam_good_path.relative_to(
+                            results_dir) if fig_gradcam_good else ''}'
                     width='90%'>
                 <h4>Bad Representative</h4>
                 <p>Morphology name: <b>{morphology_name_bad}</b></p>
                 <p>Probability of belonging to this class:
-                    <b>{probabilities[sample_bad, label_id]}</b></p>
+                    <b>{probas[sample_bad, y]}</b></p>
                 <img src=
-                    'file:{fig_bad_filename_gradcam.relative_to(
-                            results_directory) if fig_bad_gradcam else ''}'
+                    'file:{fig_gradcam_bad_path.relative_to(
+                            results_dir) if fig_gradcam_bad else ''}'
                     width='90%'>
                 </div>
                 </div>
@@ -298,12 +294,11 @@ def _xai_non_tree(dataset, model, probabilities, results_directory, images_direc
             )
 
         # sklearn
-        fig_bad_filename_shap = images_directory / f"{label_str}_shap_bad.png"
-        fig_good_filename_shap = images_directory / f"{label_str}_shap_good.png"
+        logger.info("> Computing SHAP")
+        fig_bad_filename_shap = img_dir / f"{label}_shap_bad.png"
+        fig_good_filename_shap = img_dir / f"{label}_shap_good.png"
 
-        if model.__module__.startswith("sklearn") or model.__module__.startswith(
-            "xgboost"
-        ):
+        if model_mod.startswith("sklearn") or model_mod.startswith("xgboost"):
             fig_bad_shap, text_bad = sklearn_model_attributions_shap(
                 model, dataset, sample_id=sample_bad
             )
@@ -311,53 +306,49 @@ def _xai_non_tree(dataset, model, probabilities, results_directory, images_direc
                 model, dataset, sample_id=sample_good
             )
 
-            _save_figure(fig_bad_shap, fig_bad_filename_shap)
-            _save_figure(fig_good_shap, fig_good_filename_shap)
+            fig_bad_shap.savefig(fig_bad_filename_shap)
+            fig_good_shap.savefig(fig_good_filename_shap)
 
             shap_xai_html.append(
                 f"""
                 <br/>
                 <div class="row">
                 <div class='col-md-12'>
-                <h3>Morphology type {label_str}</h3><br/>
+                <h3>Morphology type {label}</h3><br/>
                 <h4>Good Representative</h4>
                 <p>Morphology name: <b>{morphology_name_good}</b></p>
                 <p>Probability of belonging to this class:
-                    <b>{probabilities[sample_good, label_id]}</b></p>
+                    <b>{probas[sample_good, y]}</b></p>
                 <img src=
                     'file:{fig_good_filename_shap.relative_to(
-                            results_directory) if fig_good_shap else ''}'
+                            results_dir) if fig_good_shap else ''}'
                     width='90%'>
                 <h4>Bad Representative</h4>
                 <p>Morphology name: <b>{morphology_name_bad}</b></p>
                 <p>Probability of belonging to this class:
-                    <b>{probabilities[sample_bad, label_id]}</b></p>
+                    <b>{probas[sample_bad, y]}</b></p>
                 <img src=
                     'file:{fig_bad_filename_shap.relative_to(
-                            results_directory) if fig_bad_shap else ''}'
+                            results_dir) if fig_bad_shap else ''}'
                     width='90%'>
                 </div>
                 </div>
                 """
             )
-        elif "morphoclass" in model.__module__:
+        elif "morphoclass" in model_mod:
             pass
         else:
             raise ValueError("There is no sklearn supported for this model")
 
+        logger.info("> Captum interpretability methods")
         # captum interpretability models
         for interpretability_method_cls in interpretability_method_classes:
-            fig_bad_filename = (
-                images_directory
-                / f"{label_str}_{interpretability_method_cls.__name__}_bad.png"
-            )
-            fig_good_filename = (
-                images_directory
-                / f"{label_str}_{interpretability_method_cls.__name__}_good.png"
-            )
+            method_name = interpretability_method_cls.__name__
+            logger.info(f">> Running method {method_name}")
+            fig_bad_filename = img_dir / f"{label}_{method_name}_bad.png"
+            fig_good_filename = img_dir / f"{label}_{method_name}_good.png"
             text_bad, text_good = "", ""
-            if model.__module__ == "morphoclass.models.man_net":
-
+            if model_mod == "morphoclass.models.man_net":
                 fig_bad = gnn_model_attributions(
                     model,
                     dataset,
@@ -370,7 +361,7 @@ def _xai_non_tree(dataset, model, probabilities, results_directory, images_direc
                     sample_id=sample_good,
                     interpretability_method_cls=interpretability_method_cls,
                 )
-            elif model.__module__ == "morphoclass.models.coriander_net":
+            elif model_mod == "morphoclass.models.coriander_net":
                 fig_bad = perslay_model_attributions(
                     model,
                     dataset,
@@ -383,7 +374,7 @@ def _xai_non_tree(dataset, model, probabilities, results_directory, images_direc
                     sample_id=sample_good,
                     interpretability_method_cls=interpretability_method_cls,
                 )
-            elif model.__module__ == "morphoclass.models.cnnet":
+            elif model_mod == "morphoclass.models.cnnet":
                 fig_bad = cnn_model_attributions(
                     model,
                     dataset,
@@ -396,42 +387,40 @@ def _xai_non_tree(dataset, model, probabilities, results_directory, images_direc
                     sample_id=sample_good,
                     interpretability_method_cls=interpretability_method_cls,
                 )
-            elif model.__module__.startswith("sklearn") or model.__module__.startswith(
-                "xgboost"
-            ):
+            elif model_mod.startswith("sklearn") or model_mod.startswith("xgboost"):
                 fig_bad = None
                 fig_good = None
             else:
-                raise ValueError("There is no GradCam supported for this model")
+                raise ValueError("There is no GradCAM supported for this model")
 
-            if None not in [fig_bad, fig_good]:
-                _save_figure(fig_bad, fig_bad_filename)
-                _save_figure(fig_good, fig_good_filename)
+            if all([fig_bad, fig_good]):
+                fig_bad.savefig(fig_bad_filename)
+                fig_good.savefig(fig_good_filename)
 
             new_line = "\n"
-            if None not in [fig_bad, fig_good]:
-                xai_html[interpretability_method_cls.__name__].append(
+            if all([fig_bad, fig_good]):
+                xai_html[method_name].append(
                     f"""
                     <br/>
                     <div class="row">
                     <div class='col-md-12'>
-                    <h3>Morphology type {label_str}</h3><br/>
+                    <h3>Morphology type {label}</h3><br/>
                     <h4>Good Representative</h4>
                     <p>Morphology name: <b>{morphology_name_good}</b></p>
                     <p>Pixels: <b>{text_good.replace(new_line, '<br/>')}</b></p>
                     <p>Probability of belonging to this class:
-                        <b>{probabilities[sample_good, label_id]}</b></p>
+                        <b>{probas[sample_good, y]}</b></p>
                     <img
-                        src='file:{fig_good_filename.relative_to(results_directory)}'
+                        src='file:{fig_good_filename.relative_to(results_dir)}'
                         width='100%'
                     >
                     <h4>Bad Representative</h4>
                     <p>Morphology name: <b>{morphology_name_bad}</b></p>
                     <p>Pixels: <b>{text_bad.replace(new_line, '<br/>')}</b></p>
                     <p>Probability of belonging to this class:
-                        <b>{probabilities[sample_bad, label_id]}</b></p>
+                        <b>{probas[sample_bad, y]}</b></p>
                     <img
-                        src='file:{fig_bad_filename.relative_to(results_directory)}'
+                        src='file:{fig_bad_filename.relative_to(results_dir)}'
                         width='100%'
                     >
                     </div>
@@ -439,6 +428,7 @@ def _xai_non_tree(dataset, model, probabilities, results_directory, images_direc
                     """
                 )
 
+    logger.info("Collecting reports")
     # Collect GradCAM
     if len(gradcam_xai_html) == 1:
         gradcam_xai_html_str = ""
@@ -447,7 +437,7 @@ def _xai_non_tree(dataset, model, probabilities, results_directory, images_direc
             textwrap.dedent(part).strip() for part in gradcam_xai_html
         )
     report_parts.append(gradcam_xai_html_str)
-    # collect shap
+    # collect SHAP
     if len(shap_xai_html) == 1:
         shap_xai_html_str = ""
     else:
@@ -456,8 +446,8 @@ def _xai_non_tree(dataset, model, probabilities, results_directory, images_direc
         )
     report_parts.append(shap_xai_html_str)
     # collect captum
-    for k, v in xai_html.items():
-        if len(xai_html[k]) == 1:
+    for v in xai_html.values():
+        if len(v) == 1:
             xai_html_str = ""
         else:
             xai_html_str = "<br/><br/><hr/><br/>".join(textwrap.dedent(v).strip())
@@ -503,7 +493,7 @@ def _make_cnn_report(model, dataset, img_dir, target_dir):
     fig_paths = []
     for fig, label in zip(figures, labels):
         fig_path = img_dir / f"{label}_population_compared_to_others.png"
-        _save_figure(fig, fig_path)
+        fig.savefig(fig_path)
         fig_paths.append(fig_path)
 
     # Generate the report HTML data
@@ -517,11 +507,6 @@ def _make_cnn_report(model, dataset, img_dir, target_dir):
     report = "<br/><br/><hr/><br/>".join(report_parts)
 
     return report, (cnn_link_title, cnn_anchor)
-
-
-def _save_figure(fig, file_path):
-    for ext in {file_path.suffix, ".png", ".eps", ".pdf"}:
-        fig.savefig(file_path.with_suffix(ext))
 
 
 def _write_xai_report(output_path, content_html, xai_report_final):
