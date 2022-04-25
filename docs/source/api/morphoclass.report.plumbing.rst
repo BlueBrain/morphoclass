@@ -1,7 +1,7 @@
-morphoclass.console.explain module
+morphoclass.report.plumbing module
 ==================================
 
-.. automodule:: morphoclass.console.explain
+.. automodule:: morphoclass.report.plumbing
    :members:
    :undoc-members:
    :show-inheritance:
