@@ -136,7 +136,7 @@ class XAIReport:
         report.render(template, self._template_vars, self.report_path)
 
 
-def make_report(report_path: str | os.PathLike, training_log: TrainingLog) -> None:
+def make_report(training_log: TrainingLog, output_dir: str | os.PathLike) -> None:
     """Generate XAI report.
 
     GradCam and GradShap are available for the morphoclass models only.
@@ -146,12 +146,10 @@ def make_report(report_path: str | os.PathLike, training_log: TrainingLog) -> No
     and worst class representatives based on the prediction
     probability.
 
-    results_file
-        The path of the output results report.
     training_log
         The training log with the data and model information.
-    seed
-        A shared NumPy and PyTorch seed.
+    output_dir
+        The report output directory.
     """
     logger.info("Ensuring reproducibility")
     reset_seeds(numpy_seed=1234, torch_seed=5678)
@@ -165,8 +163,7 @@ def make_report(report_path: str | os.PathLike, training_log: TrainingLog) -> No
     logger.info("Restoring the model and computing probabilities")
     model, probas = _get_model_and_probas(training_log, dataset)
 
-    report_path = pathlib.Path(report_path).with_suffix(".html")
-    xai_report = XAIReport(report_path.stem, report_path.parent)
+    xai_report = XAIReport("xai-report", output_dir)
     logger.info("Generating XAI reports")
     if model.__module__.startswith("sklearn.tree"):
         logger.info("A tree-model found - computing sklearn attributions for trees")

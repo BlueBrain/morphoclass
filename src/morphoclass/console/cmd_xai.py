@@ -48,20 +48,20 @@ def cli():
     help="Path to a model checkpoint.",
 )
 @click.option(
-    "--results-file",
+    "--output-dir",
     required=True,
-    type=click.Path(dir_okay=False),
-    help="The HTML report output path.",
+    type=click.Path(file_okay=False),
+    help="The XAI report output directory",
 )
-def report(results_file: str | os.PathLike, checkpoint_path: str | os.PathLike) -> None:
+def report(checkpoint_path: str | os.PathLike, output_dir: str | os.PathLike) -> None:
     """Create an XAI report.
 
     Parameters
     ----------
-    results_file
-        The HTML report output path.
     checkpoint_path
         Path to a model checkpoint.
+    output_dir
+        The XAI report output directory
     """
     logger.info("Loading libraries and modules")
     import morphoclass.xai.report
@@ -71,10 +71,7 @@ def report(results_file: str | os.PathLike, checkpoint_path: str | os.PathLike) 
     training_log = TrainingLog.load(pathlib.Path(checkpoint_path))
 
     logger.info("Creating the XAI report")
-    morphoclass.xai.report.make_report(
-        results_file,
-        training_log=training_log,
-    )
+    morphoclass.xai.report.make_report(training_log, output_dir)
 
 
 @cli.command(
