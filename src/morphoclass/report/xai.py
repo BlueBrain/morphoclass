@@ -19,32 +19,20 @@ import os
 import pathlib
 import textwrap
 
+import captum.attr
 import matplotlib
 import neurom as nm
 import numpy as np
 import torch
-from captum.attr import Deconvolution  # DeepLiftShap,; GuidedBackprop,; InputXGradient,
-from captum.attr import GradientShap
-from captum.attr import IntegratedGradients
-from captum.attr import Saliency
 
+from morphoclass import training
 from morphoclass import transforms
+from morphoclass import utils
+from morphoclass import xai
 from morphoclass.data.morphology_data import MorphologyData
 from morphoclass.data.morphology_dataset import MorphologyDataset
 from morphoclass.report import plumbing
-from morphoclass.training import reset_seeds
 from morphoclass.training.training_log import TrainingLog
-from morphoclass.utils import make_torch_deterministic
-from morphoclass.utils import warn_if_nondeterministic
-from morphoclass.xai import cnn_model_attributions
-from morphoclass.xai import cnn_model_attributions_population
-from morphoclass.xai import gnn_model_attributions
-from morphoclass.xai import grad_cam_cnn_model
-from morphoclass.xai import grad_cam_gnn_model
-from morphoclass.xai import grad_cam_perslay_model
-from morphoclass.xai import perslay_model_attributions
-from morphoclass.xai import sklearn_model_attributions_shap
-from morphoclass.xai import sklearn_model_attributions_tree
 
 logger = logging.getLogger(__name__)
 
@@ -160,10 +148,10 @@ def populate_report(training_log: TrainingLog, xai_report: XAIReport) -> XAIRepo
         The generated XAI report.
     """
     logger.info("Ensuring reproducibility")
-    reset_seeds(numpy_seed=1234, torch_seed=5678)
-    make_torch_deterministic()
+    training.reset_seeds(numpy_seed=1234, torch_seed=5678)
+    utils.make_torch_deterministic()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    warn_if_nondeterministic(device)
+    utils.warn_if_nondeterministic(device)
 
     logger.info("Restoring the dataset")
     dataset = _restore_dataset(training_log)
@@ -265,7 +253,7 @@ def _get_model_and_probas(training_log, dataset):
 
 
 def _add_tree_report(model, dataset, xai_report):
-    fig = sklearn_model_attributions_tree(model, dataset)
+    fig = xai.sklearn_model_attributions_tree(model, dataset)
     if fig:
         img_path = xai_report.add_figure(fig, "tree")
         html = f"""
@@ -283,13 +271,13 @@ def _add_non_tree_report(model, dataset, probas, xai_report):
     model_mod = model.__module__
 
     captum_classes = [
-        Deconvolution,
-        IntegratedGradients,
-        GradientShap,
-        Saliency,
-        # GuidedBackprop,
-        # DeepLiftShap,
-        # InputXGradient,
+        captum.attr.Deconvolution,
+        captum.attr.IntegratedGradients,
+        captum.attr.GradientShap,
+        captum.attr.Saliency,
+        # captum.attr.GuidedBackprop,
+        # captum.attr.DeepLiftShap,
+        # captum.attr.InputXGradient,
     ]
 
     logger.info("Creating HTML headings")
@@ -309,14 +297,14 @@ def _add_non_tree_report(model, dataset, probas, xai_report):
         # GradCam
         logger.info("> Running GradCAM analysis")
         if model_mod == "morphoclass.models.man_net":
-            fig_gradcam_bad = grad_cam_gnn_model(model, dataset, sample_bad)
-            fig_gradcam_good = grad_cam_gnn_model(model, dataset, sample_good)
+            fig_gradcam_bad = xai.grad_cam_gnn_model(model, dataset, sample_bad)
+            fig_gradcam_good = xai.grad_cam_gnn_model(model, dataset, sample_good)
         elif model_mod == "morphoclass.models.coriander_net":
-            fig_gradcam_bad = grad_cam_perslay_model(model, dataset, sample_bad)
-            fig_gradcam_good = grad_cam_perslay_model(model, dataset, sample_good)
+            fig_gradcam_bad = xai.grad_cam_perslay_model(model, dataset, sample_bad)
+            fig_gradcam_good = xai.grad_cam_perslay_model(model, dataset, sample_good)
         elif model_mod == "morphoclass.models.cnnet":
-            fig_gradcam_bad = grad_cam_cnn_model(model, dataset, sample_bad)
-            fig_gradcam_good = grad_cam_cnn_model(model, dataset, sample_good)
+            fig_gradcam_bad = xai.grad_cam_cnn_model(model, dataset, sample_bad)
+            fig_gradcam_good = xai.grad_cam_cnn_model(model, dataset, sample_good)
         elif model_mod.startswith("sklearn") or model_mod.startswith("xgboost"):
             fig_gradcam_bad = fig_gradcam_good = None
         else:
@@ -351,10 +339,10 @@ def _add_non_tree_report(model, dataset, probas, xai_report):
         # sklearn
         logger.info("> Running SHAP analysis")
         if model_mod.startswith("sklearn") or model_mod.startswith("xgboost"):
-            fig_bad_shap, text_bad = sklearn_model_attributions_shap(
+            fig_bad_shap, text_bad = xai.sklearn_model_attributions_shap(
                 model, dataset, sample_bad
             )
-            fig_good_shap, text_good = sklearn_model_attributions_shap(
+            fig_good_shap, text_good = xai.sklearn_model_attributions_shap(
                 model, dataset, sample_good
             )
         elif "morphoclass" in model_mod:
@@ -400,39 +388,39 @@ def _add_non_tree_report(model, dataset, probas, xai_report):
             logger.info(f">> Running method {method_name!r}")
 
             if model_mod == "morphoclass.models.man_net":
-                fig_good = gnn_model_attributions(
+                fig_good = xai.gnn_model_attributions(
                     model,
                     dataset,
                     sample_id=sample_good,
                     interpretability_method_cls=captum_cls,
                 )
-                fig_bad = gnn_model_attributions(
+                fig_bad = xai.gnn_model_attributions(
                     model,
                     dataset,
                     sample_id=sample_bad,
                     interpretability_method_cls=captum_cls,
                 )
             elif model_mod == "morphoclass.models.coriander_net":
-                fig_good = perslay_model_attributions(
+                fig_good = xai.perslay_model_attributions(
                     model,
                     dataset,
                     sample_id=sample_good,
                     interpretability_method_cls=captum_cls,
                 )
-                fig_bad = perslay_model_attributions(
+                fig_bad = xai.perslay_model_attributions(
                     model,
                     dataset,
                     sample_id=sample_bad,
                     interpretability_method_cls=captum_cls,
                 )
             elif model_mod == "morphoclass.models.cnnet":
-                fig_good = cnn_model_attributions(
+                fig_good = xai.cnn_model_attributions(
                     model,
                     dataset,
                     sample_id=sample_good,
                     interpretability_method_cls=captum_cls,
                 )
-                fig_bad = cnn_model_attributions(
+                fig_bad = xai.cnn_model_attributions(
                     model,
                     dataset,
                     sample_id=sample_bad,
@@ -493,7 +481,7 @@ def _add_non_tree_report(model, dataset, probas, xai_report):
 
 def _add_cnn_report(model, dataset, xai_report):
     # Generate figures
-    figures, labels = cnn_model_attributions_population(model, dataset)
+    figures, labels = xai.cnn_model_attributions_population(model, dataset)
 
     # Save figures
     img_lines = []
