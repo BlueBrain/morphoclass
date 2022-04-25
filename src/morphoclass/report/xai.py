@@ -289,8 +289,8 @@ def _add_non_tree_report(model, dataset, probas, xai_report):
         label = dataset.y_to_label[y]
         logger.info(f"Processing label {label}")
         (ids,) = np.where(all_ys == y)
-        sample_bad = np.where(probas == probas[ids, y].min())[0][-1]
-        sample_good = np.where(probas == probas[ids, y].max())[0][-1]
+        sample_good = ids[probas[ids, y].argmax()]
+        sample_bad = ids[probas[ids, y].argmin()]
         morphology_name_bad = dataset[sample_bad].path
         morphology_name_good = dataset[sample_good].path
 
