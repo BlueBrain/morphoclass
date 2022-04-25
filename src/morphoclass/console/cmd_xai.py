@@ -64,19 +64,19 @@ def report(checkpoint_path: str | os.PathLike, output_dir: str | os.PathLike) ->
         The XAI report output directory
     """
     logger.info("Loading libraries and modules")
-    import morphoclass.xai.report
     from morphoclass.report.xai import XAIReport
     from morphoclass.training.training_log import TrainingLog
+    from morphoclass.xai.report import populate_report
 
     logger.info("Loading the checkpoint")
     training_log = TrainingLog.load(pathlib.Path(checkpoint_path))
 
     logger.info("Creating the XAI report")
-    xai_report = XAIReport("xai-report", output_dir)
-    morphoclass.xai.report.populate_report(training_log, xai_report)
+    xai_report = XAIReport(output_dir)
+    populate_report(training_log, xai_report)
 
     logger.info("Rendering the XAI report and writing it to disk")
-    xai_report.write()
+    xai_report.write("xai-report")
 
 
 @cli.command(

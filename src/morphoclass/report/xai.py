@@ -16,15 +16,9 @@ logger = logging.getLogger(__name__)
 class XAIReport:
     """XAI report manager."""
 
-    def __init__(self, name: str, base_dir: str | os.PathLike) -> None:
-        if name.lower().endswith(".html"):
-            raise ValueError(
-                "The report name must not contain the file extension and "
-                f'therefore cannot end on ".html". Got name: {name!r}'
-            )
-        self.base_dir = pathlib.Path(base_dir).resolve()
-        self.img_dir = self.base_dir / f"{name}-images"
-        self.report_path = (self.base_dir / name).with_suffix(".html")
+    def __init__(self, output_dir: str | os.PathLike) -> None:
+        self.output_dir = pathlib.Path(output_dir).resolve()
+        self.img_dir = self.output_dir / "images"
         self.sections = {}
         self.titles = {}
         self.figures = []  # (fig, file_stem)
@@ -64,7 +58,7 @@ class XAIReport:
         fig_path = (self.img_dir / name).with_suffix(".png")
         self.figures.append((fig, fig_path))
 
-        return fig_path.relative_to(self.base_dir)
+        return fig_path.relative_to(self.output_dir)
 
     @property
     def _template_vars(self):
@@ -86,15 +80,22 @@ class XAIReport:
 
         return {"toc_html": toc_html, "report_html": report_html}
 
-    def write(self):
+    def write(self, file_stem: str):
         """Render and write the XAI report to disk."""
+        if file_stem.lower().endswith(".html"):
+            raise ValueError(
+                "The report file stem must not contain the file extension and "
+                f'therefore cannot end on ".html". Got: {file_stem!r}'
+            )
+
         template = plumbing.load_template("xai-report")
-        self.base_dir.mkdir(exist_ok=True, parents=True)
+        self.output_dir.mkdir(exist_ok=True, parents=True)
 
         logger.info(f"Writing {len(self.figures)} figures")
         self.img_dir.mkdir(exist_ok=True)
         for fig, file_name in self.figures:
             fig.savefig(file_name)
 
-        logger.info(f"Writing report to {self.report_path.as_uri()}")
-        plumbing.render(template, self._template_vars, self.report_path)
+        report_path = (self.output_dir / file_stem).with_suffix(".html")
+        logger.info(f"Writing report to {report_path.as_uri()}")
+        plumbing.render(template, self._template_vars, report_path)
