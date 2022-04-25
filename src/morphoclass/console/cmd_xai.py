@@ -65,8 +65,8 @@ def report(checkpoint_path: str | os.PathLike, output_dir: str | os.PathLike) ->
     """
     logger.info("Loading libraries and modules")
     from morphoclass.report.xai import XAIReport
+    from morphoclass.report.xai import populate_report
     from morphoclass.training.training_log import TrainingLog
-    from morphoclass.xai.report import populate_report
 
     logger.info("Loading the checkpoint")
     training_log = TrainingLog.load(pathlib.Path(checkpoint_path))
