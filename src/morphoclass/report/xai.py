@@ -366,14 +366,14 @@ def _add_non_tree_report(model, dataset, probas, xai_report):
                 <p>Morphology name: <b>{morphology_name_good}</b></p>
                 <p>Pixels: <b>{text_good}</b></p>
                 <p>Probability of belonging to this class:
-                    <b>{probas[sample_good, y]}</b>
+                    <b>{probas[sample_good, y]:.2%}</b>
                 </p>
                 <img src='file:{path_good}' width='90%'>
                 <h4>Bad Representative</h4>
                 <p>Morphology name: <b>{morphology_name_bad}</b></p>
                 <p>Pixels: <b>{text_bad}</b></p>
                 <p>Probability of belonging to this class:
-                    <b>{probas[sample_bad, y]}</b>
+                    <b>{probas[sample_bad, y]:.2%}</b>
                 </p>
                 <img src= 'file:{path_bad}' width='90%'>
                 </div>
@@ -449,13 +449,13 @@ def _add_non_tree_report(model, dataset, probas, xai_report):
                     <h4>Good Representative</h4>
                     <p>Morphology name: <b>{morphology_name_good}</b></p>
                     <p>Probability of belonging to this class:
-                        <b>{probas[sample_good, y]}</b>
+                        <b>{probas[sample_good, y]:.2%}</b>
                     </p>
                     <img src='file:{path_good}' width='100%'>
                     <h4>Bad Representative</h4>
                     <p>Morphology name: <b>{morphology_name_bad}</b></p>
                     <p>Probability of belonging to this class:
-                        <b>{probas[sample_bad, y]}</b>
+                        <b>{probas[sample_bad, y]:.2%}</b>
                     </p>
                     <img src='file:{path_bad}' width='100%'>
                     </div>
