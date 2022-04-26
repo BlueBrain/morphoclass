@@ -271,28 +271,24 @@ def grad_cam_perslay_model(model, dataset, sample_id):
     ]
     layers = [layer for layer in layers if layer != "relu"]
 
-    sample_id = int(sample_id)
     sample = dataset[sample_id]
-    pd = sample.embedding
-    tree = sample.morphology.tmd_neurites[0]
+    pd = sample.diagram
+    tree = sample.tmd_neurites[0]
 
-    figsize = (8, 4 * (len(layers) + 2))
-    dpi = 200
-
-    fig = Figure(figsize=figsize, dpi=dpi)
+    fig = Figure(figsize=(8, 4 * (len(layers) + 2)))
     axs = fig.subplots(3, len(layers) + 1)
 
     # Visualize original barcode
     axs[0][0].set_title("Original\nBarcode")
     pd_weights = np.array([[a] for a in np.ones(len(pd))])
     pd_enhanced = np.concatenate([pd, pd_weights], axis=1).tolist()
-    CS3, colors = plot_barcode_enhanced(pd_enhanced, axs[0][0])
+    plot_barcode_enhanced(pd_enhanced, axs[0][0])
     fig.subplots_adjust(wspace=0.2, hspace=0.3)
 
     axs[1][0].set_title("Original PD")
     pd_weights = np.array([[a] for a in np.ones(len(pd))])
     pd_enhanced = np.concatenate([pd, pd_weights], axis=1).tolist()
-    CS3, colors = plot_diagram_enhanced(pd_enhanced, axs[1][0])
+    plot_diagram_enhanced(pd_enhanced, axs[1][0])
 
     axs[2][0].set_title("Original\nGraph")
     plot_tree(tree, axs[2][0], node_size=1.0, edge_color="orange", width=2)
@@ -311,14 +307,14 @@ def grad_cam_perslay_model(model, dataset, sample_id):
         axs[0][index].set_title(f"Barcode GradCam\non {layer}")
         pd_weights = np.array([[a] for a in attributions])
         pd_enhanced = np.concatenate([pd, pd_weights], axis=1).tolist()
-        CS3, colors = plot_barcode_enhanced(pd_enhanced, axs[0][index])
-        fig.colorbar(CS3, ax=axs[0][index], format="%.2f", fraction=0.046, pad=0.04)
+        cs3, colors = plot_barcode_enhanced(pd_enhanced, axs[0][index])
+        fig.colorbar(cs3, ax=axs[0][index], format="%.2f", fraction=0.046, pad=0.04)
 
         axs[1][index].set_title(f"PD GradCam\non {layer}")
         pd_weights = np.array([[a] for a in attributions])
         pd_enhanced = np.concatenate([pd, pd_weights], axis=1).tolist()
-        CS3, colors = plot_diagram_enhanced(pd_enhanced, axs[1][index])
-        fig.colorbar(CS3, ax=axs[1][index], format="%.2f", fraction=0.046, pad=0.04)
+        cs3, colors = plot_diagram_enhanced(pd_enhanced, axs[1][index])
+        fig.colorbar(cs3, ax=axs[1][index], format="%.2f", fraction=0.046, pad=0.04)
 
         axs[2][index].set_title(f"Graph GradCam\non {layer}")
         color_edges = get_edges_colors_based_on_barcode_colors(tree, colors)

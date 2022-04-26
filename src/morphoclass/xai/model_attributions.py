@@ -409,9 +409,7 @@ def cnn_model_attributions_population(model, dataset):
     return figures, class_labels
 
 
-def perslay_model_attributions(
-    model, dataset, sample_id, interpretability_method_cls, aggregation_fn=np.sum
-):
+def perslay_model_attributions(model, dataset, sample_id, interpretability_method_cls):
     """Explain PersLay model.
 
     Plot with 3 rows:
@@ -431,36 +429,33 @@ def perslay_model_attributions(
         Dataset containing embeddings and morphologies.
     sample_id : int
         The id of embedding in the dataset.
-    aggregation_fn : callable, default np.sum
-        The attributions aggregation function, usually sum, mean, max.
+    interpretability_method_cls
+        An interpretability class from ``captum.attr``.
 
     Returns
     -------
     fig : matplotlib.figure.Figure
-        Figure with explainable plots.
+        A figure with explainable plots.
     """
     reset_seeds(numpy_seed=0, torch_seed=0)
 
-    sample_id = int(sample_id)
+    device = next(model.parameters()).device
     sample = dataset[sample_id]
 
-    device = next(model.parameters()).device
-
-    dataset_all = [s for s in dataset if sample.morph_name != s.morph_name]
-    loader_all = MorphologyEmbeddingDataLoader(
-        dataset_all,
-        shuffle=False,
+    loader_all = MorphologyDataLoader(
+        dataset.index_select([idx for idx in range(len(dataset)) if idx != sample_id]),
+        batch_size=len(dataset) - 1,
     )
     batch_all = next(iter(loader_all)).to(device)
 
-    loader = MorphologyEmbeddingDataLoader(
-        [sample],
-        shuffle=False,
+    loader = MorphologyDataLoader(
+        dataset.index_select([sample_id]),
+        batch_size=1,
     )
     batch = next(iter(loader)).to(device)
 
-    batch_input1 = batch.point_index.unsqueeze(dim=1)
-    batch_input2 = batch.embedding
+    batch_input1 = batch.diagram_batch.unsqueeze(dim=1)
+    batch_input2 = batch.diagram
     batch_input = (
         torch.cat([batch_input2, batch_input1], dim=1)
         .clone()
@@ -470,38 +465,33 @@ def perslay_model_attributions(
     batch_input = batch_input.to(device)
     batch_target = batch.y
 
-    batch_all_input1 = batch_all.point_index.unsqueeze(dim=1)
-    batch_all_input2 = batch_all.embedding
+    batch_all_input1 = batch_all.diagram_batch.unsqueeze(dim=1)
+    batch_all_input2 = batch_all.diagram
     batch_all_input = torch.cat([batch_all_input2, batch_all_input1], dim=1)
     baseline_all = torch.cat([batch_all_input, batch_all_input])
 
-    figsize = (2 * 6, 14)
-
-    fig = Figure(figsize=figsize, dpi=200)
+    fig = Figure(figsize=(2 * 6, 14))
     axs = fig.subplots(3, 2)
-
-    pd = sample.embedding
-    tree = sample.morphology.tmd_neurites[0]
+    pd = sample.diagram
 
     # Visualize original
     axs[0][0].set_title("Original\nBarcode")
     pd_weights = np.array([[a] for a in np.ones(len(pd))])
     pd_enhanced = np.concatenate([pd, pd_weights], axis=1).tolist()
-    CS3, colors = plot_barcode_enhanced(pd_enhanced, axs[0][0])
+    plot_barcode_enhanced(pd_enhanced, axs[0][0])
     fig.subplots_adjust(wspace=0.2, hspace=0.3)
 
     axs[1][0].set_title("Original PD")
     pd_weights = np.array([[a] for a in np.ones(len(pd))])
     pd_enhanced = np.concatenate([pd, pd_weights], axis=1).tolist()
-    CS3, colors = plot_diagram_enhanced(pd_enhanced, axs[1][0])
+    plot_diagram_enhanced(pd_enhanced, axs[1][0])
 
     axs[2][0].set_title("Original\nGraph")
-    plot_tree(tree, axs[2][0], node_size=1.0, edge_color="k", width=2)
+    for neurite in sample.tmd_neurites:
+        plot_tree(neurite, axs[2][0], node_size=1.0, edge_color="k", width=2)
 
     # Visualize shap on all samples
-    interpretability_method = interpretability_method_cls(
-        model,
-    )
+    interpretability_method = interpretability_method_cls(model)
     kwargs = {}
     if "Shap" in interpretability_method.__class__.__name__:
         kwargs = {"baselines": baseline_all}
@@ -536,23 +526,24 @@ def perslay_model_attributions(
     axs[0][1].set_title(f"Barcode {interpretability_method_cls.__name__}")
     pd_weights = np.array([[sum(a)] for a in attributions])
     pd_enhanced = np.concatenate([pd, pd_weights], axis=1).tolist()
-    CS3, colors = plot_barcode_enhanced(pd_enhanced, axs[0][1])
-    fig.colorbar(CS3, ax=axs[0][1], format="%.2f", fraction=0.046, pad=0.04)
+    cs3, colors = plot_barcode_enhanced(pd_enhanced, axs[0][1])
+    fig.colorbar(cs3, ax=axs[0][1], format="%.2f", fraction=0.046, pad=0.04)
 
     axs[1][1].set_title(f"PD {interpretability_method_cls.__name__}")
     pd_weights = np.array([[sum(a)] for a in attributions])
     pd_enhanced = np.concatenate([pd, pd_weights], axis=1).tolist()
-    CS3, colors = plot_diagram_enhanced(pd_enhanced, axs[1][1])
-    fig.colorbar(CS3, ax=axs[1][1], format="%.2f", fraction=0.046, pad=0.04)
+    cs3, colors = plot_diagram_enhanced(pd_enhanced, axs[1][1])
+    fig.colorbar(cs3, ax=axs[1][1], format="%.2f", fraction=0.046, pad=0.04)
 
     axs[2][1].set_title(f"Graph {interpretability_method_cls.__name__}")
-    color_edges = get_edges_colors_based_on_barcode_colors(tree, colors)
-    plot_tree(tree, axs[2][1], node_size=1.0, edge_color=color_edges, width=2)
+    for neurite in sample.tmd_neurites:
+        color_edges = get_edges_colors_based_on_barcode_colors(neurite, colors)
+        plot_tree(neurite, axs[2][1], node_size=1.0, edge_color=color_edges, width=2)
 
     # get prediction for this sample
     batch_probabilities = model(batch)
     batch_probabilities = torch.exp(batch_probabilities)  # .detach().cpu().numpy()
-    prediction = dataset.y_to_label[batch_probabilities.argmax(axis=1)[0].item()]
+    prediction = dataset.y_to_label[batch_probabilities.argmax(dim=1)[0].item()]
     fig.suptitle(
         f"Ground truth: {sample.y_str}\nPrediction: {prediction}",
         fontsize=15,
