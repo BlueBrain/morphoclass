@@ -14,7 +14,7 @@
 """Explain model layers using GradShap."""
 from __future__ import annotations
 
-import sys
+import logging
 import textwrap
 from typing import Any
 
@@ -31,7 +31,6 @@ from tmd.Topology.persistent_properties import NoProperty
 from tmd.view.common import jet_map
 
 from morphoclass.data import MorphologyDataLoader
-from morphoclass.data import MorphologyEmbeddingDataLoader
 from morphoclass.training import reset_seeds
 from morphoclass.vis import plot_barcode_enhanced
 from morphoclass.vis import plot_diagram_enhanced
@@ -39,6 +38,8 @@ from morphoclass.vis import plot_tree
 from morphoclass.xai.node_saliency import plot_node_saliency
 
 # from captum.attr import GradientShap
+
+logger = logging.getLogger(__name__)
 
 
 def gnn_model_attributions(model, dataset, sample_id, interpretability_method_cls):
@@ -591,94 +592,84 @@ def sklearn_model_attributions_shap(model, dataset, sample_id):
     """Explain sklearn model.
 
     Plot with feature maps after each feature extractor layer.
-    Starting from original image to the last featrue extractor layer.
+    Starting from original image to the last feature extractor layer.
     Only one morphology sample is visualized.
 
     Parameters
     ----------
     model
         Model that will be explained.
-    dataset : morphoclass.data.morphology_dataset.MorphologyEmbeddingDataset
+    dataset : morphoclass.data.morphology_dataset.MorphologyDataset
         Dataset containing embeddings and morphologies.
     sample_id : int
         The id of embedding in the dataset.
-    aggregation_fn : callable, default np.sum
-        The attributions aggregation function, usually sum, mean, max.
 
     Returns
     -------
     fig : matplotlib.figure.Figure
-        Figure with explainable plots.
+        A figure with explainable plots.
     """
     reset_seeds(numpy_seed=0, torch_seed=0)
 
-    sample_id = int(sample_id)
+    unique_ys = sorted(dataset.y_to_label.keys())
+    unique_labels = [dataset.y_to_label[y] for y in unique_ys]
+
+    fig = Figure(figsize=((len(unique_labels) + 2) * 3, 4))
+    ax_orig, *axs = fig.subplots(1, 1 + len(unique_labels) + 1)
+
+    # get prediction for this sample
     sample = dataset[sample_id]
-
-    module = sys.modules[__name__]
-
-    labels_ids = sorted(dataset.y_to_label.keys())
-    labels_unique = [dataset.y_to_label[s] for s in labels_ids]
-
-    for label in labels_unique:
-        dataset_class = [
-            s for s in dataset if s.y_str == label and sample.morph_name != s.morph_name
-        ]
-        loader_class = MorphologyEmbeddingDataLoader(
-            dataset_class,
-            shuffle=False,
-        )
-        batch_class = next(iter(loader_class))
-        setattr(module, f"dataset_class_{label}", dataset_class)
-        setattr(module, f"loader_class_{label}", loader_class)
-        setattr(module, f"batch_class_{label}", batch_class)
-
-    dataset_all = [s for s in dataset if sample.morph_name != s.morph_name]
-    loader_all = MorphologyEmbeddingDataLoader(
-        dataset_all,
-        shuffle=False,
+    flat_img = sample.image.cpu().numpy().reshape((1, 100 * 100))
+    (y_pred,) = model.predict(flat_img)
+    fig.suptitle(
+        f"Ground truth: {sample.y_str}\nPrediction: {dataset.y_to_label[y_pred]}",
+        fontsize=15,
+        weight=30,
     )
-    batch_all = next(iter(loader_all))
-
-    loader = MorphologyEmbeddingDataLoader(
-        [sample],
-        shuffle=False,
-    )
-
-    batch = next(iter(loader))
-
-    batch_input = batch.image.numpy()
-
-    for label in labels_unique:
-        batch_class = getattr(module, f"batch_class_{label}")
-        baseline = torch.cat(
-            [
-                batch_class.image.mean(axis=0).reshape(batch_input.shape),
-                batch_class.image.mean(axis=0).reshape(batch_input.shape),
-            ]
-        )
-        setattr(module, f"baseline_{label}", baseline)
-
-    figsize = ((len(labels_unique) + 2) * 3, 4)
-
-    fig = Figure(figsize=figsize, dpi=200)
-    axs = fig.subplots(1, len(labels_unique) + 1)
 
     # Visualize original image
-    _ = viz.visualize_image_attr(
+    viz.visualize_image_attr(
         None,
-        np.transpose(batch_input.reshape((1, 1, 100, 100)), (2, 3, 0, 1)),
+        np.transpose(flat_img.reshape((1, 1, 100, 100)), (2, 3, 0, 1)),
         method="original_image",
         title="Original Image",
-        plt_fig_axis=(fig, axs[0]),
+        plt_fig_axis=(fig, ax_orig),
     )
 
-    explainer = shap.Explainer(model, batch_all.image.numpy().reshape((-1, 100 * 100)))
-    attributions = explainer.shap_values(batch.image.numpy().reshape((-1, 100 * 100)))
-
     text = ""
-    for index, label in enumerate(labels_unique, start=1):
-        attributions_class = attributions[index - 1]
+    for ax, label in zip(axs, unique_labels):
+        logger.info(f"Computing SHAP for baseline label {label}")
+
+        # prepare data
+        ids = [
+            idx
+            for idx, s in enumerate(dataset)
+            if s.y_str == label and idx != sample_id
+        ]
+        dataset_class = dataset.index_select(ids)
+        loader_class = MorphologyDataLoader(
+            dataset_class,
+            batch_size=len(ids),
+        )
+        batch_class = next(iter(loader_class))
+        baseline = torch.cat(
+            [
+                batch_class.image.mean(axis=0).reshape(flat_img.shape),
+                batch_class.image.mean(axis=0).reshape(flat_img.shape),
+            ]
+        )
+
+        # explain
+        explainer = shap.Explainer(
+            model.predict,
+            baseline.numpy().reshape((-1, 100 * 100)),
+        )
+        attributions = explainer(flat_img).values
+        attributions_class = attributions[0]
+        if np.abs(attributions_class).max() == 0:
+            logger.error("All attributions are zero - cannot visualise; skipping.")
+            fig.delaxes(ax)
+            continue
         attributions_class = attributions_class / np.abs(attributions_class).max()
         attributions_image = attributions_class.reshape((100, 100))
         x_coordinate, y_coordinate = np.where(attributions_image > 0)
@@ -689,20 +680,13 @@ def sklearn_model_attributions_shap(model, dataset, sample_id):
 
         _ = viz.visualize_image_attr(
             np.transpose(attributions_class.reshape((1, 1, 100, 100)), (2, 3, 0, 1)),
-            np.transpose(batch_input.reshape((1, 1, 100, 100)), (2, 3, 0, 1)),
+            np.transpose(flat_img.reshape((1, 1, 100, 100)), (2, 3, 0, 1)),
             method="blended_heat_map",
             title=f"Baseline: {label} - {number_of_important_features} pixel(s)",
-            plt_fig_axis=(fig, axs[index]),
+            plt_fig_axis=(fig, ax),
             cmap=jet_map,
         )
-    # get prediction for this sample
-    prediction = model.predict(batch.image.numpy().reshape((-1, 100 * 100)))
-    prediction = dataset.y_to_label[prediction[0]]
-    fig.suptitle(
-        f"Ground truth: {sample.y_str}\nPrediction: {prediction}",
-        fontsize=15,
-        weight=30,
-    )
+
     return fig, text
 
 

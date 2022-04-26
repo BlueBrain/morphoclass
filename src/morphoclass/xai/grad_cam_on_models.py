@@ -203,6 +203,7 @@ def grad_cam_cnn_model(model, dataset, sample_id):
         )
         if np.abs(attributions).max() == 0:
             logger.error("All attributions are zero - cannot visualise; skipping.")
+            fig.delaxes(axs[index])
             continue
 
         attributions = attributions / np.abs(attributions).max()
