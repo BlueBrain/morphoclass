@@ -224,7 +224,7 @@ def _get_model_and_probas(training_log, dataset):
         model = training_log.all_history["model"]
         val_idx = np.arange(len(dataset))
         images_val = np.array(
-            [sample.image for sample in dataset.index_select(val_idx)]
+            [sample.image.cpu().numpy() for sample in dataset.index_select(val_idx)]
         )
         images_val = images_val.reshape(-1, 10000)
         probas = model.predict_proba(images_val)

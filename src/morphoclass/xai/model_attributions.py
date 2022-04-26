@@ -727,11 +727,11 @@ def sklearn_model_attributions_tree(model, dataset):
     # TODO: Get rid of pyplot. Problem: AttributeError: 'FigureCanvasBase'
     #       object has no attribute 'get_renderer'
     # from matplotlib.figure import Figure
-    # fig = Figure(figsize=(10,10), dpi=70)
+    # fig = Figure(figsize=(20, 20), tight_layout=True)
     # ax = fig.subplots()
     import matplotlib.pyplot as plt
 
-    fig, ax = plt.subplots(figsize=(20, 20), dpi=200)
+    fig, ax = plt.subplots(figsize=(20, 20), tight_layout=True)
 
     feature_names = [f"pixel [{x}, {y}]" for x in range(100) for y in range(100)]
     tree.plot_tree(model, feature_names=feature_names, class_names=labels_unique, ax=ax)
