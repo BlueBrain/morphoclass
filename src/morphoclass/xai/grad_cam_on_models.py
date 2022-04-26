@@ -14,6 +14,8 @@
 """Explain model layers using GradCam."""
 from __future__ import annotations
 
+import logging
+
 import numpy as np
 import torch
 from captum.attr import visualization as viz
@@ -30,6 +32,8 @@ from morphoclass.vis import plot_diagram_enhanced
 from morphoclass.vis import plot_tree
 from morphoclass.xai import GradCAMExplainer
 from morphoclass.xai.node_saliency import plot_node_saliency
+
+logger = logging.getLogger(__name__)
 
 
 def grad_cam_gnn_model(model, dataset, sample_id):
@@ -197,6 +201,10 @@ def grad_cam_cnn_model(model, dataset, sample_id):
             relu_weights=False,
             relu_cam=False,
         )
+        if np.abs(attributions).max() == 0:
+            logger.error("All attributions are zero - cannot visualise; skipping.")
+            continue
+
         attributions = attributions / np.abs(attributions).max()
 
         if len(attributions.shape) < 3:

@@ -203,6 +203,8 @@ def cnn_model_attributions(model, dataset, sample_id, interpretability_method_cl
         Dataset containing embeddings and morphologies.
     sample_id : int
         The id of embedding in the dataset.
+    interpretability_method_cls
+        An interpretability class from ``captum.attr``.
 
     Returns
     -------
@@ -211,24 +213,21 @@ def cnn_model_attributions(model, dataset, sample_id, interpretability_method_cl
     """
     reset_seeds(numpy_seed=0, torch_seed=0)
 
-    sample_id = int(sample_id)
+    device = next(model.parameters()).device
     sample = dataset[sample_id]
 
-    device = next(model.parameters()).device
-
-    dataset_all = [s for s in dataset if sample.morph_name != s.morph_name]
-    loader_all = MorphologyEmbeddingDataLoader(
-        dataset_all,
-        shuffle=False,
+    loader_all = MorphologyDataLoader(
+        dataset.index_select([idx for idx in range(len(dataset)) if idx != sample_id]),
+        batch_size=len(dataset) - 1,
     )
     batch_all = next(iter(loader_all)).to(device)
 
-    loader = MorphologyEmbeddingDataLoader(
-        [sample],
-        shuffle=False,
+    loader = MorphologyDataLoader(
+        dataset.index_select([sample_id]),
+        batch_size=1,
     )
-
     batch = next(iter(loader)).to(device)
+
     batch_input = batch.image.clone().detach().requires_grad_(True)
     batch_input = batch_input.type(torch.FloatTensor)
     batch_input = batch_input.to(device)
@@ -241,9 +240,7 @@ def cnn_model_attributions(model, dataset, sample_id, interpretability_method_cl
         ]
     )
 
-    figsize = (2 * 3, 4)
-
-    fig = Figure(figsize=figsize, dpi=200)
+    fig = Figure(figsize=(2 * 3, 4))
     axs = fig.subplots(1, 2)
 
     # Visualize original image
@@ -287,7 +284,7 @@ def cnn_model_attributions(model, dataset, sample_id, interpretability_method_cl
     # get prediction for this sample
     batch_probabilities = model(batch)
     batch_probabilities = torch.exp(batch_probabilities)
-    prediction = dataset.y_to_label[batch_probabilities.argmax(axis=1)[0].item()]
+    prediction = dataset.y_to_label[batch_probabilities.argmax(dim=1)[0].item()]
     fig.suptitle(
         f"Ground truth: {sample.y_str}\nPrediction: {prediction}",
         fontsize=15,
@@ -308,20 +305,20 @@ def cnn_model_attributions_population(model, dataset):
     }
     average_shap_means: dict[str, Any] = {}
     average_expected_value: dict[str, Any] = {}
-    for sample in dataset:
+    for current_idx, sample in enumerate(dataset):
         class_label = sample.y_str
         average_shap_means[class_label] = []
         average_expected_value[class_label] = []
 
         # class 1
-        dataset_class = [
-            s
-            for s in dataset
-            if sample.morph_name != s.morph_name and s.y_str == class_label
+        ids = [
+            idx
+            for idx, s in enumerate(dataset)
+            if current_idx != idx and s.y_str == class_label
         ]
-        loader_class = MorphologyEmbeddingDataLoader(
-            dataset_class,
-            batch_size=len(dataset_class),
+        loader_class = MorphologyDataLoader(
+            dataset.index_select(ids),
+            batch_size=len(ids),
         )
         batch_class = next(iter(loader_class)).to(device)
         baseline, _ = torch.median(batch_class.image, dim=0)
@@ -331,7 +328,7 @@ def cnn_model_attributions_population(model, dataset):
         baseline = baseline.to(device)
 
         # 1 sample
-        loader = MorphologyEmbeddingDataLoader([sample])
+        loader = MorphologyDataLoader(dataset.index_select([current_idx]))
         batch = next(iter(loader)).to(device)
 
         # Explain
@@ -363,10 +360,10 @@ def cnn_model_attributions_population(model, dataset):
     # population plot
     figures = []
     for class_label in class_labels:
-        dataset_class = [s for s in dataset if s.y_str == class_label]
-        loader_class = MorphologyEmbeddingDataLoader(
-            dataset_class,
-            batch_size=len(dataset_class),
+        ids = [idx for idx, s in enumerate(dataset) if s.y_str == class_label]
+        loader_class = MorphologyDataLoader(
+            dataset.index_select(ids),
+            batch_size=len(ids),
         )
         batch_class = next(iter(loader_class)).to(device)
         baseline, _ = torch.median(batch_class.image, dim=0)
