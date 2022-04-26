@@ -200,7 +200,7 @@ def cnn_model_attributions(model, dataset, sample_id, interpretability_method_cl
     ----------
     model : morphoclass.models.cnnet.CNNet
         Model that will be explained.
-    dataset : morphoclass.data.morphology_dataset.MorphologyEmbeddingDataset
+    dataset : morphoclass.data.morphology_dataset.MorphologyDataset
         Dataset containing embeddings and morphologies.
     sample_id : int
         The id of embedding in the dataset.
@@ -423,7 +423,7 @@ def perslay_model_attributions(model, dataset, sample_id, interpretability_metho
     ----------
     model : morphoclass.models.coriander_net.CorianderNet
         Model that will be explained.
-    dataset : morphoclass.data.morphology_dataset.MorphologyEmbeddingDataset
+    dataset : morphoclass.data.morphology_dataset.MorphologyDataset
         Dataset containing embeddings and morphologies.
     sample_id : int
         The id of embedding in the dataset.
@@ -697,7 +697,7 @@ def sklearn_model_attributions_tree(model, dataset):
     ----------
     model
         Model that will be explained.
-    dataset : morphoclass.data.morphology_dataset.MorphologyEmbeddingDataset
+    dataset : morphoclass.data.morphology_dataset.MorphologyDataset
         Dataset containing embeddings and morphologies.
 
     Returns
