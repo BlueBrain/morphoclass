@@ -215,8 +215,9 @@ def train(
     )
     training_log.set_metrics(metrics_dict, split_metrics(training_log.split_history))
 
-    logger.info(f"Saving checkpoint to {output_checkpoint_dir}")
-    output_checkpoint_dir.parent.mkdir(exist_ok=True, parents=True)
-    training_log.save(output_checkpoint_dir)
+    checkpoint_path = output_checkpoint_dir / "checkpoint.chk"
+    logger.info(f"Saving checkpoint to {checkpoint_path}")
+    checkpoint_path.parent.mkdir(exist_ok=True, parents=True)
+    training_log.save(checkpoint_path)
 
     logger.info("Done!")

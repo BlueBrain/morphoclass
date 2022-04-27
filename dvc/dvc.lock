@@ -20096,8 +20096,9 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/pc-L5-morphometrics-xgb-stratified-k-fold
-      md5: 474d3573e8ceb8bcb6d830ddf2f635d0
+      md5: c6fedeb7deed8b782810dd0b750ac28e.dir
       size: 1430191
+      nfiles: 1
   train-morphometrics@janelia-L6-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/janelia/L6.csv
       --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
@@ -20114,8 +20115,9 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/janelia-L6-morphometrics-xgb-stratified-k-fold
-      md5: 28db69881b2c0ac32cfd1a030d2c5251
+      md5: 073ad85f4abaabaefada95770595d5fa.dir
       size: 1266927
+      nfiles: 1
   train-morphometrics@in-L23-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/interneurons/L23.csv
       --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
@@ -20132,8 +20134,9 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/in-L23-morphometrics-xgb-stratified-k-fold
-      md5: f7fbcc7408e000310190c6c1d341c285
+      md5: cc34eaa050df4c41cd71395dd041b387.dir
       size: 2143279
+      nfiles: 1
   train-morphometrics@in-L5-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/interneurons/L5.csv
       --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
@@ -20150,8 +20153,9 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/in-L5-morphometrics-xgb-stratified-k-fold
-      md5: 049d6168590c1cdeac928ba335c104d6
+      md5: 8511261d3918f954e08de11b52839447.dir
       size: 1919727
+      nfiles: 1
   train-morphometrics@pc-L6-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/pyramidal-cells/L6.csv
       --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
@@ -20168,8 +20172,9 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/pc-L6-morphometrics-xgb-stratified-k-fold
-      md5: 1dfc70efb134741925c9033a54578adc
+      md5: dfc0999af209b111fa2e895c0663d396.dir
       size: 1604591
+      nfiles: 1
   train-morphometrics@in-L1-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/interneurons/L1.csv
       --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
@@ -20186,8 +20191,9 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/in-L1-morphometrics-xgb-stratified-k-fold
-      md5: 36379125805851adf5084e1fb60da65f
+      md5: f50d6915a2ed8403dcbb5d3f54cf3639.dir
       size: 1555887
+      nfiles: 1
   train-morphometrics@pc-L4-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/pyramidal-cells/L4.csv
       --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
@@ -20204,8 +20210,9 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/pc-L4-morphometrics-xgb-stratified-k-fold
-      md5: e81c0806fe8c35c5a82a25bba2c97037
+      md5: 9d7abcb92d5c570f6e4b845e03a585e9.dir
       size: 869551
+      nfiles: 1
   train-morphometrics@in-L4-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/interneurons/L4.csv
       --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
@@ -20222,8 +20229,9 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/in-L4-morphometrics-xgb-stratified-k-fold
-      md5: 08c6856b92b96dd7bf7ffc819b6a74c2
+      md5: 703bbc2344770d1be5d7ca63b6915cc1.dir
       size: 1928111
+      nfiles: 1
   train-morphometrics@janelia-L5-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/janelia/L5.csv
       --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
@@ -20240,8 +20248,9 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/janelia-L5-morphometrics-xgb-stratified-k-fold
-      md5: 296148ad0590b47cc73f9f4f348041c0
+      md5: c85e4853257a4bca8c3f3a82cb869847.dir
       size: 981295
+      nfiles: 1
   train-morphometrics@in-L6-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/interneurons/L6.csv
       --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
@@ -20258,8 +20267,9 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/in-L6-morphometrics-xgb-stratified-k-fold
-      md5: 21ddef82ed5e997e4a9f317e549072da
+      md5: 386cce25eff78c6a2d990c11022c5b9c.dir
       size: 1117615
+      nfiles: 1
   train-morphometrics@pc-L2-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/pyramidal-cells/L2.csv
       --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
@@ -20276,8 +20286,9 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/pc-L2-morphometrics-xgb-stratified-k-fold
-      md5: 6b56f469e772e88b984553cbf4750d38
+      md5: 75f3c392a0f228653d31752871fb632e.dir
       size: 689647
+      nfiles: 1
   train-morphometrics@pc-L3-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/pyramidal-cells/L3.csv
       --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
@@ -20294,5 +20305,6 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/pc-L3-morphometrics-xgb-stratified-k-fold
-      md5: 67b2f06c6e9ec438afbb07c2dc520739
+      md5: 58b2d8468f43c7e66080520dd90f5aed.dir
       size: 494127
+      nfiles: 1
