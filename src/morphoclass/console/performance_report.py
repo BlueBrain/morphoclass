@@ -27,7 +27,7 @@ from matplotlib.figure import Figure
 from pandas.io.formats.style import Styler
 
 import morphoclass as mc
-import morphoclass.report
+import morphoclass.report.plumbing
 from morphoclass.data import MorphologyDataset
 from morphoclass.types import StrPath
 from morphoclass.utils import dict2kwargs
@@ -172,8 +172,8 @@ def make_performance_report(checkpoint_dir: StrPath, output_dir: StrPath) -> Non
     df_style.set_table_styles([{"selector": "th, td", "props": cell_style}])
 
     # generate a HTML report
-    template = mc.report.load_template("results-table")
-    mc.report.render(template, {"df_results": df_style.render()}, results_file)
+    template = mc.report.plumbing.load_template("results-table")
+    mc.report.plumbing.render(template, {"df_results": df_style.render()}, results_file)
     logger.info(f"Report stored in: {results_file}")
 
     logger.info("Done.")
@@ -312,14 +312,14 @@ def visualize_model_performance(data: dict, results_file: pathlib.Path) -> None:
     """
 
     # generate an HTML report
-    template = mc.report.load_template("performance-report")
+    template = mc.report.plumbing.load_template("performance-report")
     template_vars = {
         "result_parameters": result_parameters,
         "result_performance_images": result_performance_images,
         "result_report": report_html,
     }
     results_file.parent.mkdir(exist_ok=True, parents=True)
-    mc.report.render(template, template_vars, results_file)
+    mc.report.plumbing.render(template, template_vars, results_file)
 
 
 def visualize_cleanlab_outliers(data, results_file, cached_figures, image_directory):
@@ -395,10 +395,10 @@ def visualize_cleanlab_outliers(data, results_file, cached_figures, image_direct
         {cleanlab_outliers}
     """
     # generate an HTML report
-    template = mc.report.load_template("detected-outliers")
+    template = mc.report.plumbing.load_template("detected-outliers")
     template_vars = {"cleanlab_outliers_html": cleanlab_outliers_html}
     results_file.parent.mkdir(exist_ok=True, parents=True)
-    mc.report.render(template, template_vars, results_file)
+    mc.report.plumbing.render(template, template_vars, results_file)
 
 
 def visualize_latent_features(data, results_file):
@@ -473,7 +473,7 @@ def visualize_latent_features(data, results_file):
         )
 
     # generate an HTML cleanlab report
-    template = mc.report.load_template("latent-features")
+    template = mc.report.plumbing.load_template("latent-features")
     template_vars = {"latent_features_html": latent_features_html}
     results_file.parent.mkdir(exist_ok=True, parents=True)
-    mc.report.render(template, template_vars, results_file)
+    mc.report.plumbing.render(template, template_vars, results_file)

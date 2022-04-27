@@ -24,7 +24,7 @@ import torch
 from pandas.io.formats.style import Styler
 
 import morphoclass as mc
-import morphoclass.report
+import morphoclass.report.plumbing
 from morphoclass.types import StrPath
 
 logger = logging.getLogger(__name__)
@@ -109,8 +109,8 @@ def make_performance_table(
     df_style.set_table_styles([{"selector": "th, td", "props": cell_style}])
 
     # generate a HTML report
-    template = mc.report.load_template("results-table")
-    mc.report.render(template, {"df_results": df_style.render()}, results_file)
+    template = mc.report.plumbing.load_template("results-table")
+    mc.report.plumbing.render(template, {"df_results": df_style.render()}, results_file)
     logger.info(f"Report stored in: {results_file.resolve().as_uri()}")
 
     logger.info("Done.")

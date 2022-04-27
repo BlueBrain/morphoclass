@@ -28,7 +28,7 @@ from morphoclass.console import cmd_performance_table
 from morphoclass.console import cmd_plot_dataset_stats
 from morphoclass.console import cmd_preprocess_dataset
 from morphoclass.console import cmd_train
-from morphoclass.console import explain_models
+from morphoclass.console import cmd_xai
 from morphoclass.console import outlier_detection
 from morphoclass.console import transfer_learning
 
@@ -134,7 +134,7 @@ def cli(verbose: int, log_file_path: pathlib.Path | None) -> None:
 
 cli.add_command(transfer_learning.cli)
 cli.add_command(outlier_detection.cli)
-cli.add_command(explain_models.cli)
+cli.add_command(cmd_xai.cli)
 cli.add_command(cmd_performance_report.cli)
 cli.add_command(cmd_organise_dataset.cli)
 cli.add_command(cmd_plot_dataset_stats.cli)

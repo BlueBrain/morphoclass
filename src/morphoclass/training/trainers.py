@@ -428,18 +428,18 @@ class Trainer:
                 self.optimizer.step()
 
             # Eval
-            train_losses, train_probas, train_labels = self.predict(
+            train_losses, train_logits, train_labels = self.predict(
                 train_idx, batch_size
             )
             train_loss = train_losses.mean().item()
-            train_acc = self.acc(train_labels, train_probas)
+            train_acc = self.acc(train_labels, train_logits)
             train_loss_history.append(train_loss)
             train_acc_history.append(train_acc)
 
             if val_idx is not None:
-                val_losses, val_probas, val_labels = self.predict(val_idx, batch_size)
+                val_losses, val_logits, val_labels = self.predict(val_idx, batch_size)
                 val_loss = val_losses.mean().item()
-                val_acc = self.acc(val_labels, val_probas)
+                val_acc = self.acc(val_labels, val_logits)
                 val_loss_history.append(val_loss)
                 val_acc_history.append(val_acc)
 
@@ -464,21 +464,21 @@ class Trainer:
             self.net.load_state_dict(best_state_dict)
 
         # Evaluate on final model and create the history dict
-        train_losses, train_probas, train_labels = self.predict(train_idx, batch_size)
+        train_losses, train_logits, train_labels = self.predict(train_idx, batch_size)
         history = {
             "train_loss_final": train_losses.mean().item(),
-            "train_acc_final": self.acc(train_labels, train_probas),
+            "train_acc_final": self.acc(train_labels, train_logits),
             "train_loss": train_loss_history,
             "train_acc": train_acc_history,
         }
         if val_idx is not None:
-            val_losses, val_probas, val_labels = self.predict(val_idx, batch_size)
+            val_losses, val_logits, val_labels = self.predict(val_idx, batch_size)
             history.update(
                 {
-                    "probabilities": val_probas.cpu().numpy(),
-                    "predictions": val_probas.argmax(dim=1).cpu().numpy(),
+                    "probabilities": val_logits.exp().cpu().numpy(),
+                    "predictions": val_logits.argmax(dim=1).cpu().numpy(),
                     "val_loss_final": val_losses.mean().cpu().numpy(),
-                    "val_acc_final": self.acc(val_labels, val_probas),
+                    "val_acc_final": self.acc(val_labels, val_logits),
                     "val_loss": val_loss_history,
                     "val_acc": val_acc_history,
                 }
@@ -509,13 +509,13 @@ class Trainer:
         -------
         losses : torch.Tensor
             The non-reduced loss per sample.
-        probas : torch.Tensor
-            The predicted probabilities.
+        logits : torch.Tensor
+            The predicted logits.
         labels : torch.Tensor
             All sample labels.
         """
         self.net.eval()
-        probas = []
+        logits = []
         losses = []
         labels = []
         with torch.no_grad():
@@ -523,11 +523,11 @@ class Trainer:
                 batch = batch.to(self.device)
                 out = self.net(batch)
                 loss = nnf.nll_loss(out, batch.y, reduction="none")
-                probas.append(out)
+                logits.append(out)
                 losses.append(loss)
                 labels.append(batch.y)
 
-        return torch.cat(losses), torch.cat(probas), torch.cat(labels)
+        return torch.cat(losses), torch.cat(logits), torch.cat(labels)
 
     @staticmethod
     def acc(labels: torch.Tensor, probas: torch.Tensor) -> float:

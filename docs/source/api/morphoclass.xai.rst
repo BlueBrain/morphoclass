@@ -1,14 +1,6 @@
 morphoclass.xai package
 =======================
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   morphoclass.xai.reports
-
 Submodules
 ----------
 
