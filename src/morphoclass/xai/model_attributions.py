@@ -1,4 +1,4 @@
-# Copyright © 2022 Blue Brain Project/EPFL
+# Copyright © 2022-2022 Blue Brain Project/EPFL
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 """Explain model layers using GradShap."""
 from __future__ import annotations
 
-import sys
+import logging
 import textwrap
 from typing import Any
 
@@ -31,7 +31,6 @@ from tmd.Topology.persistent_properties import NoProperty
 from tmd.view.common import jet_map
 
 from morphoclass.data import MorphologyDataLoader
-from morphoclass.data import MorphologyEmbeddingDataLoader
 from morphoclass.training import reset_seeds
 from morphoclass.vis import plot_barcode_enhanced
 from morphoclass.vis import plot_diagram_enhanced
@@ -39,6 +38,8 @@ from morphoclass.vis import plot_tree
 from morphoclass.xai.node_saliency import plot_node_saliency
 
 # from captum.attr import GradientShap
+
+logger = logging.getLogger(__name__)
 
 
 def gnn_model_attributions(model, dataset, sample_id, interpretability_method_cls):
@@ -199,10 +200,12 @@ def cnn_model_attributions(model, dataset, sample_id, interpretability_method_cl
     ----------
     model : morphoclass.models.cnnet.CNNet
         Model that will be explained.
-    dataset : morphoclass.data.morphology_dataset.MorphologyEmbeddingDataset
+    dataset : morphoclass.data.morphology_dataset.MorphologyDataset
         Dataset containing embeddings and morphologies.
     sample_id : int
         The id of embedding in the dataset.
+    interpretability_method_cls
+        An interpretability class from ``captum.attr``.
 
     Returns
     -------
@@ -211,24 +214,21 @@ def cnn_model_attributions(model, dataset, sample_id, interpretability_method_cl
     """
     reset_seeds(numpy_seed=0, torch_seed=0)
 
-    sample_id = int(sample_id)
+    device = next(model.parameters()).device
     sample = dataset[sample_id]
 
-    device = next(model.parameters()).device
-
-    dataset_all = [s for s in dataset if sample.morph_name != s.morph_name]
-    loader_all = MorphologyEmbeddingDataLoader(
-        dataset_all,
-        shuffle=False,
+    loader_all = MorphologyDataLoader(
+        dataset.index_select([idx for idx in range(len(dataset)) if idx != sample_id]),
+        batch_size=len(dataset) - 1,
     )
     batch_all = next(iter(loader_all)).to(device)
 
-    loader = MorphologyEmbeddingDataLoader(
-        [sample],
-        shuffle=False,
+    loader = MorphologyDataLoader(
+        dataset.index_select([sample_id]),
+        batch_size=1,
     )
-
     batch = next(iter(loader)).to(device)
+
     batch_input = batch.image.clone().detach().requires_grad_(True)
     batch_input = batch_input.type(torch.FloatTensor)
     batch_input = batch_input.to(device)
@@ -241,9 +241,7 @@ def cnn_model_attributions(model, dataset, sample_id, interpretability_method_cl
         ]
     )
 
-    figsize = (2 * 3, 4)
-
-    fig = Figure(figsize=figsize, dpi=200)
+    fig = Figure(figsize=(2 * 3, 4))
     axs = fig.subplots(1, 2)
 
     # Visualize original image
@@ -287,7 +285,7 @@ def cnn_model_attributions(model, dataset, sample_id, interpretability_method_cl
     # get prediction for this sample
     batch_probabilities = model(batch)
     batch_probabilities = torch.exp(batch_probabilities)
-    prediction = dataset.y_to_label[batch_probabilities.argmax(axis=1)[0].item()]
+    prediction = dataset.y_to_label[batch_probabilities.argmax(dim=1)[0].item()]
     fig.suptitle(
         f"Ground truth: {sample.y_str}\nPrediction: {prediction}",
         fontsize=15,
@@ -308,20 +306,20 @@ def cnn_model_attributions_population(model, dataset):
     }
     average_shap_means: dict[str, Any] = {}
     average_expected_value: dict[str, Any] = {}
-    for sample in dataset:
+    for current_idx, sample in enumerate(dataset):
         class_label = sample.y_str
         average_shap_means[class_label] = []
         average_expected_value[class_label] = []
 
         # class 1
-        dataset_class = [
-            s
-            for s in dataset
-            if sample.morph_name != s.morph_name and s.y_str == class_label
+        ids = [
+            idx
+            for idx, s in enumerate(dataset)
+            if current_idx != idx and s.y_str == class_label
         ]
-        loader_class = MorphologyEmbeddingDataLoader(
-            dataset_class,
-            batch_size=len(dataset_class),
+        loader_class = MorphologyDataLoader(
+            dataset.index_select(ids),
+            batch_size=len(ids),
         )
         batch_class = next(iter(loader_class)).to(device)
         baseline, _ = torch.median(batch_class.image, dim=0)
@@ -331,7 +329,7 @@ def cnn_model_attributions_population(model, dataset):
         baseline = baseline.to(device)
 
         # 1 sample
-        loader = MorphologyEmbeddingDataLoader([sample])
+        loader = MorphologyDataLoader(dataset.index_select([current_idx]))
         batch = next(iter(loader)).to(device)
 
         # Explain
@@ -363,10 +361,10 @@ def cnn_model_attributions_population(model, dataset):
     # population plot
     figures = []
     for class_label in class_labels:
-        dataset_class = [s for s in dataset if s.y_str == class_label]
-        loader_class = MorphologyEmbeddingDataLoader(
-            dataset_class,
-            batch_size=len(dataset_class),
+        ids = [idx for idx, s in enumerate(dataset) if s.y_str == class_label]
+        loader_class = MorphologyDataLoader(
+            dataset.index_select(ids),
+            batch_size=len(ids),
         )
         batch_class = next(iter(loader_class)).to(device)
         baseline, _ = torch.median(batch_class.image, dim=0)
@@ -409,9 +407,7 @@ def cnn_model_attributions_population(model, dataset):
     return figures, class_labels
 
 
-def perslay_model_attributions(
-    model, dataset, sample_id, interpretability_method_cls, aggregation_fn=np.sum
-):
+def perslay_model_attributions(model, dataset, sample_id, interpretability_method_cls):
     """Explain PersLay model.
 
     Plot with 3 rows:
@@ -427,40 +423,37 @@ def perslay_model_attributions(
     ----------
     model : morphoclass.models.coriander_net.CorianderNet
         Model that will be explained.
-    dataset : morphoclass.data.morphology_dataset.MorphologyEmbeddingDataset
+    dataset : morphoclass.data.morphology_dataset.MorphologyDataset
         Dataset containing embeddings and morphologies.
     sample_id : int
         The id of embedding in the dataset.
-    aggregation_fn : callable, default np.sum
-        The attributions aggregation function, usually sum, mean, max.
+    interpretability_method_cls
+        An interpretability class from ``captum.attr``.
 
     Returns
     -------
     fig : matplotlib.figure.Figure
-        Figure with explainable plots.
+        A figure with explainable plots.
     """
     reset_seeds(numpy_seed=0, torch_seed=0)
 
-    sample_id = int(sample_id)
+    device = next(model.parameters()).device
     sample = dataset[sample_id]
 
-    device = next(model.parameters()).device
-
-    dataset_all = [s for s in dataset if sample.morph_name != s.morph_name]
-    loader_all = MorphologyEmbeddingDataLoader(
-        dataset_all,
-        shuffle=False,
+    loader_all = MorphologyDataLoader(
+        dataset.index_select([idx for idx in range(len(dataset)) if idx != sample_id]),
+        batch_size=len(dataset) - 1,
     )
     batch_all = next(iter(loader_all)).to(device)
 
-    loader = MorphologyEmbeddingDataLoader(
-        [sample],
-        shuffle=False,
+    loader = MorphologyDataLoader(
+        dataset.index_select([sample_id]),
+        batch_size=1,
     )
     batch = next(iter(loader)).to(device)
 
-    batch_input1 = batch.point_index.unsqueeze(dim=1)
-    batch_input2 = batch.embedding
+    batch_input1 = batch.diagram_batch.unsqueeze(dim=1)
+    batch_input2 = batch.diagram
     batch_input = (
         torch.cat([batch_input2, batch_input1], dim=1)
         .clone()
@@ -470,38 +463,33 @@ def perslay_model_attributions(
     batch_input = batch_input.to(device)
     batch_target = batch.y
 
-    batch_all_input1 = batch_all.point_index.unsqueeze(dim=1)
-    batch_all_input2 = batch_all.embedding
+    batch_all_input1 = batch_all.diagram_batch.unsqueeze(dim=1)
+    batch_all_input2 = batch_all.diagram
     batch_all_input = torch.cat([batch_all_input2, batch_all_input1], dim=1)
     baseline_all = torch.cat([batch_all_input, batch_all_input])
 
-    figsize = (2 * 6, 14)
-
-    fig = Figure(figsize=figsize, dpi=200)
+    fig = Figure(figsize=(2 * 6, 14))
     axs = fig.subplots(3, 2)
-
-    pd = sample.embedding
-    tree = sample.morphology.tmd_neurites[0]
+    pd = sample.diagram
 
     # Visualize original
     axs[0][0].set_title("Original\nBarcode")
     pd_weights = np.array([[a] for a in np.ones(len(pd))])
     pd_enhanced = np.concatenate([pd, pd_weights], axis=1).tolist()
-    CS3, colors = plot_barcode_enhanced(pd_enhanced, axs[0][0])
+    plot_barcode_enhanced(pd_enhanced, axs[0][0])
     fig.subplots_adjust(wspace=0.2, hspace=0.3)
 
     axs[1][0].set_title("Original PD")
     pd_weights = np.array([[a] for a in np.ones(len(pd))])
     pd_enhanced = np.concatenate([pd, pd_weights], axis=1).tolist()
-    CS3, colors = plot_diagram_enhanced(pd_enhanced, axs[1][0])
+    plot_diagram_enhanced(pd_enhanced, axs[1][0])
 
     axs[2][0].set_title("Original\nGraph")
-    plot_tree(tree, axs[2][0], node_size=1.0, edge_color="k", width=2)
+    for neurite in sample.tmd_neurites:
+        plot_tree(neurite, axs[2][0], node_size=1.0, edge_color="k", width=2)
 
     # Visualize shap on all samples
-    interpretability_method = interpretability_method_cls(
-        model,
-    )
+    interpretability_method = interpretability_method_cls(model)
     kwargs = {}
     if "Shap" in interpretability_method.__class__.__name__:
         kwargs = {"baselines": baseline_all}
@@ -536,23 +524,24 @@ def perslay_model_attributions(
     axs[0][1].set_title(f"Barcode {interpretability_method_cls.__name__}")
     pd_weights = np.array([[sum(a)] for a in attributions])
     pd_enhanced = np.concatenate([pd, pd_weights], axis=1).tolist()
-    CS3, colors = plot_barcode_enhanced(pd_enhanced, axs[0][1])
-    fig.colorbar(CS3, ax=axs[0][1], format="%.2f", fraction=0.046, pad=0.04)
+    cs3, colors = plot_barcode_enhanced(pd_enhanced, axs[0][1])
+    fig.colorbar(cs3, ax=axs[0][1], format="%.2f", fraction=0.046, pad=0.04)
 
     axs[1][1].set_title(f"PD {interpretability_method_cls.__name__}")
     pd_weights = np.array([[sum(a)] for a in attributions])
     pd_enhanced = np.concatenate([pd, pd_weights], axis=1).tolist()
-    CS3, colors = plot_diagram_enhanced(pd_enhanced, axs[1][1])
-    fig.colorbar(CS3, ax=axs[1][1], format="%.2f", fraction=0.046, pad=0.04)
+    cs3, colors = plot_diagram_enhanced(pd_enhanced, axs[1][1])
+    fig.colorbar(cs3, ax=axs[1][1], format="%.2f", fraction=0.046, pad=0.04)
 
     axs[2][1].set_title(f"Graph {interpretability_method_cls.__name__}")
-    color_edges = get_edges_colors_based_on_barcode_colors(tree, colors)
-    plot_tree(tree, axs[2][1], node_size=1.0, edge_color=color_edges, width=2)
+    for neurite in sample.tmd_neurites:
+        color_edges = get_edges_colors_based_on_barcode_colors(neurite, colors)
+        plot_tree(neurite, axs[2][1], node_size=1.0, edge_color=color_edges, width=2)
 
     # get prediction for this sample
     batch_probabilities = model(batch)
     batch_probabilities = torch.exp(batch_probabilities)  # .detach().cpu().numpy()
-    prediction = dataset.y_to_label[batch_probabilities.argmax(axis=1)[0].item()]
+    prediction = dataset.y_to_label[batch_probabilities.argmax(dim=1)[0].item()]
     fig.suptitle(
         f"Ground truth: {sample.y_str}\nPrediction: {prediction}",
         fontsize=15,
@@ -603,94 +592,84 @@ def sklearn_model_attributions_shap(model, dataset, sample_id):
     """Explain sklearn model.
 
     Plot with feature maps after each feature extractor layer.
-    Starting from original image to the last featrue extractor layer.
+    Starting from original image to the last feature extractor layer.
     Only one morphology sample is visualized.
 
     Parameters
     ----------
     model
         Model that will be explained.
-    dataset : morphoclass.data.morphology_dataset.MorphologyEmbeddingDataset
+    dataset : morphoclass.data.morphology_dataset.MorphologyDataset
         Dataset containing embeddings and morphologies.
     sample_id : int
         The id of embedding in the dataset.
-    aggregation_fn : callable, default np.sum
-        The attributions aggregation function, usually sum, mean, max.
 
     Returns
     -------
     fig : matplotlib.figure.Figure
-        Figure with explainable plots.
+        A figure with explainable plots.
     """
     reset_seeds(numpy_seed=0, torch_seed=0)
 
-    sample_id = int(sample_id)
+    unique_ys = sorted(dataset.y_to_label.keys())
+    unique_labels = [dataset.y_to_label[y] for y in unique_ys]
+
+    fig = Figure(figsize=((len(unique_labels) + 2) * 3, 4))
+    ax_orig, *axs = fig.subplots(1, 1 + len(unique_labels) + 1)
+
+    # get prediction for this sample
     sample = dataset[sample_id]
-
-    module = sys.modules[__name__]
-
-    labels_ids = sorted(dataset.y_to_label.keys())
-    labels_unique = [dataset.y_to_label[s] for s in labels_ids]
-
-    for label in labels_unique:
-        dataset_class = [
-            s for s in dataset if s.y_str == label and sample.morph_name != s.morph_name
-        ]
-        loader_class = MorphologyEmbeddingDataLoader(
-            dataset_class,
-            shuffle=False,
-        )
-        batch_class = next(iter(loader_class))
-        setattr(module, f"dataset_class_{label}", dataset_class)
-        setattr(module, f"loader_class_{label}", loader_class)
-        setattr(module, f"batch_class_{label}", batch_class)
-
-    dataset_all = [s for s in dataset if sample.morph_name != s.morph_name]
-    loader_all = MorphologyEmbeddingDataLoader(
-        dataset_all,
-        shuffle=False,
+    flat_img = sample.image.cpu().numpy().reshape((1, 100 * 100))
+    (y_pred,) = model.predict(flat_img)
+    fig.suptitle(
+        f"Ground truth: {sample.y_str}\nPrediction: {dataset.y_to_label[y_pred]}",
+        fontsize=15,
+        weight=30,
     )
-    batch_all = next(iter(loader_all))
-
-    loader = MorphologyEmbeddingDataLoader(
-        [sample],
-        shuffle=False,
-    )
-
-    batch = next(iter(loader))
-
-    batch_input = batch.image.numpy()
-
-    for label in labels_unique:
-        batch_class = getattr(module, f"batch_class_{label}")
-        baseline = torch.cat(
-            [
-                batch_class.image.mean(axis=0).reshape(batch_input.shape),
-                batch_class.image.mean(axis=0).reshape(batch_input.shape),
-            ]
-        )
-        setattr(module, f"baseline_{label}", baseline)
-
-    figsize = ((len(labels_unique) + 2) * 3, 4)
-
-    fig = Figure(figsize=figsize, dpi=200)
-    axs = fig.subplots(1, len(labels_unique) + 1)
 
     # Visualize original image
-    _ = viz.visualize_image_attr(
+    viz.visualize_image_attr(
         None,
-        np.transpose(batch_input.reshape((1, 1, 100, 100)), (2, 3, 0, 1)),
+        np.transpose(flat_img.reshape((1, 1, 100, 100)), (2, 3, 0, 1)),
         method="original_image",
         title="Original Image",
-        plt_fig_axis=(fig, axs[0]),
+        plt_fig_axis=(fig, ax_orig),
     )
 
-    explainer = shap.Explainer(model, batch_all.image.numpy().reshape((-1, 100 * 100)))
-    attributions = explainer.shap_values(batch.image.numpy().reshape((-1, 100 * 100)))
-
     text = ""
-    for index, label in enumerate(labels_unique, start=1):
-        attributions_class = attributions[index - 1]
+    for ax, label in zip(axs, unique_labels):
+        logger.info(f"Computing SHAP for baseline label {label}")
+
+        # prepare data
+        ids = [
+            idx
+            for idx, s in enumerate(dataset)
+            if s.y_str == label and idx != sample_id
+        ]
+        dataset_class = dataset.index_select(ids)
+        loader_class = MorphologyDataLoader(
+            dataset_class,
+            batch_size=len(ids),
+        )
+        batch_class = next(iter(loader_class))
+        baseline = torch.cat(
+            [
+                batch_class.image.mean(axis=0).reshape(flat_img.shape),
+                batch_class.image.mean(axis=0).reshape(flat_img.shape),
+            ]
+        )
+
+        # explain
+        explainer = shap.Explainer(
+            model.predict,
+            baseline.numpy().reshape((-1, 100 * 100)),
+        )
+        attributions = explainer(flat_img).values
+        attributions_class = attributions[0]
+        if np.abs(attributions_class).max() == 0:
+            logger.error("All attributions are zero - cannot visualise; skipping.")
+            fig.delaxes(ax)
+            continue
         attributions_class = attributions_class / np.abs(attributions_class).max()
         attributions_image = attributions_class.reshape((100, 100))
         x_coordinate, y_coordinate = np.where(attributions_image > 0)
@@ -701,20 +680,13 @@ def sklearn_model_attributions_shap(model, dataset, sample_id):
 
         _ = viz.visualize_image_attr(
             np.transpose(attributions_class.reshape((1, 1, 100, 100)), (2, 3, 0, 1)),
-            np.transpose(batch_input.reshape((1, 1, 100, 100)), (2, 3, 0, 1)),
+            np.transpose(flat_img.reshape((1, 1, 100, 100)), (2, 3, 0, 1)),
             method="blended_heat_map",
             title=f"Baseline: {label} - {number_of_important_features} pixel(s)",
-            plt_fig_axis=(fig, axs[index]),
+            plt_fig_axis=(fig, ax),
             cmap=jet_map,
         )
-    # get prediction for this sample
-    prediction = model.predict(batch.image.numpy().reshape((-1, 100 * 100)))
-    prediction = dataset.y_to_label[prediction[0]]
-    fig.suptitle(
-        f"Ground truth: {sample.y_str}\nPrediction: {prediction}",
-        fontsize=15,
-        weight=30,
-    )
+
     return fig, text
 
 
@@ -725,7 +697,7 @@ def sklearn_model_attributions_tree(model, dataset):
     ----------
     model
         Model that will be explained.
-    dataset : morphoclass.data.morphology_dataset.MorphologyEmbeddingDataset
+    dataset : morphoclass.data.morphology_dataset.MorphologyDataset
         Dataset containing embeddings and morphologies.
 
     Returns
@@ -739,11 +711,11 @@ def sklearn_model_attributions_tree(model, dataset):
     # TODO: Get rid of pyplot. Problem: AttributeError: 'FigureCanvasBase'
     #       object has no attribute 'get_renderer'
     # from matplotlib.figure import Figure
-    # fig = Figure(figsize=(10,10), dpi=70)
+    # fig = Figure(figsize=(20, 20), tight_layout=True)
     # ax = fig.subplots()
     import matplotlib.pyplot as plt
 
-    fig, ax = plt.subplots(figsize=(20, 20), dpi=200)
+    fig, ax = plt.subplots(figsize=(20, 20), tight_layout=True)
 
     feature_names = [f"pixel [{x}, {y}]" for x in range(100) for y in range(100)]
     tree.plot_tree(model, feature_names=feature_names, class_names=labels_unique, ax=ax)

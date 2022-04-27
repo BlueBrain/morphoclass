@@ -1,4 +1,4 @@
-# Copyright © 2022 Blue Brain Project/EPFL
+# Copyright © 2022-2022 Blue Brain Project/EPFL
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,7 +20,8 @@ import textwrap
 
 import numpy as np
 
-from morphoclass import report
+import morphoclass as mc
+import morphoclass.report.plumbing
 
 # from morphoclass.console.train import split_metrics
 from morphoclass.data import MorphologyDataset
@@ -159,14 +160,14 @@ def visualize_model_performance(
     #     )
 
     logger.info(f"Rendering the performance report to {report_path.resolve().as_uri()}")
-    template = report.load_template("performance-report")
+    template = mc.report.plumbing.load_template("performance-report")
     template_vars = {
         "result_parameters": result_parameters,
         # "result_performance_images": result_performance_images,
         "result_report": report_html,
     }
     report_path.parent.mkdir(exist_ok=True, parents=True)
-    report.render(template, template_vars, report_path)
+    mc.report.plumbing.render(template, template_vars, report_path)
 
 
 def visualize_latent_features(
@@ -239,10 +240,10 @@ def visualize_latent_features(
     logger.info(
         f"Rendering the latent features report to {report_path.resolve().as_uri()}"
     )
-    template = report.load_template("latent-features")
+    template = mc.report.plumbing.load_template("latent-features")
     template_vars = {"latent_features_html": latent_features_html}
     report_path.parent.mkdir(exist_ok=True, parents=True)
-    report.render(template, template_vars, report_path)
+    mc.report.plumbing.render(template, template_vars, report_path)
 
 
 def visualize_cleanlab_outliers(
@@ -323,7 +324,7 @@ def visualize_cleanlab_outliers(
     logger.info(
         f"Rendering the cleanlab outliers report to {report_path.resolve().as_uri()}"
     )
-    template = report.load_template("detected-outliers")
+    template = mc.report.plumbing.load_template("detected-outliers")
     template_vars = {"cleanlab_outliers_html": cleanlab_outliers_html}
     report_path.parent.mkdir(exist_ok=True, parents=True)
-    report.render(template, template_vars, report_path)
+    mc.report.plumbing.render(template, template_vars, report_path)

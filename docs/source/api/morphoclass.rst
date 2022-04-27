@@ -13,6 +13,7 @@ Subpackages
    morphoclass.layers
    morphoclass.models
    morphoclass.morphometrics
+   morphoclass.report
    morphoclass.training
    morphoclass.transforms
    morphoclass.unsupervised
@@ -31,7 +32,6 @@ Submodules
    morphoclass.metrics
    morphoclass.model_utils
    morphoclass.orientation
-   morphoclass.report
    morphoclass.serialization
    morphoclass.types
    morphoclass.utils

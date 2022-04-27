@@ -1,4 +1,4 @@
-# Copyright © 2022 Blue Brain Project/EPFL
+# Copyright © 2022-2022 Blue Brain Project/EPFL
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,7 +25,8 @@ from matplotlib.figure import Figure
 from morphio import Morphology
 from tmd.Topology.methods import get_persistence_diagram
 
-from morphoclass import report
+import morphoclass as mc
+import morphoclass.report.plumbing
 from morphoclass.vis import plot_counts_per_layer
 from morphoclass.vis import plot_counts_per_subclass
 from morphoclass.vis import plot_histogram
@@ -231,6 +232,6 @@ class DatasetStatsPlotter:
     def save_report(self, report_title: str = "Dataset Plots") -> None:
         """Save the HTML report to disk."""
         self.template_vars["report_title"] = report_title
-        template = report.load_template("plot-dataset-stats")
+        template = mc.report.plumbing.load_template("plot-dataset-stats")
         self.report_dir.mkdir(exist_ok=True, parents=True)
-        report.render(template, self.template_vars, self.report_path)
+        mc.report.plumbing.render(template, self.template_vars, self.report_path)

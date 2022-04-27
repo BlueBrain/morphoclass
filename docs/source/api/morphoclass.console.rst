@@ -16,10 +16,9 @@ Submodules
    morphoclass.console.cmd_plot_dataset_stats
    morphoclass.console.cmd_preprocess_dataset
    morphoclass.console.cmd_train
+   morphoclass.console.cmd_xai
    morphoclass.console.dataset_preprocessor
    morphoclass.console.evaluate
-   morphoclass.console.explain
-   morphoclass.console.explain_models
    morphoclass.console.helpers
    morphoclass.console.main
    morphoclass.console.outlier_detection

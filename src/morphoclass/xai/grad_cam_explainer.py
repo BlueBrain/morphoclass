@@ -1,4 +1,4 @@
-# Copyright © 2022 Blue Brain Project/EPFL
+# Copyright © 2022-2022 Blue Brain Project/EPFL
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -62,8 +62,8 @@ class GradCAMExplainer:
         ----------
         sample
             A morphology data sample.
-        loader_cls : morphoclass.data.MorphologyDataLoader,
-                     morphoclass.data.MorphologyEmbeddingDataLoader
+        loader_cls : type[morphoclass.data.MorphologyDataLoader],
+                     type[morphoclass.data.MorphologyEmbeddingDataLoader]
             A data loader class.
         cls_idx : int (optional)
             The numerical class of the sample. If not provided then the model

@@ -1,4 +1,4 @@
-# Copyright © 2022 Blue Brain Project/EPFL
+# Copyright © 2022-2022 Blue Brain Project/EPFL
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,7 +23,8 @@ from morph_tool import diff
 from morph_tool.morphdb import MorphDB
 from morphio import Morphology
 
-from morphoclass import report
+import morphoclass as mc
+import morphoclass.report.plumbing
 from morphoclass.constants import DatasetType
 
 logger = logging.getLogger(__name__)
@@ -203,5 +204,5 @@ class Preprocessor:
         logger.info(f"Saving the report file to {self.report_path.resolve().as_uri()}")
         self.template_vars["report_title"] = report_title
         self.report_path.parent.mkdir(exist_ok=True, parents=True)
-        template = report.load_template("preprocess-report")
-        report.render(template, self.template_vars, self.report_path)
+        template = mc.report.plumbing.load_template("preprocess-report")
+        mc.report.plumbing.render(template, self.template_vars, self.report_path)

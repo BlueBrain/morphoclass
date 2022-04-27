@@ -1,4 +1,4 @@
-# Copyright © 2022 Blue Brain Project/EPFL
+# Copyright © 2022-2022 Blue Brain Project/EPFL
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,20 +11,87 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Implementation fo the `morphoclass explain` CLI command."""
+"""XAI subcommands."""
 from __future__ import annotations
 
+import logging
+import os
 import pathlib
 import tempfile
 from datetime import datetime
 
 import click
 
-import morphoclass as mc
+logger = logging.getLogger(__name__)
 
 
-@click.command()
-@click.help_option("-h", "--help")
+@click.group(
+    name="xai",
+    short_help="Explain model predictions",
+    help="""
+    Use explainable AI (XAI) to understand the model predictions.
+
+    Please use one of the available commands listed below.
+    """,
+    add_help_option=False,
+)
+def cli():
+    """Run the "xai" subcommand."""
+    pass
+
+
+@cli.command(name="report", help="Create an XAI report")
+@click.option(
+    "--checkpoint-path",
+    type=click.Path(dir_okay=False),
+    required=True,
+    help="Path to a model checkpoint.",
+)
+@click.option(
+    "--output-dir",
+    required=True,
+    type=click.Path(file_okay=False),
+    help="The XAI report output directory",
+)
+def report(checkpoint_path: str | os.PathLike, output_dir: str | os.PathLike) -> None:
+    """Create an XAI report.
+
+    Parameters
+    ----------
+    checkpoint_path
+        Path to a model checkpoint.
+    output_dir
+        The XAI report output directory
+    """
+    logger.info("Loading libraries and modules")
+    from morphoclass.report.xai import XAIReport
+    from morphoclass.report.xai import populate_report
+    from morphoclass.training.training_log import TrainingLog
+
+    logger.info("Loading the checkpoint")
+    training_log = TrainingLog.load(pathlib.Path(checkpoint_path))
+
+    logger.info("Creating the XAI report")
+    xai_report = XAIReport(output_dir)
+    populate_report(training_log, xai_report)
+
+    logger.info("Rendering the XAI report and writing it to disk")
+    xai_report.write("xai-report")
+
+
+@cli.command(
+    name="single",
+    deprecated=True,
+    short_help="Explain the GNN prediction for a single morphology",
+    help="""
+    Explains the prediction of a trained GNN on a single morphology file.
+
+    This command was developed a long time ago and has been superseded by
+    the "report" command. If there is need for single morphology GNN
+    explanation, then this command should be re-implemented. In its current
+    state it's unmaintained and probably not working.
+    """,
+)
 @click.option(
     "-i",
     "--input-file",
@@ -54,7 +121,7 @@ import morphoclass as mc
     type=click.STRING,
     help="The filename of the results file",
 )
-def explain(input_file, checkpoint_file, output_dir, results_name):
+def single(input_file, checkpoint_file, output_dir, results_name):
     """Run the `morphoclass explain` CLI command.
 
     Parameters
@@ -106,15 +173,15 @@ def explain(input_file, checkpoint_file, output_dir, results_name):
         return
 
     click.secho("✔ Loading libraries...", fg="green", bold=True)
-    from morphoclass.console._data import get_datasets
-
-    click.secho("✔ Loading model...", fg="green", bold=True)
     import torch
 
+    import morphoclass as mc
     import morphoclass.models
     import morphoclass.transforms
     import morphoclass.xai
+    from morphoclass.data.morphology_data_loader import MorphologyDataLoader
 
+    click.secho("✔ Loading model...", fg="green", bold=True)
     model_cls = getattr(mc.models, checkpoint["model_class"])
     model = model_cls(**checkpoint["model_params"])
     model.load_state_dict(checkpoint["model_state"])
@@ -140,7 +207,7 @@ def explain(input_file, checkpoint_file, output_dir, results_name):
     explainer = mc.xai.GradCAMExplainer(model, model.embedder.bi2)
     logits, cam = explainer.get_cam(
         sample,
-        loader_cls=mc.data.MorphologyDataLoader,
+        loader_cls=MorphologyDataLoader,
         cls_idx=None,
         relu_weights=False,
         relu_cam=True,
@@ -219,3 +286,108 @@ def check_overwrite_file(file_path):
             click.secho("You chose to overwrite, proceeding...", fg="red")
             return True
     return True
+
+
+def get_datasets(input_csv, fitted_scaler=None):
+    """Load datasets from a CSV file."""
+    import morphoclass as mc
+    import morphoclass.data
+    import morphoclass.training
+    import morphoclass.transforms
+
+    pre_transform = mc.transforms.Compose(
+        [
+            mc.transforms.ExtractTMDNeurites(neurite_type="apical"),
+            mc.transforms.OrientApicals(
+                special_treatment_ipcs=False, special_treatment_hpcs=False
+            ),
+            mc.transforms.BranchingOnlyNeurites(),
+            mc.transforms.ExtractEdgeIndex(),
+        ]
+    )
+
+    dataset = mc.data.MorphologyDataset.from_csv(
+        csv_file=input_csv, pre_transform=pre_transform
+    )
+
+    feature_extractor: mc.transforms.ExtractDistances
+    if dataset.guess_layer() in [2, 6]:
+        feature = "projection"
+        feature_extractor = mc.transforms.ExtractVerticalDistances(
+            vertical_axis="y", negative_ipcs=False, negative_bpcs=False
+        )
+    else:
+        feature = "radial_distances"
+        feature_extractor = mc.transforms.ExtractRadialDistances(
+            negative_ipcs=False, negative_bpcs=False
+        )
+    logger.info(f"Using feature: {feature}")
+
+    if len(dataset) > 0:
+        transform, fitted_scaler = mc.training.make_transform(
+            dataset=dataset,
+            feature_extractor=feature_extractor,
+            n_features=1,
+            fitted_scaler=fitted_scaler,
+        )
+        dataset.transform = transform
+        dataset_pi = to_persistence_dataset(dataset, feature=feature)
+    else:
+        dataset_pi = [None, None, None]
+        fitted_scaler = None
+
+    return dataset, dataset_pi, fitted_scaler
+
+
+def to_persistence_dataset(dataset, feature="radial_distances"):
+    """Create a persistence dataset from MorphologyDataset.
+
+    Parameters
+    ----------
+    dataset
+        an instance of `MorphologyDataset`
+    feature
+        which feature to use as a filtration function. The default
+         feature 'radial_distances' should be used for all datasets
+         except those containing inverted cells (IPCs). For the
+         inverted cells the feature 'projection' might be more useful
+         as it retains information about orientation. Note, however,
+         that 'projection' is not rotation-invariant, so the cells
+         have to be properly oriented. For more information on this
+         parameter see `get_persistence_diagram` in the `tmd` package.
+
+    Returns
+    -------
+        diagrams
+            persistence diagrams
+        images
+            persistence images
+        labels
+            labels
+    """
+    import numpy as np
+    from tmd.Topology.analysis import get_limits
+    from tmd.Topology.analysis import get_persistence_image_data
+    from tmd.Topology.methods import get_persistence_diagram
+
+    # Get the labels
+    labels = np.array([sample.y for sample in dataset])
+
+    # Compute persistence diagrams
+    diagrams = [
+        get_persistence_diagram(sample.tmd_apicals[0], feature=feature)
+        for sample in dataset
+    ]
+    diagrams = [np.array(diagram) for diagram in diagrams]
+
+    # Compute persistence diagrams limits
+    xlims, ylims = get_limits(diagrams)
+
+    # Compute persistence images
+    images = [
+        get_persistence_image_data(pd, xlims=xlims, ylims=ylims) for pd in diagrams
+    ]
+    images = [np.rot90(img) for img in images]
+    images = np.array(images)
+
+    return diagrams, images, labels
