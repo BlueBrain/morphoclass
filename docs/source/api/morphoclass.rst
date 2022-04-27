@@ -12,6 +12,7 @@ Subpackages
    morphoclass.feature_extractors
    morphoclass.layers
    morphoclass.models
+   morphoclass.morphometrics
    morphoclass.training
    morphoclass.transforms
    morphoclass.unsupervised
