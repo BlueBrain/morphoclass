@@ -9,8 +9,8 @@
 <body>
     <div class="container-xl">
         <br/><br/>
-        <H1>XAI Report</H1>
-        <br /><br/>
+        <h1>XAI Report</h1>
+        <br/><br/>
         <p>
             Every morphology subclass has a good representative and a bad representative.
             They are defined based on the model probability. The probability model thinks this sample belongs to the expert label (ground-truth).
@@ -20,18 +20,15 @@
             Each of the techniques iterates through subclasses and then through good and bad representative.
             An example: if good and bad samples have both high probability of belong to an expert class, this means the model agrees with the expert labels.
         </p>
-        <H3>Content:</H3>
-        {{ content_html }}
+        <h3>Contents</h3>
+        {{ toc_html }}
         <br/><br/><hr/><hr/><br/>
         <div class="row">
             <div class="center col-lg-12 col-md-12 col-sm-12">
-                <div class="bs-component">
-                    {{ xai_report_final }}
-                </div>
+                <div class="bs-component">{{ report_html }}</div>
             </div>
         </div>
         <br/>
-
     </div>
 </body>
 </html>

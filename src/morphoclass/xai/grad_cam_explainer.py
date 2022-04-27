@@ -62,8 +62,8 @@ class GradCAMExplainer:
         ----------
         sample
             A morphology data sample.
-        loader_cls : morphoclass.data.MorphologyDataLoader,
-                     morphoclass.data.MorphologyEmbeddingDataLoader
+        loader_cls : type[morphoclass.data.MorphologyDataLoader],
+                     type[morphoclass.data.MorphologyEmbeddingDataLoader]
             A data loader class.
         cls_idx : int (optional)
             The numerical class of the sample. If not provided then the model

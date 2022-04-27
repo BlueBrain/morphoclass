@@ -133,9 +133,9 @@ class TestTrainer:
         out_want = net(full_batch)
         atol = 1e-5
 
-        losses, probas, labels = trainer.predict()
+        losses, logits, labels = trainer.predict()
         assert len(losses) == len(dataset)
-        assert torch.allclose(out_want, probas, atol=atol)
+        assert torch.allclose(out_want, logits, atol=atol)
         assert torch.equal(labels, full_batch.y)
 
     def test_train(self, net, dataset):
@@ -183,11 +183,9 @@ class TestTrainer:
         assert history["val_acc_final"] == history["val_acc"][-1]
         assert history["val_loss_final"] == history["val_loss"][-1]
 
-        losses, probabilities, labels = trainer.predict(val_idx)
-        assert np.allclose(probabilities.numpy(), history["probabilities"], atol=1e-5)
-        assert np.array_equal(
-            probabilities.numpy().argmax(axis=1), history["predictions"]
-        )
+        losses, logits, labels = trainer.predict(val_idx)
+        assert np.allclose(logits.exp().numpy(), history["probabilities"], atol=1e-5)
+        assert np.array_equal(logits.numpy().argmax(axis=1), history["predictions"])
 
         # With load_best
         with pytest.raises(ValueError, match="val_idx"):
