@@ -144,4 +144,4 @@ Project, a research center of the École polytechnique fédérale de Lausanne
 (EPFL), from the Swiss government's ETH Board of the Swiss Federal Institutes
 of Technology.
 
-Copyright © 2022 Blue Brain Project/EPFL
+Copyright © 2022-2022 Blue Brain Project/EPFL
