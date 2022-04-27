@@ -122,7 +122,7 @@ def extract_features(
     "--morphometrics-features",
     "morphometrics_features_file",
     type=click.Path(
-        exists=True, file_okay=False, dir_okay=True, path_type=pathlib.Path
+        exists=True, file_okay=True, dir_okay=False, path_type=pathlib.Path
     ),
     required=True,
     help="The CSV file with pre-extracted morphology features.",
@@ -185,7 +185,7 @@ def train(
     training_config = TrainingConfig.from_separate_configs(
         conf_model=model_config,
         conf_splitter=splitter_config,
-        features_dir=morphometrics_features_file.parent,
+        features_dir=morphometrics_features_file,
     )
 
     logger.info("Reading morphometrics features file.")

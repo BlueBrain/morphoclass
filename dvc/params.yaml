@@ -1403,14 +1403,14 @@ training-morphometrics:
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   pc-L4-morphometrics-xgb-stratified-k-fold:
-    morphometrics-features-dir: ./morphometrics/features/pc/L4.csv
+    morphometrics-features-dir: ./morphometrics/features/pyramidal-cells/L4.csv
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   pc-L5-morphometrics-xgb-stratified-k-fold:
-    morphometrics-features-dir: ./morphometrics/features/pc/L5.csv
+    morphometrics-features-dir: ./morphometrics/features/pyramidal-cells/L5.csv
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   pc-L6-morphometrics-xgb-stratified-k-fold:
-    morphometrics-features-dir: ./morphometrics/features/pc/L6.csv
+    morphometrics-features-dir: ./morphometrics/features/pyramidal-cells/L6.csv
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
