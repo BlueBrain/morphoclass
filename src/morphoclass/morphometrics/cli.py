@@ -48,6 +48,7 @@ def run_training(
 
     x_features = df_morphometrics.drop(columns=["property|name", "filepath", "m_type"])
     logger.debug(f"- Input features : {x_features.columns.to_list()}")
+    x_features = x_features.to_numpy()
 
     # Convert to numeric labels: "UPC", "TPC-A", "TPC-B", ... -> 2, 0, 1, ...
     label_enc = LabelEncoder()

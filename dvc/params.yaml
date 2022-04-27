@@ -1395,11 +1395,11 @@ training-morphometrics:
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   pc-L2-morphometrics-xgb-stratified-k-fold:
-    morphometrics-features-dir: ./morphometrics/features/pc/L2.csv
+    morphometrics-features-dir: ./morphometrics/features/pyramidal-cells/L2.csv
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   pc-L3-morphometrics-xgb-stratified-k-fold:
-    morphometrics-features-dir: ./morphometrics/features/pc/L3.csv
+    morphometrics-features-dir: ./morphometrics/features/pyramidal-cells/L3.csv
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   pc-L4-morphometrics-xgb-stratified-k-fold:

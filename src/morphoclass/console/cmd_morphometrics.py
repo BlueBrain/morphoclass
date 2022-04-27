@@ -149,7 +149,7 @@ def extract_features(
     "-o",
     "--output-checkpoint-directory",
     "output_checkpoint_dir",
-    type=click.Path(file_okay=False),
+    type=click.Path(file_okay=False, path_type=pathlib.Path),
     required=True,
     help="The checkpoint output directory.",
 )
