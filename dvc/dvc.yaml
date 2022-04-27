@@ -2757,3 +2757,19 @@ stages:
       outs:
         - morphometrics/features/${item}
       desc: ${item}
+
+  train-morphometrics:
+    foreach: ${training-morphometrics}
+    do:
+      cmd: >-
+        morphoclass -vv morphometrics train
+        --morphometrics-features ${item.morphometrics-features-dir}
+        --model-config ${item.model-config}
+        --splitter-config ${item.splitter-config}
+        --checkpoint-dir training/checkpoints-morphometrics/${key}
+      deps:
+        - ${item.features-dir}
+        - ${item.model-config}
+        - ${item.splitter-config}
+      outs:
+        - training/checkpoints-morphometrics/${key}
