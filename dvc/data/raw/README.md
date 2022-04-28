@@ -17,7 +17,7 @@ This is a dataset of pyramidal cells obtained from Ying via Lida.
   selected to compose a dataset. This dataset is represented by the file
   `selected_dataset.csv`.
 
-### `janelia/inter-rater`
+### Janelia inter-rater annotations `janelia/inter-rater`
 
 All the "ground truth" labels used in this project for training and evaluation
 purposes were provided by Ying Shi. But in order to estimate the inter-rater
