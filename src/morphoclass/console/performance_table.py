@@ -19,9 +19,11 @@ import pathlib
 from collections.abc import Sequence
 
 import click
+import numpy as np
 import pandas as pd
 import torch
 from pandas.io.formats.style import Styler
+from sklearn.metrics import balanced_accuracy_score
 
 import morphoclass as mc
 import morphoclass.report.plumbing
@@ -91,6 +93,7 @@ def make_performance_table(
         "oversampled",
         "splitter_class",
         "accuracy",
+        "balanced_accuracy",
         "f1_micro",
         "f1_macro",
         "f1_weighted",
@@ -129,7 +132,7 @@ def make_report_row(data: dict) -> dict:
     dict
         The dictionary representing a data frame row.
     """
-    return {
+    row = {
         "dataset": data["dataset_name"],
         "feature_extractor": data["features_dir"],
         "model_class": data["model_class"],
@@ -137,12 +140,35 @@ def make_report_row(data: dict) -> dict:
         "oversampled": bool(data["oversampling"]),
         "splitter_class": data["splitter_class"].rpartition(".")[2],
         "splitter_params": data["splitter_params"],
-        # "accuracy_mean": data["accuracy_mean"],
-        "accuracy": f"{data['accuracy_mean']:.3f}±{data['accuracy_std']:.2f}",
-        # "f1_weighted_mean": data["f1_weighted_mean"],
-        "f1_weighted": f"{data['f1_weighted_mean']:.3f}±{data['f1_weighted_std']:.2f}",
-        "f1_micro": f"{data['f1_micro_mean']:.3f}±{data['f1_micro_std']:.2f}",
-        "f1_macro": f"{data['f1_macro_mean']:.3f}±{data['f1_macro_std']:.2f}",
         "metrics_file": data["metrics_file"],
-        # "model_report_directory": data["model_report_directory"],
     }
+
+    # Compute balanced accuracy here, because training.cli.collect_metrics() lacks it.
+    balanced_accuracy_vals = []
+    for split in data["splits"]:
+        balanced_accuracy_vals.append(
+            balanced_accuracy_score(
+                y_true=split["ground_truths"], y_pred=split["predictions"]
+            )
+        )
+    data["balanced_accuracy_mean"] = np.mean(balanced_accuracy_vals)
+    data["balanced_accuracy_std"] = np.std(balanced_accuracy_vals)
+
+    # TODO: no evaluation metric result should be stored in checkpoints (= `data` dict)
+    #  at training time. We should instead be computed at evaluation time (e.g. here)
+    #  based on the `predictions`, `probabilities`, `ground_truths` vectors that are
+    #  written in the checkpoint.
+    #  We should call training.cli.collect_metrics() here, and remove it from train().
+
+    metrics_names = [
+        "accuracy",
+        "balanced_accuracy",
+        "f1_weighted",
+        "f1_micro",
+        "f1_macro",
+    ]
+    for metric_name in metrics_names:
+        mean, std = data[f"{metric_name}_mean"], data[f"{metric_name}_std"]
+        row[metric_name] = f"{mean:.3f}±{std:.3f}"
+
+    return row
