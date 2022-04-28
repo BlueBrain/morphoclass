@@ -2905,3 +2905,84 @@ stages:
       outs:
         - evaluation/janelia-L5/${key}-stratified-k-fold.html
         - evaluation/janelia-L5/${key}-stratified-k-fold
+  train-janelia-L5-all:
+    foreach: ${models-and-features}
+    do:
+      cmd: >-
+        morphoclass -v train
+        --features-dir extract-features/lida-janelia-L5/all/${item.features-rd}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-all-${key}-stratified-k-fold
+      deps:
+        - extract-features/lida-janelia-L5/all/${item.features-rd}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
+      outs:
+        - training/checkpoints-lida-alt-neurites/janelia-L5-all-${key}-stratified-k-fold
+  evaluate-janelia-L5-all:
+    foreach: ${models-and-features}
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints-lida-alt-neurites/janelia-L5-all-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/checkpoints-lida-alt-neurites/janelia-L5-all-${key}-stratified-k-fold.html
+      deps:
+        - training/checkpoints-lida-alt-neurites/janelia-L5-all-${key}-stratified-k-fold/checkpoint.chk
+      outs:
+        - evaluation/checkpoints-lida-alt-neurites/janelia-L5-all-${key}-stratified-k-fold.html
+        - evaluation/checkpoints-lida-alt-neurites/janelia-L5-all-${key}-stratified-k-fold
+  train-janelia-L5-axon:
+    foreach: ${models-and-features}
+    do:
+      cmd: >-
+        morphoclass -v train
+        --features-dir extract-features/lida-janelia-L5/axon/${item.features-rd}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-axon-${key}-stratified-k-fold
+      deps:
+        - extract-features/lida-janelia-L5/axon/${item.features-rd}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
+      outs:
+        - training/checkpoints-lida-alt-neurites/janelia-L5-axon-${key}-stratified-k-fold
+  evaluate-janelia-L5-axon:
+    foreach: ${models-and-features}
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints-lida-alt-neurites/janelia-L5-axon-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/checkpoints-lida-alt-neurites/janelia-L5-axon-${key}-stratified-k-fold.html
+      deps:
+        - training/checkpoints-lida-alt-neurites/janelia-L5-axon-${key}-stratified-k-fold/checkpoint.chk
+      outs:
+        - evaluation/checkpoints-lida-alt-neurites/janelia-L5-axon-${key}-stratified-k-fold.html
+        - evaluation/checkpoints-lida-alt-neurites/janelia-L5-axon-${key}-stratified-k-fold
+  train-janelia-L5-basal:
+    foreach: ${models-and-features}
+    do:
+      cmd: >-
+        morphoclass -v train
+        --features-dir extract-features/lida-janelia-L5/basal/${item.features-rd}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-basal-${key}-stratified-k-fold
+      deps:
+        - extract-features/lida-janelia-L5/basal/${item.features-rd}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
+      outs:
+        - training/checkpoints-lida-alt-neurites/janelia-L5-basal-${key}-stratified-k-fold
+  evaluate-janelia-L5-basal:
+    foreach: ${models-and-features}
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints-lida-alt-neurites/janelia-L5-basal-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/checkpoints-lida-alt-neurites/janelia-L5-basal-${key}-stratified-k-fold.html
+      deps:
+        - training/checkpoints-lida-alt-neurites/janelia-L5-basal-${key}-stratified-k-fold/checkpoint.chk
+      outs:
+        - evaluation/checkpoints-lida-alt-neurites/janelia-L5-basal-${key}-stratified-k-fold.html
+        - evaluation/checkpoints-lida-alt-neurites/janelia-L5-basal-${key}-stratified-k-fold
