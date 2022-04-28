@@ -20059,8 +20059,8 @@ stages:
       --output-features-directory ./morphometrics/features/pyramidal-cells
     outs:
     - path: morphometrics/features/pyramidal-cells
-      md5: 0dcb61176c8359097793b2941e7b4b9a.dir
-      size: 1119622
+      md5: f2f8b1d0d82412d7cd8bb49d3b1a495a.dir
+      size: 1119620
       nfiles: 5
   morphometrics-feature-extraction@janelia:
     cmd: morphoclass -vv morphometrics extract-features --organised-dataset-directory
@@ -20077,7 +20077,7 @@ stages:
       --output-features-directory ./morphometrics/features/interneurons
     outs:
     - path: morphometrics/features/interneurons
-      md5: 640484ca01b80c36c5fbaa5201e6efdf.dir
+      md5: c150bd4744384ce2a835433d845e1a6a.dir
       size: 953818
       nfiles: 5
   train-morphometrics@pc-L5-morphometrics-xgb-stratified-k-fold:
@@ -20086,8 +20086,8 @@ stages:
       --output-checkpoint-directory training/checkpoints-morphometrics/pc-L5-morphometrics-xgb-stratified-k-fold
     deps:
     - path: ./morphometrics/features/pyramidal-cells/L5.csv
-      md5: cebe5482de1ee3deeb60ec1e5d0d958d
-      size: 378851
+      md5: f19c320c9a79f6e3f32961bb1ff55801
+      size: 378850
     - path: training/configs/model-xgb.yaml
       md5: f10b1b21e9e3e7195886182294689fd6
       size: 196
@@ -20096,8 +20096,8 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/pc-L5-morphometrics-xgb-stratified-k-fold
-      md5: c6fedeb7deed8b782810dd0b750ac28e.dir
-      size: 1430191
+      md5: 0dbb31f8516dff43695848e9417def6f.dir
+      size: 1430127
       nfiles: 1
   train-morphometrics@janelia-L6-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/janelia/L6.csv
@@ -20115,8 +20115,8 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/janelia-L6-morphometrics-xgb-stratified-k-fold
-      md5: 073ad85f4abaabaefada95770595d5fa.dir
-      size: 1266927
+      md5: 97593f9d710c67ad6d24ac047e06a1b0.dir
+      size: 1266863
       nfiles: 1
   train-morphometrics@in-L23-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/interneurons/L23.csv
@@ -20124,7 +20124,7 @@ stages:
       --output-checkpoint-directory training/checkpoints-morphometrics/in-L23-morphometrics-xgb-stratified-k-fold
     deps:
     - path: ./morphometrics/features/interneurons/L23.csv
-      md5: 0be33eb1e6ee96b61d58a97b4e2bd8e1
+      md5: d63d23719409a66454d42a7508f3fe89
       size: 269199
     - path: training/configs/model-xgb.yaml
       md5: f10b1b21e9e3e7195886182294689fd6
@@ -20134,8 +20134,8 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/in-L23-morphometrics-xgb-stratified-k-fold
-      md5: cc34eaa050df4c41cd71395dd041b387.dir
-      size: 2143279
+      md5: 6a9e7c45dd67897f7c9dc4f1ea3cfae5.dir
+      size: 2143215
       nfiles: 1
   train-morphometrics@in-L5-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/interneurons/L5.csv
@@ -20153,8 +20153,8 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/in-L5-morphometrics-xgb-stratified-k-fold
-      md5: 8511261d3918f954e08de11b52839447.dir
-      size: 1919727
+      md5: 094e526f95b4a22fc49fb4d7920f69e3.dir
+      size: 1919663
       nfiles: 1
   train-morphometrics@pc-L6-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/pyramidal-cells/L6.csv
@@ -20172,8 +20172,8 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/pc-L6-morphometrics-xgb-stratified-k-fold
-      md5: dfc0999af209b111fa2e895c0663d396.dir
-      size: 1604591
+      md5: 928c5d2db43fe113c47e366b4976b9e3.dir
+      size: 1604527
       nfiles: 1
   train-morphometrics@in-L1-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/interneurons/L1.csv
@@ -20181,7 +20181,7 @@ stages:
       --output-checkpoint-directory training/checkpoints-morphometrics/in-L1-morphometrics-xgb-stratified-k-fold
     deps:
     - path: ./morphometrics/features/interneurons/L1.csv
-      md5: 30cb1e51b4f5661c505bce04c1ffe08f
+      md5: 04b76a3cb500ec207c60b1c4bdb43987
       size: 183437
     - path: training/configs/model-xgb.yaml
       md5: f10b1b21e9e3e7195886182294689fd6
@@ -20191,7 +20191,7 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/in-L1-morphometrics-xgb-stratified-k-fold
-      md5: f50d6915a2ed8403dcbb5d3f54cf3639.dir
+      md5: 0ec9e58ad48fe2f4d1bb8abc285b076b.dir
       size: 1555887
       nfiles: 1
   train-morphometrics@pc-L4-morphometrics-xgb-stratified-k-fold:
@@ -20210,8 +20210,8 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/pc-L4-morphometrics-xgb-stratified-k-fold
-      md5: 9d7abcb92d5c570f6e4b845e03a585e9.dir
-      size: 869551
+      md5: 643d558a83343680a8932b0469aff95a.dir
+      size: 869487
       nfiles: 1
   train-morphometrics@in-L4-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/interneurons/L4.csv
@@ -20219,7 +20219,7 @@ stages:
       --output-checkpoint-directory training/checkpoints-morphometrics/in-L4-morphometrics-xgb-stratified-k-fold
     deps:
     - path: ./morphometrics/features/interneurons/L4.csv
-      md5: 2664e66a25c38d015e2d06ef711a2653
+      md5: 74bee9e945dc9f4f91b5cb22ed69f222
       size: 196268
     - path: training/configs/model-xgb.yaml
       md5: f10b1b21e9e3e7195886182294689fd6
@@ -20229,7 +20229,7 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/in-L4-morphometrics-xgb-stratified-k-fold
-      md5: 703bbc2344770d1be5d7ca63b6915cc1.dir
+      md5: 13392fb62eecbffc4f93eeaec7a672bb.dir
       size: 1928111
       nfiles: 1
   train-morphometrics@janelia-L5-morphometrics-xgb-stratified-k-fold:
@@ -20248,8 +20248,8 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/janelia-L5-morphometrics-xgb-stratified-k-fold
-      md5: c85e4853257a4bca8c3f3a82cb869847.dir
-      size: 981295
+      md5: 3690a8b2e6456f61a2fcebac6f5d4bd4.dir
+      size: 981231
       nfiles: 1
   train-morphometrics@in-L6-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/interneurons/L6.csv
@@ -20267,8 +20267,8 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/in-L6-morphometrics-xgb-stratified-k-fold
-      md5: 386cce25eff78c6a2d990c11022c5b9c.dir
-      size: 1117615
+      md5: 7b17016d7d1ddbbf10c6e34c88f3f533.dir
+      size: 1117551
       nfiles: 1
   train-morphometrics@pc-L2-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./morphometrics/features/pyramidal-cells/L2.csv
@@ -20286,7 +20286,7 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/pc-L2-morphometrics-xgb-stratified-k-fold
-      md5: 75f3c392a0f228653d31752871fb632e.dir
+      md5: 5967280f20e65e3e5f13ba85c703a4b6.dir
       size: 689647
       nfiles: 1
   train-morphometrics@pc-L3-morphometrics-xgb-stratified-k-fold:
@@ -20295,8 +20295,8 @@ stages:
       --output-checkpoint-directory training/checkpoints-morphometrics/pc-L3-morphometrics-xgb-stratified-k-fold
     deps:
     - path: ./morphometrics/features/pyramidal-cells/L3.csv
-      md5: 8747b22ffe0ea8d87fa98f23f23df261
-      size: 108805
+      md5: 4efa69271021ee8f3a2ff941c3632830
+      size: 108804
     - path: training/configs/model-xgb.yaml
       md5: f10b1b21e9e3e7195886182294689fd6
       size: 196
@@ -20305,6 +20305,6 @@ stages:
       size: 87
     outs:
     - path: training/checkpoints-morphometrics/pc-L3-morphometrics-xgb-stratified-k-fold
-      md5: 58b2d8468f43c7e66080520dd90f5aed.dir
-      size: 494127
+      md5: cfabc18a1964f39660f74fa69319a024.dir
+      size: 494063
       nfiles: 1
