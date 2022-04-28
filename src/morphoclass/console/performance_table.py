@@ -111,10 +111,15 @@ def make_performance_table(
     cell_style = "padding-right: 1em; white-space: nowrap;"
     df_style.set_table_styles([{"selector": "th, td", "props": cell_style}])
 
-    # generate a HTML report
+    # generate a HTML table report
     template = mc.report.plumbing.load_template("results-table")
     mc.report.plumbing.render(template, {"df_results": df_style.render()}, results_file)
-    logger.info(f"Report stored in: {results_file.resolve().as_uri()}")
+    logger.info(f"HTML table written in: {results_file.resolve().as_uri()}")
+
+    # generate a CSV table report
+    results_csv = results_file.with_suffix(".csv")
+    df.to_csv(results_csv, index=False)
+    logger.info(f"CSV table written in: {results_csv.resolve().as_uri()}")
 
     logger.info("Done.")
 
