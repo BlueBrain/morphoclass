@@ -21028,3 +21028,543 @@ stages:
       md5: d4c68cbf0a507c396d09ef810dbfd260.dir
       size: 152276576
       nfiles: 13
+  train-janelia-L5-axon@decision-tree-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/axon/image-deepwalk
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-axon-decision-tree-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/axon/image-deepwalk
+      md5: 9a60c476f6cd1de91c458ac837449165.dir
+      size: 2311562
+      nfiles: 46
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-axon-decision-tree-deepwalk-stratified-k-fold
+      md5: 2c4fd84b81fcb83f85104698e6343416.dir
+      size: 20822910
+      nfiles: 13
+  train-janelia-L5-basal@decision-tree-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/basal/image-deepwalk
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-basal-decision-tree-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/basal/image-deepwalk
+      md5: 454fb92818e2981861f692cfe4664291.dir
+      size: 1896327
+      nfiles: 45
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-basal-decision-tree-deepwalk-stratified-k-fold
+      md5: a842674e21d9c7bc15a285d1cb1fc6c6.dir
+      size: 21206289
+      nfiles: 13
+  train-janelia-L5-axon@gnn-morphology:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/axon/graph-rd
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-axon-gnn-morphology-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/axon/graph-rd
+      md5: 80612fc9b0d42cc1f7ea295a593b455b.dir
+      size: 574602
+      nfiles: 46
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-axon-gnn-morphology-stratified-k-fold
+      md5: ee5edfb4d1396db87e91b76c87f5b131.dir
+      size: 8978306
+      nfiles: 13
+  train-janelia-L5-basal@xgb-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/basal/image-deepwalk
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-basal-xgb-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/basal/image-deepwalk
+      md5: 454fb92818e2981861f692cfe4664291.dir
+      size: 1896327
+      nfiles: 45
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-basal-xgb-deepwalk-stratified-k-fold
+      md5: d6d9c5a7fa3b4207323bce8b2dc97044.dir
+      size: 22033908
+      nfiles: 13
+  train-janelia-L5-all@cnn-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/all/image-deepwalk
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-all-cnn-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/all/image-deepwalk
+      md5: 2b837a89888ca928c51b238fc4bdf1d4.dir
+      size: 2385802
+      nfiles: 46
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-all-cnn-deepwalk-stratified-k-fold
+      md5: 0cd0eaa5866f5064690b8d2ba1d90a65.dir
+      size: 4795315
+      nfiles: 13
+  train-janelia-L5-basal@xgb-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/basal/image-tmd-rd
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-basal-xgb-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/basal/image-tmd-rd
+      md5: 71ec8aeb861e40c161a740585bf5f6eb.dir
+      size: 1896327
+      nfiles: 45
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-basal-xgb-tmd-stratified-k-fold
+      md5: 62190e3e6f65fbba9ae06acd1bae298e.dir
+      size: 20739884
+      nfiles: 13
+  train-janelia-L5-axon@decision-tree-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/axon/image-tmd-rd
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-axon-decision-tree-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/axon/image-tmd-rd
+      md5: ac378d8a34553358dbaa04a56c686968.dir
+      size: 2311562
+      nfiles: 46
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-axon-decision-tree-tmd-stratified-k-fold
+      md5: 54c3eee146c1d97b9f2b40df35106f5e.dir
+      size: 20828353
+      nfiles: 13
+  train-janelia-L5-basal@cnn-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/basal/image-tmd-rd
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-basal-cnn-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/basal/image-tmd-rd
+      md5: 71ec8aeb861e40c161a740585bf5f6eb.dir
+      size: 1896327
+      nfiles: 45
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-basal-cnn-tmd-stratified-k-fold
+      md5: ce87d137fd81a9d62b8c6b295de0ae1c.dir
+      size: 4776450
+      nfiles: 13
+  train-janelia-L5-basal@gnn-morphology:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/basal/graph-rd
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-basal-gnn-morphology-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/basal/graph-rd
+      md5: 91c330a3a7c3370d5453b6077d4f4531.dir
+      size: 4524938
+      nfiles: 46
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-basal-gnn-morphology-stratified-k-fold
+      md5: 5540f8542ed709591bb93eb042ba1b87.dir
+      size: 8995211
+      nfiles: 13
+  train-janelia-L5-all@perslay-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/all/diagram-tmd-rd
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-all-perslay-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/all/diagram-tmd-rd
+      md5: d925860aa81d1b8734be6bfe29c3859e.dir
+      size: 669258
+      nfiles: 46
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-all-perslay-tmd-stratified-k-fold
+      md5: 73c78dc86db0bfe4d25a4fb50f19db12.dir
+      size: 3393324
+      nfiles: 13
+  train-janelia-L5-axon@perslay-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/axon/diagram-deepwalk
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-axon-perslay-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/axon/diagram-deepwalk
+      md5: bf3068580f1050f49475891e0e257551.dir
+      size: 679242
+      nfiles: 46
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-axon-perslay-deepwalk-stratified-k-fold
+      md5: 18b8f8ca8fc4517fded2fff574e0e0e4.dir
+      size: 3393259
+      nfiles: 13
+  train-janelia-L5-all@xgb-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/all/image-tmd-rd
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-all-xgb-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/all/image-tmd-rd
+      md5: 45f7bcbdb9d8eb03ebb70620c1970397.dir
+      size: 2385802
+      nfiles: 46
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-all-xgb-tmd-stratified-k-fold
+      md5: 9cb0566bef1571885f100ad6db26a8b8.dir
+      size: 21566847
+      nfiles: 13
+  train-janelia-L5-axon@xgb-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/axon/image-tmd-rd
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-axon-xgb-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/axon/image-tmd-rd
+      md5: ac378d8a34553358dbaa04a56c686968.dir
+      size: 2311562
+      nfiles: 46
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-axon-xgb-tmd-stratified-k-fold
+      md5: 729c506858901d4012d735a6ee6a0006.dir
+      size: 21626507
+      nfiles: 13
+  train-janelia-L5-axon@cnn-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/axon/image-tmd-rd
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-axon-cnn-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/axon/image-tmd-rd
+      md5: ac378d8a34553358dbaa04a56c686968.dir
+      size: 2311562
+      nfiles: 46
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-axon-cnn-tmd-stratified-k-fold
+      md5: e9790cd2048fc0c5bce9b704a03f8fb2.dir
+      size: 4808821
+      nfiles: 13
+  train-janelia-L5-all@decision-tree-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/all/image-tmd-rd
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-all-decision-tree-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/all/image-tmd-rd
+      md5: 45f7bcbdb9d8eb03ebb70620c1970397.dir
+      size: 2385802
+      nfiles: 46
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-all-decision-tree-tmd-stratified-k-fold
+      md5: 6837a80357f009cdfbf41a0631371dad.dir
+      size: 20794960
+      nfiles: 13
+  train-janelia-L5-all@gnn-morphology:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/all/graph-rd
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-all-gnn-morphology-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/all/graph-rd
+      md5: c4ef101d16b72abf8b7c161d2cdd0f04.dir
+      size: 669194
+      nfiles: 46
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-all-gnn-morphology-stratified-k-fold
+      md5: 66c5dd2753357287811212d94fe11f86.dir
+      size: 8982397
+      nfiles: 13
+  train-janelia-L5-all@perslay-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/all/diagram-deepwalk
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-all-perslay-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/all/diagram-deepwalk
+      md5: 183e390634e6ac18251989e66a131871.dir
+      size: 793290
+      nfiles: 46
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-all-perslay-deepwalk-stratified-k-fold
+      md5: 119d753a31d5d388ce9dea66475ecd59.dir
+      size: 3393201
+      nfiles: 13
+  train-janelia-L5-axon@cnn-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/axon/image-deepwalk
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-axon-cnn-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/axon/image-deepwalk
+      md5: 9a60c476f6cd1de91c458ac837449165.dir
+      size: 2311562
+      nfiles: 46
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-axon-cnn-deepwalk-stratified-k-fold
+      md5: b0cbb15bb9ffed681fb4af8ae2c2d917.dir
+      size: 4793382
+      nfiles: 13
+  train-janelia-L5-axon@perslay-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/axon/diagram-tmd-rd
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-axon-perslay-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/axon/diagram-tmd-rd
+      md5: 4293dc7dd43cbf0f81f6a26df3c1a508.dir
+      size: 574922
+      nfiles: 46
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-axon-perslay-tmd-stratified-k-fold
+      md5: ae242b8db473eac8f4001e4f0a2d44b1.dir
+      size: 3393205
+      nfiles: 13
+  train-janelia-L5-all@xgb-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/all/image-deepwalk
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-all-xgb-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/all/image-deepwalk
+      md5: 2b837a89888ca928c51b238fc4bdf1d4.dir
+      size: 2385802
+      nfiles: 46
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-all-xgb-deepwalk-stratified-k-fold
+      md5: b2f6987716d4318d8481f1fe9764a9c8.dir
+      size: 22463095
+      nfiles: 13
+  train-janelia-L5-axon@xgb-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/axon/image-deepwalk
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-axon-xgb-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/axon/image-deepwalk
+      md5: 9a60c476f6cd1de91c458ac837449165.dir
+      size: 2311562
+      nfiles: 46
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-axon-xgb-deepwalk-stratified-k-fold
+      md5: bb846b7a5ce9c8f9b93d11bc7722c979.dir
+      size: 21670588
+      nfiles: 13
+  train-janelia-L5-basal@perslay-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/basal/diagram-tmd-rd
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-basal-perslay-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/basal/diagram-tmd-rd
+      md5: 8ebb3b81921f4519cab8ec217bf6062f.dir
+      size: 107207
+      nfiles: 45
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-basal-perslay-tmd-stratified-k-fold
+      md5: fb29c320868b4c138a3cb26f8bd4c292.dir
+      size: 3389294
+      nfiles: 13
+  train-janelia-L5-all@cnn-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/all/image-tmd-rd
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-all-cnn-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/all/image-tmd-rd
+      md5: 45f7bcbdb9d8eb03ebb70620c1970397.dir
+      size: 2385802
+      nfiles: 46
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-all-cnn-tmd-stratified-k-fold
+      md5: eb06ea37c60545543233d82fdf37d5d7.dir
+      size: 4794161
+      nfiles: 13
+  train-janelia-L5-basal@cnn-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/basal/image-deepwalk
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-basal-cnn-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/basal/image-deepwalk
+      md5: 454fb92818e2981861f692cfe4664291.dir
+      size: 1896327
+      nfiles: 45
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-basal-cnn-deepwalk-stratified-k-fold
+      md5: fe8a45d63ad1174f63b8d40816034560.dir
+      size: 4767001
+      nfiles: 13
+  train-janelia-L5-basal@decision-tree-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/basal/image-tmd-rd
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-basal-decision-tree-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/basal/image-tmd-rd
+      md5: 71ec8aeb861e40c161a740585bf5f6eb.dir
+      size: 1896327
+      nfiles: 45
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-basal-decision-tree-tmd-stratified-k-fold
+      md5: 80ef45f30be442deab1a96683597cac6.dir
+      size: 19910960
+      nfiles: 13
+  train-janelia-L5-all@decision-tree-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/all/image-deepwalk
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-all-decision-tree-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/all/image-deepwalk
+      md5: 2b837a89888ca928c51b238fc4bdf1d4.dir
+      size: 2385802
+      nfiles: 46
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-all-decision-tree-deepwalk-stratified-k-fold
+      md5: ef0c352517b3e0d171af370a5490c3e6.dir
+      size: 21655348
+      nfiles: 13
+  train-janelia-L5-basal@perslay-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-janelia-L5/basal/diagram-deepwalk
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/janelia-L5-basal-perslay-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-janelia-L5/basal/diagram-deepwalk
+      md5: 1b6b83f596d7e2a50bd862e5a14b54f3.dir
+      size: 118983
+      nfiles: 45
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/janelia-L5-basal-perslay-deepwalk-stratified-k-fold
+      md5: 8a49f50f39a6aa2a28cb2a0e1fa21e6d.dir
+      size: 3392283
+      nfiles: 13
