@@ -1,19 +1,4 @@
-datasets:
-  in:
-    dataset_name: interneurons
-    id: in
-    input_dataset_directory: data/raw/interneurons
-    intermediary_directory: reports/data_preparation/interneurons
-    output_dataset_directory: data/prepared/interneurons
-    output_wildcard: '''data/prepared/interneurons/*/*/*.h5'''
-  pc:
-    dataset_name: pyramidal_cells
-    id: pc
-    input_dataset_directory: data/raw/pyramidal_cells
-    intermediary_directory: reports/data_preparation/pyramidal_cells
-    output_dataset_directory: data/prepared/pyramidal_cells
-    output_wildcard: '''data/prepared/pyramidal_cells/*/*/*.h5'''
-explain_models:
+explain_models:  # potentially outdated, review dvc.yaml/the CLI and maybe delete
   in_morphology_L6_stratifKFold_gnn_oversampled:
     checkpoint_path: models/interneurons/L6/in_morphology_L6_stratifKFold_gnn_oversampled_results.chk
     checkpoint_path_outs: reports/xai/interneurons/L6/in_morphology_L6_stratifKFold_gnn_oversampled/
@@ -76,43 +61,6 @@ models-and-features:
     model: xgb
     features-rd: image-tmd-rd
     features-proj: image-tmd-proj
-feature_extractors:
-  in_deepwalk:
-    dataset_name: interneurons
-    feature_extractor_name: deepwalk
-    id: in_deepwalk
-    input_csv: data/prepared/interneurons/dataset_features_labels.csv
-    output_wildcard: '''data/prepared/interneurons/*/*/*_deepwalk.pickle'''
-  in_morph:
-    dataset_name: interneurons
-    feature_extractor_name: morphology
-    id: in_morph
-    input_csv: data/prepared/interneurons/dataset_features_labels.csv
-    output_wildcard: ''
-  in_tmd:
-    dataset_name: interneurons
-    feature_extractor_name: tmd
-    id: in_tmd
-    input_csv: data/prepared/interneurons/dataset_features_labels.csv
-    output_wildcard: '''data/prepared/interneurons/*/*/*_tmd.pickle'''
-  pc_deepwalk:
-    dataset_name: pyramidal_cells
-    feature_extractor_name: deepwalk
-    id: pc_deepwalk
-    input_csv: data/prepared/pyramidal_cells/dataset_features_labels.csv
-    output_wildcard: '''data/prepared/pyramidal_cells/*/*/*_deepwalk.pickle'''
-  pc_morph:
-    dataset_name: pyramidal_cells
-    feature_extractor_name: morphology
-    id: pc_morph
-    input_csv: data/prepared/pyramidal_cells/dataset_features_labels.csv
-    output_wildcard: ''
-  pc_tmd:
-    dataset_name: pyramidal_cells
-    feature_extractor_name: tmd
-    id: pc_tmd
-    input_csv: data/prepared/pyramidal_cells/dataset_features_labels.csv
-    output_wildcard: '''data/prepared/pyramidal_cells/*/*/*_tmd.pickle'''
 performance-report:
   in_L6:
     checkpoint_dir: models/interneurons/L6
@@ -1346,7 +1294,7 @@ training-alt-neurites:
     features-dir: extract-features/pc-L6/basal/image-tmd-proj
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
-transfer_learning:
+transfer_learning:  # potentially outdated, review dvc.yaml/the CLI and maybe delete
   models:
     in_morphology_L6_stratifKFold_gnn_oversampled:
       batch_size: 2
