@@ -32,7 +32,6 @@ Submodules
    morphoclass.metrics
    morphoclass.model_utils
    morphoclass.orientation
-   morphoclass.serialization
    morphoclass.types
    morphoclass.utils
    morphoclass.vis
