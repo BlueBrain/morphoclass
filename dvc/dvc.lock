@@ -20308,3 +20308,723 @@ stages:
       md5: cfabc18a1964f39660f74fa69319a024.dir
       size: 494063
       nfiles: 1
+  train-lida-in-merged-bc-merged-basal@decision-tree-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/basal/image-deepwalk
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-decision-tree-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/basal/image-deepwalk
+      md5: 64d4011801154f7c3fb4f4b78803b8fc.dir
+      size: 17779573
+      nfiles: 423
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-decision-tree-deepwalk-stratified-k-fold
+      md5: a37cf4af5c0de258c92cd689f5f2e302.dir
+      size: 167515187
+      nfiles: 13
+  train-lida-in-merged-no-nbc-all@perslay-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-no-nbc/all/diagram-tmd-rd
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-no-nbc-all-perslay-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-no-nbc/all/diagram-tmd-rd
+      md5: 6e95a5a882a7df8ae48bef36d9180fba.dir
+      size: 3143633
+      nfiles: 347
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-no-nbc-all-perslay-tmd-stratified-k-fold
+      md5: a03c8668de53f865ae95cc85957db464.dir
+      size: 3843945
+      nfiles: 13
+  train-lida-in-merged-no-nbc-all@decision-tree-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-no-nbc/all/image-deepwalk
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-no-nbc-all-decision-tree-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-no-nbc/all/image-deepwalk
+      md5: 50c5a09dfe1bcfa83bc02266b1e8f6bc.dir
+      size: 16488209
+      nfiles: 347
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-no-nbc-all-decision-tree-deepwalk-stratified-k-fold
+      md5: 4103987720686446bc09d3abc2faec68.dir
+      size: 142142818
+      nfiles: 13
+  train-lida-in-merged-bc-merged-basal@gnn-morphology:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/basal/graph-rd
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-gnn-morphology-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/basal/graph-rd
+      md5: a932354a40ce2c40fd66e71b73ab490f.dir
+      size: 942389
+      nfiles: 423
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-gnn-morphology-stratified-k-fold
+      md5: b62e4b7e2b14db183592d5d3abb8e3c1.dir
+      size: 12246550
+      nfiles: 13
+  train-lida-in-merged-bc-merged-all@decision-tree-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/all/image-deepwalk
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-decision-tree-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/all/image-deepwalk
+      md5: 232d9ccdc3a7be8ee612886f977a404e.dir
+      size: 20030197
+      nfiles: 423
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-decision-tree-deepwalk-stratified-k-fold
+      md5: dfa1f31b819f1397f148418ae6df3ee6.dir
+      size: 172416185
+      nfiles: 13
+  train-lida-in-merged-no-nbc-basal@xgb-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-no-nbc/basal/image-tmd-rd
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-no-nbc-basal-xgb-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-no-nbc/basal/image-tmd-rd
+      md5: f05095221dbac7932a7d47de6bfbc735.dir
+      size: 14592081
+      nfiles: 347
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-no-nbc-basal-xgb-tmd-stratified-k-fold
+      md5: f69c969fc3cdfee3af4207c78a182a5c.dir
+      size: 128214848
+      nfiles: 13
+  train-lida-in-merged-bc-merged-all@xgb-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/all/image-tmd-rd
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-xgb-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/all/image-tmd-rd
+      md5: 8003e77b55eaa3ae50dd3db7d0f4c589.dir
+      size: 20030197
+      nfiles: 423
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-xgb-tmd-stratified-k-fold
+      md5: 1fc394ab45f64aa8f42e7cf7142b72ee.dir
+      size: 155691105
+      nfiles: 13
+  train-lida-in-merged-no-nbc-all@cnn-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-no-nbc/all/image-tmd-rd
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-no-nbc-all-cnn-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-no-nbc/all/image-tmd-rd
+      md5: f37a26d4ea52ffb718487f97ac7bccb5.dir
+      size: 16488209
+      nfiles: 347
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-no-nbc-all-cnn-tmd-stratified-k-fold
+      md5: 34705ab02d95a2611a90c0f30a321986.dir
+      size: 14040299
+      nfiles: 13
+  train-lida-in-merged-no-nbc-all@gnn-morphology:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-no-nbc/all/graph-rd
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-no-nbc-all-gnn-morphology-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-no-nbc/all/graph-rd
+      md5: 9a4c8ba743084a25ef5e740d163e782e.dir
+      size: 3141009
+      nfiles: 347
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-no-nbc-all-gnn-morphology-stratified-k-fold
+      md5: 9ef44d49a770b68ec7e46e3854ab434e.dir
+      size: 11616573
+      nfiles: 13
+  train-lida-in-merged-no-nbc-all@xgb-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-no-nbc/all/image-deepwalk
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-no-nbc-all-xgb-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-no-nbc/all/image-deepwalk
+      md5: 50c5a09dfe1bcfa83bc02266b1e8f6bc.dir
+      size: 16488209
+      nfiles: 347
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-no-nbc-all-xgb-deepwalk-stratified-k-fold
+      md5: 78a2fef40c9a6940307866b4bbd225b0.dir
+      size: 144206973
+      nfiles: 13
+  train-lida-in-merged-no-nbc-all@xgb-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-no-nbc/all/image-tmd-rd
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-no-nbc-all-xgb-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-no-nbc/all/image-tmd-rd
+      md5: f37a26d4ea52ffb718487f97ac7bccb5.dir
+      size: 16488209
+      nfiles: 347
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-no-nbc-all-xgb-tmd-stratified-k-fold
+      md5: 0b6c2d4fda88eccebc82208dcae08a35.dir
+      size: 130306684
+      nfiles: 13
+  train-lida-in-merged-bc-merged-all@decision-tree-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/all/image-tmd-rd
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-decision-tree-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/all/image-tmd-rd
+      md5: 8003e77b55eaa3ae50dd3db7d0f4c589.dir
+      size: 20030197
+      nfiles: 423
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-decision-tree-tmd-stratified-k-fold
+      md5: 9fa67c470e2236dc30d0f534a987b865.dir
+      size: 154076845
+      nfiles: 13
+  train-lida-in-merged-no-nbc-basal@cnn-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-no-nbc/basal/image-tmd-rd
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-no-nbc-basal-cnn-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-no-nbc/basal/image-tmd-rd
+      md5: f05095221dbac7932a7d47de6bfbc735.dir
+      size: 14592081
+      nfiles: 347
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-no-nbc-basal-cnn-tmd-stratified-k-fold
+      md5: da7ff7098a445c0e735ec2f48029814c.dir
+      size: 14041314
+      nfiles: 13
+  train-lida-in-merged-no-nbc-basal@decision-tree-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-no-nbc/basal/image-deepwalk
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-no-nbc-basal-decision-tree-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-no-nbc/basal/image-deepwalk
+      md5: dbfa3d9e891fc2c55595a4b21e2a4a7f.dir
+      size: 14592081
+      nfiles: 347
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-no-nbc-basal-decision-tree-deepwalk-stratified-k-fold
+      md5: 7ccb0c4b3abddab16367b10069440b45.dir
+      size: 138420646
+      nfiles: 13
+  train-lida-in-merged-bc-merged-basal@perslay-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/basal/diagram-deepwalk
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-perslay-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/basal/diagram-deepwalk
+      md5: 0692a8e3b5160e925e7d14eb0ed594ca.dir
+      size: 1040501
+      nfiles: 423
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-perslay-deepwalk-stratified-k-fold
+      md5: 67f359daaa255f62ab3e75e4587c8604.dir
+      size: 3919099
+      nfiles: 13
+  train-lida-in-merged-bc-merged-all@perslay-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/all/diagram-deepwalk
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-perslay-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/all/diagram-deepwalk
+      md5: 61d78a637edb864f79a0632d180dbda2.dir
+      size: 4404981
+      nfiles: 423
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-perslay-deepwalk-stratified-k-fold
+      md5: aeaf77892c451a2c59faf639cf7694ac.dir
+      size: 3919353
+      nfiles: 13
+  train-lida-in-merged-bc-merged-all@perslay-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/all/diagram-tmd-rd
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-perslay-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/all/diagram-tmd-rd
+      md5: fc65e4b7a02fb317c0bf698b98e4d340.dir
+      size: 3748469
+      nfiles: 423
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-perslay-tmd-stratified-k-fold
+      md5: 0ac8038182628ebbdbdd0e78774ad924.dir
+      size: 3919930
+      nfiles: 13
+  train-lida-in-merged-bc-merged-basal@perslay-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/basal/diagram-tmd-rd
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-perslay-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/basal/diagram-tmd-rd
+      md5: 4bfcb879c10ec4edb9ef7d70826c1de4.dir
+      size: 943989
+      nfiles: 423
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-perslay-tmd-stratified-k-fold
+      md5: 40e0d38565187b54c24669ad67ff7c9a.dir
+      size: 3919412
+      nfiles: 13
+  train-lida-in-merged-bc-merged-basal@xgb-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/basal/image-deepwalk
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-xgb-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/basal/image-deepwalk
+      md5: 64d4011801154f7c3fb4f4b78803b8fc.dir
+      size: 17779573
+      nfiles: 423
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-xgb-deepwalk-stratified-k-fold
+      md5: 50c9484da51d71fb302e93da27744f6a.dir
+      size: 169359206
+      nfiles: 13
+  train-lida-in-merged-no-nbc-basal@cnn-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-no-nbc/basal/image-deepwalk
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-no-nbc-basal-cnn-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-no-nbc/basal/image-deepwalk
+      md5: dbfa3d9e891fc2c55595a4b21e2a4a7f.dir
+      size: 14592081
+      nfiles: 347
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-no-nbc-basal-cnn-deepwalk-stratified-k-fold
+      md5: 6d7cc37f6367de585978bf6d845f215b.dir
+      size: 14040914
+      nfiles: 13
+  train-lida-in-merged-bc-merged-all@cnn-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/all/image-tmd-rd
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-cnn-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/all/image-tmd-rd
+      md5: 8003e77b55eaa3ae50dd3db7d0f4c589.dir
+      size: 20030197
+      nfiles: 423
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-cnn-tmd-stratified-k-fold
+      md5: a81a45be7ae8e4a3aa1d2e412f6affca.dir
+      size: 16307266
+      nfiles: 13
+  train-lida-in-merged-no-nbc-basal@perslay-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-no-nbc/basal/diagram-tmd-rd
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-no-nbc-basal-perslay-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-no-nbc/basal/diagram-tmd-rd
+      md5: 5ed2f0f7c9bbc09f27493825664a9b8e.dir
+      size: 782801
+      nfiles: 347
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-no-nbc-basal-perslay-tmd-stratified-k-fold
+      md5: 8870f8a7404125812e044fff11b8baf1.dir
+      size: 3842339
+      nfiles: 13
+  train-lida-in-merged-bc-merged-basal@cnn-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/basal/image-deepwalk
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-cnn-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/basal/image-deepwalk
+      md5: 64d4011801154f7c3fb4f4b78803b8fc.dir
+      size: 17779573
+      nfiles: 423
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-cnn-deepwalk-stratified-k-fold
+      md5: 1d9e437072711df75e079a4b7ec3b91a.dir
+      size: 16303736
+      nfiles: 13
+  train-lida-in-merged-bc-merged-basal@cnn-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/basal/image-tmd-rd
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-cnn-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/basal/image-tmd-rd
+      md5: 0c2cbfa8028148a43accbff590e40088.dir
+      size: 17779573
+      nfiles: 423
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-cnn-tmd-stratified-k-fold
+      md5: e94888d9b6d4e75e4070d7d06e30796b.dir
+      size: 16302944
+      nfiles: 13
+  train-lida-in-merged-bc-merged-basal@xgb-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/basal/image-tmd-rd
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-xgb-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/basal/image-tmd-rd
+      md5: 0c2cbfa8028148a43accbff590e40088.dir
+      size: 17779573
+      nfiles: 423
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-xgb-tmd-stratified-k-fold
+      md5: 21211cf8ac4f64b0a505ebe72241b554.dir
+      size: 154178332
+      nfiles: 13
+  train-lida-in-merged-no-nbc-basal@xgb-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-no-nbc/basal/image-deepwalk
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-no-nbc-basal-xgb-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-no-nbc/basal/image-deepwalk
+      md5: dbfa3d9e891fc2c55595a4b21e2a4a7f.dir
+      size: 14592081
+      nfiles: 347
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-no-nbc-basal-xgb-deepwalk-stratified-k-fold
+      md5: 0401bb828e3871c67cb56f7ecaf935ba.dir
+      size: 140538649
+      nfiles: 13
+  train-lida-in-merged-no-nbc-all@perslay-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-no-nbc/all/diagram-deepwalk
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-no-nbc-all-perslay-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-no-nbc/all/diagram-deepwalk
+      md5: e6edd0072f618d4c6867dcf5110aec11.dir
+      size: 3695633
+      nfiles: 347
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-no-nbc-all-perslay-deepwalk-stratified-k-fold
+      md5: 66ddc179232cf61802a2bc6a01f57c7a.dir
+      size: 3842588
+      nfiles: 13
+  train-lida-in-merged-no-nbc-basal@perslay-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-no-nbc/basal/diagram-deepwalk
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-no-nbc-basal-perslay-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-no-nbc/basal/diagram-deepwalk
+      md5: f1ee90170896626a2046e6e37ed4cfe9.dir
+      size: 863057
+      nfiles: 347
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-no-nbc-basal-perslay-deepwalk-stratified-k-fold
+      md5: ec50f2aa4c3ab65ae1a08f0911fec80e.dir
+      size: 3842399
+      nfiles: 13
+  train-lida-in-merged-bc-merged-all@gnn-morphology:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/all/graph-rd
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-gnn-morphology-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/all/graph-rd
+      md5: 174472c6c822adca066817ac83525fc3.dir
+      size: 3744245
+      nfiles: 423
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-gnn-morphology-stratified-k-fold
+      md5: 8016484e0401dcc9e1e1fda622606027.dir
+      size: 12250280
+      nfiles: 13
+  train-lida-in-merged-no-nbc-all@cnn-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-no-nbc/all/image-deepwalk
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-no-nbc-all-cnn-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-no-nbc/all/image-deepwalk
+      md5: 50c5a09dfe1bcfa83bc02266b1e8f6bc.dir
+      size: 16488209
+      nfiles: 347
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-no-nbc-all-cnn-deepwalk-stratified-k-fold
+      md5: 55e12dc71e5dee3617bd2469e0334acf.dir
+      size: 14046938
+      nfiles: 13
+  train-lida-in-merged-no-nbc-all@decision-tree-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-no-nbc/all/image-tmd-rd
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-no-nbc-all-decision-tree-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-no-nbc/all/image-tmd-rd
+      md5: f37a26d4ea52ffb718487f97ac7bccb5.dir
+      size: 16488209
+      nfiles: 347
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-no-nbc-all-decision-tree-tmd-stratified-k-fold
+      md5: 8c21b8fe553cc75c0902bfeedeacfbc8.dir
+      size: 128498935
+      nfiles: 13
+  train-lida-in-merged-no-nbc-basal@decision-tree-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-no-nbc/basal/image-tmd-rd
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-no-nbc-basal-decision-tree-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-no-nbc/basal/image-tmd-rd
+      md5: f05095221dbac7932a7d47de6bfbc735.dir
+      size: 14592081
+      nfiles: 347
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-no-nbc-basal-decision-tree-tmd-stratified-k-fold
+      md5: 11dbb5f6b38c7887dfae32e71b4e73ef.dir
+      size: 125997377
+      nfiles: 13
+  train-lida-in-merged-no-nbc-basal@gnn-morphology:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-no-nbc/basal/graph-rd
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-no-nbc-basal-gnn-morphology-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-no-nbc/basal/graph-rd
+      md5: 915804668e623454e5a370a32290c1b8.dir
+      size: 781521
+      nfiles: 347
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-no-nbc-basal-gnn-morphology-stratified-k-fold
+      md5: 3e692dfbaf0cf949e6eb85085e43905a.dir
+      size: 11610916
+      nfiles: 13
+  train-lida-in-merged-bc-merged-all@cnn-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/all/image-deepwalk
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-cnn-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/all/image-deepwalk
+      md5: 232d9ccdc3a7be8ee612886f977a404e.dir
+      size: 20030197
+      nfiles: 423
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-cnn-deepwalk-stratified-k-fold
+      md5: 0152d95bbd628695fa7f5e3f4fc1b01c.dir
+      size: 16293591
+      nfiles: 13
+  train-lida-in-merged-bc-merged-all@xgb-deepwalk:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/all/image-deepwalk
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-xgb-deepwalk-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/all/image-deepwalk
+      md5: 232d9ccdc3a7be8ee612886f977a404e.dir
+      size: 20030197
+      nfiles: 423
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-xgb-deepwalk-stratified-k-fold
+      md5: 33ed4ced168bb61f46ab4b409e25af43.dir
+      size: 174221547
+      nfiles: 13
+  train-lida-in-merged-bc-merged-basal@decision-tree-tmd:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/basal/image-tmd-rd
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-decision-tree-tmd-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/basal/image-tmd-rd
+      md5: 0c2cbfa8028148a43accbff590e40088.dir
+      size: 17779573
+      nfiles: 423
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-decision-tree-tmd-stratified-k-fold
+      md5: d4c68cbf0a507c396d09ef810dbfd260.dir
+      size: 152276576
+      nfiles: 13
