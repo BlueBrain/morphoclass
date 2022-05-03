@@ -50,7 +50,8 @@ def chance_accuracy(y_true: ArrayLike[int]) -> float:
         raise ValueError(f"y_true = {y_true} is empty!")
     _check_targets(y_true, y_true)
     _, counts = np.unique(y_true, return_counts=True)
-    return (counts**2).sum()
+    n_tot = len(y_true)
+    return (counts**2).sum() / n_tot**2
 
 
 def inter_rater_score(targets, pred, kind="cohen_kappa"):
