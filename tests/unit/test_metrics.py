@@ -127,6 +127,25 @@ def predictions_proba_long():
 
 
 @pytest.mark.parametrize(
+    "y_true,score",
+    [
+        ([0, 0, 0, 0, 0], 1),
+        ([1, 0, 0, 1, 1], 13 / 25),
+        ([0, 2, 0, 0, 1], 11 / 25),
+        (range(5), 1 / 5),
+    ],
+)
+def test_chance_accuracy(y_true, score):
+    assert np.isclose(morphoclass.metrics.chance_accuracy(y_true), score)
+
+
+@pytest.mark.parametrize("y_true", [[], range(0)])
+def test_chance_accuracy_fail(y_true):
+    with pytest.raises(ValueError):
+        morphoclass.metrics.chance_accuracy(y_true)
+
+
+@pytest.mark.parametrize(
     "kind,score", [("cohen_kappa", 0.5), ("scotts_pi", 0.466666666666666)]
 )
 def test_inter_rater_score(targets, predictions, kind, score):
