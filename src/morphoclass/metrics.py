@@ -50,8 +50,9 @@ def chance_agreement(y_true: ArrayLike[int]) -> float:
     _, counts = np.unique(y_true, return_counts=True)
     if not counts.size:
         raise ValueError(f"y_true = {y_true} is empty!")
-    n_tot = len(y_true)
-    return (counts**2).sum() / n_tot**2
+    n_tot: int = len(y_true)
+    num: int = (counts**2).sum()
+    return num / n_tot**2
 
 
 def inter_rater_score(targets, pred, kind="cohen_kappa"):
