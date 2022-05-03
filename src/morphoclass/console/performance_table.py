@@ -151,11 +151,10 @@ def make_report_row(data: dict) -> dict:
     # Compute balanced accuracy here, because training.cli.collect_metrics() lacks it.
     balanced_accuracy_vals = []
     for split in data["splits"]:
-        balanced_accuracy_vals.append(
-            balanced_accuracy_score(
-                y_true=split["ground_truths"], y_pred=split["predictions"]
-            )
-        )
+        y_true = split["ground_truths"]
+        y_pred = split["predictions"]
+        balanced_accuracy_vals.append(balanced_accuracy_score(y_true, y_pred))
+
     data["balanced_accuracy_mean"] = np.mean(balanced_accuracy_vals)
     data["balanced_accuracy_std"] = np.std(balanced_accuracy_vals)
 
