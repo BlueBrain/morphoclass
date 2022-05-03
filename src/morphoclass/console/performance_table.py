@@ -30,6 +30,7 @@ from sklearn.metrics import f1_score
 
 import morphoclass as mc
 import morphoclass.report.plumbing
+from morphoclass.metrics import chance_agreement
 from morphoclass.types import StrPath
 
 logger = logging.getLogger(__name__)
@@ -95,6 +96,7 @@ def make_performance_table(
         "model_class",
         "oversampled",
         "splitter_class",
+        "chance_agreement",
         "accuracy",
         "balanced_accuracy",
         "f1_micro",
@@ -169,5 +171,9 @@ def make_report_row(data: dict) -> dict:
         mean = np.mean(metric_vals)
         std = np.std(metric_vals)
         row[metric_name] = f"{mean:.3f}±{std:.3f}"
+
+    # Add chance agreement
+    chance_agreement_score = chance_agreement(data["all"]["ground_truths"])
+    row["chance_agreement"] = f"{chance_agreement_score:.3f}"
 
     return row
