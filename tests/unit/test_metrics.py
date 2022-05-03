@@ -135,14 +135,14 @@ def predictions_proba_long():
         (range(5), 1 / 5),
     ],
 )
-def test_chance_accuracy(y_true, score):
-    assert np.isclose(morphoclass.metrics.chance_accuracy(y_true), score)
+def test_chance_agreement(y_true, score):
+    assert np.isclose(morphoclass.metrics.chance_agreement(y_true), score)
 
 
 @pytest.mark.parametrize("y_true", [[], range(0)])
-def test_chance_accuracy_fail(y_true):
+def test_chance_agreement_fail(y_true):
     with pytest.raises(ValueError):
-        morphoclass.metrics.chance_accuracy(y_true)
+        morphoclass.metrics.chance_agreement(y_true)
 
 
 @pytest.mark.parametrize(

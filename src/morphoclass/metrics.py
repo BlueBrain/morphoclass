@@ -22,7 +22,7 @@ from numpy.typing import ArrayLike
 from sklearn.metrics._classification import _check_targets
 
 
-def chance_accuracy(y_true: ArrayLike[int]) -> float:
+def chance_agreement(y_true: ArrayLike[int]) -> float:
     """Compute accuracy obtained "by chance" by a model giving random predictions.
 
     Parameters
@@ -46,10 +46,10 @@ def chance_accuracy(y_true: ArrayLike[int]) -> float:
     [1] https://en.wikipedia.org/wiki/Cohen%27s_kappa#Definition
     [2] https://github.com/BlueBrain/morphoclass/issues/49#issue-1224044038
     """
-    if not y_true:
-        raise ValueError(f"y_true = {y_true} is empty!")
     _check_targets(y_true, y_true)
     _, counts = np.unique(y_true, return_counts=True)
+    if not counts.size:
+        raise ValueError(f"y_true = {y_true} is empty!")
     n_tot = len(y_true)
     return (counts**2).sum() / n_tot**2
 
