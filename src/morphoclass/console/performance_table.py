@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import logging
 import pathlib
+from collections import defaultdict
 from collections.abc import Sequence
 
 import click
@@ -23,7 +24,9 @@ import numpy as np
 import pandas as pd
 import torch
 from pandas.io.formats.style import Styler
+from sklearn.metrics import accuracy_score
 from sklearn.metrics import balanced_accuracy_score
+from sklearn.metrics import f1_score
 
 import morphoclass as mc
 import morphoclass.report.plumbing
@@ -148,31 +151,23 @@ def make_report_row(data: dict) -> dict:
         "metrics_file": data["metrics_file"],
     }
 
-    # Compute balanced accuracy here, because training.cli.collect_metrics() lacks it.
-    balanced_accuracy_vals = []
+    # Compute scores on each split, for each metric of interest
+    metrics_vals: defaultdict[str, list[float]] = defaultdict(list)
     for split in data["splits"]:
         y_true = split["ground_truths"]
         y_pred = split["predictions"]
-        balanced_accuracy_vals.append(balanced_accuracy_score(y_true, y_pred))
+        metrics_vals["accuracy"].append(accuracy_score(y_true, y_pred))
+        metrics_vals["balanced_accuracy"].append(
+            balanced_accuracy_score(y_true, y_pred)
+        )
+        metrics_vals["f1_weighted"].append(f1_score(y_true, y_pred, average="weighted"))
+        metrics_vals["f1_micro"].append(f1_score(y_true, y_pred, average="micro"))
+        metrics_vals["f1_macro"].append(f1_score(y_true, y_pred, average="macro"))
 
-    data["balanced_accuracy_mean"] = np.mean(balanced_accuracy_vals)
-    data["balanced_accuracy_std"] = np.std(balanced_accuracy_vals)
-
-    # TODO: no evaluation metric result should be stored in checkpoints (= `data` dict)
-    #  at training time. We should instead be computed at evaluation time (e.g. here)
-    #  based on the `predictions`, `probabilities`, `ground_truths` vectors that are
-    #  written in the checkpoint.
-    #  We should call training.cli.collect_metrics() here, and remove it from train().
-
-    metrics_names = [
-        "accuracy",
-        "balanced_accuracy",
-        "f1_weighted",
-        "f1_micro",
-        "f1_macro",
-    ]
-    for metric_name in metrics_names:
-        mean, std = data[f"{metric_name}_mean"], data[f"{metric_name}_std"]
+    # Write mean±std to table, for each metric of interest
+    for metric_name, metric_vals in metrics_vals.items():
+        mean = np.mean(metric_vals)
+        std = np.std(metric_vals)
         row[metric_name] = f"{mean:.3f}±{std:.3f}"
 
     return row
