@@ -61,13 +61,6 @@ models-and-features:
     model: xgb
     features-rd: image-tmd-rd
     features-proj: image-tmd-proj
-performance-report:
-  in_L6:
-    checkpoint_dir: models/interneurons/L6
-    output_dir: reports/performance-report/interneurons/L6
-  pc_L2:
-    checkpoint_dir: models/pyramidal_cells/L2
-    output_dir: reports/performance-report/pyramidal_cells/L2
 training:
   in-L1-axon-diagram-deepwalk-perslay-stratified-k-fold:
     features-dir: extract-features/in-L1/axon/diagram-deepwalk

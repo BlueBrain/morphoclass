@@ -103,22 +103,6 @@ stages:
       md5: d8d2d2d7b8842ce94429a814a52180c2.dir
       size: 535848
       nfiles: 4
-  performance-report@pc_L2:
-    cmd: morphoclass -v performance-report --checkpoint-dir 'models/pyramidal_cells/L2'
-      --output-dir 'reports/performance-report/pyramidal_cells/L2'
-    deps:
-    - path: models/pyramidal_cells/L2
-      md5: 2ed178ff3ad478571083dd3fceab0fb8.dir
-      size: 256810885
-      nfiles: 268
-  performance-report@in_L6:
-    cmd: morphoclass -v performance-report --checkpoint-dir 'models/interneurons/L6'
-      --output-dir 'reports/performance-report/interneurons/L6'
-    deps:
-    - path: models/interneurons/L6
-      md5: 5c2e581c582c85b257fc569720e16242.dir
-      size: 355509916
-      nfiles: 300
   train@pc-tmd-L2-stratifKFold-cnn:
     cmd: morphoclass -v train --dataset-config training/configs/dataset-pc-L2.yaml
       --model-config training/configs/model-cnn-tmd.yaml --splitter-config training/configs/splitter-stratifKFold.yaml
