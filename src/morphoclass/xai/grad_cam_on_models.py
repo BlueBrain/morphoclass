@@ -155,7 +155,7 @@ def grad_cam_cnn_model(model, dataset, sample_id):
     ----------
     model : morphoclass.models.cnnet.CNNet
         Model that will be explained.
-    dataset : morphoclass.data.morphology_dataset.MorphologyEmbeddingDataset
+    dataset : morphoclass.data.morphology_dataset.MorphologyDataset
         Dataset containing embeddings and morphologies.
     sample_id : int
         The id of embedding in the dataset.
@@ -263,7 +263,7 @@ def grad_cam_perslay_model(model, dataset, sample_id):
     ----------
     model : morphoclass.models.coriander_net.CorianderNet
         Model that will be explained.
-    dataset : morphoclass.data.morphology_dataset.MorphologyEmbeddingDataset
+    dataset : morphoclass.data.morphology_dataset.MorphologyDataset
         Dataset containing embeddings and morphologies.
     sample_id : int
         The id of embedding in the dataset.

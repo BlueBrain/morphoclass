@@ -64,8 +64,8 @@ class CorianderNet(nn.Module):
 
         Parameters
         ----------
-        data : torch_geometric.data.Batch
-            A batch of MorphologyEmbeddingDataset dataset.
+        data : torch_geometric.data.Batch | torch.Tensor
+            A batch of MorphologyDataset dataset.
 
         Returns
         -------
@@ -77,7 +77,7 @@ class CorianderNet(nn.Module):
         if hasattr(data, "diagram"):
             x = data.diagram
         else:
-            # captum tensors for XAI
+            # captum tensors for XAI, see `xai.model_attributions`
             x = data[:, 0:2]
 
         # Note: case in else section can be removed as soon as they implement
@@ -100,7 +100,7 @@ class CorianderNet(nn.Module):
         Parameters
         ----------
         data : torch_geometric.data.Batch
-            A batch of MorphologyEmbeddingDataset dataset.
+            A batch of MorphologyDataset dataset.
 
         Returns
         -------
