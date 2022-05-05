@@ -25,7 +25,6 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   morphoclass.augmentation
    morphoclass.cleanlab
    morphoclass.constants
    morphoclass.deepwalk

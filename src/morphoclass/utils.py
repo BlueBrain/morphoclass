@@ -21,7 +21,6 @@ import os
 import pathlib
 import platform
 import sys
-import warnings
 from contextlib import contextmanager
 
 import dill
@@ -44,12 +43,6 @@ from torch_geometric.data import Data
 from torch_geometric.data import DataLoader
 
 import morphoclass as mc
-
-# from tmd.utils import tree_type as td
-
-with warnings.catch_warnings():
-    warnings.filterwarnings("ignore", category=DeprecationWarning)
-    from morphoclass.augmentation import finding_point_on_branch
 
 logger = logging.getLogger(__name__)
 
@@ -228,6 +221,36 @@ def from_morphio_to_tmd(morphio_neuron, remove_duplicates=False):
     return tmd_neuron
 
 
+def find_point_on_branch(tree: Tree, start: int, end: int) -> list[int]:
+    """Find all the points in a branch specified by its start and end points.
+
+    Parameters
+    ----------
+    tree
+        A TMD tree.
+    start
+        Index of the starting point of the branch
+    end
+        Index of the ending point of the branch
+
+    Returns
+    -------
+    list
+        A list of indices of points on the given branch. The indices refer
+        to the non-simplified tree.
+    """
+    points_on_branch = [end]
+    point = end
+    while True:
+        parent = tree.p[point]
+        if parent == start:
+            points_on_branch.append(start)
+            break
+        points_on_branch.append(parent)
+        point = parent
+    return points_on_branch
+
+
 def from_tmd_to_morphio(tmd_neuron):
     """Change a neuron in TMD format to MorphIO neuron format.
 
@@ -264,7 +287,7 @@ def from_tmd_to_morphio(tmd_neuron):
         section = []
         for nb, (i, j) in enumerate(zip(beg, end)):
             if nb == 0:
-                points = np.flip(finding_point_on_branch(branch, i, j))
+                points = np.flip(find_point_on_branch(branch, i, j))
                 section.append(
                     morpho_neuron.append_root_section(
                         PointLevel(
@@ -278,7 +301,7 @@ def from_tmd_to_morphio(tmd_neuron):
                 )
             if nb > 0:
                 ind = np.where(end == i)
-                points = np.flip(finding_point_on_branch(branch, i, j))
+                points = np.flip(find_point_on_branch(branch, i, j))
                 section.append(
                     section[ind[0][0]].append_section(
                         PointLevel(
