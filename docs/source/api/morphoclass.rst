@@ -9,7 +9,7 @@ Subpackages
 
    morphoclass.console
    morphoclass.data
-   morphoclass.feature_extractors
+   morphoclass.features
    morphoclass.layers
    morphoclass.models
    morphoclass.morphometrics

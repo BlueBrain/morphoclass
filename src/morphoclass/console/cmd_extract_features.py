@@ -127,7 +127,7 @@ def cli(
 
     from morphoclass import transforms
     from morphoclass.data.morphology_dataset import MorphologyDataset
-    from morphoclass.feature_extractors import non_graph
+    from morphoclass.features import non_graph
 
     logger.info("Starting feature extraction")
     # This transform should always be the last transform of the dataset. It filter out
