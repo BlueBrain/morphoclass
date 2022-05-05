@@ -18,6 +18,41 @@ import numpy as np
 import seaborn as sns
 import sklearn.metrics as metrics
 from matplotlib.figure import Figure
+from numpy.typing import ArrayLike
+from sklearn.metrics._classification import _check_targets
+
+
+def chance_agreement(y_true: ArrayLike[int]) -> float:
+    """Compute accuracy obtained "by chance" by a model giving random predictions.
+
+    Parameters
+    ----------
+    y_true
+        1d array-like. Ground truth (correct) labels.
+
+    Returns
+    -------
+    score : float
+        The expected accuracy of a model giving random predictions according to the
+        class frequencies observed in `y_true`.
+
+    Raises
+    ------
+    ValueError
+        If `y_true` has no elements.
+
+    References
+    ----------
+    [1] https://en.wikipedia.org/wiki/Cohen%27s_kappa#Definition
+    [2] https://github.com/BlueBrain/morphoclass/issues/49#issue-1224044038
+    """
+    _check_targets(y_true, y_true)
+    _, counts = np.unique(y_true, return_counts=True)
+    if not counts.size:
+        raise ValueError(f"y_true = {y_true} is empty!")
+    n_tot: int = len(y_true)
+    num: int = (counts**2).sum()
+    return num / n_tot**2
 
 
 def inter_rater_score(targets, pred, kind="cohen_kappa"):
