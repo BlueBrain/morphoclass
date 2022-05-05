@@ -1,66 +1,11 @@
 schema: '2.0'
 stages:
-  explain-models@pc_tmd_L2_stratifKFold_xgb_oversampled:
-    cmd: morphoclass -v dvc explain-models --dvc-item pc_tmd_L2_stratifKFold_xgb_oversampled
-    deps:
-    - path: models/pyramidal_cells/L2/pc_tmd_L2_stratifKFold_xgb_oversampled_results.chk
-      md5: b65acdb153adb4ff51038b1cd08b2e0f
-      size: 21091695
-    outs:
-    - path: reports/xai/pyramidal_cells/L2/pc_tmd_L2_stratifKFold_xgb_oversampled/
-      md5: 19db68bf1b14a19d0b0068cecbd046fd.dir
-      size: 38118938
-      nfiles: 19
-  explain-models@in_morphology_L6_stratifKFold_gnn_oversampled:
-    cmd: morphoclass -v dvc explain-models --dvc-item in_morphology_L6_stratifKFold_gnn_oversampled
-    deps:
-    - path: models/interneurons/L6/in_morphology_L6_stratifKFold_gnn_oversampled_results.chk
-      md5: 74743480638f8fbcf94b36d100207b60
-      size: 6664921
-    outs:
-    - path: reports/xai/interneurons/L6/in_morphology_L6_stratifKFold_gnn_oversampled/
-      md5: 2494996dc77f5c8af0756712c56716a6.dir
-      size: 328416439
-      nfiles: 151
   transfer-learning@in_morphology_L6_stratifKFold_gnn_oversampled:
     cmd: morphoclass -v dvc transfer-learning --dvc-item in_morphology_L6_stratifKFold_gnn_oversampled
     outs:
     - path: reports/transfer_learning/interneurons/L6/transfer_learning_report.html
       md5: 0fff82985b0686a3fff1cf399f5671ef
       size: 1487
-  explain-models@in_tmd_L6_stratifKFold_cnn_oversampled:
-    cmd: morphoclass -v dvc explain-models --dvc-item in_tmd_L6_stratifKFold_cnn_oversampled
-    deps:
-    - path: models/interneurons/L6/in_tmd_L6_stratifKFold_cnn_oversampled_results.chk
-      md5: 5daa2e53ae1ceedb708e2312a8b4410a
-      size: 4033608
-    outs:
-    - path: reports/xai/interneurons/L6/in_tmd_L6_stratifKFold_cnn_oversampled/
-      md5: 9d591c181435f6b9ef0faf3ac19d483c.dir
-      size: 137251747
-      nfiles: 166
-  explain-models@in_tmd_L6_stratifKFold_perslay_oversampled:
-    cmd: morphoclass -v dvc explain-models --dvc-item in_tmd_L6_stratifKFold_perslay_oversampled
-    deps:
-    - path: models/interneurons/L6/in_tmd_L6_stratifKFold_perslay_oversampled_results.chk
-      md5: 10cfb9c6c1a5f915f7eb4aff366737d7
-      size: 250312
-    outs:
-    - path: reports/xai/interneurons/L6/in_tmd_L6_stratifKFold_perslay_oversampled/
-      md5: 71541d9953eb432417c194b0bde1e0d9.dir
-      size: 62431537
-      nfiles: 151
-  explain-models@in_tmd_L6_stratifKFold_decisiontree:
-    cmd: morphoclass -v dvc explain-models --dvc-item in_tmd_L6_stratifKFold_decisiontree
-    deps:
-    - path: models/interneurons/L6/in_tmd_L6_stratifKFold_decisiontree_results.chk
-      md5: 3dc42570a0353834f46ccc581f5938eb
-      size: 28896303
-    outs:
-    - path: reports/xai/interneurons/L6/in_tmd_L6_stratifKFold_decisiontree/
-      md5: d8d2d2d7b8842ce94429a814a52180c2.dir
-      size: 535848
-      nfiles: 4
   train@pc-tmd-L2-stratifKFold-cnn:
     cmd: morphoclass -v train --dataset-config training/configs/dataset-pc-L2.yaml
       --model-config training/configs/model-cnn-tmd.yaml --splitter-config training/configs/splitter-stratifKFold.yaml

@@ -1,29 +1,3 @@
-explain_models:  # potentially outdated, review dvc.yaml/the CLI and maybe delete
-  in_morphology_L6_stratifKFold_gnn_oversampled:
-    checkpoint_path: models/interneurons/L6/in_morphology_L6_stratifKFold_gnn_oversampled_results.chk
-    checkpoint_path_outs: reports/xai/interneurons/L6/in_morphology_L6_stratifKFold_gnn_oversampled/
-    id: in_morphology_L6_stratifKFold_gnn_oversampled
-    results_file: reports/xai/interneurons/L6/in_morphology_L6_stratifKFold_gnn_oversampled/xai_report.html
-  in_tmd_L6_stratifKFold_cnn_oversampled:
-    checkpoint_path: models/interneurons/L6/in_tmd_L6_stratifKFold_cnn_oversampled_results.chk
-    checkpoint_path_outs: reports/xai/interneurons/L6/in_tmd_L6_stratifKFold_cnn_oversampled/
-    id: in_tmd_L6_stratifKFold_cnn_oversampled
-    results_file: reports/xai/interneurons/L6/in_tmd_L6_stratifKFold_cnn_oversampled/xai_report.html
-  in_tmd_L6_stratifKFold_decisiontree:
-    checkpoint_path: models/interneurons/L6/in_tmd_L6_stratifKFold_decisiontree_results.chk
-    checkpoint_path_outs: reports/xai/interneurons/L6/in_tmd_L6_stratifKFold_decisiontree/
-    id: in_tmd_L6_stratifKFold_decisiontree
-    results_file: reports/xai/interneurons/L6/in_tmd_L6_stratifKFold_decisiontree/xai_report.html
-  in_tmd_L6_stratifKFold_perslay_oversampled:
-    checkpoint_path: models/interneurons/L6/in_tmd_L6_stratifKFold_perslay_oversampled_results.chk
-    checkpoint_path_outs: reports/xai/interneurons/L6/in_tmd_L6_stratifKFold_perslay_oversampled/
-    id: in_tmd_L6_stratifKFold_perslay_oversampled
-    results_file: reports/xai/interneurons/L6/in_tmd_L6_stratifKFold_perslay_oversampled/xai_report.html
-  pc_tmd_L2_stratifKFold_xgb_oversampled:
-    checkpoint_path: models/pyramidal_cells/L2/pc_tmd_L2_stratifKFold_xgb_oversampled_results.chk
-    checkpoint_path_outs: reports/xai/pyramidal_cells/L2/pc_tmd_L2_stratifKFold_xgb_oversampled/
-    id: pc_tmd_L2_stratifKFold_xgb_oversampled
-    results_file: reports/xai/pyramidal_cells/L2/pc_tmd_L2_stratifKFold_xgb_oversampled/xai_report.html
 models-and-features:
   cnn-deepwalk:
     model: cnn

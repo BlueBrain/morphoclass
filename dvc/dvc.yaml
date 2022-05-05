@@ -111,17 +111,6 @@ stages:
       outs:
       - ${item.results_file}
       # - ${item.output_wildcard}
-  explain-models:
-    foreach: ${explain_models}
-    do:
-      cmd: >-
-        morphoclass -v explain-models
-        --checkpoint-path ${item.checkpoint_path}
-        --results-file ${item.results_file}
-      deps:
-      - ${item.checkpoint_path}
-      outs:
-      - ${item.checkpoint_path_outs}
 
   features-in-L1-diagram-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv all
