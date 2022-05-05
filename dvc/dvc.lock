@@ -1,47 +1,5 @@
 schema: '2.0'
 stages:
-  data-preparation@pc:
-    cmd: morphoclass -v dvc data-preparation --dvc-item pc
-    deps:
-    - path: ../src/morphoclass/datasets_preparation/logging.conf
-      md5: e867bfd4d0e6b2cfacc8f39a82862781
-      size: 689
-    - path: ../src/morphoclass/datasets_preparation/luigi.cfg
-      md5: 1318e51415e1980a06320a73806f97c1
-      size: 806
-    - path: ../src/morphoclass/datasets_preparation/pyramidal_cells/report_template.html
-      md5: c44387df88e0a4c90741c9bfe77e7fac
-      size: 7089
-    - path: data/raw/pyramidal-cells
-      md5: bf223895b1232824b1c4d270cb73da68.dir
-      size: 108138976
-      nfiles: 468
-    outs:
-    - path: reports/data_preparation/pyramidal_cells/
-      md5: 309d2472c1db3ed0491939f2a2f80315.dir
-      size: 2299703179
-      nfiles: 4736
-  data-preparation@in:
-    cmd: morphoclass -v dvc data-preparation --dvc-item in
-    deps:
-    - path: ../src/morphoclass/datasets_preparation/interneurons/report_template.html
-      md5: 33d8138b260b0d706e9be7d644d56f73
-      size: 7230
-    - path: ../src/morphoclass/datasets_preparation/logging.conf
-      md5: e867bfd4d0e6b2cfacc8f39a82862781
-      size: 689
-    - path: ../src/morphoclass/datasets_preparation/luigi.cfg
-      md5: 1318e51415e1980a06320a73806f97c1
-      size: 806
-    - path: data/raw/interneurons
-      md5: 1d5f19adfa61391f00e44169394dcf63.dir
-      size: 178060807
-      nfiles: 1019
-    outs:
-    - path: reports/data_preparation/interneurons/
-      md5: 817171a63a02e8d936797040d0738f35.dir
-      size: 3723854852
-      nfiles: 5727
   explain-models@pc_tmd_L2_stratifKFold_xgb_oversampled:
     cmd: morphoclass -v dvc explain-models --dvc-item pc_tmd_L2_stratifKFold_xgb_oversampled
     deps:
