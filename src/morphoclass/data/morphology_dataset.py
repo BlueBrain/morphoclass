@@ -538,8 +538,7 @@ class MorphologyDataset(Dataset):
         # Check that the embeddings are big enough - at least 3 points.
         # Otherwise, we can't generate any persistence images and such data
         # doesn't make sense anyway.
-        # TODO: is this the right place to do this? Also see a similar check
-        #       in the feature_extractors.
+        # TODO: is this the right place to do this?
         idx_keep = []
         for i, embedding in enumerate(embeddings):
             if len(embedding) < 3:
