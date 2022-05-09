@@ -1,4 +1,4 @@
-<img alt="MorphoClass Banner" src="docs/source/logo/morphoclass-banner.jpg" width="600"/>
+<img alt="MorphoClass Banner" src="docs/source/logo/morphoclass-banner.jpg"/>
 
 # Morphology-Classification
 MorphoClass is a toolbox for neuronal morphologies processing and
