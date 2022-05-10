@@ -25,7 +25,7 @@ from typing_extensions import Protocol
 #  imports, in particular from morphoclass and torch (above). Hopefully the
 #  protocol definition that requires these imports will be obsolete once the
 #  feature extraction in the DVC/CLI hs be propertly refactored.
-from morphoclass.data import MorphologyDataset
+import morphoclass.data
 
 # Starting py39 should write `os.PathLike[str]`
 # See also
@@ -45,5 +45,5 @@ class FeatureExtractor(Protocol):
         embedding_type: str,
         neurite_type: str | None = None,
         overwrite: bool = False,
-    ) -> tuple[MorphologyDataset, DataLoader, dict]:
+    ) -> tuple[morphoclass.data.MorphologyDataset, DataLoader, dict]:
         """Run the feature extractor."""

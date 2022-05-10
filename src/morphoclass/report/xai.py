@@ -15,7 +15,6 @@
 from __future__ import annotations
 
 import logging
-import os
 import pathlib
 import textwrap
 
@@ -33,6 +32,7 @@ from morphoclass.data.morphology_data import MorphologyData
 from morphoclass.data.morphology_dataset import MorphologyDataset
 from morphoclass.report import plumbing
 from morphoclass.training.training_log import TrainingLog
+from morphoclass.types import StrPath
 
 logger = logging.getLogger(__name__)
 
@@ -40,7 +40,7 @@ logger = logging.getLogger(__name__)
 class XAIReport:
     """XAI report manager."""
 
-    def __init__(self, output_dir: str | os.PathLike) -> None:
+    def __init__(self, output_dir: StrPath) -> None:
         self.output_dir = pathlib.Path(output_dir).resolve()
         self.img_dir = self.output_dir / "images"
         self.sections: dict[str, str] = {}
@@ -189,9 +189,7 @@ def _restore_dataset(training_log):
     return dataset
 
 
-def _restore_neurites(
-    features_dir: str | os.PathLike, dataset: MorphologyDataset
-) -> None:
+def _restore_neurites(features_dir: StrPath, dataset: MorphologyDataset) -> None:
     """Restore TMD neurites for a features-only dataset."""
     # Get the neurite type that the features correspond to. Assuming that
     # the features dir has the form ".../<neurite-type>/<feature-type>"
