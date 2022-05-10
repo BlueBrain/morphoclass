@@ -16,11 +16,12 @@ from __future__ import annotations
 
 import dataclasses
 import importlib
-import os
 import pathlib
 from typing import Callable
 
 import yaml
+
+from morphoclass.types import StrPath
 
 
 @dataclasses.dataclass
@@ -111,7 +112,7 @@ class TrainingConfig:
         cls,
         conf_model: dict,
         conf_splitter: dict,
-        features_dir: str | os.PathLike,
+        features_dir: StrPath,
         workdir: pathlib.Path | None = None,
     ) -> TrainingConfig:
         """Construct a training config from separate configs."""

@@ -20,6 +20,8 @@ import shutil
 
 import click
 
+from morphoclass.types import StrPath
+
 logger = logging.getLogger(__name__)
 
 
@@ -55,7 +57,7 @@ logger = logging.getLogger(__name__)
     required=True,
     help="Output directory path.",
 )
-def cli(input_csv_path: str, output_dir: str | pathlib.Path) -> None:
+def cli(input_csv_path: str, output_dir: StrPath) -> None:
     """Organizing ML data.
 
     Parameters

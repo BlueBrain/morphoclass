@@ -20,6 +20,8 @@ import pathlib
 import click
 import yaml
 
+from morphoclass.types import StrPath
+
 logger = logging.getLogger(__name__)
 
 
@@ -57,10 +59,10 @@ logger = logging.getLogger(__name__)
     help="Don't ask for overwriting existing output files.",
 )
 def cli(
-    features_dir: str | pathlib.Path,
-    model_config: str | pathlib.Path,
-    splitter_config: str | pathlib.Path,
-    checkpoint_dir: str | pathlib.Path,
+    features_dir: StrPath,
+    model_config: StrPath,
+    splitter_config: StrPath,
+    checkpoint_dir: StrPath,
     force: bool,
 ) -> None:
     """Training and evaluation of the model.

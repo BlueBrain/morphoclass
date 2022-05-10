@@ -15,9 +15,10 @@
 from __future__ import annotations
 
 import logging
-import pathlib
 
 import click
+
+from morphoclass.types import StrPath
 
 logger = logging.getLogger(__name__)
 
@@ -45,7 +46,7 @@ logger = logging.getLogger(__name__)
     type=click.Path(exists=False, file_okay=False),
     help="The HTML report output directly.",
 )
-def cli(checkpoint_dir: str | pathlib.Path, output_dir: str | pathlib.Path) -> None:
+def cli(checkpoint_dir: StrPath, output_dir: StrPath) -> None:
     """Compile the table with models' results.
 
     Parameters
