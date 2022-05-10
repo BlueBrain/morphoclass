@@ -15,10 +15,11 @@
 from __future__ import annotations
 
 import logging
-import os
 import pathlib
 
 import click
+
+from morphoclass.types import StrPath
 
 logger = logging.getLogger(__name__)
 
@@ -40,9 +41,7 @@ def cli():
 )
 @click.argument("checkpoint_path", type=click.Path(dir_okay=False, exists=True))
 @click.argument("report_path", type=click.Path(dir_okay=False, exists=False))
-def performance(
-    checkpoint_path: str | os.PathLike, report_path: str | os.PathLike
-) -> None:
+def performance(checkpoint_path: StrPath, report_path: StrPath) -> None:
     """Run the `evaluate performance` subcommand."""
     logger.info("Setting up paths")
     checkpoint_path = pathlib.Path(checkpoint_path)
@@ -84,9 +83,7 @@ def performance(
 )
 @click.argument("checkpoint_path", type=click.Path(dir_okay=False, exists=True))
 @click.argument("report_path", type=click.Path(dir_okay=False, exists=False))
-def latent_features(
-    checkpoint_path: str | os.PathLike, report_path: str | os.PathLike
-) -> None:
+def latent_features(checkpoint_path: StrPath, report_path: StrPath) -> None:
     """Run the `evaluate latent-features subcommand."""
     logger.info("Setting up paths")
     checkpoint_path = pathlib.Path(checkpoint_path)
@@ -135,9 +132,7 @@ def latent_features(
 )
 @click.argument("checkpoint_path", type=click.Path(dir_okay=False, exists=True))
 @click.argument("report_path", type=click.Path(dir_okay=False, exists=False))
-def outliers(
-    checkpoint_path: str | os.PathLike, report_path: str | os.PathLike
-) -> None:
+def outliers(checkpoint_path: StrPath, report_path: StrPath) -> None:
     """Run the `evaluate outliers` subcommand."""
     logger.info("Setting up paths")
     checkpoint_path = pathlib.Path(checkpoint_path)

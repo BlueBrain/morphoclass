@@ -15,12 +15,13 @@
 from __future__ import annotations
 
 import logging
-import os
 import pathlib
 import re
 from typing import Literal
 
 import click
+
+from morphoclass.types import StrPath
 
 logger = logging.getLogger(__name__)
 
@@ -95,7 +96,7 @@ logger = logging.getLogger(__name__)
     help="Don't ask for overwriting existing output files.",
 )
 def cli(
-    csv_path: str | os.PathLike,
+    csv_path: StrPath,
     neurite_type: Literal["apical", "axon", "basal", "all"],
     feature: Literal[
         "graph-rd",
@@ -107,7 +108,7 @@ def cli(
         "image-tmd-proj",
         "image-deepwalk",
     ],
-    output_dir: str | os.PathLike,
+    output_dir: StrPath,
     orient: bool,
     no_simplify_graph: bool,
     keep_diagram: bool,
