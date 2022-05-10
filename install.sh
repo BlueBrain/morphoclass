@@ -1,8 +1,5 @@
 #!/bin/bash
 
-echo "Installing/upgrading pip, wheel, setuptools"
-pip install -U pip wheel setuptools
-
 echo "Installing morphoclass"
 pip install . -c constraints.txt
 
