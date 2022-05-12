@@ -2076,224 +2076,6 @@ stages:
       md5: f2ea6c92aaa5caa589c1e2ecf91b28f7.dir
       size: 65977688
       nfiles: 13
-  train-merged-interneurons:
-    cmd: morphoclass -v train --dataset-config training/extra-configs/interneurons-merged-layers.yaml
-      --model-config training/configs/model-xgb-tmd.yaml --splitter-config training/configs/splitter-stratifKFold.yaml
-      --checkpoint-dir training/extra-checkpoints/merged-interneurons
-    deps:
-    - path: data/final/interneurons
-      md5: dbf463da49804987292c2862b8b8a489.dir
-      size: 153652715
-      nfiles: 553
-    - path: data/final/interneurons-merged-layers.csv
-      md5: b4812f8d15191baec4cc4b618ae3fcfd
-      size: 16251
-    - path: training/configs/model-xgb-tmd.yaml
-      md5: 91c1a62be8ca4af4c59ad460f504e093
-      size: 232
-    - path: training/configs/splitter-stratifKFold.yaml
-      md5: 2310f5af2671175f44e364842935afbc
-      size: 104
-    - path: training/extra-configs/interneurons-merged-layers.yaml
-      md5: d06e836b5585c43b4d468259fcc416c2
-      size: 119
-    outs:
-    - path: training/extra-checkpoints/merged-interneurons
-      md5: 26b357106684da153250b8d444ba3d98.dir
-      size: 181279717
-      nfiles: 13
-  train-merged-interneurons@xgb-tmd:
-    cmd: morphoclass -v train --features-dir extract-features/in-merged-layers/axon/image-tmd-rd
-      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
-      --checkpoint-dir training/checkpoints-merged-interneurons/xgb-tmd
-    deps:
-    - path: extract-features/in-merged-layers/axon/image-tmd-rd
-      md5: 44e98e2a62708bf4faa66a1d1dcee791.dir
-      size: 17510446
-      nfiles: 378
-    - path: training/configs/model-xgb.yaml
-      md5: f10b1b21e9e3e7195886182294689fd6
-      size: 196
-    - path: training/configs/splitter-stratified-k-fold.yaml
-      md5: a3ed00f26b1e4c78675bb219a96166e5
-      size: 87
-    outs:
-    - path: training/checkpoints-merged-interneurons/xgb-tmd
-      md5: 99f8c7fe44abe45c0dff8f7cfa31ea74.dir
-      size: 140253323
-      nfiles: 13
-  train-merged-interneurons@cnn-tmd:
-    cmd: morphoclass -v train --features-dir extract-features/in-merged-layers/axon/image-tmd-rd
-      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
-      --checkpoint-dir training/checkpoints-merged-interneurons/cnn-tmd
-    deps:
-    - path: extract-features/in-merged-layers/axon/image-tmd-rd
-      md5: 44e98e2a62708bf4faa66a1d1dcee791.dir
-      size: 17510446
-      nfiles: 378
-    - path: training/configs/model-cnn.yaml
-      md5: c2760db0c4ea7b723b195262ccd96f3e
-      size: 162
-    - path: training/configs/splitter-stratified-k-fold.yaml
-      md5: a3ed00f26b1e4c78675bb219a96166e5
-      size: 87
-    outs:
-    - path: training/checkpoints-merged-interneurons/cnn-tmd
-      md5: 65dd51c427ab7f5b455eb2e9f1546ad5.dir
-      size: 14931842
-      nfiles: 13
-  train-merged-interneurons@decisiontree-tmd:
-    cmd: morphoclass -v train --dataset-config training/extra-configs/interneurons-merged-layers.yaml
-      --model-config training/configs/model-decisiontree-tmd.yaml --splitter-config
-      training/configs/splitter-stratifKFold.yaml --checkpoint-dir training/checkpoints-merged-interneurons/decisiontree-tmd
-    deps:
-    - path: data/final/interneurons
-      md5: dbf463da49804987292c2862b8b8a489.dir
-      size: 153652715
-      nfiles: 553
-    - path: data/final/interneurons-merged-layers.csv
-      md5: b4812f8d15191baec4cc4b618ae3fcfd
-      size: 16251
-    - path: training/configs/model-decisiontree-tmd.yaml
-      md5: a846ee7296bcf2ab5fb055661f7d6414
-      size: 206
-    - path: training/configs/splitter-stratifKFold.yaml
-      md5: 2310f5af2671175f44e364842935afbc
-      size: 104
-    - path: training/extra-configs/interneurons-merged-layers.yaml
-      md5: d06e836b5585c43b4d468259fcc416c2
-      size: 119
-    outs:
-    - path: training/checkpoints-merged-interneurons/decisiontree-tmd
-      md5: 89c0cb75d7f425b7b3178f75afa0527e.dir
-      size: 179577544
-      nfiles: 13
-  train-merged-interneurons@xgb-deepwalk:
-    cmd: morphoclass -v train --features-dir extract-features/in-merged-layers/axon/image-deepwalk
-      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
-      --checkpoint-dir training/checkpoints-merged-interneurons/xgb-deepwalk
-    deps:
-    - path: extract-features/in-merged-layers/axon/image-deepwalk
-      md5: 26ca4d5065f889184433ea326105584a.dir
-      size: 17510446
-      nfiles: 378
-    - path: training/configs/model-xgb.yaml
-      md5: f10b1b21e9e3e7195886182294689fd6
-      size: 196
-    - path: training/configs/splitter-stratified-k-fold.yaml
-      md5: a3ed00f26b1e4c78675bb219a96166e5
-      size: 87
-    outs:
-    - path: training/checkpoints-merged-interneurons/xgb-deepwalk
-      md5: 2cf56537db7319683419d5b2c85ee367.dir
-      size: 150070505
-      nfiles: 13
-  train-merged-interneurons@decisiontree-deepwalk:
-    cmd: morphoclass -v train --dataset-config training/extra-configs/interneurons-merged-layers.yaml
-      --model-config training/configs/model-decisiontree-deepwalk.yaml --splitter-config
-      training/configs/splitter-stratifKFold.yaml --checkpoint-dir training/checkpoints-merged-interneurons/decisiontree-deepwalk
-    deps:
-    - path: data/final/interneurons
-      md5: dbf463da49804987292c2862b8b8a489.dir
-      size: 153652715
-      nfiles: 553
-    - path: data/final/interneurons-merged-layers.csv
-      md5: b4812f8d15191baec4cc4b618ae3fcfd
-      size: 16251
-    - path: training/configs/model-decisiontree-deepwalk.yaml
-      md5: 20e9987df89bd82ef768cad23828da37
-      size: 211
-    - path: training/configs/splitter-stratifKFold.yaml
-      md5: 2310f5af2671175f44e364842935afbc
-      size: 104
-    - path: training/extra-configs/interneurons-merged-layers.yaml
-      md5: d06e836b5585c43b4d468259fcc416c2
-      size: 119
-    outs:
-    - path: training/checkpoints-merged-interneurons/decisiontree-deepwalk
-      md5: 42642e659010aef681f5e07f0fe37b62.dir
-      size: 180987958
-      nfiles: 13
-  train-merged-interneurons@gnn-morphology:
-    cmd: morphoclass -v train --features-dir extract-features/in-merged-layers/axon/graph-rd
-      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
-      --checkpoint-dir training/checkpoints-merged-interneurons/gnn-morphology
-    deps:
-    - path: extract-features/in-merged-layers/axon/graph-rd
-      md5: 5a4e965bda0d49415a654c2945beb7a6.dir
-      size: 2852974
-      nfiles: 378
-    - path: training/configs/model-gnn.yaml
-      md5: 6bae758d5d29c2ee80bfc1ae81efb211
-      size: 266
-    - path: training/configs/splitter-stratified-k-fold.yaml
-      md5: a3ed00f26b1e4c78675bb219a96166e5
-      size: 87
-    outs:
-    - path: training/checkpoints-merged-interneurons/gnn-morphology
-      md5: eec9b6344e4208135514a7cacb1f6bd0.dir
-      size: 11864473
-      nfiles: 13
-  train-merged-interneurons@perslay-deepwalk:
-    cmd: morphoclass -v train --features-dir extract-features/in-merged-layers/axon/diagram-deepwalk
-      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
-      --checkpoint-dir training/checkpoints-merged-interneurons/perslay-deepwalk
-    deps:
-    - path: extract-features/in-merged-layers/axon/diagram-deepwalk
-      md5: 1a0754e5cc4c732108271fe956866bb0.dir
-      size: 3338734
-      nfiles: 378
-    - path: training/configs/model-perslay.yaml
-      md5: cd51ae94c08b5c16a23b38b57cf19aa9
-      size: 191
-    - path: training/configs/splitter-stratified-k-fold.yaml
-      md5: a3ed00f26b1e4c78675bb219a96166e5
-      size: 87
-    outs:
-    - path: training/checkpoints-merged-interneurons/perslay-deepwalk
-      md5: 7374421fb59a56bcada83a82ee2183a6.dir
-      size: 3874074
-      nfiles: 13
-  train-merged-interneurons@cnn-deepwalk:
-    cmd: morphoclass -v train --features-dir extract-features/in-merged-layers/axon/image-deepwalk
-      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
-      --checkpoint-dir training/checkpoints-merged-interneurons/cnn-deepwalk
-    deps:
-    - path: extract-features/in-merged-layers/axon/image-deepwalk
-      md5: 26ca4d5065f889184433ea326105584a.dir
-      size: 17510446
-      nfiles: 378
-    - path: training/configs/model-cnn.yaml
-      md5: c2760db0c4ea7b723b195262ccd96f3e
-      size: 162
-    - path: training/configs/splitter-stratified-k-fold.yaml
-      md5: a3ed00f26b1e4c78675bb219a96166e5
-      size: 87
-    outs:
-    - path: training/checkpoints-merged-interneurons/cnn-deepwalk
-      md5: 11bb31b35d180cd1696fca57a4ce4cd7.dir
-      size: 14939999
-      nfiles: 13
-  train-merged-interneurons@perslay-tmd:
-    cmd: morphoclass -v train --features-dir extract-features/in-merged-layers/axon/diagram-tmd-rd
-      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
-      --checkpoint-dir training/checkpoints-merged-interneurons/perslay-tmd
-    deps:
-    - path: extract-features/in-merged-layers/axon/diagram-tmd-rd
-      md5: d4881b1c0db29ab1191a3b5fd533a303.dir
-      size: 2856046
-      nfiles: 378
-    - path: training/configs/model-perslay.yaml
-      md5: cd51ae94c08b5c16a23b38b57cf19aa9
-      size: 191
-    - path: training/configs/splitter-stratified-k-fold.yaml
-      md5: a3ed00f26b1e4c78675bb219a96166e5
-      size: 87
-    outs:
-    - path: training/checkpoints-merged-interneurons/perslay-tmd
-      md5: afd571e0500518c1d35f5d9dbfd44ff0.dir
-      size: 3871651
-      nfiles: 13
   train-pc-L2-merged-classes@gnn-morphology:
     cmd: morphoclass -v train --features-dir extract-features/pc-L2-merged/apical/graph-proj
       --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
@@ -8988,22 +8770,6 @@ stages:
       md5: 2e65799f3e12039325c10317be57ee60.dir
       size: 1088800
       nfiles: 160
-  features-in-merged-layers-image-tmd-rd-all:
-    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
-      all image-tmd-rd extract-features/in-merged-layers/all/image-tmd-rd
-    deps:
-    - path: data/final/interneurons
-      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
-      size: 153652715
-      nfiles: 553
-    - path: data/final/interneurons-merged-layers.csv
-      md5: b4812f8d15191baec4cc4b618ae3fcfd
-      size: 16251
-    outs:
-    - path: extract-features/in-merged-layers/all/image-tmd-rd
-      md5: 5ac6bb646a09e30f267d4ccaff1ff9a1.dir
-      size: 17826030
-      nfiles: 378
   features-lida-in-merged-diagram-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/IN_data.csv all diagram-deepwalk
       extract-features/lida-in-merged/all/diagram-deepwalk
@@ -9166,22 +8932,6 @@ stages:
       md5: 8a30eb61cda22ea377d5b0ae19652950.dir
       size: 1322900
       nfiles: 156
-  features-in-merged-layers-graph-rd-all:
-    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
-      all graph-rd extract-features/in-merged-layers/all/graph-rd
-    deps:
-    - path: data/final/interneurons
-      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
-      size: 153652715
-      nfiles: 553
-    - path: data/final/interneurons-merged-layers.csv
-      md5: b4812f8d15191baec4cc4b618ae3fcfd
-      size: 16251
-    outs:
-    - path: extract-features/in-merged-layers/all/graph-rd
-      md5: 80d37153c7525aba8df864e33c2bce7c.dir
-      size: 3252590
-      nfiles: 378
   features-pc-L4-diagram-tmd-rd-apical:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
       apical diagram-tmd-rd extract-features/pc-L4/apical/diagram-tmd-rd
@@ -9286,22 +9036,6 @@ stages:
       md5: 264ae64b5751f8c38f224b42b75014d0.dir
       size: 155962
       nfiles: 62
-  features-in-merged-layers-image-deepwalk-all:
-    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
-      all image-deepwalk extract-features/in-merged-layers/all/image-deepwalk
-    deps:
-    - path: data/final/interneurons
-      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
-      size: 153652715
-      nfiles: 553
-    - path: data/final/interneurons-merged-layers.csv
-      md5: b4812f8d15191baec4cc4b618ae3fcfd
-      size: 16251
-    outs:
-    - path: extract-features/in-merged-layers/all/image-deepwalk
-      md5: 90479d1b49e495d1b889cbea033a35a8.dir
-      size: 17826030
-      nfiles: 378
   features-lida-in-merged-graph-rd-all:
     cmd: morphoclass -v extract-features data/final/IN_data.csv all graph-rd extract-features/lida-in-merged/all/graph-rd
     deps:
@@ -9317,22 +9051,6 @@ stages:
       md5: 8ce5c07cd5f30ff2bd2db7c8ca101821.dir
       size: 3745141
       nfiles: 423
-  features-in-merged-layers-image-tmd-rd-basal:
-    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
-      basal image-tmd-rd extract-features/in-merged-layers/basal/image-tmd-rd
-    deps:
-    - path: data/final/interneurons
-      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
-      size: 153652715
-      nfiles: 553
-    - path: data/final/interneurons-merged-layers.csv
-      md5: b4812f8d15191baec4cc4b618ae3fcfd
-      size: 16251
-    outs:
-    - path: extract-features/in-merged-layers/basal/image-tmd-rd
-      md5: 99aae07897e0a7269ea721176b13f26e.dir
-      size: 15886638
-      nfiles: 378
   features-pc-L3-image-tmd-rd-all:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L3/dataset.csv
       all image-tmd-rd extract-features/pc-L3/all/image-tmd-rd
@@ -9375,22 +9093,6 @@ stages:
       md5: ec6b4612749741c22cd1c9a456229f14.dir
       size: 442144
       nfiles: 160
-  features-in-merged-layers-diagram-deepwalk-basal:
-    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
-      basal diagram-deepwalk extract-features/in-merged-layers/basal/diagram-deepwalk
-    deps:
-    - path: data/final/interneurons
-      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
-      size: 153652715
-      nfiles: 553
-    - path: data/final/interneurons-merged-layers.csv
-      md5: b4812f8d15191baec4cc4b618ae3fcfd
-      size: 16251
-    outs:
-    - path: extract-features/in-merged-layers/basal/diagram-deepwalk
-      md5: 89f69849b66a8293ea1d473a5f18d001.dir
-      size: 927982
-      nfiles: 378
   features-lida-in-merged-graph-rd-basal:
     cmd: morphoclass -v extract-features data/final/IN_data.csv basal graph-rd extract-features/lida-in-merged/basal/graph-rd
     deps:
@@ -9500,22 +9202,6 @@ stages:
       md5: c6ccd9f70feee4084f217d3b77b43ac8.dir
       size: 281411
       nfiles: 129
-  features-in-merged-layers-graph-rd-basal:
-    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
-      basal graph-rd extract-features/in-merged-layers/basal/graph-rd
-    deps:
-    - path: data/final/interneurons
-      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
-      size: 153652715
-      nfiles: 553
-    - path: data/final/interneurons-merged-layers.csv
-      md5: b4812f8d15191baec4cc4b618ae3fcfd
-      size: 16251
-    outs:
-    - path: extract-features/in-merged-layers/basal/graph-rd
-      md5: 9b9d6cc9d96a68c1b104312782d059b1.dir
-      size: 840558
-      nfiles: 378
   features-pc-L6-diagram-tmd-proj-axon:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L6/dataset.csv
       axon diagram-tmd-proj extract-features/pc-L6/axon/diagram-tmd-proj
@@ -9864,22 +9550,6 @@ stages:
       md5: 200bc4b0cba67fefccbea3c2098fa1ce.dir
       size: 5090573
       nfiles: 111
-  features-in-merged-layers-graph-rd-axon:
-    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
-      axon graph-rd extract-features/in-merged-layers/axon/graph-rd
-    deps:
-    - path: data/final/interneurons
-      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
-      size: 153652715
-      nfiles: 553
-    - path: data/final/interneurons-merged-layers.csv
-      md5: b4812f8d15191baec4cc4b618ae3fcfd
-      size: 16251
-    outs:
-    - path: extract-features/in-merged-layers/axon/graph-rd
-      md5: 5a4e965bda0d49415a654c2945beb7a6.dir
-      size: 2852974
-      nfiles: 378
   features-pc-L2-image-deepwalk-axon:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
       axon image-deepwalk extract-features/pc-L2/axon/image-deepwalk
@@ -9906,22 +9576,6 @@ stages:
       md5: 1fcf2df1d1ca140ce8ac8c269843b84d.dir
       size: 178369
       nfiles: 43
-  features-in-merged-layers-diagram-tmd-rd-basal:
-    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
-      basal diagram-tmd-rd extract-features/in-merged-layers/basal/diagram-tmd-rd
-    deps:
-    - path: data/final/interneurons
-      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
-      size: 153652715
-      nfiles: 553
-    - path: data/final/interneurons-merged-layers.csv
-      md5: b4812f8d15191baec4cc4b618ae3fcfd
-      size: 16251
-    outs:
-    - path: extract-features/in-merged-layers/basal/diagram-tmd-rd
-      md5: 501a9c05b9866d9e8f4b483bbefbb58c.dir
-      size: 841454
-      nfiles: 378
   features-in-L4-image-deepwalk-basal:
     cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv basal
       image-deepwalk extract-features/in-L4/basal/image-deepwalk
@@ -10126,22 +9780,6 @@ stages:
       md5: d045e3c86366ae8634930b61042d214a.dir
       size: 178180
       nfiles: 44
-  features-in-merged-layers-diagram-tmd-rd-all:
-    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
-      all diagram-tmd-rd extract-features/in-merged-layers/all/diagram-tmd-rd
-    deps:
-    - path: data/final/interneurons
-      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
-      size: 153652715
-      nfiles: 553
-    - path: data/final/interneurons-merged-layers.csv
-      md5: b4812f8d15191baec4cc4b618ae3fcfd
-      size: 16251
-    outs:
-    - path: extract-features/in-merged-layers/all/diagram-tmd-rd
-      md5: 54891860648ff176d3763a48da62410e.dir
-      size: 3256302
-      nfiles: 378
   features-pc-L4-graph-rd-basal:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
       basal graph-rd extract-features/pc-L4/basal/graph-rd
@@ -10194,22 +9832,6 @@ stages:
       md5: caac7c419cf9a4d63f783c954e33c240.dir
       size: 806291
       nfiles: 113
-  features-in-merged-layers-diagram-tmd-rd-axon:
-    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
-      axon diagram-tmd-rd extract-features/in-merged-layers/axon/diagram-tmd-rd
-    deps:
-    - path: data/final/interneurons
-      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
-      size: 153652715
-      nfiles: 553
-    - path: data/final/interneurons-merged-layers.csv
-      md5: b4812f8d15191baec4cc4b618ae3fcfd
-      size: 16251
-    outs:
-    - path: extract-features/in-merged-layers/axon/diagram-tmd-rd
-      md5: d4881b1c0db29ab1191a3b5fd533a303.dir
-      size: 2856046
-      nfiles: 378
   features-lida-in-merged-bc-merged-diagram-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv all diagram-deepwalk
       extract-features/lida-in-merged-bc-merged/all/diagram-deepwalk
@@ -10715,22 +10337,6 @@ stages:
       md5: 2e2675122f33072d44d8015cdb8a647c.dir
       size: 5198163
       nfiles: 113
-  features-in-merged-layers-image-tmd-rd-axon:
-    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
-      axon image-tmd-rd extract-features/in-merged-layers/axon/image-tmd-rd
-    deps:
-    - path: data/final/interneurons
-      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
-      size: 153652715
-      nfiles: 553
-    - path: data/final/interneurons-merged-layers.csv
-      md5: b4812f8d15191baec4cc4b618ae3fcfd
-      size: 16251
-    outs:
-    - path: extract-features/in-merged-layers/axon/image-tmd-rd
-      md5: 44e98e2a62708bf4faa66a1d1dcee791.dir
-      size: 17510446
-      nfiles: 378
   features-pc-L4-graph-rd-all:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
       all graph-rd extract-features/pc-L4/all/graph-rd
@@ -10942,22 +10548,6 @@ stages:
       md5: b3988f6a6f097ecb3208f73826ea980a.dir
       size: 1481876
       nfiles: 156
-  features-in-merged-layers-diagram-deepwalk-axon:
-    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
-      axon diagram-deepwalk extract-features/in-merged-layers/axon/diagram-deepwalk
-    deps:
-    - path: data/final/interneurons
-      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
-      size: 153652715
-      nfiles: 553
-    - path: data/final/interneurons-merged-layers.csv
-      md5: b4812f8d15191baec4cc4b618ae3fcfd
-      size: 16251
-    outs:
-    - path: extract-features/in-merged-layers/axon/diagram-deepwalk
-      md5: 1a0754e5cc4c732108271fe956866bb0.dir
-      size: 3338734
-      nfiles: 378
   features-in-L4-graph-rd-all:
     cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv all
       graph-rd extract-features/in-L4/all/graph-rd
@@ -11036,22 +10626,6 @@ stages:
       md5: 55bd2437672579131987e9ae27c2f794.dir
       size: 88193
       nfiles: 43
-  features-in-merged-layers-image-deepwalk-basal:
-    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
-      basal image-deepwalk extract-features/in-merged-layers/basal/image-deepwalk
-    deps:
-    - path: data/final/interneurons
-      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
-      size: 153652715
-      nfiles: 553
-    - path: data/final/interneurons-merged-layers.csv
-      md5: b4812f8d15191baec4cc4b618ae3fcfd
-      size: 16251
-    outs:
-    - path: extract-features/in-merged-layers/basal/image-deepwalk
-      md5: 3b87dc749e015f7be46e1be156873ecf.dir
-      size: 15886638
-      nfiles: 378
   features-lida-janelia-L5-image-deepwalk-axon:
     cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv axon image-deepwalk
       extract-features/lida-janelia-L5/axon/image-deepwalk
@@ -11496,22 +11070,6 @@ stages:
       md5: 0da729fdd27998ccffbf4996bb7de00d.dir
       size: 82628
       nfiles: 44
-  features-in-merged-layers-image-deepwalk-axon:
-    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
-      axon image-deepwalk extract-features/in-merged-layers/axon/image-deepwalk
-    deps:
-    - path: data/final/interneurons
-      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
-      size: 153652715
-      nfiles: 553
-    - path: data/final/interneurons-merged-layers.csv
-      md5: b4812f8d15191baec4cc4b618ae3fcfd
-      size: 16251
-    outs:
-    - path: extract-features/in-merged-layers/axon/image-deepwalk
-      md5: 26ca4d5065f889184433ea326105584a.dir
-      size: 17510446
-      nfiles: 378
   features-pc-L5-graph-rd-basal:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L5/dataset.csv
       basal graph-rd extract-features/pc-L5/basal/graph-rd
@@ -11744,22 +11302,6 @@ stages:
       md5: c4ef101d16b72abf8b7c161d2cdd0f04.dir
       size: 669194
       nfiles: 46
-  features-in-merged-layers-diagram-deepwalk-all:
-    cmd: morphoclass -v extract-features data/final/interneurons-merged-layers.csv
-      all diagram-deepwalk extract-features/in-merged-layers/all/diagram-deepwalk
-    deps:
-    - path: data/final/interneurons
-      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
-      size: 153652715
-      nfiles: 553
-    - path: data/final/interneurons-merged-layers.csv
-      md5: b4812f8d15191baec4cc4b618ae3fcfd
-      size: 16251
-    outs:
-    - path: extract-features/in-merged-layers/all/diagram-deepwalk
-      md5: a8dcae2a817a24f24444be73125a0597.dir
-      size: 3823918
-      nfiles: 378
   features-lida-janelia-L5-diagram-tmd-rd-apical:
     cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical
       diagram-tmd-rd extract-features/lida-janelia-L5/apical/diagram-tmd-rd
@@ -16628,26 +16170,6 @@ stages:
       md5: f2bb8347468b53519695eee3b33caf2e.dir
       size: 9747524
       nfiles: 13
-  train-merged-interneurons@decision-tree-tmd:
-    cmd: morphoclass -v train --features-dir extract-features/in-merged-layers/axon/image-tmd-rd
-      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
-      --checkpoint-dir training/checkpoints-merged-interneurons/decision-tree-tmd
-    deps:
-    - path: extract-features/in-merged-layers/axon/image-tmd-rd
-      md5: 44e98e2a62708bf4faa66a1d1dcee791.dir
-      size: 17510446
-      nfiles: 378
-    - path: training/configs/model-decision-tree.yaml
-      md5: 6f5a6b3644eb40aa784dc99de39be6cc
-      size: 161
-    - path: training/configs/splitter-stratified-k-fold.yaml
-      md5: a3ed00f26b1e4c78675bb219a96166e5
-      size: 87
-    outs:
-    - path: training/checkpoints-merged-interneurons/decision-tree-tmd
-      md5: 8c66e07e2cece7da445a9f4a4dc18389.dir
-      size: 138588949
-      nfiles: 13
   train-alt-neurites@pc-L2-axon-image-deepwalk-xgb-stratified-k-fold:
     cmd: morphoclass -v train --features-dir extract-features/pc-L2/axon/image-deepwalk
       --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
@@ -18667,26 +18189,6 @@ stages:
     - path: training/checkpoints-alt-neurites/pc-L6-axon-image-deepwalk-decision-tree-stratified-k-fold
       md5: 8519cf7d6cb21c852b5b6800e87d70e6.dir
       size: 48924719
-      nfiles: 13
-  train-merged-interneurons@decision-tree-deepwalk:
-    cmd: morphoclass -v train --features-dir extract-features/in-merged-layers/axon/image-deepwalk
-      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
-      --checkpoint-dir training/checkpoints-merged-interneurons/decision-tree-deepwalk
-    deps:
-    - path: extract-features/in-merged-layers/axon/image-deepwalk
-      md5: 26ca4d5065f889184433ea326105584a.dir
-      size: 17510446
-      nfiles: 378
-    - path: training/configs/model-decision-tree.yaml
-      md5: 6f5a6b3644eb40aa784dc99de39be6cc
-      size: 161
-    - path: training/configs/splitter-stratified-k-fold.yaml
-      md5: a3ed00f26b1e4c78675bb219a96166e5
-      size: 87
-    outs:
-    - path: training/checkpoints-merged-interneurons/decision-tree-deepwalk
-      md5: ca763c64e9141be90d310b0af5d0e653.dir
-      size: 147902563
       nfiles: 13
   train-alt-neurites@in-L5-all-image-deepwalk-cnn-stratified-k-fold:
     cmd: morphoclass -v train --features-dir extract-features/in-L5/all/image-deepwalk
