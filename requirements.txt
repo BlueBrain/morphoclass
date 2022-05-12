@@ -25,6 +25,5 @@ shap[plots]==0.39.0
 tmd==2.1.0
 torch==1.7.1
 tqdm==4.53.0
-typing-extensions==4.1.1
 umap-learn==0.5.1
 xgboost==1.4.2

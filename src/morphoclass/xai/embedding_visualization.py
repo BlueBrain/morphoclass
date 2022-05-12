@@ -91,8 +91,7 @@ def get_embeddings_figure(
         The first dimension of the embedding. Shape (train_size + val_size,)
     y_coordinates : np.ndarray
         The second dimension of the embedding. Shape (train_size + val_size,)
-    dataset : morphoclass.data.MorphologyEmbeddingDataset,
-              morphoclass.data.MorphologyDataset
+    dataset : morphoclass.data.MorphologyDataset
         Dataset with morphologies. Size train_size + val_size
     predictions : list_like
         The predicted values (both validation and training indices).
@@ -285,8 +284,7 @@ def get_images(dataset):
 
     Parameters
     ----------
-    dataset : morphoclass.data.MorphologyEmbeddingDataset,
-              morphoclass.data.MorphologyDataset
+    dataset : morphoclass.data.MorphologyDataset
         Dataset with morphologies.
 
     Returns

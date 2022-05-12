@@ -9,7 +9,7 @@ Subpackages
 
    morphoclass.console
    morphoclass.data
-   morphoclass.feature_extractors
+   morphoclass.features
    morphoclass.layers
    morphoclass.models
    morphoclass.morphometrics
@@ -25,14 +25,12 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   morphoclass.augmentation
    morphoclass.cleanlab
    morphoclass.constants
    morphoclass.deepwalk
    morphoclass.metrics
    morphoclass.model_utils
    morphoclass.orientation
-   morphoclass.serialization
    morphoclass.types
    morphoclass.utils
    morphoclass.vis

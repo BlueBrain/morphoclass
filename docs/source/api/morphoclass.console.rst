@@ -11,7 +11,6 @@ Submodules
    morphoclass.console.cmd_extract_features
    morphoclass.console.cmd_morphometrics
    morphoclass.console.cmd_organise_dataset
-   morphoclass.console.cmd_performance_report
    morphoclass.console.cmd_performance_table
    morphoclass.console.cmd_plot_dataset_stats
    morphoclass.console.cmd_preprocess_dataset
@@ -22,7 +21,6 @@ Submodules
    morphoclass.console.helpers
    morphoclass.console.main
    morphoclass.console.outlier_detection
-   morphoclass.console.performance_report
    morphoclass.console.performance_table
    morphoclass.console.stats_plotter
    morphoclass.console.transfer_learning

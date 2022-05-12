@@ -24,7 +24,6 @@ from morphoclass.console import cmd_evaluate
 from morphoclass.console import cmd_extract_features
 from morphoclass.console import cmd_morphometrics
 from morphoclass.console import cmd_organise_dataset
-from morphoclass.console import cmd_performance_report
 from morphoclass.console import cmd_performance_table
 from morphoclass.console import cmd_plot_dataset_stats
 from morphoclass.console import cmd_preprocess_dataset
@@ -136,7 +135,6 @@ def cli(verbose: int, log_file_path: pathlib.Path | None) -> None:
 cli.add_command(transfer_learning.cli)
 cli.add_command(outlier_detection.cli)
 cli.add_command(cmd_xai.cli)
-cli.add_command(cmd_performance_report.cli)
 cli.add_command(cmd_organise_dataset.cli)
 cli.add_command(cmd_plot_dataset_stats.cli)
 cli.add_command(cmd_preprocess_dataset.cli)

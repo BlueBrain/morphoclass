@@ -257,18 +257,6 @@ There are three different sub-sub-commands (see
 * ``outliers``: visualize CleanLab outlier morphologies
 * ``performance``: generate a model performance report
 
-
-Stages in development
----------------------
-At the moment we are working on the CLI for XAI and transfer learning. The
-corresponding sub-commands are
-
-* ``explain-models``
-* ``performance-report``
-
-Even though the sub-commands already exist, their implementation is not yet
-production-ready and need to be re-worked.
-
 Outdated stages
 ---------------
 The following legacy sub-commands have been transformed and superseded by other

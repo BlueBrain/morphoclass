@@ -38,8 +38,8 @@ class CNNEmbedder(nn.Module):
 
         Parameters
         ----------
-        data : torch_geometric.data.Batch
-            A batch of MorphologyEmbeddingDataset dataset.
+        data : torch_geometric.data.Batch | torch.Tensor
+            A batch of the MorphologyDataset dataset.
 
         Returns
         -------
@@ -52,7 +52,7 @@ class CNNEmbedder(nn.Module):
         if hasattr(data, "image"):
             x = data.image
         else:
-            # captum tensors for XAI
+            # captum tensors for XAI, see `xai.model_attributions`
             x = data
         x = self.conv1(x)
         x = nnf.relu(x)
@@ -113,7 +113,7 @@ class CNNet(nn.Module):
         Parameters
         ----------
         data : torch_geometric.data.Batch
-            A batch of MorphologyEmbeddingDataset dataset.
+            A batch of MorphologyDataset dataset.
 
         Returns
         -------
@@ -132,7 +132,7 @@ class CNNet(nn.Module):
         Parameters
         ----------
         data : torch_geometric.data.Batch
-            A batch of MorphologyEmbeddingDataset dataset.
+            A batch of MorphologyDataset dataset.
 
         Returns
         -------

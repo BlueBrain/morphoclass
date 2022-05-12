@@ -11,8 +11,6 @@ Submodules
    morphoclass.data.morphology_data
    morphoclass.data.morphology_data_loader
    morphoclass.data.morphology_dataset
-   morphoclass.data.morphology_embedding_data_loader
-   morphoclass.data.morphology_embedding_dataset
    morphoclass.data.tns_dataset
 
 Module contents
