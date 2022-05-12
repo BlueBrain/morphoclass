@@ -2076,198 +2076,6 @@ stages:
       md5: f2ea6c92aaa5caa589c1e2ecf91b28f7.dir
       size: 65977688
       nfiles: 13
-  train-pc-L2-merged-classes@gnn-morphology:
-    cmd: morphoclass -v train --features-dir extract-features/pc-L2-merged/apical/graph-proj
-      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
-      --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L2-gnn-morphology-stratified-k-fold
-    deps:
-    - path: extract-features/pc-L2-merged/apical/graph-proj
-      md5: f3a96feab2183c21f8a5beb84199cd95.dir
-      size: 90817
-      nfiles: 43
-    - path: training/configs/model-gnn.yaml
-      md5: 6bae758d5d29c2ee80bfc1ae81efb211
-      size: 266
-    - path: training/configs/splitter-stratified-k-fold.yaml
-      md5: a3ed00f26b1e4c78675bb219a96166e5
-      size: 87
-    outs:
-    - path: training/checkpoints-pc-merged-classes/pc-L2-gnn-morphology-stratified-k-fold
-      md5: f9da634a63b9a180ab2d9390e4c909ce.dir
-      size: 8959859
-      nfiles: 13
-  train-pc-L2-merged-classes@decisiontree-tmd:
-    cmd: morphoclass -v train --dataset-config training/extra-configs/pc-L2-merged-classes.yaml
-      --model-config training/configs/model-decisiontree-tmd.yaml --splitter-config
-      training/configs/splitter-stratifKFold.yaml --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L2-decisiontree-tmd-stratifKFold
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 0914f91f72294605698a2d9a4e517305.dir
-      size: 7419249
-      nfiles: 44
-    - path: training/configs/model-decisiontree-tmd.yaml
-      md5: a846ee7296bcf2ab5fb055661f7d6414
-      size: 206
-    - path: training/configs/splitter-stratifKFold.yaml
-      md5: 2310f5af2671175f44e364842935afbc
-      size: 104
-    - path: training/extra-configs/pc-L2-merged-classes.yaml
-      md5: 72b1b364a74165b61ffd291c41235f31
-      size: 106
-    outs:
-    - path: training/checkpoints-pc-merged-classes/pc-L2-decisiontree-tmd-stratifKFold
-      md5: aa359f7dc3fe26d20826302fdb60397f.dir
-      size: 23748649
-      nfiles: 13
-  train-pc-L2-merged-classes@cnn-tmd:
-    cmd: morphoclass -v train --features-dir extract-features/pc-L2-merged/apical/image-tmd-proj
-      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
-      --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L2-cnn-tmd-stratified-k-fold
-    deps:
-    - path: extract-features/pc-L2-merged/apical/image-tmd-proj
-      md5: 711cd3769d7e3774d62cc6ada23f7d33.dir
-      size: 1806273
-      nfiles: 43
-    - path: training/configs/model-cnn.yaml
-      md5: c2760db0c4ea7b723b195262ccd96f3e
-      size: 162
-    - path: training/configs/splitter-stratified-k-fold.yaml
-      md5: a3ed00f26b1e4c78675bb219a96166e5
-      size: 87
-    outs:
-    - path: training/checkpoints-pc-merged-classes/pc-L2-cnn-tmd-stratified-k-fold
-      md5: cca5a12e7265556cf56462e8927d598f.dir
-      size: 4666159
-      nfiles: 13
-  train-pc-L2-merged-classes@xgb-deepwalk:
-    cmd: morphoclass -v train --features-dir extract-features/pc-L2-merged/apical/image-deepwalk
-      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
-      --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L2-xgb-deepwalk-stratified-k-fold
-    deps:
-    - path: extract-features/pc-L2-merged/apical/image-deepwalk
-      md5: a06bf88a30adf7ebda45691eade5110e.dir
-      size: 1806273
-      nfiles: 43
-    - path: training/configs/model-xgb.yaml
-      md5: f10b1b21e9e3e7195886182294689fd6
-      size: 196
-    - path: training/configs/splitter-stratified-k-fold.yaml
-      md5: a3ed00f26b1e4c78675bb219a96166e5
-      size: 87
-    outs:
-    - path: training/checkpoints-pc-merged-classes/pc-L2-xgb-deepwalk-stratified-k-fold
-      md5: db28af659badcd9469a624e1b06037aa.dir
-      size: 19684400
-      nfiles: 13
-  train-pc-L2-merged-classes@cnn-deepwalk:
-    cmd: morphoclass -v train --features-dir extract-features/pc-L2-merged/apical/image-deepwalk
-      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
-      --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L2-cnn-deepwalk-stratified-k-fold
-    deps:
-    - path: extract-features/pc-L2-merged/apical/image-deepwalk
-      md5: a06bf88a30adf7ebda45691eade5110e.dir
-      size: 1806273
-      nfiles: 43
-    - path: training/configs/model-cnn.yaml
-      md5: c2760db0c4ea7b723b195262ccd96f3e
-      size: 162
-    - path: training/configs/splitter-stratified-k-fold.yaml
-      md5: a3ed00f26b1e4c78675bb219a96166e5
-      size: 87
-    outs:
-    - path: training/checkpoints-pc-merged-classes/pc-L2-cnn-deepwalk-stratified-k-fold
-      md5: 883e22093c81fd71daa6c94cb98b6eed.dir
-      size: 4647033
-      nfiles: 13
-  train-pc-L2-merged-classes@perslay-tmd:
-    cmd: morphoclass -v train --features-dir extract-features/pc-L2-merged/apical/diagram-tmd-proj
-      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
-      --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L2-perslay-tmd-stratified-k-fold
-    deps:
-    - path: extract-features/pc-L2-merged/apical/diagram-tmd-proj
-      md5: 9c395d67346070ed212d74a6f37ebe86.dir
-      size: 90881
-      nfiles: 43
-    - path: training/configs/model-perslay.yaml
-      md5: cd51ae94c08b5c16a23b38b57cf19aa9
-      size: 191
-    - path: training/configs/splitter-stratified-k-fold.yaml
-      md5: a3ed00f26b1e4c78675bb219a96166e5
-      size: 87
-    outs:
-    - path: training/checkpoints-pc-merged-classes/pc-L2-perslay-tmd-stratified-k-fold
-      md5: 0b3807c6a3d656f3fd05e8e372c7c1f9.dir
-      size: 3396636
-      nfiles: 13
-  train-pc-L2-merged-classes@xgb-tmd:
-    cmd: morphoclass -v train --features-dir extract-features/pc-L2-merged/apical/image-tmd-proj
-      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
-      --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L2-xgb-tmd-stratified-k-fold
-    deps:
-    - path: extract-features/pc-L2-merged/apical/image-tmd-proj
-      md5: 711cd3769d7e3774d62cc6ada23f7d33.dir
-      size: 1806273
-      nfiles: 43
-    - path: training/configs/model-xgb.yaml
-      md5: f10b1b21e9e3e7195886182294689fd6
-      size: 196
-    - path: training/configs/splitter-stratified-k-fold.yaml
-      md5: a3ed00f26b1e4c78675bb219a96166e5
-      size: 87
-    outs:
-    - path: training/checkpoints-pc-merged-classes/pc-L2-xgb-tmd-stratified-k-fold
-      md5: 3e3d2046d742f3ab100af6fe3114ab38.dir
-      size: 20795545
-      nfiles: 13
-  train-pc-L2-merged-classes@perslay-deepwalk:
-    cmd: morphoclass -v train --features-dir extract-features/pc-L2-merged/apical/diagram-deepwalk
-      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
-      --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L2-perslay-deepwalk-stratified-k-fold
-    deps:
-    - path: extract-features/pc-L2-merged/apical/diagram-deepwalk
-      md5: 113ef48b821b3c0c54c56f11935bc28b.dir
-      size: 99137
-      nfiles: 43
-    - path: training/configs/model-perslay.yaml
-      md5: cd51ae94c08b5c16a23b38b57cf19aa9
-      size: 191
-    - path: training/configs/splitter-stratified-k-fold.yaml
-      md5: a3ed00f26b1e4c78675bb219a96166e5
-      size: 87
-    outs:
-    - path: training/checkpoints-pc-merged-classes/pc-L2-perslay-deepwalk-stratified-k-fold
-      md5: b32dc68b634f37082a2b60a938c08e17.dir
-      size: 3397180
-      nfiles: 13
-  train-pc-L2-merged-classes@decisiontree-deepwalk:
-    cmd: morphoclass -v train --dataset-config training/extra-configs/pc-L2-merged-classes.yaml
-      --model-config training/configs/model-decisiontree-deepwalk.yaml --splitter-config
-      training/configs/splitter-stratifKFold.yaml --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L2-decisiontree-deepwalk-stratifKFold
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 0914f91f72294605698a2d9a4e517305.dir
-      size: 7419249
-      nfiles: 44
-    - path: training/configs/model-decisiontree-deepwalk.yaml
-      md5: 20e9987df89bd82ef768cad23828da37
-      size: 211
-    - path: training/configs/splitter-stratifKFold.yaml
-      md5: 2310f5af2671175f44e364842935afbc
-      size: 104
-    - path: training/extra-configs/pc-L2-merged-classes.yaml
-      md5: 72b1b364a74165b61ffd291c41235f31
-      size: 106
-    outs:
-    - path: training/checkpoints-pc-merged-classes/pc-L2-decisiontree-deepwalk-stratifKFold
-      md5: 120e22c0155cf89acf84096059e19280.dir
-      size: 23532206
-      nfiles: 13
   train-pc-L5-merged-classes@cnn-tmd:
     cmd: morphoclass -v train --features-dir extract-features/pc-L5-merged/apical/image-tmd-rd
       --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
@@ -11650,22 +11458,6 @@ stages:
       md5: 4bfcb879c10ec4edb9ef7d70826c1de4.dir
       size: 943989
       nfiles: 423
-  features-pc-L2-merged-image-deepwalk-basal:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal image-deepwalk
-      extract-features/pc-L2-merged/basal/image-deepwalk
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/basal/image-deepwalk
-      md5: 7c242e6aac5f1333ca18516b6cca4b4a.dir
-      size: 1803585
-      nfiles: 43
   features-pc-L5-merged-image-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all image-deepwalk
       extract-features/pc-L5-merged/all/image-deepwalk
@@ -11698,22 +11490,6 @@ stages:
       md5: fa40f988a44b329700436f8e14735502.dir
       size: 6841504
       nfiles: 160
-  features-pc-L2-merged-diagram-tmd-proj-axon:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon diagram-tmd-proj
-      extract-features/pc-L2-merged/axon/diagram-tmd-proj
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/axon/diagram-tmd-proj
-      md5: c2124447643f8a3e88f584e229a89553.dir
-      size: 96187
-      nfiles: 41
   features-pc-L5-merged-graph-rd-apical:
     cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv apical graph-rd
       extract-features/pc-L5-merged/apical/graph-rd
@@ -11762,38 +11538,6 @@ stages:
       md5: a8d9a43f86c3016f2e2e7c8b7e02b6fe.dir
       size: 375584
       nfiles: 160
-  features-pc-L2-merged-graph-proj-all:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all graph-proj
-      extract-features/pc-L2-merged/all/graph-proj
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/all/graph-proj
-      md5: 0c85813ecfbe57808d65a9c2f75da821.dir
-      size: 177345
-      nfiles: 43
-  features-pc-L2-merged-graph-proj-axon:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon graph-proj
-      extract-features/pc-L2-merged/axon/graph-proj
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/axon/graph-proj
-      md5: 820d082b4770bd4fdb124c953a1727f3.dir
-      size: 96123
-      nfiles: 41
   features-pc-L6-merged-graph-proj-basal:
     cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv basal graph-proj
       extract-features/pc-L6-merged/basal/graph-proj
@@ -11842,22 +11586,6 @@ stages:
       md5: 88202244ed9c5db2edd1f6f68b652588.dir
       size: 551456
       nfiles: 160
-  features-pc-L2-merged-image-tmd-proj-basal:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal image-tmd-proj
-      extract-features/pc-L2-merged/basal/image-tmd-proj
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/basal/image-tmd-proj
-      md5: a2673f4fe092b1e91d7367b718e53a44.dir
-      size: 1803585
-      nfiles: 43
   features-pc-L5-merged-diagram-tmd-rd-apical:
     cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv apical diagram-tmd-rd
       extract-features/pc-L5-merged/apical/diagram-tmd-rd
@@ -12018,22 +11746,6 @@ stages:
       md5: ac38ae93d19a5b29f31d5ae4246e2a39.dir
       size: 5379971
       nfiles: 129
-  features-pc-L2-merged-diagram-tmd-proj-all:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all diagram-tmd-proj
-      extract-features/pc-L2-merged/all/diagram-tmd-proj
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/all/diagram-tmd-proj
-      md5: 0d16a298f5491955279bc999248608d6.dir
-      size: 177729
-      nfiles: 43
   features-pc-L5-merged-graph-rd-all:
     cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all graph-rd
       extract-features/pc-L5-merged/all/graph-rd
@@ -12050,22 +11762,6 @@ stages:
       md5: 578ad750ffb0c3836d3d844a7c739af1.dir
       size: 934112
       nfiles: 160
-  features-pc-L2-merged-image-tmd-proj-apical:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical image-tmd-proj
-      extract-features/pc-L2-merged/apical/image-tmd-proj
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/apical/image-tmd-proj
-      md5: 711cd3769d7e3774d62cc6ada23f7d33.dir
-      size: 1806273
-      nfiles: 43
   features-pc-L6-merged-image-tmd-proj-axon:
     cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv axon image-tmd-proj
       extract-features/pc-L6-merged/axon/image-tmd-proj
@@ -12082,22 +11778,6 @@ stages:
       md5: d18c78844f047c0f0a59a09edb96c3b6.dir
       size: 5246199
       nfiles: 125
-  features-pc-L2-merged-diagram-tmd-proj-basal:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal diagram-tmd-proj
-      extract-features/pc-L2-merged/basal/diagram-tmd-proj
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/basal/diagram-tmd-proj
-      md5: e1480f07c2acf043e4cc4d1bb8968b1b.dir
-      size: 88193
-      nfiles: 43
   features-pc-L5-merged-graph-rd-basal:
     cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv basal graph-rd
       extract-features/pc-L5-merged/basal/graph-rd
@@ -12114,38 +11794,6 @@ stages:
       md5: 144045f4f4d4cb7956dc04143da90c3e.dir
       size: 375200
       nfiles: 160
-  features-pc-L2-merged-image-deepwalk-axon:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon image-deepwalk
-      extract-features/pc-L2-merged/axon/image-deepwalk
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/axon/image-deepwalk
-      md5: eaec8d2d7b9862b6fd37085ffb8d0a46.dir
-      size: 1729787
-      nfiles: 41
-  features-pc-L2-merged-graph-proj-apical:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical graph-proj
-      extract-features/pc-L2-merged/apical/graph-proj
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/apical/graph-proj
-      md5: f3a96feab2183c21f8a5beb84199cd95.dir
-      size: 90817
-      nfiles: 43
   features-pc-L5-merged-diagram-tmd-rd-all:
     cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all diagram-tmd-rd
       extract-features/pc-L5-merged/all/diagram-tmd-rd
@@ -12194,22 +11842,6 @@ stages:
       md5: c4fde9391e46bc608c27f91f83eb6985.dir
       size: 5338688
       nfiles: 128
-  features-pc-L2-merged-diagram-tmd-proj-apical:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical diagram-tmd-proj
-      extract-features/pc-L2-merged/apical/diagram-tmd-proj
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/apical/diagram-tmd-proj
-      md5: 9c395d67346070ed212d74a6f37ebe86.dir
-      size: 90881
-      nfiles: 43
   features-pc-L5-merged-image-deepwalk-basal:
     cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv basal image-deepwalk
       extract-features/pc-L5-merged/basal/image-deepwalk
@@ -12258,70 +11890,6 @@ stages:
       md5: 8f5d2242cfd483e72dd97ae4c066f000.dir
       size: 464963
       nfiles: 129
-  features-pc-L2-merged-image-deepwalk-apical:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical image-deepwalk
-      extract-features/pc-L2-merged/apical/image-deepwalk
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/apical/image-deepwalk
-      md5: a06bf88a30adf7ebda45691eade5110e.dir
-      size: 1806273
-      nfiles: 43
-  features-pc-L2-merged-diagram-deepwalk-all:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all diagram-deepwalk
-      extract-features/pc-L2-merged/all/diagram-deepwalk
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/all/diagram-deepwalk
-      md5: ebe794555ee2fd764b61c5a321553729.dir
-      size: 204161
-      nfiles: 43
-  features-pc-L2-merged-image-tmd-proj-all:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all image-tmd-proj
-      extract-features/pc-L2-merged/all/image-tmd-proj
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/all/image-tmd-proj
-      md5: 0df86cfd64e3b1b4acd67a08bdc2e828.dir
-      size: 1874689
-      nfiles: 43
-  features-pc-L2-merged-diagram-deepwalk-basal:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal diagram-deepwalk
-      extract-features/pc-L2-merged/basal/diagram-deepwalk
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/basal/diagram-deepwalk
-      md5: 2c39dd4580fb7504d80faac7659d75b7.dir
-      size: 96129
-      nfiles: 43
   features-pc-L5-merged-image-tmd-rd-all:
     cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv all image-tmd-rd
       extract-features/pc-L5-merged/all/image-tmd-rd
@@ -12354,22 +11922,6 @@ stages:
       md5: 79c95d704d2a66d000423e5e4ca1f32b.dir
       size: 267200
       nfiles: 128
-  features-pc-L2-merged-image-deepwalk-all:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv all image-deepwalk
-      extract-features/pc-L2-merged/all/image-deepwalk
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/all/image-deepwalk
-      md5: 5aafe4ad8f11737b42e6be96687b8a95.dir
-      size: 1874689
-      nfiles: 43
   features-pc-L5-merged-image-deepwalk-axon:
     cmd: morphoclass -v extract-features data/final/pc-L5-merged.csv axon image-deepwalk
       extract-features/pc-L5-merged/axon/image-deepwalk
@@ -12514,38 +12066,6 @@ stages:
       md5: 78acb02f95fa8b3eda0069f81d6750d7.dir
       size: 5369984
       nfiles: 128
-  features-pc-L2-merged-image-tmd-proj-axon:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon image-tmd-proj
-      extract-features/pc-L2-merged/axon/image-tmd-proj
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/axon/image-tmd-proj
-      md5: 81c59dfe549ea4ea2ec7f3d7c94adebc.dir
-      size: 1688504
-      nfiles: 40
-  features-pc-L2-merged-graph-proj-basal:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv basal graph-proj
-      extract-features/pc-L2-merged/basal/graph-proj
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/basal/graph-proj
-      md5: 2db534ccc118f91b6f36bb135103ead2.dir
-      size: 88065
-      nfiles: 43
   features-pc-L6-merged-image-deepwalk-apical:
     cmd: morphoclass -v extract-features data/final/pc-L6-merged.csv apical image-deepwalk
       extract-features/pc-L6-merged/apical/image-deepwalk
@@ -12578,38 +12098,6 @@ stages:
       md5: 8ec9268b12c149949eb3a72d82ddfec3.dir
       size: 5421571
       nfiles: 129
-  features-pc-L2-merged-diagram-deepwalk-apical:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv apical diagram-deepwalk
-      extract-features/pc-L2-merged/apical/diagram-deepwalk
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/apical/diagram-deepwalk
-      md5: 113ef48b821b3c0c54c56f11935bc28b.dir
-      size: 99137
-      nfiles: 43
-  features-pc-L2-merged-diagram-deepwalk-axon:
-    cmd: morphoclass -v extract-features data/final/pc-L2-merged.csv axon diagram-deepwalk
-      extract-features/pc-L2-merged/axon/diagram-deepwalk
-    deps:
-    - path: data/final/pc-L2-merged.csv
-      md5: ebc1772addb5bcb82e2a334fb259847e
-      size: 2188
-    - path: data/final/pyramidal-cells/L2
-      md5: 2ef6ba25eff161164841b7064d6d882d.dir
-      size: 7419249
-      nfiles: 44
-    outs:
-    - path: extract-features/pc-L2-merged/axon/diagram-deepwalk
-      md5: b40a49566ea6441183c978ded0c1f354.dir
-      size: 106171
-      nfiles: 41
   train@pc-L6-apical-diagram-tmd-proj-perslay-stratified-k-fold:
     cmd: morphoclass -v train --features-dir extract-features/pc-L6/apical/diagram-tmd-proj
       --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
@@ -14550,26 +14038,6 @@ stages:
       md5: 1eabb9ff6897d2776be55b0782afb1a8.dir
       size: 3436984
       nfiles: 13
-  train-pc-L2-merged-classes@decision-tree-deepwalk:
-    cmd: morphoclass -v train --features-dir extract-features/pc-L2-merged/apical/image-deepwalk
-      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
-      --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L2-decision-tree-deepwalk-stratified-k-fold
-    deps:
-    - path: extract-features/pc-L2-merged/apical/image-deepwalk
-      md5: a06bf88a30adf7ebda45691eade5110e.dir
-      size: 1806273
-      nfiles: 43
-    - path: training/configs/model-decision-tree.yaml
-      md5: 6f5a6b3644eb40aa784dc99de39be6cc
-      size: 161
-    - path: training/configs/splitter-stratified-k-fold.yaml
-      md5: a3ed00f26b1e4c78675bb219a96166e5
-      size: 87
-    outs:
-    - path: training/checkpoints-pc-merged-classes/pc-L2-decision-tree-deepwalk-stratified-k-fold
-      md5: f6c62dc2bf5e39a8ca406f7d1402cd99.dir
-      size: 19301786
-      nfiles: 13
   train-alt-neurites@in-L4-basal-image-tmd-rd-xgb-stratified-k-fold:
     cmd: morphoclass -v train --features-dir extract-features/in-L4/basal/image-tmd-rd
       --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
@@ -15169,26 +14637,6 @@ stages:
     - path: training/checkpoints-alt-neurites/pc-L5-axon-image-tmd-rd-xgb-stratified-k-fold
       md5: 208ef7143ebd5224b9b52100b408a399.dir
       size: 65438276
-      nfiles: 13
-  train-pc-L2-merged-classes@decision-tree-tmd:
-    cmd: morphoclass -v train --features-dir extract-features/pc-L2-merged/apical/image-tmd-proj
-      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
-      --checkpoint-dir training/checkpoints-pc-merged-classes/pc-L2-decision-tree-tmd-stratified-k-fold
-    deps:
-    - path: extract-features/pc-L2-merged/apical/image-tmd-proj
-      md5: 711cd3769d7e3774d62cc6ada23f7d33.dir
-      size: 1806273
-      nfiles: 43
-    - path: training/configs/model-decision-tree.yaml
-      md5: 6f5a6b3644eb40aa784dc99de39be6cc
-      size: 161
-    - path: training/configs/splitter-stratified-k-fold.yaml
-      md5: a3ed00f26b1e4c78675bb219a96166e5
-      size: 87
-    outs:
-    - path: training/checkpoints-pc-merged-classes/pc-L2-decision-tree-tmd-stratified-k-fold
-      md5: a881f1e3c0804c7e7d5eb4d59ee35e9e.dir
-      size: 20457295
       nfiles: 13
   train-alt-neurites@pc-L3-basal-graph-rd-gnn-stratified-k-fold:
     cmd: morphoclass -v train --features-dir extract-features/pc-L3/basal/graph-rd

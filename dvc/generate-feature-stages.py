@@ -28,7 +28,6 @@ datasets = {
     "lida-in-merged": "data/final/IN_data.csv",
     "lida-in-merged-bc-merged": "data/final/IN_data_BC_merged.csv",
     "lida-janelia-L5": "data/final/classes-janelia-L5.csv",
-    "pc-L2-merged": "data/final/pc-L2-merged.csv",
     "pc-L5-merged": "data/final/pc-L5-merged.csv",
     "pc-L6-merged": "data/final/pc-L6-merged.csv",
 }
@@ -49,10 +48,6 @@ deps = {
         "data/final/interneurons",
     ],
     "lida-janelia-L5": ["data/final/classes-janelia-L5.csv", "data/final/janelia"],
-    "pc-L2-merged": [
-        "data/final/pc-L2-merged.csv",
-        "data/final/pyramidal-cells/L2",
-    ],
     "pc-L5-merged": [
         "data/final/pc-L5-merged.csv",
         "data/final/pyramidal-cells/L5",
