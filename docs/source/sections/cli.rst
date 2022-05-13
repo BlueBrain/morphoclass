@@ -54,10 +54,10 @@ Currently used - done refactoring / being refactored:
 * ``evaluate``            Evaluate a trained checkpoint.
 * ``performance-table``   Generate a summary report of the performance of...
 * ``morphometrics``       Run the morphometrics subcommand.
+* ``xai``                 Explain model predictions
 
 To refactor:
 
-* ``explain-models``      XAI
 * ``outlier-detection``   Outlier detection
 * ``transfer-learning``   Transfer learning
 

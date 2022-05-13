@@ -160,7 +160,7 @@ def visualize_model_performance(
     #     )
 
     logger.info(f"Rendering the performance report to {report_path.resolve().as_uri()}")
-    template = mc.report.plumbing.load_template("performance-report")
+    template = mc.report.plumbing.load_template("performance-table")
     template_vars = {
         "result_parameters": result_parameters,
         # "result_performance_images": result_performance_images,

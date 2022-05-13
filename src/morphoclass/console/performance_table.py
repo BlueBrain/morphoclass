@@ -16,15 +16,21 @@ from __future__ import annotations
 
 import logging
 import pathlib
+from collections import defaultdict
 from collections.abc import Sequence
 
 import click
+import numpy as np
 import pandas as pd
 import torch
 from pandas.io.formats.style import Styler
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import balanced_accuracy_score
+from sklearn.metrics import f1_score
 
 import morphoclass as mc
 import morphoclass.report.plumbing
+from morphoclass.metrics import chance_agreement
 from morphoclass.types import StrPath
 
 logger = logging.getLogger(__name__)
@@ -90,7 +96,9 @@ def make_performance_table(
         "model_class",
         "oversampled",
         "splitter_class",
+        "chance_agreement",
         "accuracy",
+        "balanced_accuracy",
         "f1_micro",
         "f1_macro",
         "f1_weighted",
@@ -108,10 +116,15 @@ def make_performance_table(
     cell_style = "padding-right: 1em; white-space: nowrap;"
     df_style.set_table_styles([{"selector": "th, td", "props": cell_style}])
 
-    # generate a HTML report
+    # generate a HTML table report
     template = mc.report.plumbing.load_template("results-table")
     mc.report.plumbing.render(template, {"df_results": df_style.render()}, results_file)
-    logger.info(f"Report stored in: {results_file.resolve().as_uri()}")
+    logger.info(f"HTML table written in: {results_file.resolve().as_uri()}")
+
+    # generate a CSV table report
+    results_csv = results_file.with_suffix(".csv")
+    df.to_csv(results_csv, index=False)
+    logger.info(f"CSV table written in: {results_csv.resolve().as_uri()}")
 
     logger.info("Done.")
 
@@ -129,7 +142,7 @@ def make_report_row(data: dict) -> dict:
     dict
         The dictionary representing a data frame row.
     """
-    return {
+    row = {
         "dataset": data["dataset_name"],
         "feature_extractor": data["features_dir"],
         "model_class": data["model_class"],
@@ -137,12 +150,30 @@ def make_report_row(data: dict) -> dict:
         "oversampled": bool(data["oversampling"]),
         "splitter_class": data["splitter_class"].rpartition(".")[2],
         "splitter_params": data["splitter_params"],
-        # "accuracy_mean": data["accuracy_mean"],
-        "accuracy": f"{data['accuracy_mean']:.3f}±{data['accuracy_std']:.2f}",
-        # "f1_weighted_mean": data["f1_weighted_mean"],
-        "f1_weighted": f"{data['f1_weighted_mean']:.3f}±{data['f1_weighted_std']:.2f}",
-        "f1_micro": f"{data['f1_micro_mean']:.3f}±{data['f1_micro_std']:.2f}",
-        "f1_macro": f"{data['f1_macro_mean']:.3f}±{data['f1_macro_std']:.2f}",
         "metrics_file": data["metrics_file"],
-        # "model_report_directory": data["model_report_directory"],
     }
+
+    # Compute scores on each split, for each metric of interest
+    metrics_vals: defaultdict[str, list[float]] = defaultdict(list)
+    for split in data["splits"]:
+        y_true = split["ground_truths"]
+        y_pred = split["predictions"]
+        metrics_vals["accuracy"].append(accuracy_score(y_true, y_pred))
+        metrics_vals["balanced_accuracy"].append(
+            balanced_accuracy_score(y_true, y_pred)
+        )
+        metrics_vals["f1_weighted"].append(f1_score(y_true, y_pred, average="weighted"))
+        metrics_vals["f1_micro"].append(f1_score(y_true, y_pred, average="micro"))
+        metrics_vals["f1_macro"].append(f1_score(y_true, y_pred, average="macro"))
+
+    # Write mean±std to table, for each metric of interest
+    for metric_name, metric_vals in metrics_vals.items():
+        mean = np.mean(metric_vals)
+        std = np.std(metric_vals)
+        row[metric_name] = f"{mean:.3f}±{std:.3f}"
+
+    # Add chance agreement
+    chance_agreement_score = chance_agreement(data["all"]["ground_truths"])
+    row["chance_agreement"] = f"{chance_agreement_score:.3f}"
+
+    return row

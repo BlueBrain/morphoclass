@@ -15,12 +15,13 @@
 from __future__ import annotations
 
 import logging
-import os
 import pathlib
 import tempfile
 from datetime import datetime
 
 import click
+
+from morphoclass.types import StrPath
 
 logger = logging.getLogger(__name__)
 
@@ -53,7 +54,7 @@ def cli():
     type=click.Path(file_okay=False),
     help="The XAI report output directory",
 )
-def report(checkpoint_path: str | os.PathLike, output_dir: str | os.PathLike) -> None:
+def report(checkpoint_path: StrPath, output_dir: StrPath) -> None:
     """Create an XAI report.
 
     Parameters

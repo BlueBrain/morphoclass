@@ -25,14 +25,9 @@ datasets = {
     "pc-L4": "data/final/pyramidal-cells/L4/dataset.csv",
     "pc-L5": "data/final/pyramidal-cells/L5/dataset.csv",
     "pc-L6": "data/final/pyramidal-cells/L6/dataset.csv",
-    "in-merged-layers": "data/final/interneurons-merged-layers.csv",
     "lida-in-merged": "data/final/IN_data.csv",
     "lida-in-merged-bc-merged": "data/final/IN_data_BC_merged.csv",
-    "lida-in-merged-no-nbc": "data/final/IN_data_no_NBC.csv",
     "lida-janelia-L5": "data/final/classes-janelia-L5.csv",
-    "pc-L2-merged": "data/final/pc-L2-merged.csv",
-    "pc-L5-merged": "data/final/pc-L5-merged.csv",
-    "pc-L6-merged": "data/final/pc-L6-merged.csv",
 }
 deps = {
     "in-L1": ["data/final/interneurons/L1"],
@@ -45,32 +40,12 @@ deps = {
     "pc-L4": ["data/final/pyramidal-cells/L4"],
     "pc-L5": ["data/final/pyramidal-cells/L5"],
     "pc-L6": ["data/final/pyramidal-cells/L6"],
-    "in-merged-layers": [
-        "data/final/interneurons-merged-layers.csv",
-        "data/final/interneurons",
-    ],
     "lida-in-merged": ["data/final/IN_data.csv", "data/final/interneurons"],
     "lida-in-merged-bc-merged": [
         "data/final/IN_data_BC_merged.csv",
         "data/final/interneurons",
     ],
-    "lida-in-merged-no-nbc": [
-        "data/final/IN_data_no_NBC.csv",
-        "data/final/interneurons",
-    ],
     "lida-janelia-L5": ["data/final/classes-janelia-L5.csv", "data/final/janelia"],
-    "pc-L2-merged": [
-        "data/final/pc-L2-merged.csv",
-        "data/final/pyramidal-cells/L2",
-    ],
-    "pc-L5-merged": [
-        "data/final/pc-L5-merged.csv",
-        "data/final/pyramidal-cells/L5",
-    ],
-    "pc-L6-merged": [
-        "data/final/pc-L6-merged.csv",
-        "data/final/pyramidal-cells/L6",
-    ],
 }
 
 stages = {}

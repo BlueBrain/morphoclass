@@ -22,12 +22,10 @@ import textwrap
 from typing import Iterable
 
 import neurom as nm
-import numpy as np
 import pandas as pd
 from torch_geometric.data import Dataset
 
 from morphoclass.data.morphology_data import MorphologyData
-from morphoclass.data.morphology_embedding_dataset import MorphologyEmbeddingDataset
 
 logger = logging.getLogger(__name__)
 
@@ -493,72 +491,3 @@ class MorphologyDataset(Dataset):
                 return None
         else:
             return None
-
-    def to_lowerdim_dataset(self, embedding_type, **feat_extr_kwargs):
-        """Create a lower-dimensional dataset from MorphologyDataset.
-
-        Parameters
-        ----------
-        embedding_type : str
-            The type of the embedding: tmd, deepwalk.
-        feat_extr_kwargs : dict
-            Set of parameters for embedding.
-
-        Returns
-        -------
-        dataset : morphoclass.data.MorphologyEmbeddingDataset
-            Dataset with morphology embedding (lower-dimensional
-            morphology representation).
-        """
-        # The embedding of multiple neurites is simply all points from all
-        # neurite embeddings put together. This mirrors the way it's done in
-        # tmd.Topology.methods.get_ph_neuron
-        embeddings = []
-        if embedding_type == "deepwalk":
-            from morphoclass import deepwalk
-
-            deepwalk.warn_if_not_installed()
-
-            for data in self:
-                points = []
-                for tree in data.tmd_neurites:
-                    points.append(deepwalk.get_embedding(tree, **feat_extr_kwargs))
-                embeddings.append(np.concatenate(points))
-        elif embedding_type == "tmd":
-            from tmd.Topology.methods import get_persistence_diagram
-
-            for data in self:
-                diagram = []
-                for tree in data.tmd_neurites:
-                    diagram.extend(get_persistence_diagram(tree, **feat_extr_kwargs))
-                embeddings.append(diagram)
-        else:
-            raise ValueError(f"Value {embedding_type} not supported as embedding.")
-
-        # Check that the embeddings are big enough - at least 3 points.
-        # Otherwise, we can't generate any persistence images and such data
-        # doesn't make sense anyway.
-        # TODO: is this the right place to do this? Also see a similar check
-        #       in the feature_extractors.
-        idx_keep = []
-        for i, embedding in enumerate(embeddings):
-            if len(embedding) < 3:
-                logger.warning(
-                    f"The embedding of {self[i].path} has fewer than 3 points. "
-                    f"We'll remove this morphology from the dataset."
-                )
-            else:
-                idx_keep.append(i)
-
-        data = [self[i] for i in idx_keep]
-        embeddings = [np.array(embeddings[i]) for i in idx_keep]
-
-        dataset = MorphologyEmbeddingDataset.from_embedding(
-            embeddings=[embeddings[i] for i in idx_keep],
-            labels=[d.y_str for d in data],
-            morph_paths=[d.path for d in data],
-            morph_names=[pathlib.Path(d.path).stem for d in data],
-            morphologies=data,
-        )
-
-        return dataset

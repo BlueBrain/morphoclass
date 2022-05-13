@@ -22,20 +22,12 @@ from morphoclass.data._helper import pickle_data
 from morphoclass.data._helper import reduce_tree_to_branching
 from morphoclass.data.morphology_data_loader import MorphologyDataLoader
 from morphoclass.data.morphology_dataset import MorphologyDataset
-from morphoclass.data.morphology_embedding_data_loader import (
-    MorphologyEmbeddingDataLoader,
-)
-from morphoclass.data.morphology_embedding_dataset import MorphologyEmbedding
-from morphoclass.data.morphology_embedding_dataset import MorphologyEmbeddingDataset
 
 # from morphoclass.data.tns_dataset import TNSDataset, generate_tns_distributions
 
 __all__ = [
     "MorphologyDataset",
     "MorphologyDataLoader",
-    "MorphologyEmbeddingDataset",
-    "MorphologyEmbeddingDataLoader",
-    "MorphologyEmbedding",
     # 'TNSDataset',
     # 'generate_tns_distributions',
     "load_apical_persistence_diagrams",

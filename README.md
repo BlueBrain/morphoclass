@@ -1,3 +1,5 @@
+<img alt="MorphoClass Banner" src="docs/source/logo/morphoclass-banner.jpg"/>
+
 # Morphology-Classification
 MorphoClass is a toolbox for neuronal morphologies processing and
 classification using machine learning.

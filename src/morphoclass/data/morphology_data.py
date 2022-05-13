@@ -14,11 +14,12 @@
 """Implementation of the MorphologyData class."""
 from __future__ import annotations
 
-import os
 from typing import TypeVar
 
 import torch
 from torch_geometric.data.data import Data
+
+from morphoclass.types import StrPath
 
 T = TypeVar("T", bound="MorphologyData")
 
@@ -51,13 +52,13 @@ class MorphologyData(Data):
         return data_dict
 
     @classmethod
-    def load(cls: type[T], path: str | os.PathLike) -> T:
+    def load(cls: type[T], path: StrPath) -> T:
         """Load a serialised data object from disk."""
         data_dict = torch.load(path)
         data_obj: T = cls.from_dict(data_dict)
         return data_obj
 
-    def save(self, path: str | os.PathLike) -> None:
+    def save(self, path: StrPath) -> None:
         """Serialise the data object to disk."""
         data_dict = self.to_dict()
         torch.save(data_dict, path)
