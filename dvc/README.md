@@ -4,13 +4,15 @@
 
 1. [**Data Preparation**](#data-preparation)
    1. [Preprocessing (`preprocessing-*`)](#preprocessing-preprocessing-)
-   1. [Plot Datasets (`plot-datasets-*`)](#plot-datasets-plot-datasets-)
-   1. [M-Car Curation (`mcar-curation*`)](#m-car-curation-mcar-curation)
-   1. [Dataset Organization
+   2. [Plot Datasets (`plot-datasets-*`)](#plot-datasets-plot-datasets-)
+   3. [M-Car Curation (`mcar-curation*`)](#m-car-curation-mcar-curation)
+   4. [Dataset Organization
       (`organise-dataset`)](#dataset-organization-organise-dataset)
-1. [**Feature Extraction (`features-*`)**](#feature-extraction-features-)
+2. [**Feature Extraction (`features-*`)**](#feature-extraction-features-)
    1. [Feature Embedding Algorithms](#feature-embedding-algorithms)
-   1. [Neurites Types](#neurite-types)
+   2. [Neurites Types](#neurite-types)
+3. [**Model Training (`train*`)](#model-training-train)
+   1. Training
 
 ## Data Preparation
 
@@ -26,7 +28,7 @@ Stages:
 - `preprocess-dataset` — for interneurons and pyramidal cells
 - `preprocess-janelia` — for janelia
 
-This initial stage filters the raw data in many ways.  Filtering includes
+This initial stage filters the raw data in many ways. Filtering includes
 dropping duplicate files, dropping M-type classes with only 1 neuron, and other
 kinds of files sorting and cleanup.
 
@@ -140,15 +142,95 @@ Feature embeddings can be computed on various kinds of neurites.
 The only exception are `morphometrics` embeddings, which are always computed on
 `all` neurites.
 
-- `basal` — basal dendritic tree
-- `apical` — apical dendritic tree
 - `axon` — axonal tree
-- `all` — all neurites, i.e. `basal` + `apical` + `axon`
+- `apical` — apical dendritic tree
+- `basal` — basal dendritic tree
+- `all` — all neurites, i.e. `axon` + `apical` + `basal`
 
-# Model Training (`train*`)
+Notice that the morphologies in the `in` (interneurons) dataset do not have an
+`apical` dendrite.
+
+## Model Training (`train*`)
 
 Stages:
 
--
+- `train` — training for `pc` and `in` datasets using "default" neurites
+- `train-alt-neurites` — training for `pc` and `in` datasets using
+  non-"default" neurites
+- `train-lida-in-merged` — training for `in-merged` dataset using "default"
+  neurites
+- `train-lida-in-merged-*` — training for `in-merged` dataset using
+  non-"default" neurites
+- `train-lida-in-merged-bc-merged` — training for `in-merged-bc-merged` dataset
+  using "default" neurites
+- `train-lida-in-merged-bc-merged-*` — training for `in-merged-bc-merged`
+  dataset using non-"default" neurites
+- `train-janelia-L5` — training for `janelia` dataset using "default" neurites
+- `train-janelia-L5-*` — training for `janelia` dataset using non-"default"
+  neurites
+- `train-morphometrics` — training for alla datasets, using morphometrics features
 
-## Training with Default Configurations (`train`)
+By "default" neurites here we refer to the neurites that are expected to carry
+most of the information required to classify morphologies by their M-types,
+based on experts' feedback. This means:
+
+- pyramidal cells (`pc` and `janelia`) — the "default" neurite is the `apical`
+  dendrite
+- interneurons (`in`) — the "default" neurite is the `axon` (notice that
+  `apical` dendrite is missing in the `in`
+  datasets)
+
+Notice that each of these DVC stages is parametrized, so that training is run
+for each of the features extracted using the [different embedding
+algorithms](#feature-embedding-algorithms).  Also, notice that each type of
+feature can be used to train different Machine
+Learning models.
+
+### Machine Learning models
+
+Different Machine Learning models can be used on different kinds of features.
+
+- **`cnn`** — [2D Convolutional Neural
+  Network](https://en.wikipedia.org/wiki/Convolutional_neural_network), can be
+  used on image features: `image-deepwalk`, `image-tmd-rd`
+- **`decision-tree`** — [Decision Tree
+  classifier](https://scikit-learn.org/stable/modules/tree.html#tree), can be
+  used on all sort of features, and in our case we consider: `image-deepwalk`,
+  `image-tmd-rd`,
+- **`xgb`** — [XGBoost classifier](https://xgboost.readthedocs.io/en/stable/),
+  can be used on all sort of features, and in our case we consider:
+  `image-deepwalk`, `image-tmd-rd`, `morphometrics`.
+- **`perslay`** — [PersLay](https://arxiv.org/abs/1904.09378) can be used on
+  Topologial Data Analysis descriptors in represented by a diagram:
+  `diagram-deepwalk`, `diagram-tmd-rd`
+- **`gnn`** — [Graph Neural
+  Network](https://pytorch-geometric.readthedocs.io/en/latest/index.html), can
+  be used on graphs representing the neurite: `graph-rd`
+
+## Model Evaluation (`evaluate*)
+
+Stages:
+
+- `evaluate`
+- `evaluate-alt-neurites`
+- `evaluate-lida-in-merged`
+- `evaluate-lida-in-merged-*`
+- `evaluate-lida-in-merged-bc-merged`
+- `evaluate-lida-in-merged-bc-merged-*`
+- `evaluate-janelia-L5`
+- `evaluate-janelia-L5-*`
+
+These stages run evaluation of the Machine Learning models trained during the
+corresponding model training stage. See the [section on Model
+Training](#model-training-train) for all details.
+
+## Transfer Learning (`transfer-learning`)
+
+Stages:
+
+- `transfer-learning`
+
+This stage is still in experimental phase. It implements a setting where a
+model is trained on a dataset and then fine-tuned on a different one. The
+accuracy of this fine-tuned model is then compared with that of a model trained
+on the second dataset without pre-training.
