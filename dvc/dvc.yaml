@@ -27,6 +27,7 @@ stages:
       - data/raw/janelia/selected_morphologies.csv
     outs:
       - data/preprocessed-janelia.csv
+
   plot-dataset-stats:
     foreach:
       - pyramidal-cells
@@ -47,6 +48,7 @@ stages:
     deps:
       - data/preprocessed-janelia.csv
       - data/raw/janelia/mouselight_isocortex_ASCII_Files
+
   mcar-curation:
     foreach:
       - pyramidal-cells
@@ -77,6 +79,7 @@ stages:
       - data/mcar-luigi.cfg
     outs:
       - data/mcar-curation/janelia
+
   organise-dataset:
     foreach:
       - pyramidal-cells
@@ -91,26 +94,6 @@ stages:
         - data/mcar-curation/${item}
       outs:
         - data/final/${item}
-  transfer-learning:
-    foreach: ${transfer_learning.models}
-    do:
-      cmd: >-
-        morphoclass -v transfer-learning
-        --batch-size '${item.batch_size}'
-        --checkpoint-paths-pretrained '${item.checkpoint_paths_pretrained}'
-        --dataset-name '${item.dataset_name}'
-        --feature-extractor-name '${item.feature_extractor_name}'
-        --input-csv '${item.input_csv}'
-        --model-class '${item.model_class}'
-        --model-params '${item.model_params}'
-        --n-epochs '${item.n_epochs}'
-        --optimizer-class '${item.optimizer_class}'
-        --optimizer-params '${item.optimizer_params}'
-        --results-file '${item.results_file}'
-        --seed '${transfer_learning.shared_parameters.seed}'
-      outs:
-      - ${item.results_file}
-      # - ${item.output_wildcard}
 
   features-in-L1-diagram-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv all
@@ -1748,6 +1731,11 @@ stages:
         - ${item.splitter-config}
       outs:
         - training/checkpoints/${key}
+      desc: >-
+        This stage performs the 'standard' training for all datasets. 'Standard' means:
+        - inputs (classes, layers) are the outputs of the 'organise-dataset'
+        - neurites are the 'default' ones ('in': axon, 'pc' and 'janelia': apical)
+        - only 'in' and 'pc' are considered, for 'janelia' see stage 'train-janelia-L5'
   evaluate:
     foreach: ${training}
     do:
@@ -2057,7 +2045,8 @@ stages:
       outs:
         - evaluation/checkpoints-lida-alt-neurites/janelia-L5-basal-${key}-stratified-k-fold.html
         - evaluation/checkpoints-lida-alt-neurites/janelia-L5-basal-${key}-stratified-k-fold
-  morphometrics-feature-extraction:
+
+  features-morphometrics:
     foreach:
       - pyramidal-cells
       - interneurons
@@ -2066,10 +2055,10 @@ stages:
       cmd: >-
         morphoclass -vv morphometrics extract-features
         --organised-dataset-directory ./data/final/${item}
-        --morphometrics-config ./morphometrics/morphometrics_config.yaml
-        --output-features-directory ./morphometrics/features/${item}
+        --morphometrics-config ./extract-features-morphometrics/morphometrics_config.yaml
+        --output-features-directory ./extract-features-morphometrics/${item}
       outs:
-        - morphometrics/features/${item}
+        - extract-features-morphometrics/${item}
       desc: "Extract morphometric features (tabular data) from input neurons."
 
   train-morphometrics:
@@ -2088,3 +2077,26 @@ stages:
       outs:
         - training/checkpoints-morphometrics/${key}
       desc: "Train M-type classifier with morphometric input features (tabular data)"
+
+  transfer-learning:
+    foreach: ${transfer_learning.models}
+    do:
+      cmd: >-
+        morphoclass -v transfer-learning
+        --batch-size '${item.batch_size}'
+        --checkpoint-paths-pretrained '${item.checkpoint_paths_pretrained}'
+        --dataset-name '${item.dataset_name}'
+        --feature-extractor-name '${item.feature_extractor_name}'
+        --input-csv '${item.input_csv}'
+        --model-class '${item.model_class}'
+        --model-params '${item.model_params}'
+        --n-epochs '${item.n_epochs}'
+        --optimizer-class '${item.optimizer_class}'
+        --optimizer-params '${item.optimizer_params}'
+        --results-file '${item.results_file}'
+        --seed '${transfer_learning.shared_parameters.seed}'
+      outs:
+      - ${item.results_file}
+      # - ${item.output_wildcard}
+      desc: >-
+        Work in progress, started by Jelena Banjac.
