@@ -11,8 +11,10 @@
 2. [**Feature Extraction (`features-*`)**](#feature-extraction-features-)
    1. [Feature Embedding Algorithms](#feature-embedding-algorithms)
    2. [Neurites Types](#neurite-types)
-3. [**Model Training (`train*`)](#model-training-train)
-   1. Training
+3. [**Model Training (`train*`)**](#model-training-train)
+4. [**Model Evaluation (`evaluate*`)**](#model-evaluation-evaluate)
+5. [**Transfer Learning
+   (`transfer-learning`)**](#transfer-learning-transfer-learning)
 
 ## Data Preparation
 
