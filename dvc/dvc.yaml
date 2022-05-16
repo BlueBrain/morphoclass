@@ -2055,7 +2055,7 @@ stages:
         --morphometrics-config ./extract-features-morphometrics/morphometrics_config.yaml
         --output-features-directory ./extract-features-morphometrics/${item.output-features-directory}
       outs:
-        - extract-features-morphometrics/${item}
+        - extract-features-morphometrics/${item.output-features-directory}
       desc: "Extract morphometric features (tabular data) from input neurons."
 
   train-morphometrics:
