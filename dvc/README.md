@@ -168,7 +168,8 @@ Stages:
 - `train-janelia-L5` — training for `janelia` dataset using "default" neurites
 - `train-janelia-L5-*` — training for `janelia` dataset using non-"default"
   neurites
-- `train-morphometrics` — training for alla datasets, using morphometrics features
+- `train-morphometrics` — training for alla datasets, using morphometrics
+  features
 
 By "default" neurites here we refer to the neurites that are expected to carry
 most of the information required to classify morphologies by their M-types,
