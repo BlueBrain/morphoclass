@@ -18574,33 +18574,6 @@ stages:
       md5: 91456d3ca0c4122754fbfd92e3345d56.dir
       size: 16392823
       nfiles: 13
-  features-morphometrics@janelia:
-    cmd: morphoclass -vv morphometrics extract-features --organised-dataset-directory
-      ./data/final/janelia --morphometrics-config ./extract-features-morphometrics/morphometrics_config.yaml
-      --output-features-directory ./extract-features-morphometrics/janelia
-    outs:
-    - path: extract-features-morphometrics/janelia
-      md5: 7e5c65736085a40b6b4b66f6f5866fc2.dir
-      size: 262824
-      nfiles: 2
-  features-morphometrics@pyramidal-cells:
-    cmd: morphoclass -vv morphometrics extract-features --organised-dataset-directory
-      ./data/final/pyramidal-cells --morphometrics-config ./extract-features-morphometrics/morphometrics_config.yaml
-      --output-features-directory ./extract-features-morphometrics/pyramidal-cells
-    outs:
-    - path: extract-features-morphometrics/pyramidal-cells
-      md5: f2f8b1d0d82412d7cd8bb49d3b1a495a.dir
-      size: 1119620
-      nfiles: 5
-  features-morphometrics@interneurons:
-    cmd: morphoclass -vv morphometrics extract-features --organised-dataset-directory
-      ./data/final/interneurons --morphometrics-config ./extract-features-morphometrics/morphometrics_config.yaml
-      --output-features-directory ./extract-features-morphometrics/interneurons
-    outs:
-    - path: extract-features-morphometrics/interneurons
-      md5: c150bd4744384ce2a835433d845e1a6a.dir
-      size: 953818
-      nfiles: 5
   train-morphometrics@in-L6-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/interneurons/L6.csv
       --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
