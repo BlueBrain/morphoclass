@@ -1296,9 +1296,6 @@ features-morphometrics:
   in-L6:
     dataset-csv: interneurons/L6/dataset.csv
     output-features-directory: interneurons/L6
-  pc-L1:
-    dataset-csv: pyramidal-cells/L1/dataset.csv
-    output-features-directory: pyramidal-cells/L1
   pc-L2:
     dataset-csv: pyramidal-cells/L2/dataset.csv
     output-features-directory: pyramidal-cells/L2
