@@ -62,7 +62,7 @@ external port set to ``35353``, and the container name to ``my-container``:
 
 .. code-block:: sh
 
-    docker run
+    docker run \
     --rm \
     -it \
     -u $USER \
