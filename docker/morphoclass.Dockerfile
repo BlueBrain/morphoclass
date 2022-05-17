@@ -20,7 +20,7 @@ RUN \
 apt-get update && \
 DEBIAN_FRONTEND="noninteractive" \
 apt-get install -y --no-install-recommends \
-    build-essential make curl git htop less man tzdata vim wget
+    build-essential make curl git htop less man ssh tzdata vim wget
 
 # Install python
 RUN \
