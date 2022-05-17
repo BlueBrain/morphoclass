@@ -1280,52 +1280,97 @@ transfer_learning:  # potentially outdated, review dvc.yaml/the CLI and maybe de
   shared_parameters:
     seed: 113587
 
+features-morphometrics:
+  in-L1:
+    dataset-csv: interneurons/L1/dataset.csv
+    output-features-directory: in-L1
+  in-L23:
+    dataset-csv: interneurons/L23/dataset.csv
+    output-features-directory: in-L23
+  in-L4:
+    dataset-csv: interneurons/L4/dataset.csv
+    output-features-directory: in-L4
+  in-L5:
+    dataset-csv: interneurons/L5/dataset.csv
+    output-features-directory: in-L5
+  in-L6:
+    dataset-csv: interneurons/L6/dataset.csv
+    output-features-directory: in-L6
+  pc-L2:
+    dataset-csv: pyramidal-cells/L2/dataset.csv
+    output-features-directory: pc-L2
+  pc-L3:
+    dataset-csv: pyramidal-cells/L3/dataset.csv
+    output-features-directory: pc-L3
+  pc-L4:
+    dataset-csv: pyramidal-cells/L4/dataset.csv
+    output-features-directory: pc-L4
+  pc-L5:
+    dataset-csv: pyramidal-cells/L5/dataset.csv
+    output-features-directory: pc-L5
+  pc-L6:
+    dataset-csv: pyramidal-cells/L6/dataset.csv
+    output-features-directory: pc-L6
+  janelia-L5:
+      dataset-csv: classes-janelia-L5.csv
+      output-features-directory: janelia-L5
+  in-merged:
+    dataset-csv: IN_data.csv
+    output-features-directory: in-merged
+  in-merged-bc-merged:
+    dataset-csv: IN_data_BC_merged.csv
+    output-features-directory: in-merged-bc-merged
+
 training-morphometrics:
   in-L1-morphometrics-xgb-stratified-k-fold:
-    morphometrics-features-dir: ./extract-features-morphometrics/interneurons/L1.csv
+    morphometrics-features-dir: ./extract-features-morphometrics/in-L1/features.csv
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L23-morphometrics-xgb-stratified-k-fold:
-    morphometrics-features-dir: ./extract-features-morphometrics/interneurons/L23.csv
+    morphometrics-features-dir: ./extract-features-morphometrics/in-L23/features.csv
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L4-morphometrics-xgb-stratified-k-fold:
-    morphometrics-features-dir: ./extract-features-morphometrics/interneurons/L4.csv
+    morphometrics-features-dir: ./extract-features-morphometrics/in-L4/features.csv
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L5-morphometrics-xgb-stratified-k-fold:
-    morphometrics-features-dir: ./extract-features-morphometrics/interneurons/L5.csv
+    morphometrics-features-dir: ./extract-features-morphometrics/in-L5/features.csv
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L6-morphometrics-xgb-stratified-k-fold:
-    morphometrics-features-dir: ./extract-features-morphometrics/interneurons/L6.csv
+    morphometrics-features-dir: ./extract-features-morphometrics/in-L6/features.csv
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   janelia-L5-morphometrics-xgb-stratified-k-fold:
-    morphometrics-features-dir: ./extract-features-morphometrics/janelia/L5.csv
-    model-config: training/configs/model-xgb.yaml
-    splitter-config: training/configs/splitter-stratified-k-fold.yaml
-  janelia-L6-morphometrics-xgb-stratified-k-fold:
-    morphometrics-features-dir: ./extract-features-morphometrics/janelia/L6.csv
+    morphometrics-features-dir: ./extract-features-morphometrics/janelia-L5/features.csv
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   pc-L2-morphometrics-xgb-stratified-k-fold:
-    morphometrics-features-dir: ./extract-features-morphometrics/pyramidal-cells/L2.csv
+    morphometrics-features-dir: ./extract-features-morphometrics/pc-L2/features.csv
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   pc-L3-morphometrics-xgb-stratified-k-fold:
-    morphometrics-features-dir: ./extract-features-morphometrics/pyramidal-cells/L3.csv
+    morphometrics-features-dir: ./extract-features-morphometrics/pc-L3/features.csv
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   pc-L4-morphometrics-xgb-stratified-k-fold:
-    morphometrics-features-dir: ./extract-features-morphometrics/pyramidal-cells/L4.csv
+    morphometrics-features-dir: ./extract-features-morphometrics/pc-L4/features.csv
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   pc-L5-morphometrics-xgb-stratified-k-fold:
-    morphometrics-features-dir: ./extract-features-morphometrics/pyramidal-cells/L5.csv
+    morphometrics-features-dir: ./extract-features-morphometrics/pc-L5/features.csv
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   pc-L6-morphometrics-xgb-stratified-k-fold:
-    morphometrics-features-dir: ./extract-features-morphometrics/pyramidal-cells/L6.csv
+    morphometrics-features-dir: ./extract-features-morphometrics/pc-L6/features.csv
+    model-config: training/configs/model-xgb.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-merged-morphometrics-xgb-stratified-k-fold:
+    morphometrics-features-dir: ./extract-features-morphometrics/in-merged/features.csv
+    model-config: training/configs/model-xgb.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-merged-bc-merged-morphometrics-xgb-stratified-k-fold:
+    morphometrics-features-dir: ./extract-features-morphometrics/in-merged-bc-merged/features.csv
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml

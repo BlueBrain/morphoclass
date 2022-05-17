@@ -2047,18 +2047,15 @@ stages:
         - evaluation/checkpoints-lida-alt-neurites/janelia-L5-basal-${key}-stratified-k-fold
 
   features-morphometrics:
-    foreach:
-      - pyramidal-cells
-      - interneurons
-      - janelia
+    foreach: ${features-morphometrics}
     do:
       cmd: >-
         morphoclass -vv morphometrics extract-features
-        --organised-dataset-directory ./data/final/${item}
+        --dataset-csv ./data/final/${item.dataset-csv}
         --morphometrics-config ./extract-features-morphometrics/morphometrics_config.yaml
-        --output-features-directory ./extract-features-morphometrics/${item}
+        --output-features-directory ./extract-features-morphometrics/${item.output-features-directory}
       outs:
-        - extract-features-morphometrics/${item}
+        - extract-features-morphometrics/${item.output-features-directory}
       desc: "Extract morphometric features (tabular data) from input neurons."
 
   train-morphometrics:
