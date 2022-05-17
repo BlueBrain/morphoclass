@@ -11,7 +11,11 @@ ENV HTTPS_PROXY="http://bbpproxy.epfl.ch:80"
 ENV LANG=C.UTF-8
 ENV TZ="Europe/Zurich"
 
-# Install system packages
+# CUDA Linux Repo Key Rotation: https://github.com/NVIDIA/nvidia-docker/issues/1632#issuecomment-1112667716
+RUN rm /etc/apt/sources.list.d/cuda.list
+RUN rm /etc/apt/sources.list.d/nvidia-ml.list
+
+#Install system packages
 RUN \
 apt-get update && \
 DEBIAN_FRONTEND="noninteractive" \
