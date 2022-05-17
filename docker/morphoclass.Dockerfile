@@ -4,7 +4,6 @@ ENV http_proxy="http://bbpproxy.epfl.ch:80"
 ENV https_proxy="http://bbpproxy.epfl.ch:80"
 ENV HTTP_PROXY="http://bbpproxy.epfl.ch:80"
 ENV HTTPS_PROXY="http://bbpproxy.epfl.ch:80"
-ENV PIP_INDEX_URL="https://bbpteam.epfl.ch/repository/devpi/simple"
 
 # Debian's default LANG=C breaks python3.
 # See commends in the official python docker file:
@@ -12,7 +11,11 @@ ENV PIP_INDEX_URL="https://bbpteam.epfl.ch/repository/devpi/simple"
 ENV LANG=C.UTF-8
 ENV TZ="Europe/Zurich"
 
-# Install system packages
+# CUDA Linux Repo Key Rotation: https://github.com/NVIDIA/nvidia-docker/issues/1632#issuecomment-1112667716
+RUN rm /etc/apt/sources.list.d/cuda.list
+RUN rm /etc/apt/sources.list.d/nvidia-ml.list
+
+#Install system packages
 RUN \
 apt-get update && \
 DEBIAN_FRONTEND="noninteractive" \
@@ -28,8 +31,10 @@ python3.8 -m pip install --upgrade pip setuptools wheel && \
 update-alternatives --install /usr/local/bin/python python /usr/bin/python3.8 0
 
 # Install requirements
-COPY requirements.txt /tmp
-RUN pip install -r /tmp/requirements.txt
+COPY requirements*.txt /tmp/
+RUN \
+pip install -r /tmp/requirements.txt && \
+pip install -r /tmp/requirements-extras.txt
 
 # Install torch geometric
 RUN \
