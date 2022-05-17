@@ -31,7 +31,7 @@ python3.8 -m pip install --upgrade pip setuptools wheel && \
 update-alternatives --install /usr/local/bin/python python /usr/bin/python3.8 0
 
 # Install requirements
-COPY requirements*.txt /tmp
+COPY requirements*.txt /tmp/
 RUN \
 pip install -r /tmp/requirements.txt && \
 pip install -r /tmp/requirements-extras.txt
