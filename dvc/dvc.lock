@@ -18691,3 +18691,250 @@ stages:
       md5: 1612ea7f7a06974c50c39cba8675c8cf.dir
       size: 111705
       nfiles: 1
+  train-morphometrics@janelia-L5-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/janelia-L5/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/janelia-L5-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/janelia-L5/features.csv
+      md5: 5e49a71c97117b673ebd320667e93d15
+      size: 112424
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-morphometrics/janelia-L5-morphometrics-xgb-stratified-k-fold
+      md5: 33d86baffd8a578ae008a4de53e4980e.dir
+      size: 910255
+      nfiles: 1
+  train-morphometrics@in-merged-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/in-merged/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/in-merged-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/in-merged/features.csv
+      md5: 1a4a32281e347114d764ebddf0655ad7
+      size: 725000
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-morphometrics/in-merged-morphometrics-xgb-stratified-k-fold
+      md5: 2a8b4306a4e5f26dad427c7cbb61c864.dir
+      size: 3125423
+      nfiles: 1
+  train-morphometrics@pc-L4-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/pc-L4/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/pc-L4-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/pc-L4/features.csv
+      md5: 89cb9a729314b91c1828ed02c3a63261
+      size: 212851
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-morphometrics/pc-L4-morphometrics-xgb-stratified-k-fold
+      md5: b2c593656d1a010eaeffe8d75f23932d.dir
+      size: 870703
+      nfiles: 1
+  train-morphometrics@in-L23-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/in-L23/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/in-L23-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/in-L23/features.csv
+      md5: 0be33eb1e6ee96b61d58a97b4e2bd8e1
+      size: 269199
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-morphometrics/in-L23-morphometrics-xgb-stratified-k-fold
+      md5: 496733585b4a03bae824bf3bc48a3702.dir
+      size: 2144431
+      nfiles: 1
+  train-morphometrics@in-L4-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/in-L4/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/in-L4-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/in-L4/features.csv
+      md5: 2664e66a25c38d015e2d06ef711a2653
+      size: 196268
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-morphometrics/in-L4-morphometrics-xgb-stratified-k-fold
+      md5: 6fce2eec7708920b0050386d53970612.dir
+      size: 1929263
+      nfiles: 1
+  train-morphometrics@in-L5-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/in-L5/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/in-L5-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/in-L5/features.csv
+      md5: 44e0612e0fffc351b7a7ee20f86fed5c
+      size: 193209
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-morphometrics/in-L5-morphometrics-xgb-stratified-k-fold
+      md5: e9021b0e1cfc3098431e7953e4f53fea.dir
+      size: 1920879
+      nfiles: 1
+  train-morphometrics@in-L6-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/in-L6/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/in-L6-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/in-L6/features.csv
+      md5: f0f81a05ec94cb10f7e779db86db896a
+      size: 111705
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-morphometrics/in-L6-morphometrics-xgb-stratified-k-fold
+      md5: 65db4057ad3ba4ab4ba91ba279003bab.dir
+      size: 1118767
+      nfiles: 1
+  train-morphometrics@in-L1-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/in-L1/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/in-L1-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/in-L1/features.csv
+      md5: 30cb1e51b4f5661c505bce04c1ffe08f
+      size: 183437
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-morphometrics/in-L1-morphometrics-xgb-stratified-k-fold
+      md5: 97556b40fd8095ece9010e0634af6e9e.dir
+      size: 1557103
+      nfiles: 1
+  train-morphometrics@pc-L2-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/pc-L2/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/pc-L2-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/pc-L2/features.csv
+      md5: 11405396a0ba361b86bdc6637725b669
+      size: 107590
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-morphometrics/pc-L2-morphometrics-xgb-stratified-k-fold
+      md5: b8c6a462de8c2728488ce6fe85783773.dir
+      size: 690799
+      nfiles: 1
+  train-morphometrics@in-merged-bc-merged-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/in-merged-bc-merged/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/in-merged-bc-merged-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/in-merged-bc-merged/features.csv
+      md5: 2a42eb14a57767cfd50cb5b35973555f
+      size: 724762
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-morphometrics/in-merged-bc-merged-morphometrics-xgb-stratified-k-fold
+      md5: 36a63734903603a2579ef4099855387d.dir
+      size: 2441135
+      nfiles: 1
+  train-morphometrics@pc-L5-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/pc-L5/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/pc-L5-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/pc-L5/features.csv
+      md5: cebe5482de1ee3deeb60ec1e5d0d958d
+      size: 378851
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-morphometrics/pc-L5-morphometrics-xgb-stratified-k-fold
+      md5: 7eea455582d0d39e96e48ab694ebc8e5.dir
+      size: 1431343
+      nfiles: 1
+  train-morphometrics@pc-L3-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/pc-L3/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/pc-L3-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/pc-L3/features.csv
+      md5: 8747b22ffe0ea8d87fa98f23f23df261
+      size: 108805
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-morphometrics/pc-L3-morphometrics-xgb-stratified-k-fold
+      md5: 4039ffc8e984c58cf9e48c753a167128.dir
+      size: 495279
+      nfiles: 1
+  train-morphometrics@pc-L6-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/pc-L6/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/pc-L6-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/pc-L6/features.csv
+      md5: 39f06927c8070d6d56eaf0c25884e89d
+      size: 311525
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-morphometrics/pc-L6-morphometrics-xgb-stratified-k-fold
+      md5: a7776151ca42b1714594e6b2e598235f.dir
+      size: 1605743
+      nfiles: 1
