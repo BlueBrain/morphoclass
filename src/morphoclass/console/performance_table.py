@@ -173,7 +173,9 @@ def make_report_row(data: dict) -> dict:
         row[metric_name] = f"{mean:.3f}±{std:.3f}"
 
     # Add chance agreement
-    chance_agreement_score = chance_agreement(data["all"]["ground_truths"])
+    chance_agreement_score = chance_agreement(
+        np.concatenate([split["ground_truths"] for split in data["splits"]])
+    )
     row["chance_agreement"] = f"{chance_agreement_score:.3f}"
 
     return row
