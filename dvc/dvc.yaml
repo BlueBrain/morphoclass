@@ -123,6 +123,13 @@ stages:
     - data/final/interneurons/L1
     outs:
     - extract-features/in-L1/all/diagram-tmd-rd
+  features-in-L1-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv all
+      diagram-tmd-proj extract-features/in-L1/all/diagram-tmd-proj
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/all/diagram-tmd-proj
   features-in-L1-diagram-tmd-rd-axon:
     cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv axon
       diagram-tmd-rd extract-features/in-L1/axon/diagram-tmd-rd
@@ -130,6 +137,13 @@ stages:
     - data/final/interneurons/L1
     outs:
     - extract-features/in-L1/axon/diagram-tmd-rd
+  features-in-L1-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv axon
+      diagram-tmd-proj extract-features/in-L1/axon/diagram-tmd-proj
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/axon/diagram-tmd-proj
   features-in-L1-diagram-tmd-rd-basal:
     cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv basal
       diagram-tmd-rd extract-features/in-L1/basal/diagram-tmd-rd
@@ -137,6 +151,13 @@ stages:
     - data/final/interneurons/L1
     outs:
     - extract-features/in-L1/basal/diagram-tmd-rd
+  features-in-L1-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv basal
+      diagram-tmd-proj extract-features/in-L1/basal/diagram-tmd-proj
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/basal/diagram-tmd-proj
   features-in-L1-graph-rd-all:
     cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv all
       graph-rd extract-features/in-L1/all/graph-rd
@@ -144,6 +165,13 @@ stages:
     - data/final/interneurons/L1
     outs:
     - extract-features/in-L1/all/graph-rd
+  features-in-L1-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv all
+      graph-proj extract-features/in-L1/all/graph-proj
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/all/graph-proj
   features-in-L1-graph-rd-axon:
     cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv axon
       graph-rd extract-features/in-L1/axon/graph-rd
@@ -151,6 +179,13 @@ stages:
     - data/final/interneurons/L1
     outs:
     - extract-features/in-L1/axon/graph-rd
+  features-in-L1-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv axon
+      graph-proj extract-features/in-L1/axon/graph-proj
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/axon/graph-proj
   features-in-L1-graph-rd-basal:
     cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv basal
       graph-rd extract-features/in-L1/basal/graph-rd
@@ -158,6 +193,13 @@ stages:
     - data/final/interneurons/L1
     outs:
     - extract-features/in-L1/basal/graph-rd
+  features-in-L1-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv basal
+      graph-proj extract-features/in-L1/basal/graph-proj
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/basal/graph-proj
   features-in-L1-image-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv all
       image-deepwalk extract-features/in-L1/all/image-deepwalk
@@ -186,6 +228,13 @@ stages:
     - data/final/interneurons/L1
     outs:
     - extract-features/in-L1/all/image-tmd-rd
+  features-in-L1-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv all
+      image-tmd-proj extract-features/in-L1/all/image-tmd-proj
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/all/image-tmd-proj
   features-in-L1-image-tmd-rd-axon:
     cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv axon
       image-tmd-rd extract-features/in-L1/axon/image-tmd-rd
@@ -193,6 +242,13 @@ stages:
     - data/final/interneurons/L1
     outs:
     - extract-features/in-L1/axon/image-tmd-rd
+  features-in-L1-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv axon
+      image-tmd-proj extract-features/in-L1/axon/image-tmd-proj
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/axon/image-tmd-proj
   features-in-L1-image-tmd-rd-basal:
     cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv basal
       image-tmd-rd extract-features/in-L1/basal/image-tmd-rd
@@ -200,6 +256,13 @@ stages:
     - data/final/interneurons/L1
     outs:
     - extract-features/in-L1/basal/image-tmd-rd
+  features-in-L1-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv basal
+      image-tmd-proj extract-features/in-L1/basal/image-tmd-proj
+    deps:
+    - data/final/interneurons/L1
+    outs:
+    - extract-features/in-L1/basal/image-tmd-proj
   features-in-L23-diagram-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv all
       diagram-deepwalk extract-features/in-L23/all/diagram-deepwalk
@@ -228,6 +291,13 @@ stages:
     - data/final/interneurons/L23
     outs:
     - extract-features/in-L23/all/diagram-tmd-rd
+  features-in-L23-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv all
+      diagram-tmd-proj extract-features/in-L23/all/diagram-tmd-proj
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/all/diagram-tmd-proj
   features-in-L23-diagram-tmd-rd-axon:
     cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv axon
       diagram-tmd-rd extract-features/in-L23/axon/diagram-tmd-rd
@@ -235,6 +305,13 @@ stages:
     - data/final/interneurons/L23
     outs:
     - extract-features/in-L23/axon/diagram-tmd-rd
+  features-in-L23-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv axon
+      diagram-tmd-proj extract-features/in-L23/axon/diagram-tmd-proj
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/axon/diagram-tmd-proj
   features-in-L23-diagram-tmd-rd-basal:
     cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv basal
       diagram-tmd-rd extract-features/in-L23/basal/diagram-tmd-rd
@@ -242,6 +319,13 @@ stages:
     - data/final/interneurons/L23
     outs:
     - extract-features/in-L23/basal/diagram-tmd-rd
+  features-in-L23-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv basal
+      diagram-tmd-proj extract-features/in-L23/basal/diagram-tmd-proj
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/basal/diagram-tmd-proj
   features-in-L23-graph-rd-all:
     cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv all
       graph-rd extract-features/in-L23/all/graph-rd
@@ -249,6 +333,13 @@ stages:
     - data/final/interneurons/L23
     outs:
     - extract-features/in-L23/all/graph-rd
+  features-in-L23-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv all
+      graph-proj extract-features/in-L23/all/graph-proj
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/all/graph-proj
   features-in-L23-graph-rd-axon:
     cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv axon
       graph-rd extract-features/in-L23/axon/graph-rd
@@ -256,6 +347,13 @@ stages:
     - data/final/interneurons/L23
     outs:
     - extract-features/in-L23/axon/graph-rd
+  features-in-L23-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv axon
+      graph-proj extract-features/in-L23/axon/graph-proj
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/axon/graph-proj
   features-in-L23-graph-rd-basal:
     cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv basal
       graph-rd extract-features/in-L23/basal/graph-rd
@@ -263,6 +361,13 @@ stages:
     - data/final/interneurons/L23
     outs:
     - extract-features/in-L23/basal/graph-rd
+  features-in-L23-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv basal
+      graph-proj extract-features/in-L23/basal/graph-proj
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/basal/graph-proj
   features-in-L23-image-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv all
       image-deepwalk extract-features/in-L23/all/image-deepwalk
@@ -291,6 +396,13 @@ stages:
     - data/final/interneurons/L23
     outs:
     - extract-features/in-L23/all/image-tmd-rd
+  features-in-L23-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv all
+      image-tmd-proj extract-features/in-L23/all/image-tmd-proj
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/all/image-tmd-proj
   features-in-L23-image-tmd-rd-axon:
     cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv axon
       image-tmd-rd extract-features/in-L23/axon/image-tmd-rd
@@ -298,6 +410,13 @@ stages:
     - data/final/interneurons/L23
     outs:
     - extract-features/in-L23/axon/image-tmd-rd
+  features-in-L23-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv axon
+      image-tmd-proj extract-features/in-L23/axon/image-tmd-proj
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/axon/image-tmd-proj
   features-in-L23-image-tmd-rd-basal:
     cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv basal
       image-tmd-rd extract-features/in-L23/basal/image-tmd-rd
@@ -305,6 +424,13 @@ stages:
     - data/final/interneurons/L23
     outs:
     - extract-features/in-L23/basal/image-tmd-rd
+  features-in-L23-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv basal
+      image-tmd-proj extract-features/in-L23/basal/image-tmd-proj
+    deps:
+    - data/final/interneurons/L23
+    outs:
+    - extract-features/in-L23/basal/image-tmd-proj
   features-in-L4-diagram-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv all
       diagram-deepwalk extract-features/in-L4/all/diagram-deepwalk
@@ -333,6 +459,13 @@ stages:
     - data/final/interneurons/L4
     outs:
     - extract-features/in-L4/all/diagram-tmd-rd
+  features-in-L4-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv all
+      diagram-tmd-proj extract-features/in-L4/all/diagram-tmd-proj
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/all/diagram-tmd-proj
   features-in-L4-diagram-tmd-rd-axon:
     cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv axon
       diagram-tmd-rd extract-features/in-L4/axon/diagram-tmd-rd
@@ -340,6 +473,13 @@ stages:
     - data/final/interneurons/L4
     outs:
     - extract-features/in-L4/axon/diagram-tmd-rd
+  features-in-L4-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv axon
+      diagram-tmd-proj extract-features/in-L4/axon/diagram-tmd-proj
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/axon/diagram-tmd-proj
   features-in-L4-diagram-tmd-rd-basal:
     cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv basal
       diagram-tmd-rd extract-features/in-L4/basal/diagram-tmd-rd
@@ -347,6 +487,13 @@ stages:
     - data/final/interneurons/L4
     outs:
     - extract-features/in-L4/basal/diagram-tmd-rd
+  features-in-L4-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv basal
+      diagram-tmd-proj extract-features/in-L4/basal/diagram-tmd-proj
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/basal/diagram-tmd-proj
   features-in-L4-graph-rd-all:
     cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv all
       graph-rd extract-features/in-L4/all/graph-rd
@@ -354,6 +501,13 @@ stages:
     - data/final/interneurons/L4
     outs:
     - extract-features/in-L4/all/graph-rd
+  features-in-L4-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv all
+      graph-proj extract-features/in-L4/all/graph-proj
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/all/graph-proj
   features-in-L4-graph-rd-axon:
     cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv axon
       graph-rd extract-features/in-L4/axon/graph-rd
@@ -361,6 +515,13 @@ stages:
     - data/final/interneurons/L4
     outs:
     - extract-features/in-L4/axon/graph-rd
+  features-in-L4-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv axon
+      graph-proj extract-features/in-L4/axon/graph-proj
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/axon/graph-proj
   features-in-L4-graph-rd-basal:
     cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv basal
       graph-rd extract-features/in-L4/basal/graph-rd
@@ -368,6 +529,13 @@ stages:
     - data/final/interneurons/L4
     outs:
     - extract-features/in-L4/basal/graph-rd
+  features-in-L4-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv basal
+      graph-proj extract-features/in-L4/basal/graph-proj
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/basal/graph-proj
   features-in-L4-image-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv all
       image-deepwalk extract-features/in-L4/all/image-deepwalk
@@ -396,6 +564,13 @@ stages:
     - data/final/interneurons/L4
     outs:
     - extract-features/in-L4/all/image-tmd-rd
+  features-in-L4-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv all
+      image-tmd-proj extract-features/in-L4/all/image-tmd-proj
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/all/image-tmd-proj
   features-in-L4-image-tmd-rd-axon:
     cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv axon
       image-tmd-rd extract-features/in-L4/axon/image-tmd-rd
@@ -403,6 +578,13 @@ stages:
     - data/final/interneurons/L4
     outs:
     - extract-features/in-L4/axon/image-tmd-rd
+  features-in-L4-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv axon
+      image-tmd-proj extract-features/in-L4/axon/image-tmd-proj
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/axon/image-tmd-proj
   features-in-L4-image-tmd-rd-basal:
     cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv basal
       image-tmd-rd extract-features/in-L4/basal/image-tmd-rd
@@ -410,6 +592,13 @@ stages:
     - data/final/interneurons/L4
     outs:
     - extract-features/in-L4/basal/image-tmd-rd
+  features-in-L4-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv basal
+      image-tmd-proj extract-features/in-L4/basal/image-tmd-proj
+    deps:
+    - data/final/interneurons/L4
+    outs:
+    - extract-features/in-L4/basal/image-tmd-proj
   features-in-L5-diagram-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv all
       diagram-deepwalk extract-features/in-L5/all/diagram-deepwalk
@@ -438,6 +627,13 @@ stages:
     - data/final/interneurons/L5
     outs:
     - extract-features/in-L5/all/diagram-tmd-rd
+  features-in-L5-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv all
+      diagram-tmd-proj extract-features/in-L5/all/diagram-tmd-proj
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/all/diagram-tmd-proj
   features-in-L5-diagram-tmd-rd-axon:
     cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv axon
       diagram-tmd-rd extract-features/in-L5/axon/diagram-tmd-rd
@@ -445,6 +641,13 @@ stages:
     - data/final/interneurons/L5
     outs:
     - extract-features/in-L5/axon/diagram-tmd-rd
+  features-in-L5-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv axon
+      diagram-tmd-proj extract-features/in-L5/axon/diagram-tmd-proj
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/axon/diagram-tmd-proj
   features-in-L5-diagram-tmd-rd-basal:
     cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv basal
       diagram-tmd-rd extract-features/in-L5/basal/diagram-tmd-rd
@@ -452,6 +655,13 @@ stages:
     - data/final/interneurons/L5
     outs:
     - extract-features/in-L5/basal/diagram-tmd-rd
+  features-in-L5-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv basal
+      diagram-tmd-proj extract-features/in-L5/basal/diagram-tmd-proj
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/basal/diagram-tmd-proj
   features-in-L5-graph-rd-all:
     cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv all
       graph-rd extract-features/in-L5/all/graph-rd
@@ -459,6 +669,13 @@ stages:
     - data/final/interneurons/L5
     outs:
     - extract-features/in-L5/all/graph-rd
+  features-in-L5-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv all
+      graph-proj extract-features/in-L5/all/graph-proj
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/all/graph-proj
   features-in-L5-graph-rd-axon:
     cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv axon
       graph-rd extract-features/in-L5/axon/graph-rd
@@ -466,6 +683,13 @@ stages:
     - data/final/interneurons/L5
     outs:
     - extract-features/in-L5/axon/graph-rd
+  features-in-L5-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv axon
+      graph-proj extract-features/in-L5/axon/graph-proj
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/axon/graph-proj
   features-in-L5-graph-rd-basal:
     cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv basal
       graph-rd extract-features/in-L5/basal/graph-rd
@@ -473,6 +697,13 @@ stages:
     - data/final/interneurons/L5
     outs:
     - extract-features/in-L5/basal/graph-rd
+  features-in-L5-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv basal
+      graph-proj extract-features/in-L5/basal/graph-proj
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/basal/graph-proj
   features-in-L5-image-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv all
       image-deepwalk extract-features/in-L5/all/image-deepwalk
@@ -501,6 +732,13 @@ stages:
     - data/final/interneurons/L5
     outs:
     - extract-features/in-L5/all/image-tmd-rd
+  features-in-L5-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv all
+      image-tmd-proj extract-features/in-L5/all/image-tmd-proj
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/all/image-tmd-proj
   features-in-L5-image-tmd-rd-axon:
     cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv axon
       image-tmd-rd extract-features/in-L5/axon/image-tmd-rd
@@ -508,6 +746,13 @@ stages:
     - data/final/interneurons/L5
     outs:
     - extract-features/in-L5/axon/image-tmd-rd
+  features-in-L5-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv axon
+      image-tmd-proj extract-features/in-L5/axon/image-tmd-proj
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/axon/image-tmd-proj
   features-in-L5-image-tmd-rd-basal:
     cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv basal
       image-tmd-rd extract-features/in-L5/basal/image-tmd-rd
@@ -515,6 +760,13 @@ stages:
     - data/final/interneurons/L5
     outs:
     - extract-features/in-L5/basal/image-tmd-rd
+  features-in-L5-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv basal
+      image-tmd-proj extract-features/in-L5/basal/image-tmd-proj
+    deps:
+    - data/final/interneurons/L5
+    outs:
+    - extract-features/in-L5/basal/image-tmd-proj
   features-in-L6-diagram-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv all
       diagram-deepwalk extract-features/in-L6/all/diagram-deepwalk
@@ -543,6 +795,13 @@ stages:
     - data/final/interneurons/L6
     outs:
     - extract-features/in-L6/all/diagram-tmd-rd
+  features-in-L6-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv all
+      diagram-tmd-proj extract-features/in-L6/all/diagram-tmd-proj
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/all/diagram-tmd-proj
   features-in-L6-diagram-tmd-rd-axon:
     cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv axon
       diagram-tmd-rd extract-features/in-L6/axon/diagram-tmd-rd
@@ -550,6 +809,13 @@ stages:
     - data/final/interneurons/L6
     outs:
     - extract-features/in-L6/axon/diagram-tmd-rd
+  features-in-L6-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv axon
+      diagram-tmd-proj extract-features/in-L6/axon/diagram-tmd-proj
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/axon/diagram-tmd-proj
   features-in-L6-diagram-tmd-rd-basal:
     cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv basal
       diagram-tmd-rd extract-features/in-L6/basal/diagram-tmd-rd
@@ -557,6 +823,13 @@ stages:
     - data/final/interneurons/L6
     outs:
     - extract-features/in-L6/basal/diagram-tmd-rd
+  features-in-L6-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv basal
+      diagram-tmd-proj extract-features/in-L6/basal/diagram-tmd-proj
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/basal/diagram-tmd-proj
   features-in-L6-graph-rd-all:
     cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv all
       graph-rd extract-features/in-L6/all/graph-rd
@@ -564,6 +837,13 @@ stages:
     - data/final/interneurons/L6
     outs:
     - extract-features/in-L6/all/graph-rd
+  features-in-L6-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv all
+      graph-proj extract-features/in-L6/all/graph-proj
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/all/graph-proj
   features-in-L6-graph-rd-axon:
     cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv axon
       graph-rd extract-features/in-L6/axon/graph-rd
@@ -571,6 +851,13 @@ stages:
     - data/final/interneurons/L6
     outs:
     - extract-features/in-L6/axon/graph-rd
+  features-in-L6-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv axon
+      graph-proj extract-features/in-L6/axon/graph-proj
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/axon/graph-proj
   features-in-L6-graph-rd-basal:
     cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv basal
       graph-rd extract-features/in-L6/basal/graph-rd
@@ -578,6 +865,13 @@ stages:
     - data/final/interneurons/L6
     outs:
     - extract-features/in-L6/basal/graph-rd
+  features-in-L6-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv basal
+      graph-proj extract-features/in-L6/basal/graph-proj
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/basal/graph-proj
   features-in-L6-image-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv all
       image-deepwalk extract-features/in-L6/all/image-deepwalk
@@ -606,6 +900,13 @@ stages:
     - data/final/interneurons/L6
     outs:
     - extract-features/in-L6/all/image-tmd-rd
+  features-in-L6-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv all
+      image-tmd-proj extract-features/in-L6/all/image-tmd-proj
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/all/image-tmd-proj
   features-in-L6-image-tmd-rd-axon:
     cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv axon
       image-tmd-rd extract-features/in-L6/axon/image-tmd-rd
@@ -613,6 +914,13 @@ stages:
     - data/final/interneurons/L6
     outs:
     - extract-features/in-L6/axon/image-tmd-rd
+  features-in-L6-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv axon
+      image-tmd-proj extract-features/in-L6/axon/image-tmd-proj
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/axon/image-tmd-proj
   features-in-L6-image-tmd-rd-basal:
     cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv basal
       image-tmd-rd extract-features/in-L6/basal/image-tmd-rd
@@ -620,6 +928,13 @@ stages:
     - data/final/interneurons/L6
     outs:
     - extract-features/in-L6/basal/image-tmd-rd
+  features-in-L6-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv basal
+      image-tmd-proj extract-features/in-L6/basal/image-tmd-proj
+    deps:
+    - data/final/interneurons/L6
+    outs:
+    - extract-features/in-L6/basal/image-tmd-proj
   features-lida-in-merged-bc-merged-diagram-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv all diagram-deepwalk
       extract-features/lida-in-merged-bc-merged/all/diagram-deepwalk
@@ -652,6 +967,14 @@ stages:
     - data/final/interneurons
     outs:
     - extract-features/lida-in-merged-bc-merged/all/diagram-tmd-rd
+  features-lida-in-merged-bc-merged-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv all diagram-tmd-proj
+      extract-features/lida-in-merged-bc-merged/all/diagram-tmd-proj
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/all/diagram-tmd-proj
   features-lida-in-merged-bc-merged-diagram-tmd-rd-axon:
     cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv axon diagram-tmd-rd
       extract-features/lida-in-merged-bc-merged/axon/diagram-tmd-rd
@@ -660,6 +983,14 @@ stages:
     - data/final/interneurons
     outs:
     - extract-features/lida-in-merged-bc-merged/axon/diagram-tmd-rd
+  features-lida-in-merged-bc-merged-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv axon diagram-tmd-proj
+      extract-features/lida-in-merged-bc-merged/axon/diagram-tmd-proj
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/axon/diagram-tmd-proj
   features-lida-in-merged-bc-merged-diagram-tmd-rd-basal:
     cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv basal diagram-tmd-rd
       extract-features/lida-in-merged-bc-merged/basal/diagram-tmd-rd
@@ -668,6 +999,14 @@ stages:
     - data/final/interneurons
     outs:
     - extract-features/lida-in-merged-bc-merged/basal/diagram-tmd-rd
+  features-lida-in-merged-bc-merged-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv basal diagram-tmd-proj
+      extract-features/lida-in-merged-bc-merged/basal/diagram-tmd-proj
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/basal/diagram-tmd-proj
   features-lida-in-merged-bc-merged-graph-rd-all:
     cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv all graph-rd
       extract-features/lida-in-merged-bc-merged/all/graph-rd
@@ -676,6 +1015,14 @@ stages:
     - data/final/interneurons
     outs:
     - extract-features/lida-in-merged-bc-merged/all/graph-rd
+  features-lida-in-merged-bc-merged-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv all graph-proj
+      extract-features/lida-in-merged-bc-merged/all/graph-proj
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/all/graph-proj
   features-lida-in-merged-bc-merged-graph-rd-axon:
     cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv axon graph-rd
       extract-features/lida-in-merged-bc-merged/axon/graph-rd
@@ -684,6 +1031,14 @@ stages:
     - data/final/interneurons
     outs:
     - extract-features/lida-in-merged-bc-merged/axon/graph-rd
+  features-lida-in-merged-bc-merged-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv axon graph-proj
+      extract-features/lida-in-merged-bc-merged/axon/graph-proj
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/axon/graph-proj
   features-lida-in-merged-bc-merged-graph-rd-basal:
     cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv basal graph-rd
       extract-features/lida-in-merged-bc-merged/basal/graph-rd
@@ -692,6 +1047,14 @@ stages:
     - data/final/interneurons
     outs:
     - extract-features/lida-in-merged-bc-merged/basal/graph-rd
+  features-lida-in-merged-bc-merged-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv basal graph-proj
+      extract-features/lida-in-merged-bc-merged/basal/graph-proj
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/basal/graph-proj
   features-lida-in-merged-bc-merged-image-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv all image-deepwalk
       extract-features/lida-in-merged-bc-merged/all/image-deepwalk
@@ -724,6 +1087,14 @@ stages:
     - data/final/interneurons
     outs:
     - extract-features/lida-in-merged-bc-merged/all/image-tmd-rd
+  features-lida-in-merged-bc-merged-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv all image-tmd-proj
+      extract-features/lida-in-merged-bc-merged/all/image-tmd-proj
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/all/image-tmd-proj
   features-lida-in-merged-bc-merged-image-tmd-rd-axon:
     cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv axon image-tmd-rd
       extract-features/lida-in-merged-bc-merged/axon/image-tmd-rd
@@ -732,6 +1103,14 @@ stages:
     - data/final/interneurons
     outs:
     - extract-features/lida-in-merged-bc-merged/axon/image-tmd-rd
+  features-lida-in-merged-bc-merged-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv axon image-tmd-proj
+      extract-features/lida-in-merged-bc-merged/axon/image-tmd-proj
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/axon/image-tmd-proj
   features-lida-in-merged-bc-merged-image-tmd-rd-basal:
     cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv basal image-tmd-rd
       extract-features/lida-in-merged-bc-merged/basal/image-tmd-rd
@@ -740,6 +1119,14 @@ stages:
     - data/final/interneurons
     outs:
     - extract-features/lida-in-merged-bc-merged/basal/image-tmd-rd
+  features-lida-in-merged-bc-merged-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv basal image-tmd-proj
+      extract-features/lida-in-merged-bc-merged/basal/image-tmd-proj
+    deps:
+    - data/final/IN_data_BC_merged.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged-bc-merged/basal/image-tmd-proj
   features-lida-in-merged-diagram-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/IN_data.csv all diagram-deepwalk
       extract-features/lida-in-merged/all/diagram-deepwalk
@@ -772,6 +1159,14 @@ stages:
     - data/final/interneurons
     outs:
     - extract-features/lida-in-merged/all/diagram-tmd-rd
+  features-lida-in-merged-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv all diagram-tmd-proj
+      extract-features/lida-in-merged/all/diagram-tmd-proj
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/all/diagram-tmd-proj
   features-lida-in-merged-diagram-tmd-rd-axon:
     cmd: morphoclass -v extract-features data/final/IN_data.csv axon diagram-tmd-rd
       extract-features/lida-in-merged/axon/diagram-tmd-rd
@@ -780,6 +1175,14 @@ stages:
     - data/final/interneurons
     outs:
     - extract-features/lida-in-merged/axon/diagram-tmd-rd
+  features-lida-in-merged-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv axon diagram-tmd-proj
+      extract-features/lida-in-merged/axon/diagram-tmd-proj
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/axon/diagram-tmd-proj
   features-lida-in-merged-diagram-tmd-rd-basal:
     cmd: morphoclass -v extract-features data/final/IN_data.csv basal diagram-tmd-rd
       extract-features/lida-in-merged/basal/diagram-tmd-rd
@@ -788,6 +1191,14 @@ stages:
     - data/final/interneurons
     outs:
     - extract-features/lida-in-merged/basal/diagram-tmd-rd
+  features-lida-in-merged-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv basal diagram-tmd-proj
+      extract-features/lida-in-merged/basal/diagram-tmd-proj
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/basal/diagram-tmd-proj
   features-lida-in-merged-graph-rd-all:
     cmd: morphoclass -v extract-features data/final/IN_data.csv all graph-rd extract-features/lida-in-merged/all/graph-rd
     deps:
@@ -795,6 +1206,13 @@ stages:
     - data/final/interneurons
     outs:
     - extract-features/lida-in-merged/all/graph-rd
+  features-lida-in-merged-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv all graph-proj extract-features/lida-in-merged/all/graph-proj
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/all/graph-proj
   features-lida-in-merged-graph-rd-axon:
     cmd: morphoclass -v extract-features data/final/IN_data.csv axon graph-rd extract-features/lida-in-merged/axon/graph-rd
     deps:
@@ -802,6 +1220,13 @@ stages:
     - data/final/interneurons
     outs:
     - extract-features/lida-in-merged/axon/graph-rd
+  features-lida-in-merged-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv axon graph-proj extract-features/lida-in-merged/axon/graph-proj
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/axon/graph-proj
   features-lida-in-merged-graph-rd-basal:
     cmd: morphoclass -v extract-features data/final/IN_data.csv basal graph-rd extract-features/lida-in-merged/basal/graph-rd
     deps:
@@ -809,6 +1234,13 @@ stages:
     - data/final/interneurons
     outs:
     - extract-features/lida-in-merged/basal/graph-rd
+  features-lida-in-merged-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv basal graph-proj extract-features/lida-in-merged/basal/graph-proj
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/basal/graph-proj
   features-lida-in-merged-image-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/IN_data.csv all image-deepwalk
       extract-features/lida-in-merged/all/image-deepwalk
@@ -840,6 +1272,13 @@ stages:
     - data/final/interneurons
     outs:
     - extract-features/lida-in-merged/all/image-tmd-rd
+  features-lida-in-merged-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv all image-tmd-proj extract-features/lida-in-merged/all/image-tmd-proj
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/all/image-tmd-proj
   features-lida-in-merged-image-tmd-rd-axon:
     cmd: morphoclass -v extract-features data/final/IN_data.csv axon image-tmd-rd extract-features/lida-in-merged/axon/image-tmd-rd
     deps:
@@ -847,6 +1286,13 @@ stages:
     - data/final/interneurons
     outs:
     - extract-features/lida-in-merged/axon/image-tmd-rd
+  features-lida-in-merged-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv axon image-tmd-proj extract-features/lida-in-merged/axon/image-tmd-proj
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/axon/image-tmd-proj
   features-lida-in-merged-image-tmd-rd-basal:
     cmd: morphoclass -v extract-features data/final/IN_data.csv basal image-tmd-rd
       extract-features/lida-in-merged/basal/image-tmd-rd
@@ -855,6 +1301,14 @@ stages:
     - data/final/interneurons
     outs:
     - extract-features/lida-in-merged/basal/image-tmd-rd
+  features-lida-in-merged-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv basal image-tmd-proj
+      extract-features/lida-in-merged/basal/image-tmd-proj
+    deps:
+    - data/final/IN_data.csv
+    - data/final/interneurons
+    outs:
+    - extract-features/lida-in-merged/basal/image-tmd-proj
   features-lida-janelia-L5-diagram-deepwalk-all:
     cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv all diagram-deepwalk
       extract-features/lida-janelia-L5/all/diagram-deepwalk
