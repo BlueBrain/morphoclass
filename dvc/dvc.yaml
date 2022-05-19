@@ -2052,7 +2052,7 @@ stages:
       cmd: >-
         morphoclass -vv morphometrics extract-features
         --dataset-csv ./data/final/${item.dataset-csv}
-        --morphometrics-config ./extract-features-morphometrics/morphometrics_config.yaml
+        --morphometrics-config ./extract-features-morphometrics/configs/${item.morphometrics-config}
         --output-features-directory ./extract-features-morphometrics/${item.output-features-directory}
       outs:
         - extract-features-morphometrics/${item.output-features-directory}
