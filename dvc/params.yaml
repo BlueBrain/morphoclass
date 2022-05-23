@@ -44,8 +44,16 @@ training:
     features-dir: extract-features/in-L1/axon/diagram-tmd-rd
     model-config: training/configs/model-perslay.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L1-axon-diagram-tmd-proj-perslay-stratified-k-fold:
+    features-dir: extract-features/in-L1/axon/diagram-tmd-proj
+    model-config: training/configs/model-perslay.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L1-axon-graph-rd-gnn-stratified-k-fold:
     features-dir: extract-features/in-L1/axon/graph-rd
+    model-config: training/configs/model-gnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L1-axon-graph-proj-gnn-stratified-k-fold:
+    features-dir: extract-features/in-L1/axon/graph-proj
     model-config: training/configs/model-gnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L1-axon-image-deepwalk-cnn-stratified-k-fold:
@@ -64,12 +72,24 @@ training:
     features-dir: extract-features/in-L1/axon/image-tmd-rd
     model-config: training/configs/model-cnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L1-axon-image-tmd-proj-cnn-stratified-k-fold:
+    features-dir: extract-features/in-L1/axon/image-tmd-proj
+    model-config: training/configs/model-cnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L1-axon-image-tmd-rd-decision-tree-stratified-k-fold:
     features-dir: extract-features/in-L1/axon/image-tmd-rd
     model-config: training/configs/model-decision-tree.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L1-axon-image-tmd-proj-decision-tree-stratified-k-fold:
+    features-dir: extract-features/in-L1/axon/image-tmd-proj
+    model-config: training/configs/model-decision-tree.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L1-axon-image-tmd-rd-xgb-stratified-k-fold:
     features-dir: extract-features/in-L1/axon/image-tmd-rd
+    model-config: training/configs/model-xgb.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L1-axon-image-tmd-proj-xgb-stratified-k-fold:
+    features-dir: extract-features/in-L1/axon/image-tmd-proj
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L23-axon-diagram-deepwalk-perslay-stratified-k-fold:
@@ -80,8 +100,16 @@ training:
     features-dir: extract-features/in-L23/axon/diagram-tmd-rd
     model-config: training/configs/model-perslay.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L23-axon-diagram-tmd-proj-perslay-stratified-k-fold:
+    features-dir: extract-features/in-L23/axon/diagram-tmd-proj
+    model-config: training/configs/model-perslay.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L23-axon-graph-rd-gnn-stratified-k-fold:
     features-dir: extract-features/in-L23/axon/graph-rd
+    model-config: training/configs/model-gnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L23-axon-graph-proj-gnn-stratified-k-fold:
+    features-dir: extract-features/in-L23/axon/graph-proj
     model-config: training/configs/model-gnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L23-axon-image-deepwalk-cnn-stratified-k-fold:
@@ -100,12 +128,24 @@ training:
     features-dir: extract-features/in-L23/axon/image-tmd-rd
     model-config: training/configs/model-cnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L23-axon-image-tmd-proj-cnn-stratified-k-fold:
+    features-dir: extract-features/in-L23/axon/image-tmd-proj
+    model-config: training/configs/model-cnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L23-axon-image-tmd-rd-decision-tree-stratified-k-fold:
     features-dir: extract-features/in-L23/axon/image-tmd-rd
     model-config: training/configs/model-decision-tree.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L23-axon-image-tmd-proj-decision-tree-stratified-k-fold:
+    features-dir: extract-features/in-L23/axon/image-tmd-proj
+    model-config: training/configs/model-decision-tree.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L23-axon-image-tmd-rd-xgb-stratified-k-fold:
     features-dir: extract-features/in-L23/axon/image-tmd-rd
+    model-config: training/configs/model-xgb.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L23-axon-image-tmd-proj-xgb-stratified-k-fold:
+    features-dir: extract-features/in-L23/axon/image-tmd-proj
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L4-axon-diagram-deepwalk-perslay-stratified-k-fold:
@@ -116,8 +156,16 @@ training:
     features-dir: extract-features/in-L4/axon/diagram-tmd-rd
     model-config: training/configs/model-perslay.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L4-axon-diagram-tmd-proj-perslay-stratified-k-fold:
+    features-dir: extract-features/in-L4/axon/diagram-tmd-proj
+    model-config: training/configs/model-perslay.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L4-axon-graph-rd-gnn-stratified-k-fold:
     features-dir: extract-features/in-L4/axon/graph-rd
+    model-config: training/configs/model-gnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L4-axon-graph-proj-gnn-stratified-k-fold:
+    features-dir: extract-features/in-L4/axon/graph-proj
     model-config: training/configs/model-gnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L4-axon-image-deepwalk-cnn-stratified-k-fold:
@@ -136,12 +184,24 @@ training:
     features-dir: extract-features/in-L4/axon/image-tmd-rd
     model-config: training/configs/model-cnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L4-axon-image-tmd-proj-cnn-stratified-k-fold:
+    features-dir: extract-features/in-L4/axon/image-tmd-proj
+    model-config: training/configs/model-cnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L4-axon-image-tmd-rd-decision-tree-stratified-k-fold:
     features-dir: extract-features/in-L4/axon/image-tmd-rd
     model-config: training/configs/model-decision-tree.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L4-axon-image-tmd-proj-decision-tree-stratified-k-fold:
+    features-dir: extract-features/in-L4/axon/image-tmd-proj
+    model-config: training/configs/model-decision-tree.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L4-axon-image-tmd-rd-xgb-stratified-k-fold:
     features-dir: extract-features/in-L4/axon/image-tmd-rd
+    model-config: training/configs/model-xgb.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L4-axon-image-tmd-proj-xgb-stratified-k-fold:
+    features-dir: extract-features/in-L4/axon/image-tmd-proj
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L5-axon-diagram-deepwalk-perslay-stratified-k-fold:
@@ -152,8 +212,16 @@ training:
     features-dir: extract-features/in-L5/axon/diagram-tmd-rd
     model-config: training/configs/model-perslay.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L5-axon-diagram-tmd-proj-perslay-stratified-k-fold:
+    features-dir: extract-features/in-L5/axon/diagram-tmd-proj
+    model-config: training/configs/model-perslay.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L5-axon-graph-rd-gnn-stratified-k-fold:
     features-dir: extract-features/in-L5/axon/graph-rd
+    model-config: training/configs/model-gnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L5-axon-graph-proj-gnn-stratified-k-fold:
+    features-dir: extract-features/in-L5/axon/graph-proj
     model-config: training/configs/model-gnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L5-axon-image-deepwalk-cnn-stratified-k-fold:
@@ -172,12 +240,24 @@ training:
     features-dir: extract-features/in-L5/axon/image-tmd-rd
     model-config: training/configs/model-cnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L5-axon-image-tmd-proj-cnn-stratified-k-fold:
+    features-dir: extract-features/in-L5/axon/image-tmd-proj
+    model-config: training/configs/model-cnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L5-axon-image-tmd-rd-decision-tree-stratified-k-fold:
     features-dir: extract-features/in-L5/axon/image-tmd-rd
     model-config: training/configs/model-decision-tree.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L5-axon-image-tmd-proj-decision-tree-stratified-k-fold:
+    features-dir: extract-features/in-L5/axon/image-tmd-proj
+    model-config: training/configs/model-decision-tree.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L5-axon-image-tmd-rd-xgb-stratified-k-fold:
     features-dir: extract-features/in-L5/axon/image-tmd-rd
+    model-config: training/configs/model-xgb.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L5-axon-image-tmd-proj-xgb-stratified-k-fold:
+    features-dir: extract-features/in-L5/axon/image-tmd-proj
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L6-axon-diagram-deepwalk-perslay-stratified-k-fold:
@@ -188,8 +268,16 @@ training:
     features-dir: extract-features/in-L6/axon/diagram-tmd-rd
     model-config: training/configs/model-perslay.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L6-axon-diagram-tmd-proj-perslay-stratified-k-fold:
+    features-dir: extract-features/in-L6/axon/diagram-tmd-proj
+    model-config: training/configs/model-perslay.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L6-axon-graph-rd-gnn-stratified-k-fold:
     features-dir: extract-features/in-L6/axon/graph-rd
+    model-config: training/configs/model-gnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L6-axon-graph-proj-gnn-stratified-k-fold:
+    features-dir: extract-features/in-L6/axon/graph-proj
     model-config: training/configs/model-gnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L6-axon-image-deepwalk-cnn-stratified-k-fold:
@@ -208,12 +296,24 @@ training:
     features-dir: extract-features/in-L6/axon/image-tmd-rd
     model-config: training/configs/model-cnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L6-axon-image-tmd-proj-cnn-stratified-k-fold:
+    features-dir: extract-features/in-L6/axon/image-tmd-proj
+    model-config: training/configs/model-cnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L6-axon-image-tmd-rd-decision-tree-stratified-k-fold:
     features-dir: extract-features/in-L6/axon/image-tmd-rd
     model-config: training/configs/model-decision-tree.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L6-axon-image-tmd-proj-decision-tree-stratified-k-fold:
+    features-dir: extract-features/in-L6/axon/image-tmd-proj
+    model-config: training/configs/model-decision-tree.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L6-axon-image-tmd-rd-xgb-stratified-k-fold:
     features-dir: extract-features/in-L6/axon/image-tmd-rd
+    model-config: training/configs/model-xgb.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L6-axon-image-tmd-proj-xgb-stratified-k-fold:
+    features-dir: extract-features/in-L6/axon/image-tmd-proj
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   pc-L2-apical-diagram-deepwalk-perslay-stratified-k-fold:
