@@ -35,6 +35,22 @@ models-and-features:
     model: xgb
     features-rd: image-tmd-rd
     features-proj: image-tmd-proj
+models-and-features-proj:
+  cnn-tmd-proj:
+    model: cnn
+    features-proj: image-tmd-proj
+  decision-tree-tmd-proj:
+    model: decision-tree
+    features-proj: image-tmd-proj
+  gnn-morphology-proj:
+    model: gnn
+    features-proj: graph-proj
+  perslay-tmd-proj:
+    model: perslay
+    features-proj: diagram-tmd-proj
+  xgb-tmd-proj:
+    model: xgb
+    features-proj: image-tmd-proj
 training:
   in-L1-axon-diagram-deepwalk-perslay-stratified-k-fold:
     features-dir: extract-features/in-L1/axon/diagram-deepwalk

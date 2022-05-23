@@ -2256,6 +2256,33 @@ stages:
       outs:
         - evaluation/checkpoints-lida/in-merged-${key}-stratified-k-fold.html
         - evaluation/checkpoints-lida/in-merged-${key}-stratified-k-fold
+  train-lida-in-merged-proj:
+    foreach: ${models-and-features-proj}
+    do:
+      cmd: >-
+        morphoclass -v train
+        --features-dir extract-features/lida-in-merged/axon/${item.features-proj}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-lida/in-merged-${key}-stratified-k-fold
+      deps:
+        - extract-features/lida-in-merged/axon/${item.features-proj}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
+      outs:
+        - training/checkpoints-lida/in-merged-${key}-stratified-k-fold
+  evaluate-lida-in-merged-proj:
+    foreach: ${models-and-features-proj}
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints-lida/in-merged-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/checkpoints-lida/in-merged-${key}-stratified-k-fold.html
+      deps:
+        - training/checkpoints-lida/in-merged-${key}-stratified-k-fold/checkpoint.chk
+      outs:
+        - evaluation/checkpoints-lida/in-merged-${key}-stratified-k-fold.html
+        - evaluation/checkpoints-lida/in-merged-${key}-stratified-k-fold
   train-lida-in-merged-all:
     foreach: ${models-and-features}
     do:
@@ -2327,6 +2354,33 @@ stages:
         - training/checkpoints-lida/in-merged-bc-merged-${key}-stratified-k-fold
   evaluate-lida-in-merged-bc-merged:
     foreach: ${models-and-features}
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints-lida/in-merged-bc-merged-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/checkpoints-lida/in-merged-bc-merged-${key}-stratified-k-fold.html
+      deps:
+        - training/checkpoints-lida/in-merged-bc-merged-${key}-stratified-k-fold/checkpoint.chk
+      outs:
+        - evaluation/checkpoints-lida/in-merged-bc-merged-${key}-stratified-k-fold.html
+        - evaluation/checkpoints-lida/in-merged-bc-merged-${key}-stratified-k-fold
+  train-lida-in-merged-bc-merged-proj:
+    foreach: ${models-and-features-proj}
+    do:
+      cmd: >-
+        morphoclass -v train
+        --features-dir extract-features/lida-in-merged-bc-merged/axon/${item.features-proj}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-lida/in-merged-bc-merged-${key}-stratified-k-fold
+      deps:
+        - extract-features/lida-in-merged-bc-merged/axon/${item.features-proj}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
+      outs:
+        - training/checkpoints-lida/in-merged-bc-merged-${key}-stratified-k-fold
+  evaluate-lida-in-merged-bc-merged-proj:
+    foreach: ${models-and-features-proj}
     do:
       cmd: >-
         morphoclass -v evaluate performance
