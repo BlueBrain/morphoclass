@@ -18938,3 +18938,873 @@ stages:
       md5: 3afbaba56657565c18742b9c047d754b.dir
       size: 2441263
       nfiles: 1
+  features-in-L1-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv all
+      diagram-tmd-proj extract-features/in-L1/all/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L1
+      md5: 561cd50c60e94303ca5c296eb950b79a.dir
+      size: 22195599
+      nfiles: 106
+    outs:
+    - path: extract-features/in-L1/all/diagram-tmd-proj
+      md5: 0943fbfb81817442d7043ab285777f84.dir
+      size: 679247
+      nfiles: 105
+  features-in-L1-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv axon
+      diagram-tmd-proj extract-features/in-L1/axon/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L1
+      md5: 561cd50c60e94303ca5c296eb950b79a.dir
+      size: 22195599
+      nfiles: 106
+    outs:
+    - path: extract-features/in-L1/axon/diagram-tmd-proj
+      md5: 74e21da1dd4a5c02d4d180c6265c022e.dir
+      size: 570767
+      nfiles: 105
+  features-in-L1-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv basal
+      diagram-tmd-proj extract-features/in-L1/basal/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L1
+      md5: 561cd50c60e94303ca5c296eb950b79a.dir
+      size: 22195599
+      nfiles: 106
+    outs:
+    - path: extract-features/in-L1/basal/diagram-tmd-proj
+      md5: ffb415cf4ef5276fe30a12136160f573.dir
+      size: 230351
+      nfiles: 105
+  features-in-L1-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv all
+      graph-proj extract-features/in-L1/all/graph-proj
+    deps:
+    - path: data/final/interneurons/L1
+      md5: 561cd50c60e94303ca5c296eb950b79a.dir
+      size: 22195599
+      nfiles: 106
+    outs:
+    - path: extract-features/in-L1/all/graph-proj
+      md5: 5c370615a6c3f42fdec14b014dec9c5e.dir
+      size: 679055
+      nfiles: 105
+  features-in-L1-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv axon
+      graph-proj extract-features/in-L1/axon/graph-proj
+    deps:
+    - path: data/final/interneurons/L1
+      md5: 561cd50c60e94303ca5c296eb950b79a.dir
+      size: 22195599
+      nfiles: 106
+    outs:
+    - path: extract-features/in-L1/axon/graph-proj
+      md5: dae3cc3c22fc82e275799ab4a1064a5f.dir
+      size: 570574
+      nfiles: 105
+  features-in-L1-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv basal
+      graph-proj extract-features/in-L1/basal/graph-proj
+    deps:
+    - path: data/final/interneurons/L1
+      md5: 561cd50c60e94303ca5c296eb950b79a.dir
+      size: 22195599
+      nfiles: 106
+    outs:
+    - path: extract-features/in-L1/basal/graph-proj
+      md5: c1e9f9fcb46a618e247eac9937e1a472.dir
+      size: 230095
+      nfiles: 105
+  features-in-L1-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv all
+      image-tmd-proj extract-features/in-L1/all/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L1
+      md5: 561cd50c60e94303ca5c296eb950b79a.dir
+      size: 22195599
+      nfiles: 106
+    outs:
+    - path: extract-features/in-L1/all/image-tmd-proj
+      md5: ae8df10f595c1906b6c7e08d6b816acd.dir
+      size: 4768335
+      nfiles: 105
+  features-in-L1-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv axon
+      image-tmd-proj extract-features/in-L1/axon/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L1
+      md5: 561cd50c60e94303ca5c296eb950b79a.dir
+      size: 22195599
+      nfiles: 106
+    outs:
+    - path: extract-features/in-L1/axon/image-tmd-proj
+      md5: 426e5f00effa3d59141617377b81a4c6.dir
+      size: 4683087
+      nfiles: 105
+  features-in-L1-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv basal
+      image-tmd-proj extract-features/in-L1/basal/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L1
+      md5: 561cd50c60e94303ca5c296eb950b79a.dir
+      size: 22195599
+      nfiles: 106
+    outs:
+    - path: extract-features/in-L1/basal/image-tmd-proj
+      md5: d5a7bf82578d5dcd62f476c2b52a908b.dir
+      size: 4409487
+      nfiles: 105
+  features-in-L23-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv all
+      diagram-tmd-proj extract-features/in-L23/all/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L23
+      md5: 8eae3647e00881fcc4eca84b3d1e49e9.dir
+      size: 45439147
+      nfiles: 157
+    outs:
+    - path: extract-features/in-L23/all/diagram-tmd-proj
+      md5: d11c8bf65a22d5cbe29620e584d67aa5.dir
+      size: 1480580
+      nfiles: 156
+  features-in-L23-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv axon
+      diagram-tmd-proj extract-features/in-L23/axon/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L23
+      md5: 8eae3647e00881fcc4eca84b3d1e49e9.dir
+      size: 45439147
+      nfiles: 157
+    outs:
+    - path: extract-features/in-L23/axon/diagram-tmd-proj
+      md5: ed886613b3898edf5acd3bbc26f4e61b.dir
+      size: 1321732
+      nfiles: 156
+  features-in-L23-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv basal
+      diagram-tmd-proj extract-features/in-L23/basal/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L23
+      md5: 8eae3647e00881fcc4eca84b3d1e49e9.dir
+      size: 45439147
+      nfiles: 157
+    outs:
+    - path: extract-features/in-L23/basal/diagram-tmd-proj
+      md5: 6ccc391d33deed6d4d3a2ef9eb2d3789.dir
+      size: 339076
+      nfiles: 156
+  features-in-L23-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv all
+      graph-proj extract-features/in-L23/all/graph-proj
+    deps:
+    - path: data/final/interneurons/L23
+      md5: 8eae3647e00881fcc4eca84b3d1e49e9.dir
+      size: 45439147
+      nfiles: 157
+    outs:
+    - path: extract-features/in-L23/all/graph-proj
+      md5: 9572c52e96b8ba00fb9297112f33e03c.dir
+      size: 1479549
+      nfiles: 156
+  features-in-L23-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv axon
+      graph-proj extract-features/in-L23/axon/graph-proj
+    deps:
+    - path: data/final/interneurons/L23
+      md5: 8eae3647e00881fcc4eca84b3d1e49e9.dir
+      size: 45439147
+      nfiles: 157
+    outs:
+    - path: extract-features/in-L23/axon/graph-proj
+      md5: c3fd77d44f8d5f20928c82130cd43ef2.dir
+      size: 1320964
+      nfiles: 156
+  features-in-L23-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv basal
+      graph-proj extract-features/in-L23/basal/graph-proj
+    deps:
+    - path: data/final/interneurons/L23
+      md5: 8eae3647e00881fcc4eca84b3d1e49e9.dir
+      size: 45439147
+      nfiles: 157
+    outs:
+    - path: extract-features/in-L23/basal/graph-proj
+      md5: 3d0ebfe4c5681dc0f0352fccc06fc4b9.dir
+      size: 338882
+      nfiles: 156
+  features-in-L23-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv all
+      image-tmd-proj extract-features/in-L23/all/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L23
+      md5: 8eae3647e00881fcc4eca84b3d1e49e9.dir
+      size: 45439147
+      nfiles: 157
+    outs:
+    - path: extract-features/in-L23/all/image-tmd-proj
+      md5: 1ac327b645b149b43dc5b437242524b2.dir
+      size: 7460932
+      nfiles: 156
+  features-in-L23-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv axon
+      image-tmd-proj extract-features/in-L23/axon/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L23
+      md5: 8eae3647e00881fcc4eca84b3d1e49e9.dir
+      size: 45439147
+      nfiles: 157
+    outs:
+    - path: extract-features/in-L23/axon/image-tmd-proj
+      md5: 4b3491cdf64ef36e3b53ef89de5aab44.dir
+      size: 7336004
+      nfiles: 156
+  features-in-L23-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv basal
+      image-tmd-proj extract-features/in-L23/basal/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L23
+      md5: 8eae3647e00881fcc4eca84b3d1e49e9.dir
+      size: 45439147
+      nfiles: 157
+    outs:
+    - path: extract-features/in-L23/basal/image-tmd-proj
+      md5: 04230a4e6606ac2dc6db1a2933a5993a.dir
+      size: 6548740
+      nfiles: 156
+  features-in-L4-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv all
+      diagram-tmd-proj extract-features/in-L4/all/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L4
+      md5: ea286e3967292ba1f257c5980076b146.dir
+      size: 32401000
+      nfiles: 114
+    outs:
+    - path: extract-features/in-L4/all/diagram-tmd-proj
+      md5: 93e3228cb0ed86fc13679585c061d529.dir
+      size: 921799
+      nfiles: 113
+  features-in-L4-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv axon
+      diagram-tmd-proj extract-features/in-L4/axon/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L4
+      md5: ea286e3967292ba1f257c5980076b146.dir
+      size: 32401000
+      nfiles: 114
+    outs:
+    - path: extract-features/in-L4/axon/diagram-tmd-proj
+      md5: 43254bb19b0bc269a0abf7c3e89ed5ee.dir
+      size: 804231
+      nfiles: 113
+  features-in-L4-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv basal
+      diagram-tmd-proj extract-features/in-L4/basal/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L4
+      md5: ea286e3967292ba1f257c5980076b146.dir
+      size: 32401000
+      nfiles: 114
+    outs:
+    - path: extract-features/in-L4/basal/diagram-tmd-proj
+      md5: d484afbe189479f39be6ecb49fe20941.dir
+      size: 247367
+      nfiles: 113
+  features-in-L4-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv all
+      graph-proj extract-features/in-L4/all/graph-proj
+    deps:
+    - path: data/final/interneurons/L4
+      md5: ea286e3967292ba1f257c5980076b146.dir
+      size: 32401000
+      nfiles: 114
+    outs:
+    - path: extract-features/in-L4/all/graph-proj
+      md5: f2cb94161cc70fc5dc761766f9538538.dir
+      size: 921221
+      nfiles: 113
+  features-in-L4-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv axon
+      graph-proj extract-features/in-L4/axon/graph-proj
+    deps:
+    - path: data/final/interneurons/L4
+      md5: ea286e3967292ba1f257c5980076b146.dir
+      size: 32401000
+      nfiles: 114
+    outs:
+    - path: extract-features/in-L4/axon/graph-proj
+      md5: 1df93f9751a073b4d8f2db1f156f3f90.dir
+      size: 803911
+      nfiles: 113
+  features-in-L4-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv basal
+      graph-proj extract-features/in-L4/basal/graph-proj
+    deps:
+    - path: data/final/interneurons/L4
+      md5: ea286e3967292ba1f257c5980076b146.dir
+      size: 32401000
+      nfiles: 114
+    outs:
+    - path: extract-features/in-L4/basal/graph-proj
+      md5: b57c4f99f2b00e05e21a98bd0fe91af5.dir
+      size: 247367
+      nfiles: 113
+  features-in-L4-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv all
+      image-tmd-proj extract-features/in-L4/all/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L4
+      md5: ea286e3967292ba1f257c5980076b146.dir
+      size: 32401000
+      nfiles: 114
+    outs:
+    - path: extract-features/in-L4/all/image-tmd-proj
+      md5: 241d83f8ba9f330e62ea7ec33bc7a629.dir
+      size: 5284039
+      nfiles: 113
+  features-in-L4-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv axon
+      image-tmd-proj extract-features/in-L4/axon/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L4
+      md5: ea286e3967292ba1f257c5980076b146.dir
+      size: 32401000
+      nfiles: 114
+    outs:
+    - path: extract-features/in-L4/axon/image-tmd-proj
+      md5: 45f950aeb6e39c85764359e4798da778.dir
+      size: 5191943
+      nfiles: 113
+  features-in-L4-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv basal
+      image-tmd-proj extract-features/in-L4/basal/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L4
+      md5: ea286e3967292ba1f257c5980076b146.dir
+      size: 32401000
+      nfiles: 114
+    outs:
+    - path: extract-features/in-L4/basal/image-tmd-proj
+      md5: ea300aa2eb91a4c240f606334d318b38.dir
+      size: 4745287
+      nfiles: 113
+  features-in-L5-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv all
+      diagram-tmd-proj extract-features/in-L5/all/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L5
+      md5: 4d764a3b6c876ac6b988824235b1cdb0.dir
+      size: 33969403
+      nfiles: 112
+    outs:
+    - path: extract-features/in-L5/all/diagram-tmd-proj
+      md5: 756712f27a5b113b09af68087821e32c.dir
+      size: 897689
+      nfiles: 111
+  features-in-L5-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv axon
+      diagram-tmd-proj extract-features/in-L5/axon/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L5
+      md5: 4d764a3b6c876ac6b988824235b1cdb0.dir
+      size: 33969403
+      nfiles: 112
+    outs:
+    - path: extract-features/in-L5/axon/diagram-tmd-proj
+      md5: 5d03384c90a34591feceaf2b743d5bdd.dir
+      size: 769049
+      nfiles: 111
+  features-in-L5-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv basal
+      diagram-tmd-proj extract-features/in-L5/basal/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L5
+      md5: 4d764a3b6c876ac6b988824235b1cdb0.dir
+      size: 33969403
+      nfiles: 112
+    outs:
+    - path: extract-features/in-L5/basal/diagram-tmd-proj
+      md5: bacd39c0be057489e5e0059ebb068025.dir
+      size: 256601
+      nfiles: 111
+  features-in-L5-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv all
+      graph-proj extract-features/in-L5/all/graph-proj
+    deps:
+    - path: data/final/interneurons/L5
+      md5: 4d764a3b6c876ac6b988824235b1cdb0.dir
+      size: 33969403
+      nfiles: 112
+    outs:
+    - path: extract-features/in-L5/all/graph-proj
+      md5: b51b9da52572aad6184eb6318a5e247b.dir
+      size: 897113
+      nfiles: 111
+  features-in-L5-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv axon
+      graph-proj extract-features/in-L5/axon/graph-proj
+    deps:
+    - path: data/final/interneurons/L5
+      md5: 4d764a3b6c876ac6b988824235b1cdb0.dir
+      size: 33969403
+      nfiles: 112
+    outs:
+    - path: extract-features/in-L5/axon/graph-proj
+      md5: 559fa28094c0acdefc1522f51e02c25a.dir
+      size: 768857
+      nfiles: 111
+  features-in-L5-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv basal
+      graph-proj extract-features/in-L5/basal/graph-proj
+    deps:
+    - path: data/final/interneurons/L5
+      md5: 4d764a3b6c876ac6b988824235b1cdb0.dir
+      size: 33969403
+      nfiles: 112
+    outs:
+    - path: extract-features/in-L5/basal/graph-proj
+      md5: 01f41a91c93c478473645aec355330e3.dir
+      size: 256345
+      nfiles: 111
+  features-in-L5-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv all
+      image-tmd-proj extract-features/in-L5/all/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L5
+      md5: 4d764a3b6c876ac6b988824235b1cdb0.dir
+      size: 33969403
+      nfiles: 112
+    outs:
+    - path: extract-features/in-L5/all/image-tmd-proj
+      md5: c420e0160c017c18262e615759b48cee.dir
+      size: 5184601
+      nfiles: 111
+  features-in-L5-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv axon
+      image-tmd-proj extract-features/in-L5/axon/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L5
+      md5: 4d764a3b6c876ac6b988824235b1cdb0.dir
+      size: 33969403
+      nfiles: 112
+    outs:
+    - path: extract-features/in-L5/axon/image-tmd-proj
+      md5: b7b765e52ae0a0d1a09e4af39fe1038e.dir
+      size: 5083353
+      nfiles: 111
+  features-in-L5-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv basal
+      image-tmd-proj extract-features/in-L5/basal/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L5
+      md5: 4d764a3b6c876ac6b988824235b1cdb0.dir
+      size: 33969403
+      nfiles: 112
+    outs:
+    - path: extract-features/in-L5/basal/image-tmd-proj
+      md5: 0fac94c244ca8afe97d0a3ec061a7af0.dir
+      size: 4672345
+      nfiles: 111
+  features-in-L6-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv all
+      diagram-tmd-proj extract-features/in-L6/all/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L6
+      md5: fec19da8924e272dfc4e0de231aced68.dir
+      size: 19629156
+      nfiles: 63
+    outs:
+    - path: extract-features/in-L6/all/diagram-tmd-proj
+      md5: 84e0873d988471184f9699d4a32dff8f.dir
+      size: 530706
+      nfiles: 62
+  features-in-L6-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv axon
+      diagram-tmd-proj extract-features/in-L6/axon/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L6
+      md5: fec19da8924e272dfc4e0de231aced68.dir
+      size: 19629156
+      nfiles: 63
+    outs:
+    - path: extract-features/in-L6/axon/diagram-tmd-proj
+      md5: 19c9cac9253f65ba8a28541489adcb2a.dir
+      size: 462546
+      nfiles: 62
+  features-in-L6-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv basal
+      diagram-tmd-proj extract-features/in-L6/basal/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L6
+      md5: fec19da8924e272dfc4e0de231aced68.dir
+      size: 19629156
+      nfiles: 63
+    outs:
+    - path: extract-features/in-L6/basal/diagram-tmd-proj
+      md5: 186bbe73cf18504651a35f2cbaf0df01.dir
+      size: 139154
+      nfiles: 62
+  features-in-L6-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv all
+      graph-proj extract-features/in-L6/all/graph-proj
+    deps:
+    - path: data/final/interneurons/L6
+      md5: fec19da8924e272dfc4e0de231aced68.dir
+      size: 19629156
+      nfiles: 63
+    outs:
+    - path: extract-features/in-L6/all/graph-proj
+      md5: b20a61fec2f30cea330affffc52d5477.dir
+      size: 530130
+      nfiles: 62
+  features-in-L6-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv axon
+      graph-proj extract-features/in-L6/axon/graph-proj
+    deps:
+    - path: data/final/interneurons/L6
+      md5: fec19da8924e272dfc4e0de231aced68.dir
+      size: 19629156
+      nfiles: 63
+    outs:
+    - path: extract-features/in-L6/axon/graph-proj
+      md5: 4b90f4cf9e40317c7ca15ce5c0cc7525.dir
+      size: 462226
+      nfiles: 62
+  features-in-L6-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv basal
+      graph-proj extract-features/in-L6/basal/graph-proj
+    deps:
+    - path: data/final/interneurons/L6
+      md5: fec19da8924e272dfc4e0de231aced68.dir
+      size: 19629156
+      nfiles: 63
+    outs:
+    - path: extract-features/in-L6/basal/graph-proj
+      md5: 49ef1a81bfaa3e407177e4f60871ef3c.dir
+      size: 139026
+      nfiles: 62
+  features-in-L6-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv all
+      image-tmd-proj extract-features/in-L6/all/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L6
+      md5: fec19da8924e272dfc4e0de231aced68.dir
+      size: 19629156
+      nfiles: 63
+    outs:
+    - path: extract-features/in-L6/all/image-tmd-proj
+      md5: ed420d148d131bbb41b60278d763ca07.dir
+      size: 2919570
+      nfiles: 62
+  features-in-L6-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv axon
+      image-tmd-proj extract-features/in-L6/axon/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L6
+      md5: fec19da8924e272dfc4e0de231aced68.dir
+      size: 19629156
+      nfiles: 63
+    outs:
+    - path: extract-features/in-L6/axon/image-tmd-proj
+      md5: 5b50f33db5ca8329c78b764624617d18.dir
+      size: 2866258
+      nfiles: 62
+  features-in-L6-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv basal
+      image-tmd-proj extract-features/in-L6/basal/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L6
+      md5: fec19da8924e272dfc4e0de231aced68.dir
+      size: 19629156
+      nfiles: 63
+    outs:
+    - path: extract-features/in-L6/basal/image-tmd-proj
+      md5: bde38a85a0c7df4bfa4a5e61b39a2799.dir
+      size: 2606418
+      nfiles: 62
+  features-lida-in-merged-bc-merged-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv all diagram-tmd-proj
+      extract-features/lida-in-merged-bc-merged/all/diagram-tmd-proj
+    deps:
+    - path: data/final/IN_data_BC_merged.csv
+      md5: 63fad23bb178f7dfa2f221e0577bc9a8
+      size: 17929
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged-bc-merged/all/diagram-tmd-proj
+      md5: c0ec66a6d7c84a55acb4e57e56a653e9.dir
+      size: 3740641
+      nfiles: 423
+  features-lida-in-merged-bc-merged-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv axon diagram-tmd-proj
+      extract-features/lida-in-merged-bc-merged/axon/diagram-tmd-proj
+    deps:
+    - path: data/final/IN_data_BC_merged.csv
+      md5: 63fad23bb178f7dfa2f221e0577bc9a8
+      size: 17929
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged-bc-merged/axon/diagram-tmd-proj
+      md5: 23fe25ef6de48e8d6c3eaa5ba212bfe7.dir
+      size: 3291105
+      nfiles: 423
+  features-lida-in-merged-bc-merged-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv basal diagram-tmd-proj
+      extract-features/lida-in-merged-bc-merged/basal/diagram-tmd-proj
+    deps:
+    - path: data/final/IN_data_BC_merged.csv
+      md5: 63fad23bb178f7dfa2f221e0577bc9a8
+      size: 17929
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged-bc-merged/basal/diagram-tmd-proj
+      md5: 52bff7afc8d479d88495a81066bb3a02.dir
+      size: 936801
+      nfiles: 423
+  features-lida-in-merged-bc-merged-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv all graph-proj
+      extract-features/lida-in-merged-bc-merged/all/graph-proj
+    deps:
+    - path: data/final/IN_data_BC_merged.csv
+      md5: 63fad23bb178f7dfa2f221e0577bc9a8
+      size: 17929
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged-bc-merged/all/graph-proj
+      md5: f05161f3b2246c828583a135b2eb2478.dir
+      size: 3737943
+      nfiles: 423
+  features-lida-in-merged-bc-merged-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv axon graph-proj
+      extract-features/lida-in-merged-bc-merged/axon/graph-proj
+    deps:
+    - path: data/final/IN_data_BC_merged.csv
+      md5: 63fad23bb178f7dfa2f221e0577bc9a8
+      size: 17929
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged-bc-merged/axon/graph-proj
+      md5: 2a94e75dc555f07281bc31f81360dd48.dir
+      size: 3289430
+      nfiles: 423
+  features-lida-in-merged-bc-merged-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv basal graph-proj
+      extract-features/lida-in-merged-bc-merged/basal/graph-proj
+    deps:
+    - path: data/final/IN_data_BC_merged.csv
+      md5: 63fad23bb178f7dfa2f221e0577bc9a8
+      size: 17929
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged-bc-merged/basal/graph-proj
+      md5: ee015f3fe753b813ec35f263cecde34e.dir
+      size: 936086
+      nfiles: 423
+  features-lida-in-merged-bc-merged-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv all image-tmd-proj
+      extract-features/lida-in-merged-bc-merged/all/image-tmd-proj
+    deps:
+    - path: data/final/IN_data_BC_merged.csv
+      md5: 63fad23bb178f7dfa2f221e0577bc9a8
+      size: 17929
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged-bc-merged/all/image-tmd-proj
+      md5: 650a9bdbe1f407854bae64bdbabdea96.dir
+      size: 20012001
+      nfiles: 423
+  features-lida-in-merged-bc-merged-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv axon image-tmd-proj
+      extract-features/lida-in-merged-bc-merged/axon/image-tmd-proj
+    deps:
+    - path: data/final/IN_data_BC_merged.csv
+      md5: 63fad23bb178f7dfa2f221e0577bc9a8
+      size: 17929
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged-bc-merged/axon/image-tmd-proj
+      md5: f6a63afd057906b6f9b08903a2c04e6a.dir
+      size: 19658977
+      nfiles: 423
+  features-lida-in-merged-bc-merged-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv basal image-tmd-proj
+      extract-features/lida-in-merged-bc-merged/basal/image-tmd-proj
+    deps:
+    - path: data/final/IN_data_BC_merged.csv
+      md5: 63fad23bb178f7dfa2f221e0577bc9a8
+      size: 17929
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged-bc-merged/basal/image-tmd-proj
+      md5: 00bd47803a1173704fe1e1fa45d864d2.dir
+      size: 17771809
+      nfiles: 423
+  features-lida-in-merged-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv all diagram-tmd-proj
+      extract-features/lida-in-merged/all/diagram-tmd-proj
+    deps:
+    - path: data/final/IN_data.csv
+      md5: 26881e08f84e3f9e13fbc60c5b8491ce
+      size: 18167
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged/all/diagram-tmd-proj
+      md5: f849dab4479558b7c6c5027a69b126c7.dir
+      size: 3740641
+      nfiles: 423
+  features-lida-in-merged-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv axon diagram-tmd-proj
+      extract-features/lida-in-merged/axon/diagram-tmd-proj
+    deps:
+    - path: data/final/IN_data.csv
+      md5: 26881e08f84e3f9e13fbc60c5b8491ce
+      size: 18167
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged/axon/diagram-tmd-proj
+      md5: 8edda3f0affcedb357680b19f80505b9.dir
+      size: 3291105
+      nfiles: 423
+  features-lida-in-merged-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv basal diagram-tmd-proj
+      extract-features/lida-in-merged/basal/diagram-tmd-proj
+    deps:
+    - path: data/final/IN_data.csv
+      md5: 26881e08f84e3f9e13fbc60c5b8491ce
+      size: 18167
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged/basal/diagram-tmd-proj
+      md5: 1c79002eace665133316c4464cd36c90.dir
+      size: 936801
+      nfiles: 423
+  features-lida-in-merged-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv all graph-proj extract-features/lida-in-merged/all/graph-proj
+    deps:
+    - path: data/final/IN_data.csv
+      md5: 26881e08f84e3f9e13fbc60c5b8491ce
+      size: 18167
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged/all/graph-proj
+      md5: 8823b3987b5ade21630cfffe0521557e.dir
+      size: 3738080
+      nfiles: 423
+  features-lida-in-merged-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv axon graph-proj extract-features/lida-in-merged/axon/graph-proj
+    deps:
+    - path: data/final/IN_data.csv
+      md5: 26881e08f84e3f9e13fbc60c5b8491ce
+      size: 18167
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged/axon/graph-proj
+      md5: 09d9bc232c2bab48ba33784744454ba5.dir
+      size: 3289301
+      nfiles: 423
+  features-lida-in-merged-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv basal graph-proj extract-features/lida-in-merged/basal/graph-proj
+    deps:
+    - path: data/final/IN_data.csv
+      md5: 26881e08f84e3f9e13fbc60c5b8491ce
+      size: 18167
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged/basal/graph-proj
+      md5: 211960191643d6e9b256d17226e37ab6.dir
+      size: 936161
+      nfiles: 423
+  features-lida-in-merged-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv all image-tmd-proj
+      extract-features/lida-in-merged/all/image-tmd-proj
+    deps:
+    - path: data/final/IN_data.csv
+      md5: 26881e08f84e3f9e13fbc60c5b8491ce
+      size: 18167
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged/all/image-tmd-proj
+      md5: 1ec583a6e18628ae10b77bf7f378dcac.dir
+      size: 20012065
+      nfiles: 423
+  features-lida-in-merged-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv axon image-tmd-proj
+      extract-features/lida-in-merged/axon/image-tmd-proj
+    deps:
+    - path: data/final/IN_data.csv
+      md5: 26881e08f84e3f9e13fbc60c5b8491ce
+      size: 18167
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged/axon/image-tmd-proj
+      md5: 32ffa4bffcfa9fa3341ad70b820e0323.dir
+      size: 19659105
+      nfiles: 423
+  features-lida-in-merged-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv basal image-tmd-proj
+      extract-features/lida-in-merged/basal/image-tmd-proj
+    deps:
+    - path: data/final/IN_data.csv
+      md5: 26881e08f84e3f9e13fbc60c5b8491ce
+      size: 18167
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged/basal/image-tmd-proj
+      md5: 3d6b0cadb53238f26b68d9f7fa6ee450.dir
+      size: 17771809
+      nfiles: 423
