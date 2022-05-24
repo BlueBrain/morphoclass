@@ -214,3 +214,17 @@
 /pc-L2-axon-graph-proj-gnn-stratified-k-fold
 /in-L5-all-image-tmd-rd-decision-tree-stratified-k-fold
 /in-L4-basal-image-tmd-rd-decision-tree-stratified-k-fold
+/in-L5-basal-diagram-deepwalk-perslay-stratified-k-fold
+/in-L5-basal-diagram-tmd-rd-perslay-stratified-k-fold
+/in-L5-basal-diagram-tmd-proj-perslay-stratified-k-fold
+/in-L5-basal-graph-rd-gnn-stratified-k-fold
+/in-L5-basal-graph-proj-gnn-stratified-k-fold
+/in-L5-basal-image-deepwalk-cnn-stratified-k-fold
+/in-L5-basal-image-deepwalk-decision-tree-stratified-k-fold
+/in-L5-basal-image-deepwalk-xgb-stratified-k-fold
+/in-L5-basal-image-tmd-rd-cnn-stratified-k-fold
+/in-L5-basal-image-tmd-proj-cnn-stratified-k-fold
+/in-L5-basal-image-tmd-rd-decision-tree-stratified-k-fold
+/in-L5-basal-image-tmd-proj-decision-tree-stratified-k-fold
+/in-L5-basal-image-tmd-rd-xgb-stratified-k-fold
+/in-L5-basal-image-tmd-proj-xgb-stratified-k-fold
