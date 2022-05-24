@@ -521,8 +521,16 @@ training-alt-neurites:
     features-dir: extract-features/in-L1/all/diagram-tmd-rd
     model-config: training/configs/model-perslay.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L1-all-diagram-tmd-proj-perslay-stratified-k-fold:
+    features-dir: extract-features/in-L1/all/diagram-tmd-proj
+    model-config: training/configs/model-perslay.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L1-all-graph-rd-gnn-stratified-k-fold:
     features-dir: extract-features/in-L1/all/graph-rd
+    model-config: training/configs/model-gnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L1-all-graph-proj-gnn-stratified-k-fold:
+    features-dir: extract-features/in-L1/all/graph-proj
     model-config: training/configs/model-gnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L1-all-image-deepwalk-cnn-stratified-k-fold:
@@ -541,12 +549,24 @@ training-alt-neurites:
     features-dir: extract-features/in-L1/all/image-tmd-rd
     model-config: training/configs/model-cnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L1-all-image-tmd-proj-cnn-stratified-k-fold:
+    features-dir: extract-features/in-L1/all/image-tmd-proj
+    model-config: training/configs/model-cnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L1-all-image-tmd-rd-decision-tree-stratified-k-fold:
     features-dir: extract-features/in-L1/all/image-tmd-rd
     model-config: training/configs/model-decision-tree.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L1-all-image-tmd-proj-decision-tree-stratified-k-fold:
+    features-dir: extract-features/in-L1/all/image-tmd-proj
+    model-config: training/configs/model-decision-tree.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L1-all-image-tmd-rd-xgb-stratified-k-fold:
     features-dir: extract-features/in-L1/all/image-tmd-rd
+    model-config: training/configs/model-xgb.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L1-all-image-tmd-proj-xgb-stratified-k-fold:
+    features-dir: extract-features/in-L1/all/image-tmd-proj
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L1-basal-diagram-deepwalk-perslay-stratified-k-fold:
@@ -557,8 +577,16 @@ training-alt-neurites:
     features-dir: extract-features/in-L1/basal/diagram-tmd-rd
     model-config: training/configs/model-perslay.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L1-basal-diagram-tmd-proj-perslay-stratified-k-fold:
+    features-dir: extract-features/in-L1/basal/diagram-tmd-proj
+    model-config: training/configs/model-perslay.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L1-basal-graph-rd-gnn-stratified-k-fold:
     features-dir: extract-features/in-L1/basal/graph-rd
+    model-config: training/configs/model-gnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L1-basal-graph-proj-gnn-stratified-k-fold:
+    features-dir: extract-features/in-L1/basal/graph-proj
     model-config: training/configs/model-gnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L1-basal-image-deepwalk-cnn-stratified-k-fold:
@@ -577,12 +605,24 @@ training-alt-neurites:
     features-dir: extract-features/in-L1/basal/image-tmd-rd
     model-config: training/configs/model-cnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L1-basal-image-tmd-proj-cnn-stratified-k-fold:
+    features-dir: extract-features/in-L1/basal/image-tmd-proj
+    model-config: training/configs/model-cnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L1-basal-image-tmd-rd-decision-tree-stratified-k-fold:
     features-dir: extract-features/in-L1/basal/image-tmd-rd
     model-config: training/configs/model-decision-tree.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L1-basal-image-tmd-proj-decision-tree-stratified-k-fold:
+    features-dir: extract-features/in-L1/basal/image-tmd-proj
+    model-config: training/configs/model-decision-tree.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L1-basal-image-tmd-rd-xgb-stratified-k-fold:
     features-dir: extract-features/in-L1/basal/image-tmd-rd
+    model-config: training/configs/model-xgb.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L1-basal-image-tmd-proj-xgb-stratified-k-fold:
+    features-dir: extract-features/in-L1/basal/image-tmd-proj
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L23-all-diagram-deepwalk-perslay-stratified-k-fold:
@@ -593,8 +633,16 @@ training-alt-neurites:
     features-dir: extract-features/in-L23/all/diagram-tmd-rd
     model-config: training/configs/model-perslay.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L23-all-diagram-tmd-proj-perslay-stratified-k-fold:
+    features-dir: extract-features/in-L23/all/diagram-tmd-proj
+    model-config: training/configs/model-perslay.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L23-all-graph-rd-gnn-stratified-k-fold:
     features-dir: extract-features/in-L23/all/graph-rd
+    model-config: training/configs/model-gnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L23-all-graph-proj-gnn-stratified-k-fold:
+    features-dir: extract-features/in-L23/all/graph-proj
     model-config: training/configs/model-gnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L23-all-image-deepwalk-cnn-stratified-k-fold:
@@ -613,12 +661,24 @@ training-alt-neurites:
     features-dir: extract-features/in-L23/all/image-tmd-rd
     model-config: training/configs/model-cnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L23-all-image-tmd-proj-cnn-stratified-k-fold:
+    features-dir: extract-features/in-L23/all/image-tmd-proj
+    model-config: training/configs/model-cnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L23-all-image-tmd-rd-decision-tree-stratified-k-fold:
     features-dir: extract-features/in-L23/all/image-tmd-rd
     model-config: training/configs/model-decision-tree.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L23-all-image-tmd-proj-decision-tree-stratified-k-fold:
+    features-dir: extract-features/in-L23/all/image-tmd-proj
+    model-config: training/configs/model-decision-tree.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L23-all-image-tmd-rd-xgb-stratified-k-fold:
     features-dir: extract-features/in-L23/all/image-tmd-rd
+    model-config: training/configs/model-xgb.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L23-all-image-tmd-proj-xgb-stratified-k-fold:
+    features-dir: extract-features/in-L23/all/image-tmd-proj
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L23-basal-diagram-deepwalk-perslay-stratified-k-fold:
@@ -629,8 +689,16 @@ training-alt-neurites:
     features-dir: extract-features/in-L23/basal/diagram-tmd-rd
     model-config: training/configs/model-perslay.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L23-basal-diagram-tmd-proj-perslay-stratified-k-fold:
+    features-dir: extract-features/in-L23/basal/diagram-tmd-proj
+    model-config: training/configs/model-perslay.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L23-basal-graph-rd-gnn-stratified-k-fold:
     features-dir: extract-features/in-L23/basal/graph-rd
+    model-config: training/configs/model-gnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L23-basal-graph-proj-gnn-stratified-k-fold:
+    features-dir: extract-features/in-L23/basal/graph-proj
     model-config: training/configs/model-gnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L23-basal-image-deepwalk-cnn-stratified-k-fold:
@@ -649,12 +717,24 @@ training-alt-neurites:
     features-dir: extract-features/in-L23/basal/image-tmd-rd
     model-config: training/configs/model-cnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L23-basal-image-tmd-proj-cnn-stratified-k-fold:
+    features-dir: extract-features/in-L23/basal/image-tmd-proj
+    model-config: training/configs/model-cnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L23-basal-image-tmd-rd-decision-tree-stratified-k-fold:
     features-dir: extract-features/in-L23/basal/image-tmd-rd
     model-config: training/configs/model-decision-tree.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L23-basal-image-tmd-proj-decision-tree-stratified-k-fold:
+    features-dir: extract-features/in-L23/basal/image-tmd-proj
+    model-config: training/configs/model-decision-tree.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L23-basal-image-tmd-rd-xgb-stratified-k-fold:
     features-dir: extract-features/in-L23/basal/image-tmd-rd
+    model-config: training/configs/model-xgb.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L23-basal-image-tmd-proj-xgb-stratified-k-fold:
+    features-dir: extract-features/in-L23/basal/image-tmd-proj
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L4-all-diagram-deepwalk-perslay-stratified-k-fold:
@@ -665,8 +745,16 @@ training-alt-neurites:
     features-dir: extract-features/in-L4/all/diagram-tmd-rd
     model-config: training/configs/model-perslay.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L4-all-diagram-tmd-proj-perslay-stratified-k-fold:
+    features-dir: extract-features/in-L4/all/diagram-tmd-proj
+    model-config: training/configs/model-perslay.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L4-all-graph-rd-gnn-stratified-k-fold:
     features-dir: extract-features/in-L4/all/graph-rd
+    model-config: training/configs/model-gnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L4-all-graph-proj-gnn-stratified-k-fold:
+    features-dir: extract-features/in-L4/all/graph-proj
     model-config: training/configs/model-gnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L4-all-image-deepwalk-cnn-stratified-k-fold:
@@ -685,12 +773,24 @@ training-alt-neurites:
     features-dir: extract-features/in-L4/all/image-tmd-rd
     model-config: training/configs/model-cnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L4-all-image-tmd-proj-cnn-stratified-k-fold:
+    features-dir: extract-features/in-L4/all/image-tmd-proj
+    model-config: training/configs/model-cnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L4-all-image-tmd-rd-decision-tree-stratified-k-fold:
     features-dir: extract-features/in-L4/all/image-tmd-rd
     model-config: training/configs/model-decision-tree.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L4-all-image-tmd-proj-decision-tree-stratified-k-fold:
+    features-dir: extract-features/in-L4/all/image-tmd-proj
+    model-config: training/configs/model-decision-tree.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L4-all-image-tmd-rd-xgb-stratified-k-fold:
     features-dir: extract-features/in-L4/all/image-tmd-rd
+    model-config: training/configs/model-xgb.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L4-all-image-tmd-proj-xgb-stratified-k-fold:
+    features-dir: extract-features/in-L4/all/image-tmd-proj
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L4-basal-diagram-deepwalk-perslay-stratified-k-fold:
@@ -701,8 +801,16 @@ training-alt-neurites:
     features-dir: extract-features/in-L4/basal/diagram-tmd-rd
     model-config: training/configs/model-perslay.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L4-basal-diagram-tmd-proj-perslay-stratified-k-fold:
+    features-dir: extract-features/in-L4/basal/diagram-tmd-proj
+    model-config: training/configs/model-perslay.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L4-basal-graph-rd-gnn-stratified-k-fold:
     features-dir: extract-features/in-L4/basal/graph-rd
+    model-config: training/configs/model-gnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L4-basal-graph-proj-gnn-stratified-k-fold:
+    features-dir: extract-features/in-L4/basal/graph-proj
     model-config: training/configs/model-gnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L4-basal-image-deepwalk-cnn-stratified-k-fold:
@@ -721,12 +829,24 @@ training-alt-neurites:
     features-dir: extract-features/in-L4/basal/image-tmd-rd
     model-config: training/configs/model-cnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L4-basal-image-tmd-proj-cnn-stratified-k-fold:
+    features-dir: extract-features/in-L4/basal/image-tmd-proj
+    model-config: training/configs/model-cnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L4-basal-image-tmd-rd-decision-tree-stratified-k-fold:
     features-dir: extract-features/in-L4/basal/image-tmd-rd
     model-config: training/configs/model-decision-tree.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L4-basal-image-tmd-proj-decision-tree-stratified-k-fold:
+    features-dir: extract-features/in-L4/basal/image-tmd-proj
+    model-config: training/configs/model-decision-tree.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L4-basal-image-tmd-rd-xgb-stratified-k-fold:
     features-dir: extract-features/in-L4/basal/image-tmd-rd
+    model-config: training/configs/model-xgb.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L4-basal-image-tmd-proj-xgb-stratified-k-fold:
+    features-dir: extract-features/in-L4/basal/image-tmd-proj
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L5-all-diagram-deepwalk-perslay-stratified-k-fold:
@@ -737,8 +857,16 @@ training-alt-neurites:
     features-dir: extract-features/in-L5/all/diagram-tmd-rd
     model-config: training/configs/model-perslay.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L5-all-diagram-tmd-proj-perslay-stratified-k-fold:
+    features-dir: extract-features/in-L5/all/diagram-tmd-proj
+    model-config: training/configs/model-perslay.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L5-all-graph-rd-gnn-stratified-k-fold:
     features-dir: extract-features/in-L5/all/graph-rd
+    model-config: training/configs/model-gnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L5-all-graph-proj-gnn-stratified-k-fold:
+    features-dir: extract-features/in-L5/all/graph-proj
     model-config: training/configs/model-gnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L5-all-image-deepwalk-cnn-stratified-k-fold:
@@ -757,12 +885,24 @@ training-alt-neurites:
     features-dir: extract-features/in-L5/all/image-tmd-rd
     model-config: training/configs/model-cnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L5-all-image-tmd-proj-cnn-stratified-k-fold:
+    features-dir: extract-features/in-L5/all/image-tmd-proj
+    model-config: training/configs/model-cnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L5-all-image-tmd-rd-decision-tree-stratified-k-fold:
     features-dir: extract-features/in-L5/all/image-tmd-rd
     model-config: training/configs/model-decision-tree.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L5-all-image-tmd-proj-decision-tree-stratified-k-fold:
+    features-dir: extract-features/in-L5/all/image-tmd-proj
+    model-config: training/configs/model-decision-tree.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L5-all-image-tmd-rd-xgb-stratified-k-fold:
     features-dir: extract-features/in-L5/all/image-tmd-rd
+    model-config: training/configs/model-xgb.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L5-all-image-tmd-proj-xgb-stratified-k-fold:
+    features-dir: extract-features/in-L5/all/image-tmd-proj
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L6-all-diagram-deepwalk-perslay-stratified-k-fold:
@@ -773,8 +913,16 @@ training-alt-neurites:
     features-dir: extract-features/in-L6/all/diagram-tmd-rd
     model-config: training/configs/model-perslay.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L6-all-diagram-tmd-proj-perslay-stratified-k-fold:
+    features-dir: extract-features/in-L6/all/diagram-tmd-proj
+    model-config: training/configs/model-perslay.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L6-all-graph-rd-gnn-stratified-k-fold:
     features-dir: extract-features/in-L6/all/graph-rd
+    model-config: training/configs/model-gnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L6-all-graph-proj-gnn-stratified-k-fold:
+    features-dir: extract-features/in-L6/all/graph-proj
     model-config: training/configs/model-gnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L6-all-image-deepwalk-cnn-stratified-k-fold:
@@ -793,12 +941,24 @@ training-alt-neurites:
     features-dir: extract-features/in-L6/all/image-tmd-rd
     model-config: training/configs/model-cnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L6-all-image-tmd-proj-cnn-stratified-k-fold:
+    features-dir: extract-features/in-L6/all/image-tmd-proj
+    model-config: training/configs/model-cnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L6-all-image-tmd-rd-decision-tree-stratified-k-fold:
     features-dir: extract-features/in-L6/all/image-tmd-rd
     model-config: training/configs/model-decision-tree.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L6-all-image-tmd-proj-decision-tree-stratified-k-fold:
+    features-dir: extract-features/in-L6/all/image-tmd-proj
+    model-config: training/configs/model-decision-tree.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L6-all-image-tmd-rd-xgb-stratified-k-fold:
     features-dir: extract-features/in-L6/all/image-tmd-rd
+    model-config: training/configs/model-xgb.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L6-all-image-tmd-proj-xgb-stratified-k-fold:
+    features-dir: extract-features/in-L6/all/image-tmd-proj
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L6-basal-diagram-deepwalk-perslay-stratified-k-fold:
@@ -809,8 +969,16 @@ training-alt-neurites:
     features-dir: extract-features/in-L6/basal/diagram-tmd-rd
     model-config: training/configs/model-perslay.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L6-basal-diagram-tmd-proj-perslay-stratified-k-fold:
+    features-dir: extract-features/in-L6/basal/diagram-tmd-proj
+    model-config: training/configs/model-perslay.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L6-basal-graph-rd-gnn-stratified-k-fold:
     features-dir: extract-features/in-L6/basal/graph-rd
+    model-config: training/configs/model-gnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L6-basal-graph-proj-gnn-stratified-k-fold:
+    features-dir: extract-features/in-L6/basal/graph-proj
     model-config: training/configs/model-gnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L6-basal-image-deepwalk-cnn-stratified-k-fold:
@@ -829,12 +997,24 @@ training-alt-neurites:
     features-dir: extract-features/in-L6/basal/image-tmd-rd
     model-config: training/configs/model-cnn.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L6-basal-image-tmd-proj-cnn-stratified-k-fold:
+    features-dir: extract-features/in-L6/basal/image-tmd-proj
+    model-config: training/configs/model-cnn.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L6-basal-image-tmd-rd-decision-tree-stratified-k-fold:
     features-dir: extract-features/in-L6/basal/image-tmd-rd
     model-config: training/configs/model-decision-tree.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L6-basal-image-tmd-proj-decision-tree-stratified-k-fold:
+    features-dir: extract-features/in-L6/basal/image-tmd-proj
+    model-config: training/configs/model-decision-tree.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
   in-L6-basal-image-tmd-rd-xgb-stratified-k-fold:
     features-dir: extract-features/in-L6/basal/image-tmd-rd
+    model-config: training/configs/model-xgb.yaml
+    splitter-config: training/configs/splitter-stratified-k-fold.yaml
+  in-L6-basal-image-tmd-proj-xgb-stratified-k-fold:
+    features-dir: extract-features/in-L6/basal/image-tmd-proj
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
   pc-L2-all-diagram-deepwalk-perslay-stratified-k-fold:

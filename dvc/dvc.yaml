@@ -2310,6 +2310,33 @@ stages:
       outs:
         - evaluation/checkpoints-lida-alt-neurites/in-merged-all-${key}-stratified-k-fold.html
         - evaluation/checkpoints-lida-alt-neurites/in-merged-all-${key}-stratified-k-fold
+  train-lida-in-merged-all-proj:
+    foreach: ${models-and-features-proj}
+    do:
+      cmd: >-
+        morphoclass -v train
+        --features-dir extract-features/lida-in-merged/all/${item.features-proj}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-all-${key}-stratified-k-fold
+      deps:
+        - extract-features/lida-in-merged/all/${item.features-proj}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
+      outs:
+        - training/checkpoints-lida-alt-neurites/in-merged-all-${key}-stratified-k-fold
+  evaluate-lida-in-merged-all-proj:
+    foreach: ${models-and-features-proj}
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints-lida-alt-neurites/in-merged-all-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/checkpoints-lida-alt-neurites/in-merged-all-${key}-stratified-k-fold.html
+      deps:
+        - training/checkpoints-lida-alt-neurites/in-merged-all-${key}-stratified-k-fold/checkpoint.chk
+      outs:
+        - evaluation/checkpoints-lida-alt-neurites/in-merged-all-${key}-stratified-k-fold.html
+        - evaluation/checkpoints-lida-alt-neurites/in-merged-all-${key}-stratified-k-fold
   train-lida-in-merged-basal:
     foreach: ${models-and-features}
     do:
@@ -2327,6 +2354,33 @@ stages:
         - training/checkpoints-lida-alt-neurites/in-merged-basal-${key}-stratified-k-fold
   evaluate-lida-in-merged-basal:
     foreach: ${models-and-features}
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints-lida-alt-neurites/in-merged-basal-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/checkpoints-lida-alt-neurites/in-merged-basal-${key}-stratified-k-fold.html
+      deps:
+        - training/checkpoints-lida-alt-neurites/in-merged-basal-${key}-stratified-k-fold/checkpoint.chk
+      outs:
+        - evaluation/checkpoints-lida-alt-neurites/in-merged-basal-${key}-stratified-k-fold.html
+        - evaluation/checkpoints-lida-alt-neurites/in-merged-basal-${key}-stratified-k-fold
+  train-lida-in-merged-basal-proj:
+    foreach: ${models-and-features-proj}
+    do:
+      cmd: >-
+        morphoclass -v train
+        --features-dir extract-features/lida-in-merged/basal/${item.features-proj}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-basal-${key}-stratified-k-fold
+      deps:
+        - extract-features/lida-in-merged/basal/${item.features-proj}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
+      outs:
+        - training/checkpoints-lida-alt-neurites/in-merged-basal-${key}-stratified-k-fold
+  evaluate-lida-in-merged-basal-proj:
+    foreach: ${models-and-features-proj}
     do:
       cmd: >-
         morphoclass -v evaluate performance
@@ -2418,6 +2472,33 @@ stages:
       outs:
         - evaluation/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-${key}-stratified-k-fold.html
         - evaluation/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-${key}-stratified-k-fold
+  train-lida-in-merged-bc-merged-all-proj:
+    foreach: ${models-and-features-proj}
+    do:
+      cmd: >-
+        morphoclass -v train
+        --features-dir extract-features/lida-in-merged-bc-merged/all/${item.features-proj}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-${key}-stratified-k-fold
+      deps:
+        - extract-features/lida-in-merged-bc-merged/all/${item.features-proj}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
+      outs:
+        - training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-${key}-stratified-k-fold
+  evaluate-lida-in-merged-bc-merged-all-proj:
+    foreach: ${models-and-features-proj}
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-${key}-stratified-k-fold.html
+      deps:
+        - training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-${key}-stratified-k-fold/checkpoint.chk
+      outs:
+        - evaluation/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-${key}-stratified-k-fold.html
+        - evaluation/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-${key}-stratified-k-fold
   train-lida-in-merged-bc-merged-basal:
     foreach: ${models-and-features}
     do:
@@ -2435,6 +2516,33 @@ stages:
         - training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-${key}-stratified-k-fold
   evaluate-lida-in-merged-bc-merged-basal:
     foreach: ${models-and-features}
+    do:
+      cmd: >-
+        morphoclass -v evaluate performance
+        training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-${key}-stratified-k-fold/checkpoint.chk
+        evaluation/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-${key}-stratified-k-fold.html
+      deps:
+        - training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-${key}-stratified-k-fold/checkpoint.chk
+      outs:
+        - evaluation/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-${key}-stratified-k-fold.html
+        - evaluation/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-${key}-stratified-k-fold
+  train-lida-in-merged-bc-merged-basal-proj:
+    foreach: ${models-and-features-proj}
+    do:
+      cmd: >-
+        morphoclass -v train
+        --features-dir extract-features/lida-in-merged-bc-merged/basal/${item.features-proj}
+        --model-config training/configs/model-${item.model}.yaml
+        --splitter-config training/configs/splitter-stratified-k-fold.yaml
+        --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-${key}-stratified-k-fold
+      deps:
+        - extract-features/lida-in-merged-bc-merged/basal/${item.features-proj}
+        - training/configs/model-${item.model}.yaml
+        - training/configs/splitter-stratified-k-fold.yaml
+      outs:
+        - training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-${key}-stratified-k-fold
+  evaluate-lida-in-merged-bc-merged-basal-proj:
+    foreach: ${models-and-features-proj}
     do:
       cmd: >-
         morphoclass -v evaluate performance
