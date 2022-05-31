@@ -52,3 +52,13 @@
 /janelia-L5-decision-tree-tmd-stratified-k-fold
 /in-merged-perslay-tmd-stratified-k-fold
 /janelia-L5-cnn-deepwalk-stratified-k-fold
+/in-merged-cnn-tmd-proj-stratified-k-fold
+/in-merged-decision-tree-tmd-proj-stratified-k-fold
+/in-merged-gnn-morphology-proj-stratified-k-fold
+/in-merged-perslay-tmd-proj-stratified-k-fold
+/in-merged-xgb-tmd-proj-stratified-k-fold
+/in-merged-bc-merged-cnn-tmd-proj-stratified-k-fold
+/in-merged-bc-merged-decision-tree-tmd-proj-stratified-k-fold
+/in-merged-bc-merged-gnn-morphology-proj-stratified-k-fold
+/in-merged-bc-merged-perslay-tmd-proj-stratified-k-fold
+/in-merged-bc-merged-xgb-tmd-proj-stratified-k-fold

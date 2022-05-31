@@ -18938,3 +18938,3153 @@ stages:
       md5: 3afbaba56657565c18742b9c047d754b.dir
       size: 2441263
       nfiles: 1
+  features-in-L1-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv all
+      diagram-tmd-proj extract-features/in-L1/all/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L1
+      md5: 561cd50c60e94303ca5c296eb950b79a.dir
+      size: 22195599
+      nfiles: 106
+    outs:
+    - path: extract-features/in-L1/all/diagram-tmd-proj
+      md5: 0943fbfb81817442d7043ab285777f84.dir
+      size: 679247
+      nfiles: 105
+  features-in-L1-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv axon
+      diagram-tmd-proj extract-features/in-L1/axon/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L1
+      md5: 561cd50c60e94303ca5c296eb950b79a.dir
+      size: 22195599
+      nfiles: 106
+    outs:
+    - path: extract-features/in-L1/axon/diagram-tmd-proj
+      md5: 74e21da1dd4a5c02d4d180c6265c022e.dir
+      size: 570767
+      nfiles: 105
+  features-in-L1-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv basal
+      diagram-tmd-proj extract-features/in-L1/basal/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L1
+      md5: 561cd50c60e94303ca5c296eb950b79a.dir
+      size: 22195599
+      nfiles: 106
+    outs:
+    - path: extract-features/in-L1/basal/diagram-tmd-proj
+      md5: ffb415cf4ef5276fe30a12136160f573.dir
+      size: 230351
+      nfiles: 105
+  features-in-L1-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv all
+      graph-proj extract-features/in-L1/all/graph-proj
+    deps:
+    - path: data/final/interneurons/L1
+      md5: 561cd50c60e94303ca5c296eb950b79a.dir
+      size: 22195599
+      nfiles: 106
+    outs:
+    - path: extract-features/in-L1/all/graph-proj
+      md5: 5c370615a6c3f42fdec14b014dec9c5e.dir
+      size: 679055
+      nfiles: 105
+  features-in-L1-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv axon
+      graph-proj extract-features/in-L1/axon/graph-proj
+    deps:
+    - path: data/final/interneurons/L1
+      md5: 561cd50c60e94303ca5c296eb950b79a.dir
+      size: 22195599
+      nfiles: 106
+    outs:
+    - path: extract-features/in-L1/axon/graph-proj
+      md5: dae3cc3c22fc82e275799ab4a1064a5f.dir
+      size: 570574
+      nfiles: 105
+  features-in-L1-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv basal
+      graph-proj extract-features/in-L1/basal/graph-proj
+    deps:
+    - path: data/final/interneurons/L1
+      md5: 561cd50c60e94303ca5c296eb950b79a.dir
+      size: 22195599
+      nfiles: 106
+    outs:
+    - path: extract-features/in-L1/basal/graph-proj
+      md5: c1e9f9fcb46a618e247eac9937e1a472.dir
+      size: 230095
+      nfiles: 105
+  features-in-L1-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv all
+      image-tmd-proj extract-features/in-L1/all/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L1
+      md5: 561cd50c60e94303ca5c296eb950b79a.dir
+      size: 22195599
+      nfiles: 106
+    outs:
+    - path: extract-features/in-L1/all/image-tmd-proj
+      md5: ae8df10f595c1906b6c7e08d6b816acd.dir
+      size: 4768335
+      nfiles: 105
+  features-in-L1-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv axon
+      image-tmd-proj extract-features/in-L1/axon/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L1
+      md5: 561cd50c60e94303ca5c296eb950b79a.dir
+      size: 22195599
+      nfiles: 106
+    outs:
+    - path: extract-features/in-L1/axon/image-tmd-proj
+      md5: 426e5f00effa3d59141617377b81a4c6.dir
+      size: 4683087
+      nfiles: 105
+  features-in-L1-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L1/dataset.csv basal
+      image-tmd-proj extract-features/in-L1/basal/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L1
+      md5: 561cd50c60e94303ca5c296eb950b79a.dir
+      size: 22195599
+      nfiles: 106
+    outs:
+    - path: extract-features/in-L1/basal/image-tmd-proj
+      md5: d5a7bf82578d5dcd62f476c2b52a908b.dir
+      size: 4409487
+      nfiles: 105
+  features-in-L23-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv all
+      diagram-tmd-proj extract-features/in-L23/all/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L23
+      md5: 8eae3647e00881fcc4eca84b3d1e49e9.dir
+      size: 45439147
+      nfiles: 157
+    outs:
+    - path: extract-features/in-L23/all/diagram-tmd-proj
+      md5: d11c8bf65a22d5cbe29620e584d67aa5.dir
+      size: 1480580
+      nfiles: 156
+  features-in-L23-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv axon
+      diagram-tmd-proj extract-features/in-L23/axon/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L23
+      md5: 8eae3647e00881fcc4eca84b3d1e49e9.dir
+      size: 45439147
+      nfiles: 157
+    outs:
+    - path: extract-features/in-L23/axon/diagram-tmd-proj
+      md5: ed886613b3898edf5acd3bbc26f4e61b.dir
+      size: 1321732
+      nfiles: 156
+  features-in-L23-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv basal
+      diagram-tmd-proj extract-features/in-L23/basal/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L23
+      md5: 8eae3647e00881fcc4eca84b3d1e49e9.dir
+      size: 45439147
+      nfiles: 157
+    outs:
+    - path: extract-features/in-L23/basal/diagram-tmd-proj
+      md5: 6ccc391d33deed6d4d3a2ef9eb2d3789.dir
+      size: 339076
+      nfiles: 156
+  features-in-L23-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv all
+      graph-proj extract-features/in-L23/all/graph-proj
+    deps:
+    - path: data/final/interneurons/L23
+      md5: 8eae3647e00881fcc4eca84b3d1e49e9.dir
+      size: 45439147
+      nfiles: 157
+    outs:
+    - path: extract-features/in-L23/all/graph-proj
+      md5: 9572c52e96b8ba00fb9297112f33e03c.dir
+      size: 1479549
+      nfiles: 156
+  features-in-L23-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv axon
+      graph-proj extract-features/in-L23/axon/graph-proj
+    deps:
+    - path: data/final/interneurons/L23
+      md5: 8eae3647e00881fcc4eca84b3d1e49e9.dir
+      size: 45439147
+      nfiles: 157
+    outs:
+    - path: extract-features/in-L23/axon/graph-proj
+      md5: c3fd77d44f8d5f20928c82130cd43ef2.dir
+      size: 1320964
+      nfiles: 156
+  features-in-L23-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv basal
+      graph-proj extract-features/in-L23/basal/graph-proj
+    deps:
+    - path: data/final/interneurons/L23
+      md5: 8eae3647e00881fcc4eca84b3d1e49e9.dir
+      size: 45439147
+      nfiles: 157
+    outs:
+    - path: extract-features/in-L23/basal/graph-proj
+      md5: 3d0ebfe4c5681dc0f0352fccc06fc4b9.dir
+      size: 338882
+      nfiles: 156
+  features-in-L23-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv all
+      image-tmd-proj extract-features/in-L23/all/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L23
+      md5: 8eae3647e00881fcc4eca84b3d1e49e9.dir
+      size: 45439147
+      nfiles: 157
+    outs:
+    - path: extract-features/in-L23/all/image-tmd-proj
+      md5: 1ac327b645b149b43dc5b437242524b2.dir
+      size: 7460932
+      nfiles: 156
+  features-in-L23-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv axon
+      image-tmd-proj extract-features/in-L23/axon/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L23
+      md5: 8eae3647e00881fcc4eca84b3d1e49e9.dir
+      size: 45439147
+      nfiles: 157
+    outs:
+    - path: extract-features/in-L23/axon/image-tmd-proj
+      md5: 4b3491cdf64ef36e3b53ef89de5aab44.dir
+      size: 7336004
+      nfiles: 156
+  features-in-L23-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L23/dataset.csv basal
+      image-tmd-proj extract-features/in-L23/basal/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L23
+      md5: 8eae3647e00881fcc4eca84b3d1e49e9.dir
+      size: 45439147
+      nfiles: 157
+    outs:
+    - path: extract-features/in-L23/basal/image-tmd-proj
+      md5: 04230a4e6606ac2dc6db1a2933a5993a.dir
+      size: 6548740
+      nfiles: 156
+  features-in-L4-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv all
+      diagram-tmd-proj extract-features/in-L4/all/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L4
+      md5: ea286e3967292ba1f257c5980076b146.dir
+      size: 32401000
+      nfiles: 114
+    outs:
+    - path: extract-features/in-L4/all/diagram-tmd-proj
+      md5: 93e3228cb0ed86fc13679585c061d529.dir
+      size: 921799
+      nfiles: 113
+  features-in-L4-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv axon
+      diagram-tmd-proj extract-features/in-L4/axon/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L4
+      md5: ea286e3967292ba1f257c5980076b146.dir
+      size: 32401000
+      nfiles: 114
+    outs:
+    - path: extract-features/in-L4/axon/diagram-tmd-proj
+      md5: 43254bb19b0bc269a0abf7c3e89ed5ee.dir
+      size: 804231
+      nfiles: 113
+  features-in-L4-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv basal
+      diagram-tmd-proj extract-features/in-L4/basal/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L4
+      md5: ea286e3967292ba1f257c5980076b146.dir
+      size: 32401000
+      nfiles: 114
+    outs:
+    - path: extract-features/in-L4/basal/diagram-tmd-proj
+      md5: d484afbe189479f39be6ecb49fe20941.dir
+      size: 247367
+      nfiles: 113
+  features-in-L4-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv all
+      graph-proj extract-features/in-L4/all/graph-proj
+    deps:
+    - path: data/final/interneurons/L4
+      md5: ea286e3967292ba1f257c5980076b146.dir
+      size: 32401000
+      nfiles: 114
+    outs:
+    - path: extract-features/in-L4/all/graph-proj
+      md5: f2cb94161cc70fc5dc761766f9538538.dir
+      size: 921221
+      nfiles: 113
+  features-in-L4-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv axon
+      graph-proj extract-features/in-L4/axon/graph-proj
+    deps:
+    - path: data/final/interneurons/L4
+      md5: ea286e3967292ba1f257c5980076b146.dir
+      size: 32401000
+      nfiles: 114
+    outs:
+    - path: extract-features/in-L4/axon/graph-proj
+      md5: 1df93f9751a073b4d8f2db1f156f3f90.dir
+      size: 803911
+      nfiles: 113
+  features-in-L4-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv basal
+      graph-proj extract-features/in-L4/basal/graph-proj
+    deps:
+    - path: data/final/interneurons/L4
+      md5: ea286e3967292ba1f257c5980076b146.dir
+      size: 32401000
+      nfiles: 114
+    outs:
+    - path: extract-features/in-L4/basal/graph-proj
+      md5: b57c4f99f2b00e05e21a98bd0fe91af5.dir
+      size: 247367
+      nfiles: 113
+  features-in-L4-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv all
+      image-tmd-proj extract-features/in-L4/all/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L4
+      md5: ea286e3967292ba1f257c5980076b146.dir
+      size: 32401000
+      nfiles: 114
+    outs:
+    - path: extract-features/in-L4/all/image-tmd-proj
+      md5: 241d83f8ba9f330e62ea7ec33bc7a629.dir
+      size: 5284039
+      nfiles: 113
+  features-in-L4-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv axon
+      image-tmd-proj extract-features/in-L4/axon/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L4
+      md5: ea286e3967292ba1f257c5980076b146.dir
+      size: 32401000
+      nfiles: 114
+    outs:
+    - path: extract-features/in-L4/axon/image-tmd-proj
+      md5: 45f950aeb6e39c85764359e4798da778.dir
+      size: 5191943
+      nfiles: 113
+  features-in-L4-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L4/dataset.csv basal
+      image-tmd-proj extract-features/in-L4/basal/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L4
+      md5: ea286e3967292ba1f257c5980076b146.dir
+      size: 32401000
+      nfiles: 114
+    outs:
+    - path: extract-features/in-L4/basal/image-tmd-proj
+      md5: ea300aa2eb91a4c240f606334d318b38.dir
+      size: 4745287
+      nfiles: 113
+  features-in-L5-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv all
+      diagram-tmd-proj extract-features/in-L5/all/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L5
+      md5: 4d764a3b6c876ac6b988824235b1cdb0.dir
+      size: 33969403
+      nfiles: 112
+    outs:
+    - path: extract-features/in-L5/all/diagram-tmd-proj
+      md5: 756712f27a5b113b09af68087821e32c.dir
+      size: 897689
+      nfiles: 111
+  features-in-L5-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv axon
+      diagram-tmd-proj extract-features/in-L5/axon/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L5
+      md5: 4d764a3b6c876ac6b988824235b1cdb0.dir
+      size: 33969403
+      nfiles: 112
+    outs:
+    - path: extract-features/in-L5/axon/diagram-tmd-proj
+      md5: 5d03384c90a34591feceaf2b743d5bdd.dir
+      size: 769049
+      nfiles: 111
+  features-in-L5-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv basal
+      diagram-tmd-proj extract-features/in-L5/basal/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L5
+      md5: 4d764a3b6c876ac6b988824235b1cdb0.dir
+      size: 33969403
+      nfiles: 112
+    outs:
+    - path: extract-features/in-L5/basal/diagram-tmd-proj
+      md5: bacd39c0be057489e5e0059ebb068025.dir
+      size: 256601
+      nfiles: 111
+  features-in-L5-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv all
+      graph-proj extract-features/in-L5/all/graph-proj
+    deps:
+    - path: data/final/interneurons/L5
+      md5: 4d764a3b6c876ac6b988824235b1cdb0.dir
+      size: 33969403
+      nfiles: 112
+    outs:
+    - path: extract-features/in-L5/all/graph-proj
+      md5: b51b9da52572aad6184eb6318a5e247b.dir
+      size: 897113
+      nfiles: 111
+  features-in-L5-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv axon
+      graph-proj extract-features/in-L5/axon/graph-proj
+    deps:
+    - path: data/final/interneurons/L5
+      md5: 4d764a3b6c876ac6b988824235b1cdb0.dir
+      size: 33969403
+      nfiles: 112
+    outs:
+    - path: extract-features/in-L5/axon/graph-proj
+      md5: 559fa28094c0acdefc1522f51e02c25a.dir
+      size: 768857
+      nfiles: 111
+  features-in-L5-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv basal
+      graph-proj extract-features/in-L5/basal/graph-proj
+    deps:
+    - path: data/final/interneurons/L5
+      md5: 4d764a3b6c876ac6b988824235b1cdb0.dir
+      size: 33969403
+      nfiles: 112
+    outs:
+    - path: extract-features/in-L5/basal/graph-proj
+      md5: 01f41a91c93c478473645aec355330e3.dir
+      size: 256345
+      nfiles: 111
+  features-in-L5-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv all
+      image-tmd-proj extract-features/in-L5/all/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L5
+      md5: 4d764a3b6c876ac6b988824235b1cdb0.dir
+      size: 33969403
+      nfiles: 112
+    outs:
+    - path: extract-features/in-L5/all/image-tmd-proj
+      md5: c420e0160c017c18262e615759b48cee.dir
+      size: 5184601
+      nfiles: 111
+  features-in-L5-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv axon
+      image-tmd-proj extract-features/in-L5/axon/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L5
+      md5: 4d764a3b6c876ac6b988824235b1cdb0.dir
+      size: 33969403
+      nfiles: 112
+    outs:
+    - path: extract-features/in-L5/axon/image-tmd-proj
+      md5: b7b765e52ae0a0d1a09e4af39fe1038e.dir
+      size: 5083353
+      nfiles: 111
+  features-in-L5-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L5/dataset.csv basal
+      image-tmd-proj extract-features/in-L5/basal/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L5
+      md5: 4d764a3b6c876ac6b988824235b1cdb0.dir
+      size: 33969403
+      nfiles: 112
+    outs:
+    - path: extract-features/in-L5/basal/image-tmd-proj
+      md5: 0fac94c244ca8afe97d0a3ec061a7af0.dir
+      size: 4672345
+      nfiles: 111
+  features-in-L6-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv all
+      diagram-tmd-proj extract-features/in-L6/all/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L6
+      md5: fec19da8924e272dfc4e0de231aced68.dir
+      size: 19629156
+      nfiles: 63
+    outs:
+    - path: extract-features/in-L6/all/diagram-tmd-proj
+      md5: 84e0873d988471184f9699d4a32dff8f.dir
+      size: 530706
+      nfiles: 62
+  features-in-L6-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv axon
+      diagram-tmd-proj extract-features/in-L6/axon/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L6
+      md5: fec19da8924e272dfc4e0de231aced68.dir
+      size: 19629156
+      nfiles: 63
+    outs:
+    - path: extract-features/in-L6/axon/diagram-tmd-proj
+      md5: 19c9cac9253f65ba8a28541489adcb2a.dir
+      size: 462546
+      nfiles: 62
+  features-in-L6-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv basal
+      diagram-tmd-proj extract-features/in-L6/basal/diagram-tmd-proj
+    deps:
+    - path: data/final/interneurons/L6
+      md5: fec19da8924e272dfc4e0de231aced68.dir
+      size: 19629156
+      nfiles: 63
+    outs:
+    - path: extract-features/in-L6/basal/diagram-tmd-proj
+      md5: 186bbe73cf18504651a35f2cbaf0df01.dir
+      size: 139154
+      nfiles: 62
+  features-in-L6-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv all
+      graph-proj extract-features/in-L6/all/graph-proj
+    deps:
+    - path: data/final/interneurons/L6
+      md5: fec19da8924e272dfc4e0de231aced68.dir
+      size: 19629156
+      nfiles: 63
+    outs:
+    - path: extract-features/in-L6/all/graph-proj
+      md5: b20a61fec2f30cea330affffc52d5477.dir
+      size: 530130
+      nfiles: 62
+  features-in-L6-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv axon
+      graph-proj extract-features/in-L6/axon/graph-proj
+    deps:
+    - path: data/final/interneurons/L6
+      md5: fec19da8924e272dfc4e0de231aced68.dir
+      size: 19629156
+      nfiles: 63
+    outs:
+    - path: extract-features/in-L6/axon/graph-proj
+      md5: 4b90f4cf9e40317c7ca15ce5c0cc7525.dir
+      size: 462226
+      nfiles: 62
+  features-in-L6-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv basal
+      graph-proj extract-features/in-L6/basal/graph-proj
+    deps:
+    - path: data/final/interneurons/L6
+      md5: fec19da8924e272dfc4e0de231aced68.dir
+      size: 19629156
+      nfiles: 63
+    outs:
+    - path: extract-features/in-L6/basal/graph-proj
+      md5: 49ef1a81bfaa3e407177e4f60871ef3c.dir
+      size: 139026
+      nfiles: 62
+  features-in-L6-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv all
+      image-tmd-proj extract-features/in-L6/all/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L6
+      md5: fec19da8924e272dfc4e0de231aced68.dir
+      size: 19629156
+      nfiles: 63
+    outs:
+    - path: extract-features/in-L6/all/image-tmd-proj
+      md5: ed420d148d131bbb41b60278d763ca07.dir
+      size: 2919570
+      nfiles: 62
+  features-in-L6-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv axon
+      image-tmd-proj extract-features/in-L6/axon/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L6
+      md5: fec19da8924e272dfc4e0de231aced68.dir
+      size: 19629156
+      nfiles: 63
+    outs:
+    - path: extract-features/in-L6/axon/image-tmd-proj
+      md5: 5b50f33db5ca8329c78b764624617d18.dir
+      size: 2866258
+      nfiles: 62
+  features-in-L6-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/interneurons/L6/dataset.csv basal
+      image-tmd-proj extract-features/in-L6/basal/image-tmd-proj
+    deps:
+    - path: data/final/interneurons/L6
+      md5: fec19da8924e272dfc4e0de231aced68.dir
+      size: 19629156
+      nfiles: 63
+    outs:
+    - path: extract-features/in-L6/basal/image-tmd-proj
+      md5: bde38a85a0c7df4bfa4a5e61b39a2799.dir
+      size: 2606418
+      nfiles: 62
+  features-lida-in-merged-bc-merged-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv all diagram-tmd-proj
+      extract-features/lida-in-merged-bc-merged/all/diagram-tmd-proj
+    deps:
+    - path: data/final/IN_data_BC_merged.csv
+      md5: 63fad23bb178f7dfa2f221e0577bc9a8
+      size: 17929
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged-bc-merged/all/diagram-tmd-proj
+      md5: c0ec66a6d7c84a55acb4e57e56a653e9.dir
+      size: 3740641
+      nfiles: 423
+  features-lida-in-merged-bc-merged-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv axon diagram-tmd-proj
+      extract-features/lida-in-merged-bc-merged/axon/diagram-tmd-proj
+    deps:
+    - path: data/final/IN_data_BC_merged.csv
+      md5: 63fad23bb178f7dfa2f221e0577bc9a8
+      size: 17929
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged-bc-merged/axon/diagram-tmd-proj
+      md5: 23fe25ef6de48e8d6c3eaa5ba212bfe7.dir
+      size: 3291105
+      nfiles: 423
+  features-lida-in-merged-bc-merged-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv basal diagram-tmd-proj
+      extract-features/lida-in-merged-bc-merged/basal/diagram-tmd-proj
+    deps:
+    - path: data/final/IN_data_BC_merged.csv
+      md5: 63fad23bb178f7dfa2f221e0577bc9a8
+      size: 17929
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged-bc-merged/basal/diagram-tmd-proj
+      md5: 52bff7afc8d479d88495a81066bb3a02.dir
+      size: 936801
+      nfiles: 423
+  features-lida-in-merged-bc-merged-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv all graph-proj
+      extract-features/lida-in-merged-bc-merged/all/graph-proj
+    deps:
+    - path: data/final/IN_data_BC_merged.csv
+      md5: 63fad23bb178f7dfa2f221e0577bc9a8
+      size: 17929
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged-bc-merged/all/graph-proj
+      md5: f05161f3b2246c828583a135b2eb2478.dir
+      size: 3737943
+      nfiles: 423
+  features-lida-in-merged-bc-merged-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv axon graph-proj
+      extract-features/lida-in-merged-bc-merged/axon/graph-proj
+    deps:
+    - path: data/final/IN_data_BC_merged.csv
+      md5: 63fad23bb178f7dfa2f221e0577bc9a8
+      size: 17929
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged-bc-merged/axon/graph-proj
+      md5: 2a94e75dc555f07281bc31f81360dd48.dir
+      size: 3289430
+      nfiles: 423
+  features-lida-in-merged-bc-merged-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv basal graph-proj
+      extract-features/lida-in-merged-bc-merged/basal/graph-proj
+    deps:
+    - path: data/final/IN_data_BC_merged.csv
+      md5: 63fad23bb178f7dfa2f221e0577bc9a8
+      size: 17929
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged-bc-merged/basal/graph-proj
+      md5: ee015f3fe753b813ec35f263cecde34e.dir
+      size: 936086
+      nfiles: 423
+  features-lida-in-merged-bc-merged-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv all image-tmd-proj
+      extract-features/lida-in-merged-bc-merged/all/image-tmd-proj
+    deps:
+    - path: data/final/IN_data_BC_merged.csv
+      md5: 63fad23bb178f7dfa2f221e0577bc9a8
+      size: 17929
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged-bc-merged/all/image-tmd-proj
+      md5: 650a9bdbe1f407854bae64bdbabdea96.dir
+      size: 20012001
+      nfiles: 423
+  features-lida-in-merged-bc-merged-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv axon image-tmd-proj
+      extract-features/lida-in-merged-bc-merged/axon/image-tmd-proj
+    deps:
+    - path: data/final/IN_data_BC_merged.csv
+      md5: 63fad23bb178f7dfa2f221e0577bc9a8
+      size: 17929
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged-bc-merged/axon/image-tmd-proj
+      md5: f6a63afd057906b6f9b08903a2c04e6a.dir
+      size: 19658977
+      nfiles: 423
+  features-lida-in-merged-bc-merged-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data_BC_merged.csv basal image-tmd-proj
+      extract-features/lida-in-merged-bc-merged/basal/image-tmd-proj
+    deps:
+    - path: data/final/IN_data_BC_merged.csv
+      md5: 63fad23bb178f7dfa2f221e0577bc9a8
+      size: 17929
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged-bc-merged/basal/image-tmd-proj
+      md5: 00bd47803a1173704fe1e1fa45d864d2.dir
+      size: 17771809
+      nfiles: 423
+  features-lida-in-merged-diagram-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv all diagram-tmd-proj
+      extract-features/lida-in-merged/all/diagram-tmd-proj
+    deps:
+    - path: data/final/IN_data.csv
+      md5: 26881e08f84e3f9e13fbc60c5b8491ce
+      size: 18167
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged/all/diagram-tmd-proj
+      md5: f849dab4479558b7c6c5027a69b126c7.dir
+      size: 3740641
+      nfiles: 423
+  features-lida-in-merged-diagram-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv axon diagram-tmd-proj
+      extract-features/lida-in-merged/axon/diagram-tmd-proj
+    deps:
+    - path: data/final/IN_data.csv
+      md5: 26881e08f84e3f9e13fbc60c5b8491ce
+      size: 18167
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged/axon/diagram-tmd-proj
+      md5: 8edda3f0affcedb357680b19f80505b9.dir
+      size: 3291105
+      nfiles: 423
+  features-lida-in-merged-diagram-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv basal diagram-tmd-proj
+      extract-features/lida-in-merged/basal/diagram-tmd-proj
+    deps:
+    - path: data/final/IN_data.csv
+      md5: 26881e08f84e3f9e13fbc60c5b8491ce
+      size: 18167
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged/basal/diagram-tmd-proj
+      md5: 1c79002eace665133316c4464cd36c90.dir
+      size: 936801
+      nfiles: 423
+  features-lida-in-merged-graph-proj-all:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv all graph-proj extract-features/lida-in-merged/all/graph-proj
+    deps:
+    - path: data/final/IN_data.csv
+      md5: 26881e08f84e3f9e13fbc60c5b8491ce
+      size: 18167
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged/all/graph-proj
+      md5: 8823b3987b5ade21630cfffe0521557e.dir
+      size: 3738080
+      nfiles: 423
+  features-lida-in-merged-graph-proj-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv axon graph-proj extract-features/lida-in-merged/axon/graph-proj
+    deps:
+    - path: data/final/IN_data.csv
+      md5: 26881e08f84e3f9e13fbc60c5b8491ce
+      size: 18167
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged/axon/graph-proj
+      md5: 09d9bc232c2bab48ba33784744454ba5.dir
+      size: 3289301
+      nfiles: 423
+  features-lida-in-merged-graph-proj-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv basal graph-proj extract-features/lida-in-merged/basal/graph-proj
+    deps:
+    - path: data/final/IN_data.csv
+      md5: 26881e08f84e3f9e13fbc60c5b8491ce
+      size: 18167
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged/basal/graph-proj
+      md5: 211960191643d6e9b256d17226e37ab6.dir
+      size: 936161
+      nfiles: 423
+  features-lida-in-merged-image-tmd-proj-all:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv all image-tmd-proj
+      extract-features/lida-in-merged/all/image-tmd-proj
+    deps:
+    - path: data/final/IN_data.csv
+      md5: 26881e08f84e3f9e13fbc60c5b8491ce
+      size: 18167
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged/all/image-tmd-proj
+      md5: 1ec583a6e18628ae10b77bf7f378dcac.dir
+      size: 20012065
+      nfiles: 423
+  features-lida-in-merged-image-tmd-proj-axon:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv axon image-tmd-proj
+      extract-features/lida-in-merged/axon/image-tmd-proj
+    deps:
+    - path: data/final/IN_data.csv
+      md5: 26881e08f84e3f9e13fbc60c5b8491ce
+      size: 18167
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged/axon/image-tmd-proj
+      md5: 32ffa4bffcfa9fa3341ad70b820e0323.dir
+      size: 19659105
+      nfiles: 423
+  features-lida-in-merged-image-tmd-proj-basal:
+    cmd: morphoclass -v extract-features data/final/IN_data.csv basal image-tmd-proj
+      extract-features/lida-in-merged/basal/image-tmd-proj
+    deps:
+    - path: data/final/IN_data.csv
+      md5: 26881e08f84e3f9e13fbc60c5b8491ce
+      size: 18167
+    - path: data/final/interneurons
+      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
+      size: 153652715
+      nfiles: 553
+    outs:
+    - path: extract-features/lida-in-merged/basal/image-tmd-proj
+      md5: 3d6b0cadb53238f26b68d9f7fa6ee450.dir
+      size: 17771809
+      nfiles: 423
+  train@in-L1-axon-diagram-tmd-proj-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/axon/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L1-axon-diagram-tmd-proj-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/axon/diagram-tmd-proj
+      md5: 74e21da1dd4a5c02d4d180c6265c022e.dir
+      size: 570767
+      nfiles: 105
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L1-axon-diagram-tmd-proj-perslay-stratified-k-fold
+      md5: d71df2f9cf9f6a9d2eed70a897719476.dir
+      size: 3505704
+      nfiles: 13
+  train@in-L1-axon-graph-proj-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/axon/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L1-axon-graph-proj-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/axon/graph-proj
+      md5: dae3cc3c22fc82e275799ab4a1064a5f.dir
+      size: 570574
+      nfiles: 105
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L1-axon-graph-proj-gnn-stratified-k-fold
+      md5: 362b3657d4b621670b6f732730111f12.dir
+      size: 9531212
+      nfiles: 13
+  train@in-L1-axon-image-tmd-proj-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/axon/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L1-axon-image-tmd-proj-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/axon/image-tmd-proj
+      md5: 426e5f00effa3d59141617377b81a4c6.dir
+      size: 4683087
+      nfiles: 105
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L1-axon-image-tmd-proj-cnn-stratified-k-fold
+      md5: 1e6bc05ae5e9c5ab3d579dfb2e333c28.dir
+      size: 6682759
+      nfiles: 13
+  train@in-L1-axon-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/axon/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L1-axon-image-tmd-proj-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/axon/image-tmd-proj
+      md5: 426e5f00effa3d59141617377b81a4c6.dir
+      size: 4683087
+      nfiles: 105
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L1-axon-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: 1986663a9f7e1b2f41089a614ab3a715.dir
+      size: 40127584
+      nfiles: 13
+  train@in-L1-axon-image-tmd-proj-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/axon/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L1-axon-image-tmd-proj-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/axon/image-tmd-proj
+      md5: 426e5f00effa3d59141617377b81a4c6.dir
+      size: 4683087
+      nfiles: 105
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L1-axon-image-tmd-proj-xgb-stratified-k-fold
+      md5: 95a88abacc13ea075cb5ee0a6357267e.dir
+      size: 41469525
+      nfiles: 13
+  train@in-L23-axon-diagram-tmd-proj-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/axon/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L23-axon-diagram-tmd-proj-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/axon/diagram-tmd-proj
+      md5: ed886613b3898edf5acd3bbc26f4e61b.dir
+      size: 1321732
+      nfiles: 156
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L23-axon-diagram-tmd-proj-perslay-stratified-k-fold
+      md5: 3bafc3dc74fcb31c73f9ed2f46effab5.dir
+      size: 3612046
+      nfiles: 13
+  train@in-L23-axon-graph-proj-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/axon/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L23-axon-graph-proj-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/axon/graph-proj
+      md5: c3fd77d44f8d5f20928c82130cd43ef2.dir
+      size: 1320964
+      nfiles: 156
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L23-axon-graph-proj-gnn-stratified-k-fold
+      md5: 2b419cc4d7333c642c6e8faa2949021f.dir
+      size: 10023923
+      nfiles: 13
+  train@in-L23-axon-image-tmd-proj-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/axon/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L23-axon-image-tmd-proj-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/axon/image-tmd-proj
+      md5: 4b3491cdf64ef36e3b53ef89de5aab44.dir
+      size: 7336004
+      nfiles: 156
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L23-axon-image-tmd-proj-cnn-stratified-k-fold
+      md5: 94f38fe02098daac47e0e70b0a89ada3.dir
+      size: 8341898
+      nfiles: 13
+  train@in-L23-axon-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/axon/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L23-axon-image-tmd-proj-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/axon/image-tmd-proj
+      md5: 4b3491cdf64ef36e3b53ef89de5aab44.dir
+      size: 7336004
+      nfiles: 156
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L23-axon-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: 834f2cae6d4325babcf837e9ee30c6b1.dir
+      size: 59604113
+      nfiles: 13
+  train@in-L23-axon-image-tmd-proj-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/axon/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L23-axon-image-tmd-proj-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/axon/image-tmd-proj
+      md5: 4b3491cdf64ef36e3b53ef89de5aab44.dir
+      size: 7336004
+      nfiles: 156
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L23-axon-image-tmd-proj-xgb-stratified-k-fold
+      md5: 649052c0a46fc7ebfc0888802bfdb2d3.dir
+      size: 61266347
+      nfiles: 13
+  train@in-L4-axon-diagram-tmd-proj-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/axon/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L4-axon-diagram-tmd-proj-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/axon/diagram-tmd-proj
+      md5: 43254bb19b0bc269a0abf7c3e89ed5ee.dir
+      size: 804231
+      nfiles: 113
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L4-axon-diagram-tmd-proj-perslay-stratified-k-fold
+      md5: 8abbdc0e79ef0e2eaa2975a8b8c6b806.dir
+      size: 3527275
+      nfiles: 13
+  train@in-L4-axon-graph-proj-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/axon/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L4-axon-graph-proj-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/axon/graph-proj
+      md5: 1df93f9751a073b4d8f2db1f156f3f90.dir
+      size: 803911
+      nfiles: 113
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L4-axon-graph-proj-gnn-stratified-k-fold
+      md5: 8e0cbe52a353aa337fb0ead09029087d.dir
+      size: 9644322
+      nfiles: 13
+  train@in-L4-axon-image-tmd-proj-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/axon/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L4-axon-image-tmd-proj-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/axon/image-tmd-proj
+      md5: 45f950aeb6e39c85764359e4798da778.dir
+      size: 5191943
+      nfiles: 113
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L4-axon-image-tmd-proj-cnn-stratified-k-fold
+      md5: 39248d3591ba17f2917adefcd43c7d04.dir
+      size: 7005815
+      nfiles: 13
+  train@in-L4-axon-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/axon/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L4-axon-image-tmd-proj-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/axon/image-tmd-proj
+      md5: 45f950aeb6e39c85764359e4798da778.dir
+      size: 5191943
+      nfiles: 113
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L4-axon-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: 331183d02c88220fb4ecd4731cc7d3ab.dir
+      size: 44137138
+      nfiles: 13
+  train@in-L4-axon-image-tmd-proj-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/axon/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L4-axon-image-tmd-proj-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/axon/image-tmd-proj
+      md5: 45f950aeb6e39c85764359e4798da778.dir
+      size: 5191943
+      nfiles: 113
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L4-axon-image-tmd-proj-xgb-stratified-k-fold
+      md5: 6ac5bcdea351bfaab07abadceadb1eb4.dir
+      size: 45771333
+      nfiles: 13
+  train@in-L5-axon-diagram-tmd-proj-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/axon/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L5-axon-diagram-tmd-proj-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/axon/diagram-tmd-proj
+      md5: 5d03384c90a34591feceaf2b743d5bdd.dir
+      size: 769049
+      nfiles: 111
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L5-axon-diagram-tmd-proj-perslay-stratified-k-fold
+      md5: e47f33427477896d3e2c5144d6bdc8a9.dir
+      size: 3538670
+      nfiles: 13
+  train@in-L5-axon-graph-proj-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/axon/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L5-axon-graph-proj-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/axon/graph-proj
+      md5: 559fa28094c0acdefc1522f51e02c25a.dir
+      size: 768857
+      nfiles: 111
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L5-axon-graph-proj-gnn-stratified-k-fold
+      md5: 8502f90ac26dc2bcf4767ddf69cc9209.dir
+      size: 9622685
+      nfiles: 13
+  train@in-L5-axon-image-tmd-proj-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/axon/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L5-axon-image-tmd-proj-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/axon/image-tmd-proj
+      md5: b7b765e52ae0a0d1a09e4af39fe1038e.dir
+      size: 5083353
+      nfiles: 111
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L5-axon-image-tmd-proj-cnn-stratified-k-fold
+      md5: 2e6b1da2c8e1b5932675d2c38b498100.dir
+      size: 6937724
+      nfiles: 13
+  train@in-L5-axon-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/axon/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L5-axon-image-tmd-proj-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/axon/image-tmd-proj
+      md5: b7b765e52ae0a0d1a09e4af39fe1038e.dir
+      size: 5083353
+      nfiles: 111
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L5-axon-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: 8e7b1dbf8fac2a660b24c266fb3e3a5c.dir
+      size: 44599180
+      nfiles: 13
+  train@in-L5-axon-image-tmd-proj-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/axon/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L5-axon-image-tmd-proj-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/axon/image-tmd-proj
+      md5: b7b765e52ae0a0d1a09e4af39fe1038e.dir
+      size: 5083353
+      nfiles: 111
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L5-axon-image-tmd-proj-xgb-stratified-k-fold
+      md5: fa712d406c1cc94e6c87594554da4c31.dir
+      size: 46228486
+      nfiles: 13
+  train@in-L6-axon-diagram-tmd-proj-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/axon/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L6-axon-diagram-tmd-proj-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/axon/diagram-tmd-proj
+      md5: 19c9cac9253f65ba8a28541489adcb2a.dir
+      size: 462546
+      nfiles: 62
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L6-axon-diagram-tmd-proj-perslay-stratified-k-fold
+      md5: b432bc454e712c08d282110b7512f4b7.dir
+      size: 3424462
+      nfiles: 13
+  train@in-L6-axon-graph-proj-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/axon/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L6-axon-graph-proj-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/axon/graph-proj
+      md5: 4b90f4cf9e40317c7ca15ce5c0cc7525.dir
+      size: 462226
+      nfiles: 62
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L6-axon-graph-proj-gnn-stratified-k-fold
+      md5: e188e7e98727cdf2df39b025b1152a25.dir
+      size: 9149588
+      nfiles: 13
+  train@in-L6-axon-image-tmd-proj-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/axon/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L6-axon-image-tmd-proj-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/axon/image-tmd-proj
+      md5: 5b50f33db5ca8329c78b764624617d18.dir
+      size: 2866258
+      nfiles: 62
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L6-axon-image-tmd-proj-cnn-stratified-k-fold
+      md5: 3f5eb342dcbe105f4711cb481f3bc829.dir
+      size: 5328932
+      nfiles: 13
+  train@in-L6-axon-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/axon/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L6-axon-image-tmd-proj-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/axon/image-tmd-proj
+      md5: 5b50f33db5ca8329c78b764624617d18.dir
+      size: 2866258
+      nfiles: 62
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L6-axon-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: 366720a71c859c7400803dc8d8b87abb.dir
+      size: 25971533
+      nfiles: 13
+  train@in-L6-axon-image-tmd-proj-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/axon/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints/in-L6-axon-image-tmd-proj-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/axon/image-tmd-proj
+      md5: 5b50f33db5ca8329c78b764624617d18.dir
+      size: 2866258
+      nfiles: 62
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints/in-L6-axon-image-tmd-proj-xgb-stratified-k-fold
+      md5: 570ddbf9b6d84a1fcdde29a491aba484.dir
+      size: 26942441
+      nfiles: 13
+  train-lida-in-merged-proj@cnn-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged/axon/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida/in-merged-cnn-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged/axon/image-tmd-proj
+      md5: 32ffa4bffcfa9fa3341ad70b820e0323.dir
+      size: 19659105
+      nfiles: 423
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida/in-merged-cnn-tmd-proj-stratified-k-fold
+      md5: 0fe2082b3d44c9e0e4d954ce1c014115.dir
+      size: 16388863
+      nfiles: 13
+  train-lida-in-merged-proj@decision-tree-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged/axon/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida/in-merged-decision-tree-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged/axon/image-tmd-proj
+      md5: 32ffa4bffcfa9fa3341ad70b820e0323.dir
+      size: 19659105
+      nfiles: 423
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida/in-merged-decision-tree-tmd-proj-stratified-k-fold
+      md5: 611930487cea178ef4ce2f03cf01be63.dir
+      size: 150386152
+      nfiles: 13
+  train-lida-in-merged-proj@gnn-morphology-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged/axon/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida/in-merged-gnn-morphology-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged/axon/graph-proj
+      md5: 09d9bc232c2bab48ba33784744454ba5.dir
+      size: 3289301
+      nfiles: 423
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida/in-merged-gnn-morphology-proj-stratified-k-fold
+      md5: 9e17ae648c44e797814b0dd0e9bcb51b.dir
+      size: 12296867
+      nfiles: 13
+  train-lida-in-merged-proj@perslay-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged/axon/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida/in-merged-perslay-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged/axon/diagram-tmd-proj
+      md5: 8edda3f0affcedb357680b19f80505b9.dir
+      size: 3291105
+      nfiles: 423
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida/in-merged-perslay-tmd-proj-stratified-k-fold
+      md5: cd3d82867f59c4d44069d3d92f17a188.dir
+      size: 3964963
+      nfiles: 13
+  train-lida-in-merged-proj@xgb-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged/axon/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida/in-merged-xgb-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged/axon/image-tmd-proj
+      md5: 32ffa4bffcfa9fa3341ad70b820e0323.dir
+      size: 19659105
+      nfiles: 423
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida/in-merged-xgb-tmd-proj-stratified-k-fold
+      md5: 3821bb1c59a1cf59f1315a9e5aee7295.dir
+      size: 152529734
+      nfiles: 13
+  train-lida-in-merged-bc-merged-proj@cnn-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/axon/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida/in-merged-bc-merged-cnn-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/axon/image-tmd-proj
+      md5: f6a63afd057906b6f9b08903a2c04e6a.dir
+      size: 19658977
+      nfiles: 423
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida/in-merged-bc-merged-cnn-tmd-proj-stratified-k-fold
+      md5: eca8dea84b80145e0617755448d1c3a5.dir
+      size: 16296314
+      nfiles: 13
+  train-lida-in-merged-bc-merged-proj@decision-tree-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/axon/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida/in-merged-bc-merged-decision-tree-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/axon/image-tmd-proj
+      md5: f6a63afd057906b6f9b08903a2c04e6a.dir
+      size: 19658977
+      nfiles: 423
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida/in-merged-bc-merged-decision-tree-tmd-proj-stratified-k-fold
+      md5: 285f15e587117e6668f278431beaddf0.dir
+      size: 150321918
+      nfiles: 13
+  train-lida-in-merged-bc-merged-proj@gnn-morphology-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/axon/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida/in-merged-bc-merged-gnn-morphology-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/axon/graph-proj
+      md5: 2a94e75dc555f07281bc31f81360dd48.dir
+      size: 3289430
+      nfiles: 423
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida/in-merged-bc-merged-gnn-morphology-proj-stratified-k-fold
+      md5: 2500af3ed1feb5278ee20504f2654d0d.dir
+      size: 12244262
+      nfiles: 13
+  train-lida-in-merged-bc-merged-proj@perslay-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/axon/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida/in-merged-bc-merged-perslay-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/axon/diagram-tmd-proj
+      md5: 23fe25ef6de48e8d6c3eaa5ba212bfe7.dir
+      size: 3291105
+      nfiles: 423
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida/in-merged-bc-merged-perslay-tmd-proj-stratified-k-fold
+      md5: 85de9af73f6d8b316249b97e2ae9e0a9.dir
+      size: 3918260
+      nfiles: 13
+  train-lida-in-merged-bc-merged-proj@xgb-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/axon/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida/in-merged-bc-merged-xgb-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/axon/image-tmd-proj
+      md5: f6a63afd057906b6f9b08903a2c04e6a.dir
+      size: 19658977
+      nfiles: 423
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida/in-merged-bc-merged-xgb-tmd-proj-stratified-k-fold
+      md5: ca6a678f79c033cbe00fd5cc59478296.dir
+      size: 151810343
+      nfiles: 13
+  train-alt-neurites@in-L5-basal-diagram-deepwalk-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/basal/diagram-deepwalk
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-basal-diagram-deepwalk-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/basal/diagram-deepwalk
+      md5: cd59945b1483bfcb42d3049d7359f8f0.dir
+      size: 285453
+      nfiles: 111
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-basal-diagram-deepwalk-perslay-stratified-k-fold
+      md5: c7ab54d7e5279745675e3ee8953f5f0a.dir
+      size: 3538538
+      nfiles: 13
+  train-alt-neurites@in-L5-basal-diagram-tmd-rd-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/basal/diagram-tmd-rd
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-basal-diagram-tmd-rd-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/basal/diagram-tmd-rd
+      md5: 5515203cf632c7de5c0285b10e4003f5.dir
+      size: 258253
+      nfiles: 111
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-basal-diagram-tmd-rd-perslay-stratified-k-fold
+      md5: 6b25dd0bff6bd9bf13d59914c3de60cd.dir
+      size: 3538598
+      nfiles: 13
+  train-alt-neurites@in-L5-basal-diagram-tmd-proj-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/basal/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-basal-diagram-tmd-proj-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/basal/diagram-tmd-proj
+      md5: bacd39c0be057489e5e0059ebb068025.dir
+      size: 256601
+      nfiles: 111
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-basal-diagram-tmd-proj-perslay-stratified-k-fold
+      md5: 3ed51dba9d8775387059842743d3096c.dir
+      size: 3538473
+      nfiles: 13
+  train-alt-neurites@in-L5-basal-graph-rd-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/basal/graph-rd
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-basal-graph-rd-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/basal/graph-rd
+      md5: 5c424f27ffcde0d6e90ac468f0a5c5d3.dir
+      size: 258189
+      nfiles: 111
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-basal-graph-rd-gnn-stratified-k-fold
+      md5: 3b751695f2d18f90eb21123a22385e51.dir
+      size: 9615316
+      nfiles: 13
+  train-alt-neurites@in-L5-basal-graph-proj-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/basal/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-basal-graph-proj-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/basal/graph-proj
+      md5: 01f41a91c93c478473645aec355330e3.dir
+      size: 256345
+      nfiles: 111
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-basal-graph-proj-gnn-stratified-k-fold
+      md5: dc5508b75e107cfc87f1e0832a214e46.dir
+      size: 9619076
+      nfiles: 13
+  train-alt-neurites@in-L5-basal-image-deepwalk-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/basal/image-deepwalk
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-basal-image-deepwalk-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/basal/image-deepwalk
+      md5: 58a2b7599d7a8bc852216163d6dcd9ba.dir
+      size: 4678349
+      nfiles: 111
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-basal-image-deepwalk-cnn-stratified-k-fold
+      md5: a1e28d1438b706f88478503e387205a1.dir
+      size: 6935670
+      nfiles: 13
+  train-alt-neurites@in-L5-basal-image-deepwalk-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/basal/image-deepwalk
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-basal-image-deepwalk-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/basal/image-deepwalk
+      md5: 58a2b7599d7a8bc852216163d6dcd9ba.dir
+      size: 4678349
+      nfiles: 111
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-basal-image-deepwalk-decision-tree-stratified-k-fold
+      md5: a14f74c14708e5788b11f4d88356fcec.dir
+      size: 47091877
+      nfiles: 13
+  train-alt-neurites@in-L5-basal-image-deepwalk-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/basal/image-deepwalk
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-basal-image-deepwalk-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/basal/image-deepwalk
+      md5: 58a2b7599d7a8bc852216163d6dcd9ba.dir
+      size: 4678349
+      nfiles: 111
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-basal-image-deepwalk-xgb-stratified-k-fold
+      md5: 9dbb146dee41321a76a4a48e237f136e.dir
+      size: 48853110
+      nfiles: 13
+  train-alt-neurites@in-L5-basal-image-tmd-rd-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/basal/image-tmd-rd
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-basal-image-tmd-rd-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/basal/image-tmd-rd
+      md5: 4c365090588156d83d850d5b8efa4639.dir
+      size: 4678349
+      nfiles: 111
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-basal-image-tmd-rd-cnn-stratified-k-fold
+      md5: 086e677b8e2972d7ef8ed2e68b51b398.dir
+      size: 6938505
+      nfiles: 13
+  train-alt-neurites@in-L5-basal-image-tmd-proj-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/basal/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-basal-image-tmd-proj-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/basal/image-tmd-proj
+      md5: 0fac94c244ca8afe97d0a3ec061a7af0.dir
+      size: 4672345
+      nfiles: 111
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-basal-image-tmd-proj-cnn-stratified-k-fold
+      md5: 9fff1a591df4c64016d612bf080bcad2.dir
+      size: 6939042
+      nfiles: 13
+  train-alt-neurites@in-L5-basal-image-tmd-rd-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/basal/image-tmd-rd
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-basal-image-tmd-rd-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/basal/image-tmd-rd
+      md5: 4c365090588156d83d850d5b8efa4639.dir
+      size: 4678349
+      nfiles: 111
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-basal-image-tmd-rd-decision-tree-stratified-k-fold
+      md5: a744067d4da209ce0d3649da3ca42775.dir
+      size: 43133438
+      nfiles: 13
+  train-alt-neurites@in-L5-basal-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/basal/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-basal-image-tmd-proj-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/basal/image-tmd-proj
+      md5: 0fac94c244ca8afe97d0a3ec061a7af0.dir
+      size: 4672345
+      nfiles: 111
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-basal-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: 3ce8b24e6a9b3c570823d1718fca639f.dir
+      size: 43192114
+      nfiles: 13
+  train-alt-neurites@in-L5-basal-image-tmd-rd-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/basal/image-tmd-rd
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-basal-image-tmd-rd-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/basal/image-tmd-rd
+      md5: 4c365090588156d83d850d5b8efa4639.dir
+      size: 4678349
+      nfiles: 111
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-basal-image-tmd-rd-xgb-stratified-k-fold
+      md5: a688e4d509441a7d444f54f5fe8a8908.dir
+      size: 44930297
+      nfiles: 13
+  train-alt-neurites@in-L5-basal-image-tmd-proj-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/basal/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-basal-image-tmd-proj-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/basal/image-tmd-proj
+      md5: 0fac94c244ca8afe97d0a3ec061a7af0.dir
+      size: 4672345
+      nfiles: 111
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-basal-image-tmd-proj-xgb-stratified-k-fold
+      md5: 0832583daeb91bc38506873940ff61a7.dir
+      size: 45023740
+      nfiles: 13
+  train-alt-neurites@in-L1-all-diagram-tmd-proj-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/all/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L1-all-diagram-tmd-proj-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/all/diagram-tmd-proj
+      md5: 0943fbfb81817442d7043ab285777f84.dir
+      size: 679247
+      nfiles: 105
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L1-all-diagram-tmd-proj-perslay-stratified-k-fold
+      md5: 673d10d26bff8e4377b1b43bfed375e3.dir
+      size: 3505512
+      nfiles: 13
+  train-alt-neurites@in-L1-all-graph-proj-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/all/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L1-all-graph-proj-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/all/graph-proj
+      md5: 5c370615a6c3f42fdec14b014dec9c5e.dir
+      size: 679055
+      nfiles: 105
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L1-all-graph-proj-gnn-stratified-k-fold
+      md5: 6010eba8fedbbb741b9b408fc0bddfe0.dir
+      size: 9526508
+      nfiles: 13
+  train-alt-neurites@in-L1-all-image-tmd-proj-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/all/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L1-all-image-tmd-proj-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/all/image-tmd-proj
+      md5: ae8df10f595c1906b6c7e08d6b816acd.dir
+      size: 4768335
+      nfiles: 105
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L1-all-image-tmd-proj-cnn-stratified-k-fold
+      md5: e3c543550023dddf05ea200d81932c53.dir
+      size: 6676374
+      nfiles: 13
+  train-alt-neurites@in-L1-all-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/all/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L1-all-image-tmd-proj-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/all/image-tmd-proj
+      md5: ae8df10f595c1906b6c7e08d6b816acd.dir
+      size: 4768335
+      nfiles: 105
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L1-all-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: 37a8c302288fa4f925602729dd94aec1.dir
+      size: 39982468
+      nfiles: 13
+  train-alt-neurites@in-L1-all-image-tmd-proj-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/all/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L1-all-image-tmd-proj-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/all/image-tmd-proj
+      md5: ae8df10f595c1906b6c7e08d6b816acd.dir
+      size: 4768335
+      nfiles: 105
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L1-all-image-tmd-proj-xgb-stratified-k-fold
+      md5: 2419818340b5340edd5110ccd964ffe1.dir
+      size: 41334714
+      nfiles: 13
+  train-alt-neurites@in-L1-basal-diagram-tmd-proj-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/basal/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L1-basal-diagram-tmd-proj-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/basal/diagram-tmd-proj
+      md5: ffb415cf4ef5276fe30a12136160f573.dir
+      size: 230351
+      nfiles: 105
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L1-basal-diagram-tmd-proj-perslay-stratified-k-fold
+      md5: 5c7fe5b1764ec3373ca9ff65b115b50c.dir
+      size: 3505841
+      nfiles: 13
+  train-alt-neurites@in-L1-basal-graph-proj-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/basal/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L1-basal-graph-proj-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/basal/graph-proj
+      md5: c1e9f9fcb46a618e247eac9937e1a472.dir
+      size: 230095
+      nfiles: 105
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L1-basal-graph-proj-gnn-stratified-k-fold
+      md5: 4a40e653832b7831386f0093df3b637b.dir
+      size: 9535902
+      nfiles: 13
+  train-alt-neurites@in-L1-basal-image-tmd-proj-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/basal/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L1-basal-image-tmd-proj-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/basal/image-tmd-proj
+      md5: d5a7bf82578d5dcd62f476c2b52a908b.dir
+      size: 4409487
+      nfiles: 105
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L1-basal-image-tmd-proj-cnn-stratified-k-fold
+      md5: 1ae7a69e5a4a25fe819983d390434ce9.dir
+      size: 6679545
+      nfiles: 13
+  train-alt-neurites@in-L1-basal-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/basal/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L1-basal-image-tmd-proj-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/basal/image-tmd-proj
+      md5: d5a7bf82578d5dcd62f476c2b52a908b.dir
+      size: 4409487
+      nfiles: 105
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L1-basal-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: a80395a370ee95dca7ab1b2aad6a653e.dir
+      size: 42586840
+      nfiles: 13
+  train-alt-neurites@in-L1-basal-image-tmd-proj-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L1/basal/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L1-basal-image-tmd-proj-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L1/basal/image-tmd-proj
+      md5: d5a7bf82578d5dcd62f476c2b52a908b.dir
+      size: 4409487
+      nfiles: 105
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L1-basal-image-tmd-proj-xgb-stratified-k-fold
+      md5: cadff75db13d7ec6eac28b25c34ca432.dir
+      size: 44029990
+      nfiles: 13
+  train-alt-neurites@in-L23-all-diagram-tmd-proj-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/all/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L23-all-diagram-tmd-proj-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/all/diagram-tmd-proj
+      md5: d11c8bf65a22d5cbe29620e584d67aa5.dir
+      size: 1480580
+      nfiles: 156
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L23-all-diagram-tmd-proj-perslay-stratified-k-fold
+      md5: f43273af2ffa4bf5f566f999d36f4a41.dir
+      size: 3612095
+      nfiles: 13
+  train-alt-neurites@in-L23-all-graph-proj-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/all/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L23-all-graph-proj-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/all/graph-proj
+      md5: 9572c52e96b8ba00fb9297112f33e03c.dir
+      size: 1479549
+      nfiles: 156
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L23-all-graph-proj-gnn-stratified-k-fold
+      md5: 62fba5b8ccde18136bc4aa0c239b6f5c.dir
+      size: 10025641
+      nfiles: 13
+  train-alt-neurites@in-L23-all-image-tmd-proj-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/all/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L23-all-image-tmd-proj-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/all/image-tmd-proj
+      md5: 1ac327b645b149b43dc5b437242524b2.dir
+      size: 7460932
+      nfiles: 156
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L23-all-image-tmd-proj-cnn-stratified-k-fold
+      md5: f35c51c4d13607433c8c4b23b6d4dd8c.dir
+      size: 8341863
+      nfiles: 13
+  train-alt-neurites@in-L23-all-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/all/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L23-all-image-tmd-proj-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/all/image-tmd-proj
+      md5: 1ac327b645b149b43dc5b437242524b2.dir
+      size: 7460932
+      nfiles: 156
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L23-all-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: ab552a3c92af71b2a52cb5acebf8e09c.dir
+      size: 59519612
+      nfiles: 13
+  train-alt-neurites@in-L23-all-image-tmd-proj-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/all/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L23-all-image-tmd-proj-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/all/image-tmd-proj
+      md5: 1ac327b645b149b43dc5b437242524b2.dir
+      size: 7460932
+      nfiles: 156
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L23-all-image-tmd-proj-xgb-stratified-k-fold
+      md5: 6922257c52c08d643e94afee5a15c7ec.dir
+      size: 61187433
+      nfiles: 13
+  train-alt-neurites@in-L23-basal-diagram-tmd-proj-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/basal/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L23-basal-diagram-tmd-proj-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/basal/diagram-tmd-proj
+      md5: 6ccc391d33deed6d4d3a2ef9eb2d3789.dir
+      size: 339076
+      nfiles: 156
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L23-basal-diagram-tmd-proj-perslay-stratified-k-fold
+      md5: 2a69e1afbcc208c3dcbcad4caa148815.dir
+      size: 3611969
+      nfiles: 13
+  train-alt-neurites@in-L23-basal-graph-proj-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/basal/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L23-basal-graph-proj-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/basal/graph-proj
+      md5: 3d0ebfe4c5681dc0f0352fccc06fc4b9.dir
+      size: 338882
+      nfiles: 156
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L23-basal-graph-proj-gnn-stratified-k-fold
+      md5: 933fe5fdc088db16bbff9c001a97ec8b.dir
+      size: 10025671
+      nfiles: 13
+  train-alt-neurites@in-L23-basal-image-tmd-proj-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/basal/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L23-basal-image-tmd-proj-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/basal/image-tmd-proj
+      md5: 04230a4e6606ac2dc6db1a2933a5993a.dir
+      size: 6548740
+      nfiles: 156
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L23-basal-image-tmd-proj-cnn-stratified-k-fold
+      md5: 782504c08ed9885a9d5be72e8d9dbb4a.dir
+      size: 8334903
+      nfiles: 13
+  train-alt-neurites@in-L23-basal-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/basal/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L23-basal-image-tmd-proj-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/basal/image-tmd-proj
+      md5: 04230a4e6606ac2dc6db1a2933a5993a.dir
+      size: 6548740
+      nfiles: 156
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L23-basal-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: 50c582fc82c050a7f8de800e0bcbd1f9.dir
+      size: 59162427
+      nfiles: 13
+  train-alt-neurites@in-L23-basal-image-tmd-proj-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L23/basal/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L23-basal-image-tmd-proj-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L23/basal/image-tmd-proj
+      md5: 04230a4e6606ac2dc6db1a2933a5993a.dir
+      size: 6548740
+      nfiles: 156
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L23-basal-image-tmd-proj-xgb-stratified-k-fold
+      md5: 5ac81dd0e556d8656abb14a71554e246.dir
+      size: 61138441
+      nfiles: 13
+  train-alt-neurites@in-L4-all-diagram-tmd-proj-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/all/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L4-all-diagram-tmd-proj-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/all/diagram-tmd-proj
+      md5: 93e3228cb0ed86fc13679585c061d529.dir
+      size: 921799
+      nfiles: 113
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L4-all-diagram-tmd-proj-perslay-stratified-k-fold
+      md5: c6d269901a3590410cd97dafc860ec79.dir
+      size: 3527523
+      nfiles: 13
+  train-alt-neurites@in-L4-all-graph-proj-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/all/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L4-all-graph-proj-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/all/graph-proj
+      md5: f2cb94161cc70fc5dc761766f9538538.dir
+      size: 921221
+      nfiles: 113
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L4-all-graph-proj-gnn-stratified-k-fold
+      md5: 679e893ee6a4c3a0d86c9099bf4e0329.dir
+      size: 9646005
+      nfiles: 13
+  train-alt-neurites@in-L4-all-image-tmd-proj-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/all/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L4-all-image-tmd-proj-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/all/image-tmd-proj
+      md5: 241d83f8ba9f330e62ea7ec33bc7a629.dir
+      size: 5284039
+      nfiles: 113
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L4-all-image-tmd-proj-cnn-stratified-k-fold
+      md5: 3c5b6730828a613c8c119d2672ef539c.dir
+      size: 7006287
+      nfiles: 13
+  train-alt-neurites@in-L4-all-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/all/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L4-all-image-tmd-proj-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/all/image-tmd-proj
+      md5: 241d83f8ba9f330e62ea7ec33bc7a629.dir
+      size: 5284039
+      nfiles: 113
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L4-all-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: c7d0cc4df49a3fbbb68ca706e1800600.dir
+      size: 44016099
+      nfiles: 13
+  train-alt-neurites@in-L4-all-image-tmd-proj-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/all/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L4-all-image-tmd-proj-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/all/image-tmd-proj
+      md5: 241d83f8ba9f330e62ea7ec33bc7a629.dir
+      size: 5284039
+      nfiles: 113
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L4-all-image-tmd-proj-xgb-stratified-k-fold
+      md5: 8866744d3ee94b07e20c05a0312049a3.dir
+      size: 45651070
+      nfiles: 13
+  train-alt-neurites@in-L4-basal-diagram-tmd-proj-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/basal/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L4-basal-diagram-tmd-proj-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/basal/diagram-tmd-proj
+      md5: d484afbe189479f39be6ecb49fe20941.dir
+      size: 247367
+      nfiles: 113
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L4-basal-diagram-tmd-proj-perslay-stratified-k-fold
+      md5: bade5799a2b64cb40c7605f503917e60.dir
+      size: 3526688
+      nfiles: 13
+  train-alt-neurites@in-L4-basal-graph-proj-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/basal/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L4-basal-graph-proj-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/basal/graph-proj
+      md5: b57c4f99f2b00e05e21a98bd0fe91af5.dir
+      size: 247367
+      nfiles: 113
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L4-basal-graph-proj-gnn-stratified-k-fold
+      md5: 98e28f1b1841cd5e0431ffc4105ae06b.dir
+      size: 9635851
+      nfiles: 13
+  train-alt-neurites@in-L4-basal-image-tmd-proj-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/basal/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L4-basal-image-tmd-proj-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/basal/image-tmd-proj
+      md5: ea300aa2eb91a4c240f606334d318b38.dir
+      size: 4745287
+      nfiles: 113
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L4-basal-image-tmd-proj-cnn-stratified-k-fold
+      md5: 9c6e4e0e5299db5f96e71afbe800fe24.dir
+      size: 7001660
+      nfiles: 13
+  train-alt-neurites@in-L4-basal-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/basal/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L4-basal-image-tmd-proj-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/basal/image-tmd-proj
+      md5: ea300aa2eb91a4c240f606334d318b38.dir
+      size: 4745287
+      nfiles: 113
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L4-basal-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: 501e21dbd34810928577709ffe61e396.dir
+      size: 44768683
+      nfiles: 13
+  train-alt-neurites@in-L4-basal-image-tmd-proj-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L4/basal/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L4-basal-image-tmd-proj-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L4/basal/image-tmd-proj
+      md5: ea300aa2eb91a4c240f606334d318b38.dir
+      size: 4745287
+      nfiles: 113
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L4-basal-image-tmd-proj-xgb-stratified-k-fold
+      md5: 2780eb93fc20f6b85949876e0dbc6a72.dir
+      size: 46584843
+      nfiles: 13
+  train-alt-neurites@in-L5-all-diagram-tmd-proj-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/all/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-all-diagram-tmd-proj-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/all/diagram-tmd-proj
+      md5: 756712f27a5b113b09af68087821e32c.dir
+      size: 897689
+      nfiles: 111
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-all-diagram-tmd-proj-perslay-stratified-k-fold
+      md5: 8b7e4740983d8e60abbaf18eecc75bb6.dir
+      size: 3538673
+      nfiles: 13
+  train-alt-neurites@in-L5-all-graph-proj-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/all/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-all-graph-proj-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/all/graph-proj
+      md5: b51b9da52572aad6184eb6318a5e247b.dir
+      size: 897113
+      nfiles: 111
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-all-graph-proj-gnn-stratified-k-fold
+      md5: e90c494277259edaf3339f49cb0c9085.dir
+      size: 9619152
+      nfiles: 13
+  train-alt-neurites@in-L5-all-image-tmd-proj-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/all/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-all-image-tmd-proj-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/all/image-tmd-proj
+      md5: c420e0160c017c18262e615759b48cee.dir
+      size: 5184601
+      nfiles: 111
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-all-image-tmd-proj-cnn-stratified-k-fold
+      md5: b40e47300eadbeb1994b48efa0e356fe.dir
+      size: 6937332
+      nfiles: 13
+  train-alt-neurites@in-L5-all-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/all/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-all-image-tmd-proj-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/all/image-tmd-proj
+      md5: c420e0160c017c18262e615759b48cee.dir
+      size: 5184601
+      nfiles: 111
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-all-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: 002dc5382da83ea40cd471e92babda0e.dir
+      size: 44507601
+      nfiles: 13
+  train-alt-neurites@in-L5-all-image-tmd-proj-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L5/all/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L5-all-image-tmd-proj-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L5/all/image-tmd-proj
+      md5: c420e0160c017c18262e615759b48cee.dir
+      size: 5184601
+      nfiles: 111
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L5-all-image-tmd-proj-xgb-stratified-k-fold
+      md5: 298ead60df21969a935d15582b512f21.dir
+      size: 46144177
+      nfiles: 13
+  train-alt-neurites@in-L6-all-diagram-tmd-proj-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/all/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L6-all-diagram-tmd-proj-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/all/diagram-tmd-proj
+      md5: 84e0873d988471184f9699d4a32dff8f.dir
+      size: 530706
+      nfiles: 62
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L6-all-diagram-tmd-proj-perslay-stratified-k-fold
+      md5: e5c54b3d35c82cb8a32ea2611fac75c2.dir
+      size: 3431726
+      nfiles: 13
+  train-alt-neurites@in-L6-all-graph-proj-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/all/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L6-all-graph-proj-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/all/graph-proj
+      md5: b20a61fec2f30cea330affffc52d5477.dir
+      size: 530130
+      nfiles: 62
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L6-all-graph-proj-gnn-stratified-k-fold
+      md5: 92989d2b086a33b085780add43bed664.dir
+      size: 9142119
+      nfiles: 13
+  train-alt-neurites@in-L6-all-image-tmd-proj-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/all/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L6-all-image-tmd-proj-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/all/image-tmd-proj
+      md5: ed420d148d131bbb41b60278d763ca07.dir
+      size: 2919570
+      nfiles: 62
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L6-all-image-tmd-proj-cnn-stratified-k-fold
+      md5: 91046146ecf74947d7aff05f89b4822a.dir
+      size: 5335067
+      nfiles: 13
+  train-alt-neurites@in-L6-all-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/all/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L6-all-image-tmd-proj-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/all/image-tmd-proj
+      md5: ed420d148d131bbb41b60278d763ca07.dir
+      size: 2919570
+      nfiles: 62
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L6-all-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: c2a6a16c9e20917963ada12ff1a94290.dir
+      size: 25933991
+      nfiles: 13
+  train-alt-neurites@in-L6-all-image-tmd-proj-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/all/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L6-all-image-tmd-proj-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/all/image-tmd-proj
+      md5: ed420d148d131bbb41b60278d763ca07.dir
+      size: 2919570
+      nfiles: 62
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L6-all-image-tmd-proj-xgb-stratified-k-fold
+      md5: eaf6846ee7ec4e9de3a6cc4ca208bffd.dir
+      size: 26914333
+      nfiles: 13
+  train-alt-neurites@in-L6-basal-diagram-tmd-proj-perslay-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/basal/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L6-basal-diagram-tmd-proj-perslay-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/basal/diagram-tmd-proj
+      md5: 186bbe73cf18504651a35f2cbaf0df01.dir
+      size: 139154
+      nfiles: 62
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L6-basal-diagram-tmd-proj-perslay-stratified-k-fold
+      md5: 7f64278c430ff5512233c6ed7af19ff0.dir
+      size: 3431598
+      nfiles: 13
+  train-alt-neurites@in-L6-basal-graph-proj-gnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/basal/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L6-basal-graph-proj-gnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/basal/graph-proj
+      md5: 49ef1a81bfaa3e407177e4f60871ef3c.dir
+      size: 139026
+      nfiles: 62
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L6-basal-graph-proj-gnn-stratified-k-fold
+      md5: 64c61b81213d231e7afd6703162e7fc1.dir
+      size: 9149812
+      nfiles: 13
+  train-alt-neurites@in-L6-basal-image-tmd-proj-cnn-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/basal/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L6-basal-image-tmd-proj-cnn-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/basal/image-tmd-proj
+      md5: bde38a85a0c7df4bfa4a5e61b39a2799.dir
+      size: 2606418
+      nfiles: 62
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L6-basal-image-tmd-proj-cnn-stratified-k-fold
+      md5: a143a6e778c7c7416978f2264eb8be73.dir
+      size: 5326768
+      nfiles: 13
+  train-alt-neurites@in-L6-basal-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/basal/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L6-basal-image-tmd-proj-decision-tree-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/basal/image-tmd-proj
+      md5: bde38a85a0c7df4bfa4a5e61b39a2799.dir
+      size: 2606418
+      nfiles: 62
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L6-basal-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: e9a32713a176f68c4e8f78f6c87e9d41.dir
+      size: 26483504
+      nfiles: 13
+  train-alt-neurites@in-L6-basal-image-tmd-proj-xgb-stratified-k-fold:
+    cmd: morphoclass -v train --features-dir extract-features/in-L6/basal/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-alt-neurites/in-L6-basal-image-tmd-proj-xgb-stratified-k-fold
+    deps:
+    - path: extract-features/in-L6/basal/image-tmd-proj
+      md5: bde38a85a0c7df4bfa4a5e61b39a2799.dir
+      size: 2606418
+      nfiles: 62
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-alt-neurites/in-L6-basal-image-tmd-proj-xgb-stratified-k-fold
+      md5: f004b9fb24d2c5565a2428a541d5a574.dir
+      size: 27553370
+      nfiles: 13
+  train-lida-in-merged-all-proj@cnn-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged/all/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-all-cnn-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged/all/image-tmd-proj
+      md5: 1ec583a6e18628ae10b77bf7f378dcac.dir
+      size: 20012065
+      nfiles: 423
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-all-cnn-tmd-proj-stratified-k-fold
+      md5: 1e3da08ca3832a4d87a07eae656ca5c3.dir
+      size: 16391991
+      nfiles: 13
+  train-lida-in-merged-all-proj@decision-tree-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged/all/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-all-decision-tree-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged/all/image-tmd-proj
+      md5: 1ec583a6e18628ae10b77bf7f378dcac.dir
+      size: 20012065
+      nfiles: 423
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-all-decision-tree-tmd-proj-stratified-k-fold
+      md5: 5df5dd4bf2a07038c31de3c0e00980a4.dir
+      size: 150135634
+      nfiles: 13
+  train-lida-in-merged-all-proj@gnn-morphology-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged/all/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-all-gnn-morphology-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged/all/graph-proj
+      md5: 8823b3987b5ade21630cfffe0521557e.dir
+      size: 3738080
+      nfiles: 423
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-all-gnn-morphology-proj-stratified-k-fold
+      md5: 3fcdbefd14953f3f8956775b34c91e44.dir
+      size: 12290248
+      nfiles: 13
+  train-lida-in-merged-all-proj@perslay-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged/all/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-all-perslay-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged/all/diagram-tmd-proj
+      md5: f849dab4479558b7c6c5027a69b126c7.dir
+      size: 3740641
+      nfiles: 423
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-all-perslay-tmd-proj-stratified-k-fold
+      md5: 26b4239dfeb237b45a76565dc0115d73.dir
+      size: 3963106
+      nfiles: 13
+  train-lida-in-merged-all-proj@xgb-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged/all/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-all-xgb-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged/all/image-tmd-proj
+      md5: 1ec583a6e18628ae10b77bf7f378dcac.dir
+      size: 20012065
+      nfiles: 423
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-all-xgb-tmd-proj-stratified-k-fold
+      md5: 34e1800b76b7abd5b6d2ed36fced5692.dir
+      size: 152261397
+      nfiles: 13
+  train-lida-in-merged-basal-proj@cnn-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged/basal/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-basal-cnn-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged/basal/image-tmd-proj
+      md5: 3d6b0cadb53238f26b68d9f7fa6ee450.dir
+      size: 17771809
+      nfiles: 423
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-basal-cnn-tmd-proj-stratified-k-fold
+      md5: 479bef5252ebb7873b88d8047457ea56.dir
+      size: 16387470
+      nfiles: 13
+  train-lida-in-merged-basal-proj@decision-tree-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged/basal/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-basal-decision-tree-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged/basal/image-tmd-proj
+      md5: 3d6b0cadb53238f26b68d9f7fa6ee450.dir
+      size: 17771809
+      nfiles: 423
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-basal-decision-tree-tmd-proj-stratified-k-fold
+      md5: 066fee435d8fd22ec534e8891c554bff.dir
+      size: 150479702
+      nfiles: 13
+  train-lida-in-merged-basal-proj@gnn-morphology-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged/basal/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-basal-gnn-morphology-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged/basal/graph-proj
+      md5: 211960191643d6e9b256d17226e37ab6.dir
+      size: 936161
+      nfiles: 423
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-basal-gnn-morphology-proj-stratified-k-fold
+      md5: a7f8d3e357b98b302a28de23f103eb70.dir
+      size: 12287661
+      nfiles: 13
+  train-lida-in-merged-basal-proj@perslay-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged/basal/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-basal-perslay-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged/basal/diagram-tmd-proj
+      md5: 1c79002eace665133316c4464cd36c90.dir
+      size: 936801
+      nfiles: 423
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-basal-perslay-tmd-proj-stratified-k-fold
+      md5: 8e57ec584bf0d9a4819f84fa78264aec.dir
+      size: 3962793
+      nfiles: 13
+  train-lida-in-merged-basal-proj@xgb-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged/basal/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-basal-xgb-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged/basal/image-tmd-proj
+      md5: 3d6b0cadb53238f26b68d9f7fa6ee450.dir
+      size: 17771809
+      nfiles: 423
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-basal-xgb-tmd-proj-stratified-k-fold
+      md5: f895c98c8b0e19eb4bb5d0d09bd6a96b.dir
+      size: 153196006
+      nfiles: 13
+  train-lida-in-merged-bc-merged-all-proj@cnn-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/all/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-cnn-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/all/image-tmd-proj
+      md5: 650a9bdbe1f407854bae64bdbabdea96.dir
+      size: 20012001
+      nfiles: 423
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-cnn-tmd-proj-stratified-k-fold
+      md5: d3c3c000beb155491beea7a6076efb76.dir
+      size: 16302527
+      nfiles: 13
+  train-lida-in-merged-bc-merged-all-proj@decision-tree-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/all/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-decision-tree-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/all/image-tmd-proj
+      md5: 650a9bdbe1f407854bae64bdbabdea96.dir
+      size: 20012001
+      nfiles: 423
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-decision-tree-tmd-proj-stratified-k-fold
+      md5: 14af8258e1eb365117e11a7ca8ed093a.dir
+      size: 150062372
+      nfiles: 13
+  train-lida-in-merged-bc-merged-all-proj@gnn-morphology-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/all/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-gnn-morphology-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/all/graph-proj
+      md5: f05161f3b2246c828583a135b2eb2478.dir
+      size: 3737943
+      nfiles: 423
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-gnn-morphology-proj-stratified-k-fold
+      md5: 324c90b4c96a9ac837fe130e2f0a6add.dir
+      size: 12246954
+      nfiles: 13
+  train-lida-in-merged-bc-merged-all-proj@perslay-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/all/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-perslay-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/all/diagram-tmd-proj
+      md5: c0ec66a6d7c84a55acb4e57e56a653e9.dir
+      size: 3740641
+      nfiles: 423
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-perslay-tmd-proj-stratified-k-fold
+      md5: e74c97326b5e3980aaf2c4958894a418.dir
+      size: 3916279
+      nfiles: 13
+  train-lida-in-merged-bc-merged-all-proj@xgb-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/all/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-xgb-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/all/image-tmd-proj
+      md5: 650a9bdbe1f407854bae64bdbabdea96.dir
+      size: 20012001
+      nfiles: 423
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-all-xgb-tmd-proj-stratified-k-fold
+      md5: 2f3d86b7f7c374ec5361a1248fbdb3cf.dir
+      size: 151561466
+      nfiles: 13
+  train-lida-in-merged-bc-merged-basal-proj@cnn-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/basal/image-tmd-proj
+      --model-config training/configs/model-cnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-cnn-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/basal/image-tmd-proj
+      md5: 00bd47803a1173704fe1e1fa45d864d2.dir
+      size: 17771809
+      nfiles: 423
+    - path: training/configs/model-cnn.yaml
+      md5: c2760db0c4ea7b723b195262ccd96f3e
+      size: 162
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-cnn-tmd-proj-stratified-k-fold
+      md5: ba0a5b900cba3727d4a6d4472d5d81df.dir
+      size: 16296366
+      nfiles: 13
+  train-lida-in-merged-bc-merged-basal-proj@decision-tree-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/basal/image-tmd-proj
+      --model-config training/configs/model-decision-tree.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-decision-tree-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/basal/image-tmd-proj
+      md5: 00bd47803a1173704fe1e1fa45d864d2.dir
+      size: 17771809
+      nfiles: 423
+    - path: training/configs/model-decision-tree.yaml
+      md5: 6f5a6b3644eb40aa784dc99de39be6cc
+      size: 161
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-decision-tree-tmd-proj-stratified-k-fold
+      md5: 78e492920e285b3b7c9c415612217783.dir
+      size: 150408686
+      nfiles: 13
+  train-lida-in-merged-bc-merged-basal-proj@gnn-morphology-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/basal/graph-proj
+      --model-config training/configs/model-gnn.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-gnn-morphology-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/basal/graph-proj
+      md5: ee015f3fe753b813ec35f263cecde34e.dir
+      size: 936086
+      nfiles: 423
+    - path: training/configs/model-gnn.yaml
+      md5: 6bae758d5d29c2ee80bfc1ae81efb211
+      size: 266
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-gnn-morphology-proj-stratified-k-fold
+      md5: 7e564381710e08e5b875b1b206387512.dir
+      size: 12239884
+      nfiles: 13
+  train-lida-in-merged-bc-merged-basal-proj@perslay-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/basal/diagram-tmd-proj
+      --model-config training/configs/model-perslay.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-perslay-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/basal/diagram-tmd-proj
+      md5: 52bff7afc8d479d88495a81066bb3a02.dir
+      size: 936801
+      nfiles: 423
+    - path: training/configs/model-perslay.yaml
+      md5: cd51ae94c08b5c16a23b38b57cf19aa9
+      size: 191
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-perslay-tmd-proj-stratified-k-fold
+      md5: 342200a563322b9430f8d3b7220685f6.dir
+      size: 3916352
+      nfiles: 13
+  train-lida-in-merged-bc-merged-basal-proj@xgb-tmd-proj:
+    cmd: morphoclass -v train --features-dir extract-features/lida-in-merged-bc-merged/basal/image-tmd-proj
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --checkpoint-dir training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-xgb-tmd-proj-stratified-k-fold
+    deps:
+    - path: extract-features/lida-in-merged-bc-merged/basal/image-tmd-proj
+      md5: 00bd47803a1173704fe1e1fa45d864d2.dir
+      size: 17771809
+      nfiles: 423
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: a3ed00f26b1e4c78675bb219a96166e5
+      size: 87
+    outs:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-bc-merged-basal-xgb-tmd-proj-stratified-k-fold
+      md5: d54a19cf2906929c6748821d7ff1014b.dir
+      size: 152305154
+      nfiles: 13
