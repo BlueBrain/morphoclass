@@ -7051,8 +7051,8 @@ stages:
       \ Curate\n"
     deps:
     - path: data/mcar-luigi.cfg
-      md5: 4152d2ee2d06b51121548490b4b969db
-      size: 2372
+      md5: 4b39e96562dcbbafcf9dc20c0c56af25
+      size: 2340
     - path: data/preprocessed-pyramidal-cells.csv
       md5: 68eda9fadd7180c0bcbaf5668e0381e0
       size: 39124
@@ -7062,8 +7062,8 @@ stages:
       nfiles: 465
     outs:
     - path: data/mcar-curation/pyramidal-cells
-      md5: 25b8d5adf1844a8987eb69971d2fa807.dir
-      size: 445189272
+      md5: e5951e3f339e7cf7b4bc437948e689d6.dir
+      size: 444856331
       nfiles: 2808
   mcar-curation@interneurons:
     cmd: "MCAR_INPUT_CSV_PATH=\"data/preprocessed-interneurons.csv\" MCAR_OUTPUT_DIR=\"\
@@ -7072,8 +7072,8 @@ stages:
       \ Curate\n"
     deps:
     - path: data/mcar-luigi.cfg
-      md5: 4152d2ee2d06b51121548490b4b969db
-      size: 2372
+      md5: 4b39e96562dcbbafcf9dc20c0c56af25
+      size: 2340
     - path: data/preprocessed-interneurons.csv
       md5: ba460bc48dd2aa490b36126b178b4433
       size: 42382
@@ -7083,8 +7083,8 @@ stages:
       nfiles: 1016
     outs:
     - path: data/mcar-curation/interneurons
-      md5: d2e90f4e3ac3d0050a97938331af7917.dir
-      size: 679376329
+      md5: 620dfa065968722e83974f16ea2a02f4.dir
+      size: 678984676
       nfiles: 3300
   preprocess-dataset@interneurons:
     cmd: "morphoclass -v preprocess-dataset --dataset-type interneurons --morphologies-dir\
@@ -7550,8 +7550,8 @@ stages:
       data/mcar-luigi-logging.cfg\" morphology_workflows --local-scheduler Curate\n"
     deps:
     - path: data/mcar-luigi.cfg
-      md5: 4152d2ee2d06b51121548490b4b969db
-      size: 2372
+      md5: 4b39e96562dcbbafcf9dc20c0c56af25
+      size: 2340
     - path: data/preprocessed-janelia.csv
       md5: eecc19cc55a3864ac5f0b3df90bb4a90
       size: 8110
@@ -7561,8 +7561,8 @@ stages:
       nfiles: 183
     outs:
     - path: data/mcar-curation/janelia
-      md5: b9998966a790420cf692fdeff9eaa4ee.dir
-      size: 2522004446
+      md5: 431d99c3fb82f6d784656268b760a406.dir
+      size: 2535646718
       nfiles: 654
   organise-dataset@janelia:
     cmd: "morphoclass -v organise-dataset --input-csv-path data/mcar-curation/janelia/curated_dataset.csv\
