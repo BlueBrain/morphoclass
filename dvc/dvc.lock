@@ -7108,13 +7108,13 @@ stages:
       \ --output-dataset-directory data/final/interneurons\n"
     deps:
     - path: data/mcar-curation/interneurons
-      md5: d2e90f4e3ac3d0050a97938331af7917.dir
-      size: 679376329
+      md5: 620dfa065968722e83974f16ea2a02f4.dir
+      size: 678984676
       nfiles: 3300
     outs:
     - path: data/final/interneurons
-      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
-      size: 153652715
+      md5: 1b4380ff1d946c615db4d0a2f775b95c.dir
+      size: 153705227
       nfiles: 553
   train-lida-in-merged@cnn-deepwalk:
     cmd: morphoclass -v train --features-dir extract-features/lida-in-merged/axon/image-deepwalk
@@ -7522,13 +7522,13 @@ stages:
       \ --output-dataset-directory data/final/pyramidal-cells\n"
     deps:
     - path: data/mcar-curation/pyramidal-cells
-      md5: 25b8d5adf1844a8987eb69971d2fa807.dir
-      size: 445189272
+      md5: e5951e3f339e7cf7b4bc437948e689d6.dir
+      size: 444856331
       nfiles: 2808
     outs:
     - path: data/final/pyramidal-cells
-      md5: 2bab535e8594eaf3a27c0a6cde93e43f.dir
-      size: 99506351
+      md5: d5572007e1d58355d1da18ebc57bed40.dir
+      size: 99550991
       nfiles: 471
   preprocess-janelia:
     cmd: "python data/preprocess-janelia.py data/raw/janelia/selected_morphologies.csv\
@@ -7569,13 +7569,13 @@ stages:
       \ --output-dataset-directory data/final/janelia\n"
     deps:
     - path: data/mcar-curation/janelia
-      md5: b9998966a790420cf692fdeff9eaa4ee.dir
-      size: 2522004446
+      md5: 431d99c3fb82f6d784656268b760a406.dir
+      size: 2535646718
       nfiles: 654
     outs:
     - path: data/final/janelia
-      md5: b0dad1559e83b8293602e933b6b81a14.dir
-      size: 1334033273
+      md5: 6ae943143f3f4af89549ddbb11bd02e7.dir
+      size: 1345381739
       nfiles: 109
   train-janelia@gnn-morphology:
     cmd: morphoclass -v train --dataset-config training/extra-configs/lida-janelia-L5.yaml
