@@ -20,7 +20,8 @@ RUN \
 apt-get update && \
 DEBIAN_FRONTEND="noninteractive" \
 apt-get install -y --no-install-recommends \
-    build-essential make curl git htop less man ssh tzdata vim wget
+    build-essential make curl git htop less man ssh tzdata vim wget \
+    libx11-6 libgl1-mesa-glx
 
 # Install python
 RUN \
