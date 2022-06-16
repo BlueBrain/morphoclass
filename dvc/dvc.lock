@@ -8705,14 +8705,14 @@ stages:
       md5: 35948984a9f353ad6f73774382e1679c
       size: 1520
     - path: data/final/janelia
-      md5: b0dad1559e83b8293602e933b6b81a14.dir
-      size: 1334033273
+      md5: 6ae943143f3f4af89549ddbb11bd02e7.dir
+      size: 1345381739
       nfiles: 109
     outs:
     - path: extract-features/lida-janelia-L5/apical/image-tmd-rd
-      md5: 2189ce45868d3354c4f4b65ce56374c4.dir
-      size: 1472745
-      nfiles: 35
+      md5: c7f79f3109749caf4ca4d158b409162d.dir
+      size: 1934818
+      nfiles: 46
   features-pc-L4-image-tmd-rd-basal:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
       basal image-tmd-rd extract-features/pc-L4/basal/image-tmd-rd
@@ -9296,14 +9296,14 @@ stages:
       md5: 35948984a9f353ad6f73774382e1679c
       size: 1520
     - path: data/final/janelia
-      md5: b0dad1559e83b8293602e933b6b81a14.dir
-      size: 1334033273
+      md5: 6ae943143f3f4af89549ddbb11bd02e7.dir
+      size: 1345381739
       nfiles: 109
     outs:
     - path: extract-features/lida-janelia-L5/apical/graph-rd
-      md5: 5e46089e7b8963365b656f71fdeebf13.dir
-      size: 79529
-      nfiles: 35
+      md5: 4b5e653af0c087a8acdc49a5ef40d1e7.dir
+      size: 100898
+      nfiles: 46
   features-pc-L2-image-tmd-proj-all:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
       all image-tmd-proj extract-features/pc-L2/all/image-tmd-proj
@@ -9782,14 +9782,14 @@ stages:
       md5: 35948984a9f353ad6f73774382e1679c
       size: 1520
     - path: data/final/janelia
-      md5: b0dad1559e83b8293602e933b6b81a14.dir
-      size: 1334033273
+      md5: 6ae943143f3f4af89549ddbb11bd02e7.dir
+      size: 1345381739
       nfiles: 109
     outs:
     - path: extract-features/lida-janelia-L5/apical/diagram-deepwalk
-      md5: 4bbb0d4b1ef25a06638779f03e3c4ea5.dir
-      size: 87849
-      nfiles: 35
+      md5: 9549037dac865c67ffe887181df9a6b8.dir
+      size: 114530
+      nfiles: 46
   features-pc-L4-image-tmd-rd-axon:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
       axon image-tmd-rd extract-features/pc-L4/axon/image-tmd-rd
@@ -10236,14 +10236,14 @@ stages:
       md5: 35948984a9f353ad6f73774382e1679c
       size: 1520
     - path: data/final/janelia
-      md5: b0dad1559e83b8293602e933b6b81a14.dir
-      size: 1334033273
+      md5: 6ae943143f3f4af89549ddbb11bd02e7.dir
+      size: 1345381739
       nfiles: 109
     outs:
     - path: extract-features/lida-janelia-L5/apical/image-deepwalk
-      md5: ec2f46f0b7ca128224031ddb2da2b696.dir
-      size: 1472745
-      nfiles: 35
+      md5: 8ac7eb8973ca6521e876528dfe61967f.dir
+      size: 1934818
+      nfiles: 46
   features-pc-L2-diagram-tmd-proj-basal:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
       basal diagram-tmd-proj extract-features/pc-L2/basal/diagram-tmd-proj
@@ -10734,14 +10734,14 @@ stages:
       md5: 35948984a9f353ad6f73774382e1679c
       size: 1520
     - path: data/final/janelia
-      md5: b0dad1559e83b8293602e933b6b81a14.dir
-      size: 1334033273
+      md5: 6ae943143f3f4af89549ddbb11bd02e7.dir
+      size: 1345381739
       nfiles: 109
     outs:
     - path: extract-features/lida-janelia-L5/apical/diagram-tmd-rd
-      md5: 916497cf77cfd8ad06ae8a582b17cabc.dir
-      size: 79657
-      nfiles: 35
+      md5: 1a779d2c821c131b56f89fddb265d5c8.dir
+      size: 103778
+      nfiles: 46
   features-pc-L2-graph-proj-apical:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
       apical graph-proj extract-features/pc-L2/apical/graph-proj
@@ -18720,8 +18720,8 @@ stages:
       --output-features-directory ./extract-features-morphometrics/janelia-L5/all
     outs:
     - path: extract-features-morphometrics/janelia-L5/all
-      md5: 4c49c5cbff2d2e98b60a0077e5dbb666.dir
-      size: 112424
+      md5: eb7c44d7d378111195751e2a8746c80b.dir
+      size: 113979
       nfiles: 1
   train-morphometrics@janelia-L5-all-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/janelia-L5/all/features.csv
