@@ -7108,12 +7108,12 @@ stages:
       \ --output-dataset-directory data/final/interneurons\n"
     deps:
     - path: data/mcar-curation/interneurons
-      md5: 620dfa065968722e83974f16ea2a02f4.dir
+      md5: b0e22dd9508cfdc823b9a09453d915d3.dir
       size: 678984676
       nfiles: 3300
     outs:
     - path: data/final/interneurons
-      md5: 1b4380ff1d946c615db4d0a2f775b95c.dir
+      md5: 25423f1e794e7f3a283d83ae42d509c7.dir
       size: 153705227
       nfiles: 553
   train-lida-in-merged@cnn-deepwalk:
@@ -7522,12 +7522,12 @@ stages:
       \ --output-dataset-directory data/final/pyramidal-cells\n"
     deps:
     - path: data/mcar-curation/pyramidal-cells
-      md5: e5951e3f339e7cf7b4bc437948e689d6.dir
+      md5: 030cc16fb2e8b5573e62871287cbd2a4.dir
       size: 444856331
       nfiles: 2808
     outs:
     - path: data/final/pyramidal-cells
-      md5: d5572007e1d58355d1da18ebc57bed40.dir
+      md5: d983167051a454d2fc7c2f3d3c64b8f5.dir
       size: 99550991
       nfiles: 471
   preprocess-janelia:
@@ -7569,7 +7569,7 @@ stages:
       \ --output-dataset-directory data/final/janelia\n"
     deps:
     - path: data/mcar-curation/janelia
-      md5: 431d99c3fb82f6d784656268b760a406.dir
+      md5: 790e386c4c743d102e99d0750645778f.dir
       size: 2535646718
       nfiles: 654
     outs:
