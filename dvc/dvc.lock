@@ -7051,8 +7051,8 @@ stages:
       \ Curate\n"
     deps:
     - path: data/mcar-luigi.cfg
-      md5: 4152d2ee2d06b51121548490b4b969db
-      size: 2372
+      md5: 4b39e96562dcbbafcf9dc20c0c56af25
+      size: 2340
     - path: data/preprocessed-pyramidal-cells.csv
       md5: 68eda9fadd7180c0bcbaf5668e0381e0
       size: 39124
@@ -7062,8 +7062,8 @@ stages:
       nfiles: 465
     outs:
     - path: data/mcar-curation/pyramidal-cells
-      md5: 25b8d5adf1844a8987eb69971d2fa807.dir
-      size: 445189272
+      md5: 030cc16fb2e8b5573e62871287cbd2a4.dir
+      size: 444856331
       nfiles: 2808
   mcar-curation@interneurons:
     cmd: "MCAR_INPUT_CSV_PATH=\"data/preprocessed-interneurons.csv\" MCAR_OUTPUT_DIR=\"\
@@ -7072,8 +7072,8 @@ stages:
       \ Curate\n"
     deps:
     - path: data/mcar-luigi.cfg
-      md5: 4152d2ee2d06b51121548490b4b969db
-      size: 2372
+      md5: 4b39e96562dcbbafcf9dc20c0c56af25
+      size: 2340
     - path: data/preprocessed-interneurons.csv
       md5: ba460bc48dd2aa490b36126b178b4433
       size: 42382
@@ -7083,8 +7083,8 @@ stages:
       nfiles: 1016
     outs:
     - path: data/mcar-curation/interneurons
-      md5: d2e90f4e3ac3d0050a97938331af7917.dir
-      size: 679376329
+      md5: b0e22dd9508cfdc823b9a09453d915d3.dir
+      size: 678984676
       nfiles: 3300
   preprocess-dataset@interneurons:
     cmd: "morphoclass -v preprocess-dataset --dataset-type interneurons --morphologies-dir\
@@ -7108,13 +7108,13 @@ stages:
       \ --output-dataset-directory data/final/interneurons\n"
     deps:
     - path: data/mcar-curation/interneurons
-      md5: d2e90f4e3ac3d0050a97938331af7917.dir
-      size: 679376329
+      md5: b0e22dd9508cfdc823b9a09453d915d3.dir
+      size: 678984676
       nfiles: 3300
     outs:
     - path: data/final/interneurons
-      md5: 07795e8f515bd1d3fd18a6a2bc087e15.dir
-      size: 153652715
+      md5: 25423f1e794e7f3a283d83ae42d509c7.dir
+      size: 153705227
       nfiles: 553
   train-lida-in-merged@cnn-deepwalk:
     cmd: morphoclass -v train --features-dir extract-features/lida-in-merged/axon/image-deepwalk
@@ -7522,13 +7522,13 @@ stages:
       \ --output-dataset-directory data/final/pyramidal-cells\n"
     deps:
     - path: data/mcar-curation/pyramidal-cells
-      md5: 25b8d5adf1844a8987eb69971d2fa807.dir
-      size: 445189272
+      md5: 030cc16fb2e8b5573e62871287cbd2a4.dir
+      size: 444856331
       nfiles: 2808
     outs:
     - path: data/final/pyramidal-cells
-      md5: 2bab535e8594eaf3a27c0a6cde93e43f.dir
-      size: 99506351
+      md5: d983167051a454d2fc7c2f3d3c64b8f5.dir
+      size: 99550991
       nfiles: 471
   preprocess-janelia:
     cmd: "python data/preprocess-janelia.py data/raw/janelia/selected_morphologies.csv\
@@ -7550,8 +7550,8 @@ stages:
       data/mcar-luigi-logging.cfg\" morphology_workflows --local-scheduler Curate\n"
     deps:
     - path: data/mcar-luigi.cfg
-      md5: 4152d2ee2d06b51121548490b4b969db
-      size: 2372
+      md5: 4b39e96562dcbbafcf9dc20c0c56af25
+      size: 2340
     - path: data/preprocessed-janelia.csv
       md5: eecc19cc55a3864ac5f0b3df90bb4a90
       size: 8110
@@ -7561,21 +7561,21 @@ stages:
       nfiles: 183
     outs:
     - path: data/mcar-curation/janelia
-      md5: b9998966a790420cf692fdeff9eaa4ee.dir
-      size: 2522004446
+      md5: 790e386c4c743d102e99d0750645778f.dir
+      size: 2535646718
       nfiles: 654
   organise-dataset@janelia:
     cmd: "morphoclass -v organise-dataset --input-csv-path data/mcar-curation/janelia/curated_dataset.csv\
       \ --output-dataset-directory data/final/janelia\n"
     deps:
     - path: data/mcar-curation/janelia
-      md5: b9998966a790420cf692fdeff9eaa4ee.dir
-      size: 2522004446
+      md5: 790e386c4c743d102e99d0750645778f.dir
+      size: 2535646718
       nfiles: 654
     outs:
     - path: data/final/janelia
-      md5: b0dad1559e83b8293602e933b6b81a14.dir
-      size: 1334033273
+      md5: 6ae943143f3f4af89549ddbb11bd02e7.dir
+      size: 1345381739
       nfiles: 109
   train-janelia@gnn-morphology:
     cmd: morphoclass -v train --dataset-config training/extra-configs/lida-janelia-L5.yaml
@@ -8705,14 +8705,14 @@ stages:
       md5: 35948984a9f353ad6f73774382e1679c
       size: 1520
     - path: data/final/janelia
-      md5: b0dad1559e83b8293602e933b6b81a14.dir
-      size: 1334033273
+      md5: 6ae943143f3f4af89549ddbb11bd02e7.dir
+      size: 1345381739
       nfiles: 109
     outs:
     - path: extract-features/lida-janelia-L5/apical/image-tmd-rd
-      md5: 2189ce45868d3354c4f4b65ce56374c4.dir
-      size: 1472745
-      nfiles: 35
+      md5: c7f79f3109749caf4ca4d158b409162d.dir
+      size: 1934818
+      nfiles: 46
   features-pc-L4-image-tmd-rd-basal:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
       basal image-tmd-rd extract-features/pc-L4/basal/image-tmd-rd
@@ -9296,14 +9296,14 @@ stages:
       md5: 35948984a9f353ad6f73774382e1679c
       size: 1520
     - path: data/final/janelia
-      md5: b0dad1559e83b8293602e933b6b81a14.dir
-      size: 1334033273
+      md5: 6ae943143f3f4af89549ddbb11bd02e7.dir
+      size: 1345381739
       nfiles: 109
     outs:
     - path: extract-features/lida-janelia-L5/apical/graph-rd
-      md5: 5e46089e7b8963365b656f71fdeebf13.dir
-      size: 79529
-      nfiles: 35
+      md5: 4b5e653af0c087a8acdc49a5ef40d1e7.dir
+      size: 100898
+      nfiles: 46
   features-pc-L2-image-tmd-proj-all:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
       all image-tmd-proj extract-features/pc-L2/all/image-tmd-proj
@@ -9782,14 +9782,14 @@ stages:
       md5: 35948984a9f353ad6f73774382e1679c
       size: 1520
     - path: data/final/janelia
-      md5: b0dad1559e83b8293602e933b6b81a14.dir
-      size: 1334033273
+      md5: 6ae943143f3f4af89549ddbb11bd02e7.dir
+      size: 1345381739
       nfiles: 109
     outs:
     - path: extract-features/lida-janelia-L5/apical/diagram-deepwalk
-      md5: 4bbb0d4b1ef25a06638779f03e3c4ea5.dir
-      size: 87849
-      nfiles: 35
+      md5: 9549037dac865c67ffe887181df9a6b8.dir
+      size: 114530
+      nfiles: 46
   features-pc-L4-image-tmd-rd-axon:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L4/dataset.csv
       axon image-tmd-rd extract-features/pc-L4/axon/image-tmd-rd
@@ -10236,14 +10236,14 @@ stages:
       md5: 35948984a9f353ad6f73774382e1679c
       size: 1520
     - path: data/final/janelia
-      md5: b0dad1559e83b8293602e933b6b81a14.dir
-      size: 1334033273
+      md5: 6ae943143f3f4af89549ddbb11bd02e7.dir
+      size: 1345381739
       nfiles: 109
     outs:
     - path: extract-features/lida-janelia-L5/apical/image-deepwalk
-      md5: ec2f46f0b7ca128224031ddb2da2b696.dir
-      size: 1472745
-      nfiles: 35
+      md5: 8ac7eb8973ca6521e876528dfe61967f.dir
+      size: 1934818
+      nfiles: 46
   features-pc-L2-diagram-tmd-proj-basal:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
       basal diagram-tmd-proj extract-features/pc-L2/basal/diagram-tmd-proj
@@ -10734,14 +10734,14 @@ stages:
       md5: 35948984a9f353ad6f73774382e1679c
       size: 1520
     - path: data/final/janelia
-      md5: b0dad1559e83b8293602e933b6b81a14.dir
-      size: 1334033273
+      md5: 6ae943143f3f4af89549ddbb11bd02e7.dir
+      size: 1345381739
       nfiles: 109
     outs:
     - path: extract-features/lida-janelia-L5/apical/diagram-tmd-rd
-      md5: 916497cf77cfd8ad06ae8a582b17cabc.dir
-      size: 79657
-      nfiles: 35
+      md5: 1a779d2c821c131b56f89fddb265d5c8.dir
+      size: 103778
+      nfiles: 46
   features-pc-L2-graph-proj-apical:
     cmd: morphoclass -v extract-features data/final/pyramidal-cells/L2/dataset.csv
       apical graph-proj extract-features/pc-L2/apical/graph-proj
@@ -18720,8 +18720,8 @@ stages:
       --output-features-directory ./extract-features-morphometrics/janelia-L5/all
     outs:
     - path: extract-features-morphometrics/janelia-L5/all
-      md5: 4c49c5cbff2d2e98b60a0077e5dbb666.dir
-      size: 112424
+      md5: eb7c44d7d378111195751e2a8746c80b.dir
+      size: 113979
       nfiles: 1
   train-morphometrics@janelia-L5-all-morphometrics-xgb-stratified-k-fold:
     cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/janelia-L5/all/features.csv
