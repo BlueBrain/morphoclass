@@ -107,7 +107,7 @@ def cli(input_csv_path: str, output_dir: StrPath) -> None:
         df_out = df_out.sort_values(by="new_morph_path")
         csv_path = output_dir / layer / "dataset.csv"
         df_out["new_morph_path"] = df_out["new_morph_path"].map(
-            lambda path: change_base_dir(path, csv_path.parent)
+            lambda path, new_base=csv_path.parent: change_base_dir(path, new_base)
         )
         df_out.to_csv(csv_path, index=False, header=None)
 
