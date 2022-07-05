@@ -22088,3 +22088,36 @@ stages:
       md5: ed7b7a1cc2523221df58bcb44fbc170e.dir
       size: 152305730
       nfiles: 13
+  plot-dataset-stats@pyramidal-cells:
+    cmd: "morphoclass -v plot-dataset-stats --input-csv-path data/preprocessed-pyramidal-cells.csv\
+      \ --output-report-path reports/plot-dataset-stats/pyramidal-cells.html\n"
+    deps:
+    - path: data/preprocessed-pyramidal-cells.csv
+      md5: 68eda9fadd7180c0bcbaf5668e0381e0
+      size: 39124
+    - path: data/raw/pyramidal-cells/morphologies
+      md5: 4d39a1c2356e92e28c6f6aba66a6e482.dir
+      size: 108125264
+      nfiles: 465
+  plot-dataset-stats@interneurons:
+    cmd: "morphoclass -v plot-dataset-stats --input-csv-path data/preprocessed-interneurons.csv\
+      \ --output-report-path reports/plot-dataset-stats/interneurons.html\n"
+    deps:
+    - path: data/preprocessed-interneurons.csv
+      md5: ba460bc48dd2aa490b36126b178b4433
+      size: 42382
+    - path: data/raw/interneurons/morphologies
+      md5: 24d63aa0c9ba0304a7af97557b082d7e.dir
+      size: 178029156
+      nfiles: 1016
+  plot-dataset-stats-janelia:
+    cmd: "morphoclass -v plot-dataset-stats --input-csv-path data/preprocessed-janelia.csv\
+      \ --output-report-path reports/plot-dataset-stats/janelia.html\n"
+    deps:
+    - path: data/preprocessed-janelia.csv
+      md5: eecc19cc55a3864ac5f0b3df90bb4a90
+      size: 8110
+    - path: data/raw/janelia/mouselight_isocortex_ASCII_Files
+      md5: b670dc26e797a448a6ff173734082290.dir
+      size: 1307981493
+      nfiles: 183
