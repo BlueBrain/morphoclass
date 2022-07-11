@@ -44,8 +44,6 @@ section, we just need to replace ``CNNet`` by ``CorianderNet``::
     from morphoclass.training.trainers import Trainer
 
 
-    dataset = load_persistence_dataset(input_csv_train)
-
     all_labels = np.array([s.y for s in dataset])
     label_to_y = dataset.label_to_y
     labels_unique_str = sorted(label_to_y, key=lambda label: label_to_y[label])
@@ -55,7 +53,7 @@ section, we just need to replace ``CNNet`` by ``CorianderNet``::
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    moodel = CorianderNet(n_features=64)
+    model = CorianderNet(n_classes=n_classes, n_features=64)
     model.to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=5e-3, weight_decay=5e-4)
 
@@ -66,7 +64,7 @@ section, we just need to replace ``CNNet`` by ``CorianderNet``::
         n_epochs=100,
         batch_size=2,
         train_idx=train_idx,
-        val_idx=val_idx,
+        val_idx=None,
         progress_bar=tqdm,
     )
 

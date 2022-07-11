@@ -107,7 +107,7 @@ an example of how it can be trained on persistence images::
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    moodel = CNNet(image_size=100)
+    model = CNNet(n_classes=n_classes, image_size=100)
     model.to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=5e-3, weight_decay=5e-4)
 
@@ -118,7 +118,7 @@ an example of how it can be trained on persistence images::
         n_epochs=100,
         batch_size=2,
         train_idx=train_idx,
-        val_idx=val_idx,
+        val_idx=None,
         progress_bar=tqdm,
     )
 
