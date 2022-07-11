@@ -18,10 +18,13 @@ import collections
 import dataclasses
 import logging
 import pathlib
+from typing import Any
 from typing import Sequence
 
 import numpy as np
+import sklearn
 import torch
+import torch_geometric
 from imblearn.over_sampling import RandomOverSampler
 from sklearn import metrics
 from tqdm import tqdm
@@ -290,19 +293,24 @@ def train_model(
     return history
 
 
-def train_ml_model(model, dataset, train_idx, val_idx):
-    """Train an sklearn-like model.
+def train_ml_model(
+    model: sklearn.base.BaseEstimator,
+    dataset: MorphologyDataset,
+    train_idx: torch_geometric.data.dataset.IndexType,
+    val_idx: torch_geometric.data.dataset.IndexType,
+) -> dict[str, Any]:
+    """Train a sklearn-like model.
 
     Parameters
     ----------
     model
         A sklearn-like model with methods ``fit``, ``predict`` and
         ``predict_proba``.
-    dataset : morphoclass.data.MorphologyDataset
+    dataset
         A morphology dataset.
-    train_idx : torch_geometric.data.dataset.IndexType
+    train_idx
         The indices of the training set.
-    val_idx : torch_geometric.data.dataset.IndexType
+    val_idx
         The indices of the validation set.
 
     Returns
@@ -343,15 +351,15 @@ def train_ml_model(model, dataset, train_idx, val_idx):
 
 
 def train_dm_model(
-    model,
-    dataset,
-    train_idx,
-    val_idx=None,
-    optimizer=None,
-    batch_size=None,
-    n_epochs=None,
-    interactive=False,
-):
+    model: torch.nn.Module,
+    dataset: MorphologyDataset,
+    train_idx: torch_geometric.data.dataset.IndexType,
+    val_idx: torch_geometric.data.dataset.IndexType | None = None,
+    optimizer: torch.optim.Optimizer | None = None,
+    batch_size: int | None = None,
+    n_epochs: int | None = None,
+    interactive: bool = False,
+) -> dict[str, Any]:
     """Train morphoclass models."""
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     warn_if_nondeterministic(device)
