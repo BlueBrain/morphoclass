@@ -18,27 +18,63 @@ Here's we will be using this TMD approach to obtain the so-called persistence
 images of the apical dendrites. Here is a sample code for loading morphology
 data and transforming it into image data::
 
-    import morphoclass as mc
-    import morphoclass.data
-    import morphoclass.transforms
-    import morphoclass.utils
+    import numpy as np
+    import torch
+    from tmd.Topology.analysis import get_persistence_image_data
+
+    from morphoclass.data import MorphologyDataset
+    from morphoclass.features.non_graph import get_tmd_diagrams
+    from morphoclass.transforms import BranchingOnlyNeurites
+    from morphoclass.transforms import Compose
+    from morphoclass.transforms import ExtractEdgeIndex
+    from morphoclass.transforms import ExtractTMDNeurites
 
 
     def load_persistence_dataset(input_csv):
-        pre_transform = mc.transforms.Compose([
-            mc.transforms.ExtractTMDNeurites(neurite_type='apical'),
-            mc.transforms.BranchingOnlyNeurites(),
-        ])
+        # Pre-processing transformations
+        pre_transform = [
+            ExtractTMDNeurites(neurite_type="apical"),
+            BranchingOnlyNeurites(),
+            ExtractEdgeIndex(),
+        ]
+        pre_transform = Compose(pre_transform)
 
-        dataset = mc.data.MorphologyDataset.from_csv(
+        # Load neurites
+        dataset = MorphologyDataset.from_csv(
             csv_file=input_csv,
             pre_transform=pre_transform,
         )
-        dataset.feature = "radial_distances"
 
-        dataset_pi = dataset.to_persistence_dataset()
+        # Attach TMD diagram to each sample
+        for data in dataset:
+            data.num_nodes = sum(len(tree.p) for tree in data.tmd_neurites)
+        neurite_collection = [data.tmd_neurites for data in dataset]
+        tmd_diagrams = get_tmd_diagrams(
+            neurite_collection, feature="projection"
+        )  # or feature="radial_distance"
 
-        return dataset_pi
+        # Normalize TMD diagrams
+        xmin, ymin = np.stack([d.min(axis=0) for d in tmd_diagrams]).min(axis=0)
+        xmax, ymax = np.stack([d.max(axis=0) for d in tmd_diagrams]).max(axis=0)
+        xscale = max(abs(xmax), abs(xmin))
+        yscale = max(abs(ymax), abs(ymin))
+        scale = np.array([[xscale, yscale]])
+        for sample, diagram in zip(dataset, tmd_diagrams):
+            sample.diagram = torch.tensor(diagram / scale).float()
+
+        # Attach TMD images
+        xmin_norm = min(xmin, 0)
+        ymin_norm = min(ymin, 0)
+        for sample, diagram in zip(dataset, tmd_diagrams):
+            image = get_persistence_image_data(
+                diagram,
+                xlims=(xmin_norm, xmax),
+                ylims=(ymin_norm, ymax),
+            )
+            image = np.rot90(image)[np.newaxis, np.newaxis]  # shape = (batch, c, w, h)
+            sample.image = torch.tensor(image.copy()).float()
+
+        return dataset
 
 As described in section :doc:`data`, we first create a `MorphologyDataset` class, and
 then used the ``dataset.to_persistence_dataset`` helper function to transform it to
