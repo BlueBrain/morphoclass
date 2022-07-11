@@ -98,14 +98,14 @@ an example of how it can be trained on persistence images::
 
     dataset = load_persistence_dataset(input_csv_train)
 
-    all_labels = np.array([s.y for s in dataset])
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    labels = torch.tensor([s.y for s in dataset]).to(device)
     label_to_y = dataset.label_to_y
     labels_unique_str = sorted(label_to_y, key=lambda label: label_to_y[label])
     n_classes = len(labels_unique_str)
 
     reset_seeds(numpy_seed=0, torch_seed=0)
-
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     model = CNNet(n_classes=n_classes, image_size=100)
     model.to(device)
@@ -138,31 +138,25 @@ Evaluating
 Unlike for GNNs, the evaluation of the CNN has to be done in a more manual way. This
 may change in the future. Let's first look at the code and then make some comments after::
 
-    from torch.utils.data import DataLoader, TensorDataset
+    from morphoclass.data.morphology_data_loader import MorphologyDataLoader
 
 
-    # Create a data loader from the images
-    tensor_ds = TensorDataset(images_tensor)
-    loader = DataLoader(tensor_ds, batch_size=1, shuffle=False)
+    val_idx = torch.arange(len(dataset))
 
-    # Run the model on the images
+    data_loader = MorphologyDataLoader(dataset.index_select(val_idx))
+
     model.eval()
     logits = []
     with torch.no_grad():
-        for batch, in iter(loader):
+        for batch in data_loader:
             batch = batch.to(device)
-            batch_logits = model(batch).cpu().numpy()
-            logits.append(batch_logits)
-
-    # Transform logits into a numpy array
-    if len(logits) > 0:
-        logits = np.concatenate(logits)
-    else:
-        logits = np.array(logits)
+            out = model(batch)
+            logits.append(out)
+    logits = torch.cat(logits)
 
     # Compute predictions and accuracy
     predictions = logits.argmax(axis=1)
-    acc_train = np.mean(predictions == labels)
+    acc_train = (predictions == labels).float().mean()
     print(f"Accuracy: {acc_train * 100:.2f}%")
 
 As you can see, one needs to manually loop through the data by creating a data loader.

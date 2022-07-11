@@ -44,14 +44,14 @@ section, we just need to replace ``CNNet`` by ``CorianderNet``::
     from morphoclass.training.trainers import Trainer
 
 
-    all_labels = np.array([s.y for s in dataset])
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    labels = torch.tensor([s.y for s in dataset]).to(device)
     label_to_y = dataset.label_to_y
     labels_unique_str = sorted(label_to_y, key=lambda label: label_to_y[label])
     n_classes = len(labels_unique_str)
 
     reset_seeds(numpy_seed=0, torch_seed=0)
-
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     model = CorianderNet(n_classes=n_classes, n_features=64)
     model.to(device)
@@ -71,51 +71,5 @@ section, we just need to replace ``CNNet`` by ``CorianderNet``::
 
 Evaluation
 ----------
-Also the evaluation is similar to that in the :doc:`using_cnn` section::
-
-    import numpy as np
-    import torch
-    from torch.utils.data import DataLoader
-
-
-    # Data preparation
-    diagram_tensors = [
-        torch.tensor(diagram / trainer.scale, dtype=torch.float)
-        for diagram in diagrams
-    ]
-    loader = DataLoader(
-        diagram_tensors,
-        shuffle=False,
-        batch_size=1,
-        collate_fn=mc.models.CorianderNetTrainer.perslay_collate_diagrams,
-    )
-
-    # Evaluation
-    model.eval()
-    logits = []
-    with torch.no_grad():
-        for diagram_batch, point_index in loader:
-            diagram_batch = diagram_batch.to(device)
-            point_index = point_index.to(device)
-            batch_logits = model(diagram_batch, point_index).cpu().numpy()
-            logits.append(batch_logits)
-    if len(logits) > 0:
-        logits = np.concatenate(logits)
-    else:
-        logits = np.array(logits)
-
-
-    # Compute predictions and accuracy
-    predictions = logits.argmax(axis=1)
-    acc_train = np.mean(predictions == labels)
-    print(f"Accuracy: {acc_train * 100:.2f}%")
-
-Some small differences include:
-
-- There is a ``scale`` variable that is determined by the trainer at training time and is used
-  to normalize the values that are used to represent the persistence diagrams. When
-  constructing the evaluation set this scale should be used.
-- It is necessary to provide a custom collate function in the data loader, since unlike
-  for equally-sized images there is no obvious way how several persistence diagrams can
-  be collated together to a batch of diagrams. This is the same collate function that
-  is used internally by the trainer at training time.
+The evaluation can be done exactly in the same way explained in the :doc:`using_cnn` section.
+The very same code can be used, without need for any change.
