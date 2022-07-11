@@ -25,46 +25,51 @@ Loading morphology data, and transforming it into persistence images -- and diag
 covered in the previous sections, and we can use the helper function defined
 in the :doc:`using_cnn` section::
 
-    diagrams, images, labels = load_persistence_dataset(input_csv_train)
+    dataset = load_persistence_dataset(input_csv_train)
 
 We will only need the diagrams and the labels.
 
 Training
 --------
-Overall the logic of training the PersLay model is very similar to the one
-presented in the :doc:`using_cnn` section::
+Training the PersLay model is almost the same of what explained in the :doc:`using_cnn`
+section, we just need to replace ``CNNet`` by ``CorianderNet``::
 
-    import torch.optim
+    import numpy as np
+    import torch
+    from tqdm import tqdm
 
-    import morphoclass as mc
-    import morphoclass.models
-    import morphoclass.training
+    from morphoclass.data.morphology_data_loader import MorphologyDataLoader
+    from morphoclass.models import CorianderNet
+    from morphoclass.training import reset_seeds
+    from morphoclass.training.trainers import Trainer
 
 
-    labels_tensor = torch.tensor(labels)
-    n_classes = labels.max().item() + 1
+    dataset = load_persistence_dataset(input_csv_train)
 
-    mc.training.reset_seeds(numpy_seed=0, torch_seed=0)
+    all_labels = np.array([s.y for s in dataset])
+    label_to_y = dataset.label_to_y
+    labels_unique_str = sorted(label_to_y, key=lambda label: label_to_y[label])
+    n_classes = len(labels_unique_str)
+
+    reset_seeds(numpy_seed=0, torch_seed=0)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    model = mc.models.CorianderNet()
+    moodel = CorianderNet(n_features=64)
     model.to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=5e-3, weight_decay=5e-4)
 
-    trainer = mc.models.CorianderNetTrainer(model, diagrams, labels, optimizer)
-    train_idx = torch.arange(len(labels))
+    trainer = Trainer(model, dataset, optimizer, MorphologyDataLoader)
+    train_idx = torch.arange(len(dataset))
     val_idx = torch.arange(0)
-    trainer.train_split(
-        train_idx,
-        val_idx,
-        n_epochs=30000,
-        progress_bar_fn=tqdm,
+    history = trainer.train(
+        n_epochs=100,
+        batch_size=2,
+        train_idx=train_idx,
+        val_idx=val_idx,
+        progress_bar=tqdm,
     )
 
-
-Note that the number of epochs that is necessary to fit this model seems to be higher
-than that for other models by a factor of about 100, which was determined empirically.
 
 Evaluation
 ----------

@@ -14,9 +14,10 @@ the morphologies need to be transformed into some kind of 2D representation.
 Luckily Lida Kanari has developed a topological framework for doing exactly
 that - see the TMD package and the corresponding publications for details.
 
-Here's we will be using this TMD approach to obtain the so-called persistence
-images of the apical dendrites. Here is a sample code for loading morphology
-data and transforming it into image data::
+Here we will be using this TMD approach to obtain the so-called persistence
+diagrams of the neurites, and then apply Gaussian kernel-density estimation
+to generate images out of the diagrams. Here is a sample code for loading
+morphology data together with their TMD persistence diagrams and images::
 
     import numpy as np
     import torch
@@ -77,44 +78,48 @@ data and transforming it into image data::
         return dataset
 
 As described in section :doc:`data`, we first create a `MorphologyDataset` class, and
-then used the ``dataset.to_persistence_dataset`` helper function to transform it to
-persistence images.
+then we attach to its sample in this dataset the corresponding persistence diagram and
+image.
 
 Training
 --------
 The convolutional model we propose in this package is defined in `mc.models.CNNet`. Here's
 an example of how it can be trained on persistence images::
 
+    import numpy as np
     import torch
+    from tqdm import tqdm
 
-    import morphoclass as mc
-    import morphoclass.models
-    import morphoclass.training
-    import morphoclass.transforms
-    import morphoclass.utils
+    from morphoclass.data.morphology_data_loader import MorphologyDataLoader
+    from morphoclass.models import CNNet
+    from morphoclass.training import reset_seeds
+    from morphoclass.training.trainers import Trainer
 
 
-    diagrams, images, labels = load_persistence_dataset(input_csv_train)
+    dataset = load_persistence_dataset(input_csv_train)
 
-    images_tensor = torch.tensor(images, dtype=torch.float32).unsqueeze(1)
-    labels_tensor = torch.tensor(labels)
-    n_classes = labels.max().item() + 1
+    all_labels = np.array([s.y for s in dataset])
+    label_to_y = dataset.label_to_y
+    labels_unique_str = sorted(label_to_y, key=lambda label: label_to_y[label])
+    n_classes = len(labels_unique_str)
 
-    mc.training.reset_seeds(numpy_seed=0, torch_seed=0)
+    reset_seeds(numpy_seed=0, torch_seed=0)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    model = mc.models.CNNet(n_classes=n_classes)
+    moodel = CNNet(image_size=100)
     model.to(device)
-    cnnet_trainer = mc.models.CNNetTrainer(model, images_tensor, labels_tensor)
+    optimizer = torch.optim.Adam(model.parameters(), lr=5e-3, weight_decay=5e-4)
 
-    train_idx = torch.arange(len(images_tensor))
+    trainer = Trainer(model, dataset, optimizer, MorphologyDataLoader)
+    train_idx = torch.arange(len(dataset))
     val_idx = torch.arange(0)
-    cnnet_trainer.train(
-        train_idx,
-        val_idx,
-        n_epochs=300,
-        progress_bar_fn=tqdm,
+    history = trainer.train(
+        n_epochs=100,
+        batch_size=2,
+        train_idx=train_idx,
+        val_idx=val_idx,
+        progress_bar=tqdm,
     )
 
 The main difference is that the trainer class accepts a set of train and validation indices.
