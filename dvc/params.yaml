@@ -1675,7 +1675,7 @@ features-morphometrics:
     output-features-directory: pc-L6/all
   janelia-L5-all:
     morphometrics-config: morphometrics_config_all.yaml
-    dataset-csv: classes-janelia-L5.csv
+    dataset-csv: janelia/L5/dataset.csv
     output-features-directory: janelia-L5/all
   in-merged-all:
     morphometrics-config: morphometrics_config_all.yaml

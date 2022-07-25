@@ -164,10 +164,14 @@ class DatasetStatsPlotter:
             self._df_stats["layer"] = self.df_dataset["mtype"].map(mtype_to_layer)
             for neurite in ["axon", "apical", "basal", "neurites"]:
                 self._df_stats[f"{neurite}-size"] = self._df_stats["path"].map(
-                    lambda path: mean_graph_size(self.neurons[path], neurite)
+                    lambda path, neurite_type=neurite: mean_graph_size(
+                        self.neurons[path], neurite_type
+                    )
                 )
                 self._df_stats[f"{neurite}-pd-size"] = self._df_stats["path"].map(
-                    lambda path: mean_pd_size(self.neurons[path], neurite)
+                    lambda path, neurite_type=neurite: mean_pd_size(
+                        self.neurons[path], neurite_type
+                    )
                 )
             logger.info("Done computing dataset stats")
 

@@ -1310,162 +1310,162 @@ stages:
     outs:
     - extract-features/lida-in-merged/basal/image-tmd-proj
   features-lida-janelia-L5-diagram-deepwalk-all:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv all diagram-deepwalk
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv all diagram-deepwalk
       extract-features/lida-janelia-L5/all/diagram-deepwalk
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/all/diagram-deepwalk
   features-lida-janelia-L5-diagram-deepwalk-apical:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical diagram-deepwalk
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv apical diagram-deepwalk
       extract-features/lida-janelia-L5/apical/diagram-deepwalk
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/apical/diagram-deepwalk
   features-lida-janelia-L5-diagram-deepwalk-axon:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv axon diagram-deepwalk
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv axon diagram-deepwalk
       extract-features/lida-janelia-L5/axon/diagram-deepwalk
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/axon/diagram-deepwalk
   features-lida-janelia-L5-diagram-deepwalk-basal:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv basal diagram-deepwalk
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv basal diagram-deepwalk
       extract-features/lida-janelia-L5/basal/diagram-deepwalk
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/basal/diagram-deepwalk
   features-lida-janelia-L5-diagram-tmd-rd-all:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv all diagram-tmd-rd
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv all diagram-tmd-rd
       extract-features/lida-janelia-L5/all/diagram-tmd-rd
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/all/diagram-tmd-rd
   features-lida-janelia-L5-diagram-tmd-rd-apical:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical diagram-tmd-rd
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv apical diagram-tmd-rd
       extract-features/lida-janelia-L5/apical/diagram-tmd-rd
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/apical/diagram-tmd-rd
   features-lida-janelia-L5-diagram-tmd-rd-axon:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv axon diagram-tmd-rd
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv axon diagram-tmd-rd
       extract-features/lida-janelia-L5/axon/diagram-tmd-rd
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/axon/diagram-tmd-rd
   features-lida-janelia-L5-diagram-tmd-rd-basal:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv basal diagram-tmd-rd
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv basal diagram-tmd-rd
       extract-features/lida-janelia-L5/basal/diagram-tmd-rd
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/basal/diagram-tmd-rd
   features-lida-janelia-L5-graph-rd-all:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv all graph-rd
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv all graph-rd
       extract-features/lida-janelia-L5/all/graph-rd
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/all/graph-rd
   features-lida-janelia-L5-graph-rd-apical:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical graph-rd
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv apical graph-rd
       extract-features/lida-janelia-L5/apical/graph-rd
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/apical/graph-rd
   features-lida-janelia-L5-graph-rd-axon:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv axon graph-rd
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv axon graph-rd
       extract-features/lida-janelia-L5/axon/graph-rd
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/axon/graph-rd
   features-lida-janelia-L5-graph-rd-basal:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv basal graph-rd
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv basal graph-rd
       extract-features/lida-janelia-L5/basal/graph-rd
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/basal/graph-rd
   features-lida-janelia-L5-image-deepwalk-all:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv all image-deepwalk
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv all image-deepwalk
       extract-features/lida-janelia-L5/all/image-deepwalk
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/all/image-deepwalk
   features-lida-janelia-L5-image-deepwalk-apical:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical image-deepwalk
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv apical image-deepwalk
       extract-features/lida-janelia-L5/apical/image-deepwalk
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/apical/image-deepwalk
   features-lida-janelia-L5-image-deepwalk-axon:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv axon image-deepwalk
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv axon image-deepwalk
       extract-features/lida-janelia-L5/axon/image-deepwalk
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/axon/image-deepwalk
   features-lida-janelia-L5-image-deepwalk-basal:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv basal image-deepwalk
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv basal image-deepwalk
       extract-features/lida-janelia-L5/basal/image-deepwalk
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/basal/image-deepwalk
   features-lida-janelia-L5-image-tmd-rd-all:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv all image-tmd-rd
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv all image-tmd-rd
       extract-features/lida-janelia-L5/all/image-tmd-rd
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/all/image-tmd-rd
   features-lida-janelia-L5-image-tmd-rd-apical:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv apical image-tmd-rd
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv apical image-tmd-rd
       extract-features/lida-janelia-L5/apical/image-tmd-rd
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/apical/image-tmd-rd
   features-lida-janelia-L5-image-tmd-rd-axon:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv axon image-tmd-rd
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv axon image-tmd-rd
       extract-features/lida-janelia-L5/axon/image-tmd-rd
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/axon/image-tmd-rd
   features-lida-janelia-L5-image-tmd-rd-basal:
-    cmd: morphoclass -v extract-features data/final/classes-janelia-L5.csv basal image-tmd-rd
+    cmd: morphoclass -v extract-features data/final/janelia/L5/dataset.csv basal image-tmd-rd
       extract-features/lida-janelia-L5/basal/image-tmd-rd
     deps:
-    - data/final/classes-janelia-L5.csv
+    - data/final/janelia/L5/dataset.csv
     - data/final/janelia
     outs:
     - extract-features/lida-janelia-L5/basal/image-tmd-rd
