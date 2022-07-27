@@ -354,10 +354,10 @@ def train_dm_model(
     model: torch.nn.Module,
     dataset: MorphologyDataset,
     train_idx: torch_geometric.data.dataset.IndexType,
-    val_idx: torch_geometric.data.dataset.IndexType | None = None,
-    optimizer: torch.optim.Optimizer | None = None,
-    batch_size: int | None = None,
-    n_epochs: int | None = None,
+    val_idx: torch_geometric.data.dataset.IndexType,
+    optimizer: torch.optim.Optimizer,
+    batch_size: int,
+    n_epochs: int,
     interactive: bool = False,
 ) -> dict[str, Any]:
     """Train morphoclass models."""
