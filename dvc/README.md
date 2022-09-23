@@ -225,7 +225,7 @@ Different Machine Learning models can be used on different kinds of features.
   Network](https://pytorch-geometric.readthedocs.io/en/latest/index.html), can
   be used on graphs representing the neurite: `graph-rd`, `graph-proj`
 
-## Model Evaluation (`evaluate*)
+## Model Evaluation (`evaluate*`)
 
 Stages:
 
