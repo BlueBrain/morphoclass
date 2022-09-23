@@ -82,7 +82,8 @@ Stages:
 - `features-lida-in-merged-*` — for interneurons with all layers merged into
   one dataset
 - `features-lida-in-merged-bc-merged-*` — same as `features-lida-in-merged-*`,
-  but in addition `LBC`, `NBC, `SBC` M-types are merged in a new `BC` type
+  but in addition `LBC`, `NBC`, `SBC` M-types are merged in a new `BC` ("basket
+  cell") type
 - `features-morphometrics` — specific stage for morphometric features, for
   interneurons, pyramidal cells, janelia
 
@@ -110,7 +111,7 @@ The `dataset`s are the ones we just mentioned:
 - `janelia` — janelia
 - `in-merged` — interneurons, all layers merged
 - `in-merged-bc-merged` — interneurons, all layers merged and all `*BC` classes
-  merged
+  (i.e. all basket cells) merged
 
 In general, the `layer` can be any of `L1`, `L2`, ..., `L6`
 
@@ -126,17 +127,31 @@ Features embeddings can be computed using various methods.
 
 - `diagram-deepwalk` — 2D diagram of discrete points generated using
   [DeepWalk](https://arxiv.org/abs/1403.6652)
-- `diagram-tmd-rd` — 2D diagram of discrete points generated using Blue Brain's
+- `diagram-tmd-rd` and `diagram-tmd-proj` — 2D diagram of discrete points
+  generated using Blue Brain's
   [TMD](https://link.springer.com/article/10.1007/s12021-017-9341-1) based on
-  radial distance from soma
-- `graph-rd` — graph representing the dendritic or axonal trees, using radial
-  distance from soma as nodal features
+  radial distance from soma or projections on the y-axis, respectively.
+- `graph-rd` and `graph-proj` — graph representing the dendritic or axonal
+   trees, using radial distance from soma or projections on the y-axis,
+   respectively, as nodal features.
 - `image-deepwalk` — 2D image obtained from `diagram-deepwalk` by applying
   [Gaussian KDE](https://en.wikipedia.org/wiki/Kernel_density_estimation)
-- `image-tmd-rd` — 2D image obtained from `diagram-tmd-rd` by applying
+- `image-tmd-rd` and `image-tmd-proj` — 2D image obtained from `diagram-tmd-rd`
+  and `diagram-tmd-proj`, respectively, by applying
   [Gaussian KDE](https://en.wikipedia.org/wiki/Kernel_density_estimation)
 - `morphometrics` — morphometric features extracted using Blue Brain's
   [NeuroM](https://github.com/BlueBrain/neurom)
+
+From this list we can observe that feature extraction algorithms based on `tmd`
+(`diagram-tmd-*` and `image-tmd-*`) or `graph` (`graph-*`) support two kinds of
+nodal features to be considered.
+
+- `rd` — radial distance from soma, this is the default and the best approach
+  for most datasets.
+- `proj` — projection on the y-axis, this is useful when some morphology classes
+  are characterized exclusively by their "upside-down" neurites (e.g. `IPC`,
+  "inverted pyramidal cells" for pyramidal cells in `L2` and `L6`), so in these
+  cases we need the y-axis projection to distinguish "up" from "down".
 
 ### Neurite Types
 
@@ -195,20 +210,20 @@ Different Machine Learning models can be used on different kinds of features.
 
 - **`cnn`** — [2D Convolutional Neural
   Network](https://en.wikipedia.org/wiki/Convolutional_neural_network), can be
-  used on image features: `image-deepwalk`, `image-tmd-rd`
+  used on image features: `image-deepwalk`, `image-tmd-rd`, `image-tmd-proj`
 - **`decision-tree`** — [Decision Tree
   classifier](https://scikit-learn.org/stable/modules/tree.html#tree), can be
   used on all sort of features, and in our case we consider: `image-deepwalk`,
-  `image-tmd-rd`,
+  `image-tmd-rd`, `image-tmd-proj`
 - **`xgb`** — [XGBoost classifier](https://xgboost.readthedocs.io/en/stable/),
   can be used on all sort of features, and in our case we consider:
-  `image-deepwalk`, `image-tmd-rd`, `morphometrics`.
+  `image-deepwalk`, `image-tmd-rd`,  `image-tmd-proj`, `morphometrics`.
 - **`perslay`** — [PersLay](https://arxiv.org/abs/1904.09378) can be used on
   Topologial Data Analysis descriptors in represented by a diagram:
-  `diagram-deepwalk`, `diagram-tmd-rd`
+  `diagram-deepwalk`, `diagram-tmd-rd`, `diagram-tmd-proj`
 - **`gnn`** — [Graph Neural
   Network](https://pytorch-geometric.readthedocs.io/en/latest/index.html), can
-  be used on graphs representing the neurite: `graph-rd`
+  be used on graphs representing the neurite: `graph-rd`, `graph-proj`
 
 ## Model Evaluation (`evaluate*)
 
