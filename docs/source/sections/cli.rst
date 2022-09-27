@@ -15,12 +15,12 @@ the installation worked correctly by running the following command:
 
 .. code-block::
 
-    $ deepmorphs -V
-    deepmorphs, version 0.2.8.dev66
+    $ morphoclass -V
+    morphoclass, version 0.1.dev37
 
 
 All functionality is organised into subcommands
-``deepmorphs <sub-command> ...``.
+``morphoclass <sub-command> ...``.
 
 There are some options to append to the command line:
 
@@ -37,7 +37,7 @@ For interactive sessions I'd recommend to always use at least ``-v``, .e.g
 
 .. code-block::
 
-    $ deepmorphs -v <sub-command> ...
+    $ morphoclass -v <sub-command> ...
 
 Subcommands
 -----------
