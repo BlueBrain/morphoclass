@@ -2697,12 +2697,12 @@ stages:
       cmd: >-
         morphoclass -vv evaluate performance
         training/checkpoints-morphometrics/${item}/checkpoint.chk
-        evaluation/checkpoints-morphometrics/${item}.html
+        evaluation/${item}.html
       deps:
         - training/checkpoints-morphometrics/${item}/checkpoint.chk
       outs:
-        - evaluation/checkpoints-morphometrics/${item}.html
-        - evaluation/checkpoints-morphometrics/${item}
+        - evaluation/${item}.html
+        - evaluation/${item}
       desc: "Evaluate M-type classifier with morphometric input features (tabular data)"
 
   transfer-learning:
