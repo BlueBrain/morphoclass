@@ -1739,3 +1739,18 @@ training-morphometrics:
     morphometrics-features-dir: ./extract-features-morphometrics/in-merged-bc-merged/all/features.csv
     model-config: training/configs/model-xgb.yaml
     splitter-config: training/configs/splitter-stratified-k-fold.yaml
+
+evaluate-morphometrics:
+  - in-L1-all-morphometrics-xgb-stratified-k-fold
+  - in-L23-all-morphometrics-xgb-stratified-k-fold
+  - in-L4-all-morphometrics-xgb-stratified-k-fold
+  - in-L5-all-morphometrics-xgb-stratified-k-fold
+  - in-L6-all-morphometrics-xgb-stratified-k-fold
+  - janelia-L5-all-morphometrics-xgb-stratified-k-fold
+  - pc-L2-all-morphometrics-xgb-stratified-k-fold
+  - pc-L3-all-morphometrics-xgb-stratified-k-fold
+  - pc-L4-all-morphometrics-xgb-stratified-k-fold
+  - pc-L5-all-morphometrics-xgb-stratified-k-fold
+  - pc-L6-all-morphometrics-xgb-stratified-k-fold
+  - in-merged-all-morphometrics-xgb-stratified-k-fold
+  - in-merged-bc-merged-all-morphometrics-xgb-stratified-k-fold
