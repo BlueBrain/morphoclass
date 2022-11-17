@@ -2691,6 +2691,20 @@ stages:
         - training/checkpoints-morphometrics/${key}
       desc: "Train M-type classifier with morphometric input features (tabular data)"
 
+  evaluate-morphometrics:
+    foreach: ${evaluate-morphometrics}
+    do:
+      cmd: >-
+        morphoclass -vv evaluate performance
+        training/checkpoints-morphometrics/${item}/checkpoint.chk
+        evaluation/${item}.html
+      deps:
+        - training/checkpoints-morphometrics/${item}/checkpoint.chk
+      outs:
+        - evaluation/${item}.html
+        - evaluation/${item}
+      desc: "Evaluate M-type classifier with morphometric input features (tabular data)"
+
   transfer-learning:
     foreach: ${transfer_learning.models}
     do:
