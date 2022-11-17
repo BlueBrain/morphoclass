@@ -29660,3 +29660,318 @@ stages:
     - path: evaluation/in-L1-basal-diagram-tmd-proj-perslay-stratified-k-fold.html
       md5: 11c578a718996e61ed15cdd311d2525f
       size: 12177
+  evaluate-alt-neurites@pc-L5-axon-image-tmd-rd-cnn-stratified-k-fold:
+    cmd: morphoclass -v evaluate performance training/checkpoints-alt-neurites/pc-L5-axon-image-tmd-rd-cnn-stratified-k-fold/checkpoint.chk
+      evaluation/pc-L5-axon-image-tmd-rd-cnn-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-alt-neurites/pc-L5-axon-image-tmd-rd-cnn-stratified-k-fold/checkpoint.chk
+      md5: 2d53fc69b9d984fc5b13be6240e415b0
+      size: 13721450
+    outs:
+    - path: evaluation/pc-L5-axon-image-tmd-rd-cnn-stratified-k-fold
+      md5: 1cb27a5d5dab23399abd7dde39edd569.dir
+      size: 8949762
+      nfiles: 33
+    - path: evaluation/pc-L5-axon-image-tmd-rd-cnn-stratified-k-fold.html
+      md5: 9f39e4c8cdca50b72b3edbfb1d942441
+      size: 10850
+  evaluate@in-L23-axon-image-deepwalk-cnn-stratified-k-fold:
+    cmd: morphoclass -v evaluate performance training/checkpoints/in-L23-axon-image-deepwalk-cnn-stratified-k-fold/checkpoint.chk
+      evaluation/in-L23-axon-image-deepwalk-cnn-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints/in-L23-axon-image-deepwalk-cnn-stratified-k-fold/checkpoint.chk
+      md5: f1616e55439dfa9bd9b9b9cae3975f83
+      size: 13731060
+    outs:
+    - path: evaluation/in-L23-axon-image-deepwalk-cnn-stratified-k-fold
+      md5: ed094eec80bd462cef870ee1c13917cd.dir
+      size: 9068488
+      nfiles: 33
+    - path: evaluation/in-L23-axon-image-deepwalk-cnn-stratified-k-fold.html
+      md5: 95c0079652ff74f6997572b7cf3cffe4
+      size: 13252
+  evaluate@pc-L6-apical-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v evaluate performance training/checkpoints/pc-L6-apical-image-tmd-proj-decision-tree-stratified-k-fold/checkpoint.chk
+      evaluation/pc-L6-apical-image-tmd-proj-decision-tree-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints/pc-L6-apical-image-tmd-proj-decision-tree-stratified-k-fold/checkpoint.chk
+      md5: 6379d206ecf9483e8fb5ed74e6e62bae
+      size: 138011759
+    outs:
+    - path: evaluation/pc-L6-apical-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: 11ff14624df3b5866f7c77f322e5cbb5.dir
+      size: 8998248
+      nfiles: 33
+    - path: evaluation/pc-L6-apical-image-tmd-proj-decision-tree-stratified-k-fold.html
+      md5: 3f9fad30b17351423d29e8f53fe47d0a
+      size: 12120
+  evaluate-alt-neurites@in-L1-all-diagram-tmd-rd-perslay-stratified-k-fold:
+    cmd: morphoclass -v evaluate performance training/checkpoints-alt-neurites/in-L1-all-diagram-tmd-rd-perslay-stratified-k-fold/checkpoint.chk
+      evaluation/in-L1-all-diagram-tmd-rd-perslay-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-alt-neurites/in-L1-all-diagram-tmd-rd-perslay-stratified-k-fold/checkpoint.chk
+      md5: 2c55ce8275b3b46ca3f02aacab258920
+      size: 564854
+    outs:
+    - path: evaluation/in-L1-all-diagram-tmd-rd-perslay-stratified-k-fold
+      md5: 29b86493f089c35f391f7ebff10fc168.dir
+      size: 8988904
+      nfiles: 33
+    - path: evaluation/in-L1-all-diagram-tmd-rd-perslay-stratified-k-fold.html
+      md5: cd9d227dab084f861782c596d4b4b5b7
+      size: 12125
+  evaluate-alt-neurites@in-L23-basal-image-tmd-proj-decision-tree-stratified-k-fold:
+    cmd: morphoclass -v evaluate performance training/checkpoints-alt-neurites/in-L23-basal-image-tmd-proj-decision-tree-stratified-k-fold/checkpoint.chk
+      evaluation/in-L23-basal-image-tmd-proj-decision-tree-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-alt-neurites/in-L23-basal-image-tmd-proj-decision-tree-stratified-k-fold/checkpoint.chk
+      md5: af7ca788b7bfa0077a51e69074311d04
+      size: 153577391
+    outs:
+    - path: evaluation/in-L23-basal-image-tmd-proj-decision-tree-stratified-k-fold
+      md5: 2535db0b5211d1a112dfdc1ce93a285c.dir
+      size: 9079636
+      nfiles: 33
+    - path: evaluation/in-L23-basal-image-tmd-proj-decision-tree-stratified-k-fold.html
+      md5: 6f11425992db4aec70eeb9454f3ad2ab
+      size: 13321
+  evaluate-alt-neurites@pc-L4-all-diagram-tmd-rd-perslay-stratified-k-fold:
+    cmd: morphoclass -v evaluate performance training/checkpoints-alt-neurites/pc-L4-all-diagram-tmd-rd-perslay-stratified-k-fold/checkpoint.chk
+      evaluation/pc-L4-all-diagram-tmd-rd-perslay-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-alt-neurites/pc-L4-all-diagram-tmd-rd-perslay-stratified-k-fold/checkpoint.chk
+      md5: d40894ed2401024542cd0e34b9411fb6
+      size: 498983
+    outs:
+    - path: evaluation/pc-L4-all-diagram-tmd-rd-perslay-stratified-k-fold
+      md5: ac3db279b1c84f265620b04722d89d3c.dir
+      size: 8925479
+      nfiles: 33
+    - path: evaluation/pc-L4-all-diagram-tmd-rd-perslay-stratified-k-fold.html
+      md5: 91ee48e8893d002aef3d13f8945fc81d
+      size: 10344
+  evaluate-alt-neurites@pc-L4-axon-diagram-deepwalk-perslay-stratified-k-fold:
+    cmd: morphoclass -v evaluate performance training/checkpoints-alt-neurites/pc-L4-axon-diagram-deepwalk-perslay-stratified-k-fold/checkpoint.chk
+      evaluation/pc-L4-axon-diagram-deepwalk-perslay-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-alt-neurites/pc-L4-axon-diagram-deepwalk-perslay-stratified-k-fold/checkpoint.chk
+      md5: f7dcfc1d0d0df02927976df506c82f34
+      size: 499040
+    outs:
+    - path: evaluation/pc-L4-axon-diagram-deepwalk-perslay-stratified-k-fold
+      md5: c75190bf858d51856a8483e78b37e897.dir
+      size: 8925479
+      nfiles: 33
+    - path: evaluation/pc-L4-axon-diagram-deepwalk-perslay-stratified-k-fold.html
+      md5: f17f410c4333459e63328e74c05dd297
+      size: 10383
+  evaluate-lida-in-merged-all@cnn-tmd:
+    cmd: morphoclass -v evaluate performance training/checkpoints-lida-alt-neurites/in-merged-all-cnn-tmd-stratified-k-fold/checkpoint.chk
+      evaluation/checkpoints-lida-alt-neurites/in-merged-all-cnn-tmd-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-lida-alt-neurites/in-merged-all-cnn-tmd-stratified-k-fold/checkpoint.chk
+      md5: e68f5e625a88f05d1344b51992fabf35
+      size: 35848750
+    outs:
+    - path: evaluation/checkpoints-lida-alt-neurites/in-merged-all-cnn-tmd-stratified-k-fold
+      md5: df9c9dc99040456c0e8eab627d513eeb.dir
+      size: 9006835
+      nfiles: 33
+    - path: evaluation/checkpoints-lida-alt-neurites/in-merged-all-cnn-tmd-stratified-k-fold.html
+      md5: d17537b1f48f3eb7c8b619ea4a79878d
+      size: 12573
+  evaluate-morphometrics@pc-L2-all-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/pc-L2-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/checkpoints-morphometrics/pc-L2-all-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/pc-L2-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 8389f6574ae949d428041cdef4147375
+      size: 1781743
+    outs:
+    - path: evaluation/checkpoints-morphometrics/pc-L2-all-morphometrics-xgb-stratified-k-fold
+      md5: 69d81a0c4e9359b521715e00c568ffaf.dir
+      size: 8914223
+      nfiles: 33
+    - path: evaluation/checkpoints-morphometrics/pc-L2-all-morphometrics-xgb-stratified-k-fold.html
+      md5: 6d2cf74f343d323b382ec7cae0fafedf
+      size: 10262
+  evaluate-morphometrics@pc-L6-all-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/pc-L6-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/checkpoints-morphometrics/pc-L6-all-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/pc-L6-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: c8a1897fbcf873069a4a14b47a749623
+      size: 4111983
+    outs:
+    - path: evaluation/checkpoints-morphometrics/pc-L6-all-morphometrics-xgb-stratified-k-fold
+      md5: 402f275a29049f462504d194518ce4f1.dir
+      size: 8999206
+      nfiles: 33
+    - path: evaluation/checkpoints-morphometrics/pc-L6-all-morphometrics-xgb-stratified-k-fold.html
+      md5: 80ead027104d0959d61b0c8797ef2570
+      size: 12044
+  evaluate-morphometrics@in-L5-all-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/in-L5-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/checkpoints-morphometrics/in-L5-all-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/in-L5-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 70bfa278b3e9251f54bf28176edf93bd
+      size: 5092975
+    outs:
+    - path: evaluation/checkpoints-morphometrics/in-L5-all-morphometrics-xgb-stratified-k-fold
+      md5: adc069e9da1211388f042d05d6ee5d29.dir
+      size: 9010821
+      nfiles: 33
+    - path: evaluation/checkpoints-morphometrics/in-L5-all-morphometrics-xgb-stratified-k-fold.html
+      md5: 3a7a07e3d7dacbdda14abfb1efdd67d5
+      size: 13232
+  evaluate-morphometrics@pc-L4-all-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/pc-L4-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/checkpoints-morphometrics/pc-L4-all-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/pc-L4-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: b05dafa5e7951eefc40197557b28194d
+      size: 2192623
+    outs:
+    - path: evaluation/checkpoints-morphometrics/pc-L4-all-morphometrics-xgb-stratified-k-fold
+      md5: 08fc8527c71d78c6e5ad2956954ebece.dir
+      size: 8924955
+      nfiles: 33
+    - path: evaluation/checkpoints-morphometrics/pc-L4-all-morphometrics-xgb-stratified-k-fold.html
+      md5: 5c8bf69b3c636a352e041fbd0dc8c8a3
+      size: 10262
+  evaluate-morphometrics@in-L4-all-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/in-L4-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/checkpoints-morphometrics/in-L4-all-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/in-L4-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: c00eeabd09bf35ec9e387ed84bf83e8a
+      size: 5087535
+    outs:
+    - path: evaluation/checkpoints-morphometrics/in-L4-all-morphometrics-xgb-stratified-k-fold
+      md5: 016b43868c7859adbfb02935e719e1a2.dir
+      size: 9021013
+      nfiles: 33
+    - path: evaluation/checkpoints-morphometrics/in-L4-all-morphometrics-xgb-stratified-k-fold.html
+      md5: 6f71978db352fe02edddae80e7928465
+      size: 13232
+  evaluate-morphometrics@in-L6-all-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/in-L6-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/checkpoints-morphometrics/in-L6-all-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/in-L6-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 7ff6a1733202aaf2db8b805510414e69
+      size: 2930543
+    outs:
+    - path: evaluation/checkpoints-morphometrics/in-L6-all-morphometrics-xgb-stratified-k-fold
+      md5: 77308488b495ac823ade66cdcc556737.dir
+      size: 8976132
+      nfiles: 33
+    - path: evaluation/checkpoints-morphometrics/in-L6-all-morphometrics-xgb-stratified-k-fold.html
+      md5: 2e7239996d0fda1684b7e586255f8784
+      size: 11450
+  evaluate-morphometrics@in-L23-all-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/in-L23-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/checkpoints-morphometrics/in-L23-all-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/in-L23-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 13243ce9cac91eb3cf935a3c25aaeff1
+      size: 5601839
+    outs:
+    - path: evaluation/checkpoints-morphometrics/in-L23-all-morphometrics-xgb-stratified-k-fold
+      md5: cdc918ba0e63addde71f26a7980f81c6.dir
+      size: 9074809
+      nfiles: 33
+    - path: evaluation/checkpoints-morphometrics/in-L23-all-morphometrics-xgb-stratified-k-fold.html
+      md5: edcd3e9ab1768baaccdc893f873cc85a
+      size: 13245
+  evaluate-morphometrics@pc-L3-all-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/pc-L3-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/checkpoints-morphometrics/pc-L3-all-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/pc-L3-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 587a9e0da2564293f2f9e74a8ad3430c
+      size: 1218927
+    outs:
+    - path: evaluation/checkpoints-morphometrics/pc-L3-all-morphometrics-xgb-stratified-k-fold
+      md5: 2dd8f7140daccd5d12a922711d9b4a5a.dir
+      size: 8903181
+      nfiles: 33
+    - path: evaluation/checkpoints-morphometrics/pc-L3-all-morphometrics-xgb-stratified-k-fold.html
+      md5: 0386143955173c665d3a90ea03717cad
+      size: 9668
+  evaluate-morphometrics@in-merged-all-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/in-merged-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/checkpoints-morphometrics/in-merged-all-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/in-merged-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: b4051ff6c62b44b5a506de0d50d4443c
+      size: 7789295
+    outs:
+    - path: evaluation/checkpoints-morphometrics/in-merged-all-morphometrics-xgb-stratified-k-fold
+      md5: dc8e064cb2844f924ff55f960d907e44.dir
+      size: 9035002
+      nfiles: 33
+    - path: evaluation/checkpoints-morphometrics/in-merged-all-morphometrics-xgb-stratified-k-fold.html
+      md5: dfb76b1d6ca3f43024c7b357901c4f6b
+      size: 12690
+  evaluate-morphometrics@pc-L5-all-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/pc-L5-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/checkpoints-morphometrics/pc-L5-all-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/pc-L5-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 601b33850c12553ea6589119ad8bc639
+      size: 3578543
+    outs:
+    - path: evaluation/checkpoints-morphometrics/pc-L5-all-morphometrics-xgb-stratified-k-fold
+      md5: ea6e7e39b0b921d39d308cd571773133.dir
+      size: 8951938
+      nfiles: 33
+    - path: evaluation/checkpoints-morphometrics/pc-L5-all-morphometrics-xgb-stratified-k-fold.html
+      md5: f625db0357b0495d0b819906e4f609c9
+      size: 10856
+  evaluate-morphometrics@in-L1-all-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/in-L1-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/checkpoints-morphometrics/in-L1-all-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/in-L1-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 52e3fd4a041573d89494acf4ea7056da
+      size: 4153839
+    outs:
+    - path: evaluation/checkpoints-morphometrics/in-L1-all-morphometrics-xgb-stratified-k-fold
+      md5: ec298ac38476ebae524bf9426cef8eec.dir
+      size: 8992343
+      nfiles: 33
+    - path: evaluation/checkpoints-morphometrics/in-L1-all-morphometrics-xgb-stratified-k-fold.html
+      md5: deaeada1a4e5b7c0172949f0d12dbef9
+      size: 12044
+  evaluate-morphometrics@in-merged-bc-merged-all-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/in-merged-bc-merged-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/checkpoints-morphometrics/in-merged-bc-merged-all-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/in-merged-bc-merged-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: e68148e44e74c96a55fb414536c9ec0c
+      size: 5778223
+    outs:
+    - path: evaluation/checkpoints-morphometrics/in-merged-bc-merged-all-morphometrics-xgb-stratified-k-fold
+      md5: 8327bdd4a91f904704724f296769c8c5.dir
+      size: 9015527
+      nfiles: 33
+    - path: evaluation/checkpoints-morphometrics/in-merged-bc-merged-all-morphometrics-xgb-stratified-k-fold.html
+      md5: d521b488e96eba99a38225c33508e7f1
+      size: 11632
+  evaluate-morphometrics@janelia-L5-all-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/janelia-L5-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/checkpoints-morphometrics/janelia-L5-all-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/janelia-L5-all-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 5621261b223f2d3acfcc18a543485945
+      size: 2598255
+    outs:
+    - path: evaluation/checkpoints-morphometrics/janelia-L5-all-morphometrics-xgb-stratified-k-fold
+      md5: efccee073b5a8825e1a74777eda22782.dir
+      size: 8939349
+      nfiles: 33
+    - path: evaluation/checkpoints-morphometrics/janelia-L5-all-morphometrics-xgb-stratified-k-fold.html
+      md5: 673594fbf75a375aabc9da71fa3e5734
+      size: 10921
