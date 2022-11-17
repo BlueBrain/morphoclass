@@ -6,7 +6,7 @@ neurite:
   partition_asymmetry:
   - mean
   section_tortuosity:
-    - mean
+  - mean
   diameter_power_relations:
   - mean
   sholl_frequency:
