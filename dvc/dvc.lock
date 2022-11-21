@@ -22207,3 +22207,838 @@ stages:
     - path: evaluation/in-L6-lauturns-morphometrics-xgb-stratified-k-fold.html
       md5: dbe1c5044bd63ab7348f54412d3ee54c
       size: 11515
+  features-morphometrics@janelia-L5-lauturns:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/janelia/L5/dataset.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_lauturns.yaml
+      --output-features-directory ./extract-features-morphometrics/janelia-L5/lauturns
+    outs:
+    - path: extract-features-morphometrics/janelia-L5/lauturns
+      md5: f332cfb4a0ce6e757c3f958bdb3ba95f.dir
+      size: 45255
+      nfiles: 1
+  train-morphometrics@janelia-L5-lauturns-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/janelia-L5/lauturns/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/janelia-L5-lauturns-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/janelia-L5/lauturns/features.csv
+      md5: c3c543acb3be096ba5cfca75ee6f46e6
+      size: 45255
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/janelia-L5-lauturns-morphometrics-xgb-stratified-k-fold
+      md5: f820f6a9e625069e33b9fed04ed93a65.dir
+      size: 2670447
+      nfiles: 1
+  evaluate-morphometrics@janelia-L5-lauturns-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/janelia-L5-lauturns-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/janelia-L5-lauturns-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/janelia-L5-lauturns-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 0b1bafe6fc45a0174c48f86d05725a00
+      size: 2670447
+    outs:
+    - path: evaluation/janelia-L5-lauturns-morphometrics-xgb-stratified-k-fold
+      md5: 0da46bae5b521b8fcf641c0cd2511cf3.dir
+      size: 8945122
+      nfiles: 33
+    - path: evaluation/janelia-L5-lauturns-morphometrics-xgb-stratified-k-fold.html
+      md5: c5db9ca9f392c0e86b37e7b3dd2b9ed1
+      size: 10986
+  features-morphometrics@pc-L2-lauturns:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/pyramidal-cells/L2/dataset.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_lauturns.yaml
+      --output-features-directory ./extract-features-morphometrics/pc-L2/lauturns
+    outs:
+    - path: extract-features-morphometrics/pc-L2/lauturns
+      md5: bd4c306d5134e508c710ab80dc667f8c.dir
+      size: 34612
+      nfiles: 1
+  train-morphometrics@pc-L2-lauturns-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/pc-L2/lauturns/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/pc-L2-lauturns-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/pc-L2/lauturns/features.csv
+      md5: 28a920019c53e9a6b133fc56b143a060
+      size: 34612
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/pc-L2-lauturns-morphometrics-xgb-stratified-k-fold
+      md5: 3d55f148462e66a31df60cc01eb8bf78.dir
+      size: 1817199
+      nfiles: 1
+  evaluate-morphometrics@pc-L2-lauturns-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/pc-L2-lauturns-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/pc-L2-lauturns-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/pc-L2-lauturns-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 58aded7d837b09fa86db64e2efb33ea9
+      size: 1817199
+    outs:
+    - path: evaluation/pc-L2-lauturns-morphometrics-xgb-stratified-k-fold
+      md5: e15421dc0258e361560e8c7e5df6b855.dir
+      size: 8923593
+      nfiles: 33
+    - path: evaluation/pc-L2-lauturns-morphometrics-xgb-stratified-k-fold.html
+      md5: b9494a1515cbc19eed587306c67a2697
+      size: 10327
+  features-morphometrics@pc-L3-lauturns:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/pyramidal-cells/L3/dataset.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_lauturns.yaml
+      --output-features-directory ./extract-features-morphometrics/pc-L3/lauturns
+    outs:
+    - path: extract-features-morphometrics/pc-L3/lauturns
+      md5: cafd0821925efd8681668983217624e6.dir
+      size: 35106
+      nfiles: 1
+  train-morphometrics@pc-L3-lauturns-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/pc-L3/lauturns/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/pc-L3-lauturns-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/pc-L3/lauturns/features.csv
+      md5: a92e1c8b5af649c3a8ed06c72e523b5b
+      size: 35106
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/pc-L3-lauturns-morphometrics-xgb-stratified-k-fold
+      md5: baa8332244a39a97e8548fbc6dbac380.dir
+      size: 1179247
+      nfiles: 1
+  evaluate-morphometrics@pc-L3-lauturns-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/pc-L3-lauturns-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/pc-L3-lauturns-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/pc-L3-lauturns-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 8252119f271065885042f38eaf06e627
+      size: 1179247
+    outs:
+    - path: evaluation/pc-L3-lauturns-morphometrics-xgb-stratified-k-fold
+      md5: 87ce75ba85ee8564c9e26d0976cbc9c4.dir
+      size: 8897123
+      nfiles: 33
+    - path: evaluation/pc-L3-lauturns-morphometrics-xgb-stratified-k-fold.html
+      md5: 46d9be331320561f60268d695d856f8c
+      size: 9733
+  features-morphometrics@pc-L4-lauturns:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/pyramidal-cells/L4/dataset.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_lauturns.yaml
+      --output-features-directory ./extract-features-morphometrics/pc-L4/lauturns
+    outs:
+    - path: extract-features-morphometrics/pc-L4/lauturns
+      md5: e434367b635d6b9c7ae0b5d6e8f451c9.dir
+      size: 68367
+      nfiles: 1
+  train-morphometrics@pc-L4-lauturns-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/pc-L4/lauturns/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/pc-L4-lauturns-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/pc-L4/lauturns/features.csv
+      md5: 1aa5258901dbe4dd153fa6331927c9cd
+      size: 68367
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/pc-L4-lauturns-morphometrics-xgb-stratified-k-fold
+      md5: 4b06e17acad0574c1d785a0733f02da3.dir
+      size: 2300847
+      nfiles: 1
+  evaluate-morphometrics@pc-L4-lauturns-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/pc-L4-lauturns-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/pc-L4-lauturns-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/pc-L4-lauturns-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: e336ce22f12f1278c5757b1142c1618e
+      size: 2300847
+    outs:
+    - path: evaluation/pc-L4-lauturns-morphometrics-xgb-stratified-k-fold
+      md5: 1e334558c6d679f8f661c9671d276542.dir
+      size: 8930238
+      nfiles: 33
+    - path: evaluation/pc-L4-lauturns-morphometrics-xgb-stratified-k-fold.html
+      md5: 55a671d0f1e4729f30fbcc744faa978a
+      size: 10327
+  features-morphometrics@pc-L5-lauturns:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/pyramidal-cells/L5/dataset.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_lauturns.yaml
+      --output-features-directory ./extract-features-morphometrics/pc-L5/lauturns
+    outs:
+    - path: extract-features-morphometrics/pc-L5/lauturns
+      md5: cf46d33cfce91e4ca3a24240796b1f3f.dir
+      size: 121989
+      nfiles: 1
+  train-morphometrics@pc-L5-lauturns-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/pc-L5/lauturns/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/pc-L5-lauturns-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/pc-L5/lauturns/features.csv
+      md5: 4f550cd019acc99b7796e247e310143d
+      size: 121989
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/pc-L5-lauturns-morphometrics-xgb-stratified-k-fold
+      md5: 06dec33f459c360fd840cb2d4319611c.dir
+      size: 3670959
+      nfiles: 1
+  evaluate-morphometrics@pc-L5-lauturns-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/pc-L5-lauturns-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/pc-L5-lauturns-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/pc-L5-lauturns-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 965fd70c3fb3d1f56b2eebb807f3d90c
+      size: 3670959
+    outs:
+    - path: evaluation/pc-L5-lauturns-morphometrics-xgb-stratified-k-fold
+      md5: eb89aede6f2bd9a9aac5023280ec7a14.dir
+      size: 8949608
+      nfiles: 33
+    - path: evaluation/pc-L5-lauturns-morphometrics-xgb-stratified-k-fold.html
+      md5: c72d8148c8bc06a5c44d4949732fc85f
+      size: 10921
+  features-morphometrics@pc-L6-lauturns:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/pyramidal-cells/L6/dataset.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_lauturns.yaml
+      --output-features-directory ./extract-features-morphometrics/pc-L6/lauturns
+    outs:
+    - path: extract-features-morphometrics/pc-L6/lauturns
+      md5: f8bd850d274c8b5fe29ba54a94d7a7fc.dir
+      size: 101593
+      nfiles: 1
+  train-morphometrics@pc-L6-lauturns-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/pc-L6/lauturns/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/pc-L6-lauturns-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/pc-L6/lauturns/features.csv
+      md5: d2ba707795d01af893f530ab4e5cb38e
+      size: 101593
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/pc-L6-lauturns-morphometrics-xgb-stratified-k-fold
+      md5: cf4288dd3a30733fbb923a01d235eba9.dir
+      size: 4615791
+      nfiles: 1
+  evaluate-morphometrics@pc-L6-lauturns-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/pc-L6-lauturns-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/pc-L6-lauturns-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/pc-L6-lauturns-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: ba2f67951af4260394d1770f5d9e6f9a
+      size: 4615791
+    outs:
+    - path: evaluation/pc-L6-lauturns-morphometrics-xgb-stratified-k-fold
+      md5: 32205cd5e24711163eb9d4d51e234437.dir
+      size: 9008793
+      nfiles: 33
+    - path: evaluation/pc-L6-lauturns-morphometrics-xgb-stratified-k-fold.html
+      md5: b1ff5e3f73c1cd75ae7fd4a697204c4e
+      size: 12109
+  features-morphometrics@in-merged-lauturns:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/IN_data.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_lauturns.yaml
+      --output-features-directory ./extract-features-morphometrics/in-merged/lauturns
+    outs:
+    - path: extract-features-morphometrics/in-merged/lauturns
+      md5: e4d226931d739a17d34d9c7adc0ad5f0.dir
+      size: 246054
+      nfiles: 1
+  train-morphometrics@in-merged-lauturns-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/in-merged/lauturns/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/in-merged-lauturns-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/in-merged/lauturns/features.csv
+      md5: 2d294e49df1e9b384226c0c202272c24
+      size: 246054
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/in-merged-lauturns-morphometrics-xgb-stratified-k-fold
+      md5: 4234b2d8da54d7525f79bfec2568d4f7.dir
+      size: 8072559
+      nfiles: 1
+  evaluate-morphometrics@in-merged-lauturns-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/in-merged-lauturns-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/in-merged-lauturns-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/in-merged-lauturns-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: e548fb9a61be74fdc3bebf7e9d3ce1f8
+      size: 8072559
+    outs:
+    - path: evaluation/in-merged-lauturns-morphometrics-xgb-stratified-k-fold
+      md5: b6447f8f79c07d80747b0e725603070d.dir
+      size: 9022342
+      nfiles: 33
+    - path: evaluation/in-merged-lauturns-morphometrics-xgb-stratified-k-fold.html
+      md5: 64102d5a186db47eac60fdc012df6a48
+      size: 12755
+  features-morphometrics@in-merged-bc-merged-lauturns:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/IN_data_BC_merged.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_lauturns.yaml
+      --output-features-directory ./extract-features-morphometrics/in-merged-bc-merged/lauturns
+    outs:
+    - path: extract-features-morphometrics/in-merged-bc-merged/lauturns
+      md5: 8367b7e3eb62d73598218d2beaacf29e.dir
+      size: 245816
+      nfiles: 1
+  train-morphometrics@in-merged-bc-merged-lauturns-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/in-merged-bc-merged/lauturns/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/in-merged-bc-merged-lauturns-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/in-merged-bc-merged/lauturns/features.csv
+      md5: e26998fd56a20c156ba279f664aa7d6a
+      size: 245816
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/in-merged-bc-merged-lauturns-morphometrics-xgb-stratified-k-fold
+      md5: e5d04f37f07c44fd173c85d9012dd6d0.dir
+      size: 5842159
+      nfiles: 1
+  evaluate-morphometrics@in-merged-bc-merged-lauturns-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/in-merged-bc-merged-lauturns-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/in-merged-bc-merged-lauturns-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/in-merged-bc-merged-lauturns-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 5b4fc8d1ca576226d4394473cd98f12f
+      size: 5842159
+    outs:
+    - path: evaluation/in-merged-bc-merged-lauturns-morphometrics-xgb-stratified-k-fold
+      md5: aeddbe2e1af7ec0ee75050fd02ae3e89.dir
+      size: 9002278
+      nfiles: 33
+    - path: evaluation/in-merged-bc-merged-lauturns-morphometrics-xgb-stratified-k-fold.html
+      md5: 911c0de4f0690bf8aeeca02afbb7fc07
+      size: 11697
+  features-morphometrics@in-L1-petilla:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/interneurons/L1/dataset.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_petilla.yaml
+      --output-features-directory ./extract-features-morphometrics/in-L1/petilla
+    outs:
+    - path: extract-features-morphometrics/in-L1/petilla
+      md5: c9752b2887e9ee908e903a2744ec6761.dir
+      size: 34565
+      nfiles: 1
+  train-morphometrics@in-L1-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/in-L1/petilla/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/in-L1-petilla-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/in-L1/petilla/features.csv
+      md5: baab3c2e34c0c0a88b2d2173c0dff659
+      size: 34565
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/in-L1-petilla-morphometrics-xgb-stratified-k-fold
+      md5: 769b2c296632bae192fd58e8e47603a2.dir
+      size: 4797423
+      nfiles: 1
+  evaluate-morphometrics@in-L1-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/in-L1-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/in-L1-petilla-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/in-L1-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: c6f4f01a6d36c31a4e33ce73689e658c
+      size: 4797423
+    outs:
+    - path: evaluation/in-L1-petilla-morphometrics-xgb-stratified-k-fold
+      md5: d4361f5a13f3dbbdc8b0cf6f4a60a8a9.dir
+      size: 8996579
+      nfiles: 33
+    - path: evaluation/in-L1-petilla-morphometrics-xgb-stratified-k-fold.html
+      md5: 26ab629a0d47f4b2b909bbdf1fd6b67b
+      size: 12096
+  features-morphometrics@in-L23-petilla:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/interneurons/L23/dataset.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_petilla.yaml
+      --output-features-directory ./extract-features-morphometrics/in-L23/petilla
+    outs:
+    - path: extract-features-morphometrics/in-L23/petilla
+      md5: 0bd32acb7f3ef1961304416063da3982.dir
+      size: 50449
+      nfiles: 1
+  train-morphometrics@in-L23-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/in-L23/petilla/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/in-L23-petilla-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/in-L23/petilla/features.csv
+      md5: 16768a3ede6f2083f16e64dd34c54585
+      size: 50449
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/in-L23-petilla-morphometrics-xgb-stratified-k-fold
+      md5: 50d0fd591df0e8f7a201acf926add359.dir
+      size: 6361711
+      nfiles: 1
+  evaluate-morphometrics@in-L23-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/in-L23-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/in-L23-petilla-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/in-L23-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 372019894f1217d872be0686e2019b0e
+      size: 6361711
+    outs:
+    - path: evaluation/in-L23-petilla-morphometrics-xgb-stratified-k-fold
+      md5: 5c58000bb6a44ed5fe8aa498f19e48bc.dir
+      size: 9076553
+      nfiles: 33
+    - path: evaluation/in-L23-petilla-morphometrics-xgb-stratified-k-fold.html
+      md5: dbfb8c610fbecab967eb407c986baeda
+      size: 13297
+  features-morphometrics@in-L4-petilla:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/interneurons/L4/dataset.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_petilla.yaml
+      --output-features-directory ./extract-features-morphometrics/in-L4/petilla
+    outs:
+    - path: extract-features-morphometrics/in-L4/petilla
+      md5: 48d08efedd815beb53beec52a7d6205c.dir
+      size: 36504
+      nfiles: 1
+  train-morphometrics@in-L4-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/in-L4/petilla/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/in-L4-petilla-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/in-L4/petilla/features.csv
+      md5: 24c59cdb045db12f4ba9de886b8131fb
+      size: 36504
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/in-L4-petilla-morphometrics-xgb-stratified-k-fold
+      md5: c18d8547fd811ec96105ef1c9f862c69.dir
+      size: 5696175
+      nfiles: 1
+  evaluate-morphometrics@in-L4-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/in-L4-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/in-L4-petilla-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/in-L4-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: e471ff6e73ea06892e3d9a85afe2c904
+      size: 5696175
+    outs:
+    - path: evaluation/in-L4-petilla-morphometrics-xgb-stratified-k-fold
+      md5: cf16acdbf6221fa8f4c04387f9bb9fef.dir
+      size: 9028062
+      nfiles: 33
+    - path: evaluation/in-L4-petilla-morphometrics-xgb-stratified-k-fold.html
+      md5: 631b1d8868201463a384340ea2e21377
+      size: 13284
+  features-morphometrics@in-L5-petilla:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/interneurons/L5/dataset.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_petilla.yaml
+      --output-features-directory ./extract-features-morphometrics/in-L5/petilla
+    outs:
+    - path: extract-features-morphometrics/in-L5/petilla
+      md5: 70790cf782099bd63836e5e9d63f9baa.dir
+      size: 36437
+      nfiles: 1
+  train-morphometrics@in-L5-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/in-L5/petilla/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/in-L5-petilla-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/in-L5/petilla/features.csv
+      md5: 7a1796d13c81f9e5ccbce2a02b277a37
+      size: 36437
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/in-L5-petilla-morphometrics-xgb-stratified-k-fold
+      md5: 8a01b5e0f62330e01f36307a32ee86f4.dir
+      size: 5527919
+      nfiles: 1
+  evaluate-morphometrics@in-L5-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/in-L5-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/in-L5-petilla-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/in-L5-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: be514c22585ec5ed4246887e92841b1d
+      size: 5527919
+    outs:
+    - path: evaluation/in-L5-petilla-morphometrics-xgb-stratified-k-fold
+      md5: 550c9709e8ad2c94f2f8f4c5abde46d5.dir
+      size: 9021404
+      nfiles: 33
+    - path: evaluation/in-L5-petilla-morphometrics-xgb-stratified-k-fold.html
+      md5: a2499661408c7439b1e956da0da47677
+      size: 13284
+  features-morphometrics@in-L6-petilla:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/interneurons/L6/dataset.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_petilla.yaml
+      --output-features-directory ./extract-features-morphometrics/in-L6/petilla
+    outs:
+    - path: extract-features-morphometrics/in-L6/petilla
+      md5: b64cf142e2a85418f7ea150f80f65198.dir
+      size: 21527
+      nfiles: 1
+  train-morphometrics@in-L6-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/in-L6/petilla/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/in-L6-petilla-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/in-L6/petilla/features.csv
+      md5: d3a5abe6d395bc5792ea4ef46589bbe6
+      size: 21527
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/in-L6-petilla-morphometrics-xgb-stratified-k-fold
+      md5: 9afc0677fb49de518e383f650669ebd5.dir
+      size: 3235823
+      nfiles: 1
+  evaluate-morphometrics@in-L6-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/in-L6-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/in-L6-petilla-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/in-L6-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 5cfc92742beda8e69c1505919dc36315
+      size: 3235823
+    outs:
+    - path: evaluation/in-L6-petilla-morphometrics-xgb-stratified-k-fold
+      md5: cc2cbb63ebfc3f067c8837649559d61f.dir
+      size: 8969109
+      nfiles: 33
+    - path: evaluation/in-L6-petilla-morphometrics-xgb-stratified-k-fold.html
+      md5: bf5340f211158185f8fff53b5add55b9
+      size: 11502
+  features-morphometrics@pc-L2-petilla:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/pyramidal-cells/L2/dataset.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_petilla.yaml
+      --output-features-directory ./extract-features-morphometrics/pc-L2/petilla
+    outs:
+    - path: extract-features-morphometrics/pc-L2/petilla
+      md5: 2fbffe7c2c95e0009adfe5fbc40c2040.dir
+      size: 19836
+      nfiles: 1
+  train-morphometrics@pc-L2-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/pc-L2/petilla/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/pc-L2-petilla-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/pc-L2/petilla/features.csv
+      md5: 473d2f5966fe5c88ab0f21103be9af9b
+      size: 19836
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/pc-L2-petilla-morphometrics-xgb-stratified-k-fold
+      md5: e3bc97b6f4b5c541fe527635ddbeaca5.dir
+      size: 1797103
+      nfiles: 1
+  evaluate-morphometrics@pc-L2-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/pc-L2-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/pc-L2-petilla-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/pc-L2-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 76aed6701ee4b6ecd31c0b356e6c55d4
+      size: 1797103
+    outs:
+    - path: evaluation/pc-L2-petilla-morphometrics-xgb-stratified-k-fold
+      md5: 514fc2835e22137ede3710b91905703c.dir
+      size: 8921749
+      nfiles: 33
+    - path: evaluation/pc-L2-petilla-morphometrics-xgb-stratified-k-fold.html
+      md5: 528560f29b70dfc7f9510ef66aeacf8b
+      size: 10314
+  features-morphometrics@pc-L3-petilla:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/pyramidal-cells/L3/dataset.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_petilla.yaml
+      --output-features-directory ./extract-features-morphometrics/pc-L3/petilla
+    outs:
+    - path: extract-features-morphometrics/pc-L3/petilla
+      md5: 3e8e52cc3dcc58726b7158ce34d1af5c.dir
+      size: 20300
+      nfiles: 1
+  features-morphometrics@pc-L4-petilla:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/pyramidal-cells/L4/dataset.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_petilla.yaml
+      --output-features-directory ./extract-features-morphometrics/pc-L4/petilla
+    outs:
+    - path: extract-features-morphometrics/pc-L4/petilla
+      md5: cad941dc3332dbdb12142b4847a1498c.dir
+      size: 39551
+      nfiles: 1
+  train-morphometrics@pc-L4-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/pc-L4/petilla/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/pc-L4-petilla-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/pc-L4/petilla/features.csv
+      md5: 42907bb274a3e3691c39a621e9fa294b
+      size: 39551
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/pc-L4-petilla-morphometrics-xgb-stratified-k-fold
+      md5: 46f1b2b8c74705688f29d4fe8e9b0d96.dir
+      size: 2503983
+      nfiles: 1
+  evaluate-morphometrics@pc-L4-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/pc-L4-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/pc-L4-petilla-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/pc-L4-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 1d8cc4cfd762be793f89da6b3e01912a
+      size: 2503983
+    outs:
+    - path: evaluation/pc-L4-petilla-morphometrics-xgb-stratified-k-fold
+      md5: bf72f0285d5cad583fdb5538c77d91e3.dir
+      size: 8919210
+      nfiles: 33
+    - path: evaluation/pc-L4-petilla-morphometrics-xgb-stratified-k-fold.html
+      md5: 504379c7d994e9e04539abff7f1985e6
+      size: 10314
+  features-morphometrics@pc-L5-petilla:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/pyramidal-cells/L5/dataset.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_petilla.yaml
+      --output-features-directory ./extract-features-morphometrics/pc-L5/petilla
+    outs:
+    - path: extract-features-morphometrics/pc-L5/petilla
+      md5: 8e164ba0f2a56b5831dec7508ad54a81.dir
+      size: 71028
+      nfiles: 1
+  features-morphometrics@pc-L6-petilla:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/pyramidal-cells/L6/dataset.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_petilla.yaml
+      --output-features-directory ./extract-features-morphometrics/pc-L6/petilla
+    outs:
+    - path: extract-features-morphometrics/pc-L6/petilla
+      md5: 8e6f93185c983798ebf13052f3fe578c.dir
+      size: 59218
+      nfiles: 1
+  train-morphometrics@pc-L6-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/pc-L6/petilla/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/pc-L6-petilla-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/pc-L6/petilla/features.csv
+      md5: 32162bfec7a648f0acfdf47cf784a50f
+      size: 59218
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/pc-L6-petilla-morphometrics-xgb-stratified-k-fold
+      md5: 7ad2ce37da83b2bbcb3dc7d7eb3521eb.dir
+      size: 4900591
+      nfiles: 1
+  evaluate-morphometrics@pc-L6-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/pc-L6-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/pc-L6-petilla-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/pc-L6-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: d15e7a24ce995685971f8b7e04ae60f6
+      size: 4900591
+    outs:
+    - path: evaluation/pc-L6-petilla-morphometrics-xgb-stratified-k-fold
+      md5: 6ed9c8b2e1b18d95665baa15956092c1.dir
+      size: 9007429
+      nfiles: 33
+    - path: evaluation/pc-L6-petilla-morphometrics-xgb-stratified-k-fold.html
+      md5: e4aff7f018c6d522be2bcfabbf3898ab
+      size: 12096
+  features-morphometrics@in-merged-petilla:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/IN_data.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_petilla.yaml
+      --output-features-directory ./extract-features-morphometrics/in-merged/petilla
+    outs:
+    - path: extract-features-morphometrics/in-merged/petilla
+      md5: 5c9ee3cfda7a720afc3bda3439679c41.dir
+      size: 141309
+      nfiles: 1
+  train-morphometrics@in-merged-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/in-merged/petilla/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/in-merged-petilla-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/in-merged/petilla/features.csv
+      md5: c40df7bf88b9e9f1aa5f573fb67d96c0
+      size: 141309
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/in-merged-petilla-morphometrics-xgb-stratified-k-fold
+      md5: b5924e8967f7091930f894f50a6bf3f3.dir
+      size: 9738863
+      nfiles: 1
+  evaluate-morphometrics@in-merged-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/in-merged-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/in-merged-petilla-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/in-merged-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 4e0be2ae29acbe5d9a9619fe5d22a39c
+      size: 9738863
+    outs:
+    - path: evaluation/in-merged-petilla-morphometrics-xgb-stratified-k-fold
+      md5: 2a503d2f4ce33a644d19eb2571695e47.dir
+      size: 9026433
+      nfiles: 33
+    - path: evaluation/in-merged-petilla-morphometrics-xgb-stratified-k-fold.html
+      md5: 55dfe2e1d649f39719c8f9af22e494a7
+      size: 12742
+  features-morphometrics@in-merged-bc-merged-petilla:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/IN_data_BC_merged.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_petilla.yaml
+      --output-features-directory ./extract-features-morphometrics/in-merged-bc-merged/petilla
+    outs:
+    - path: extract-features-morphometrics/in-merged-bc-merged/petilla
+      md5: 9c38dfa7a5274148934beb255ad03da0.dir
+      size: 141071
+      nfiles: 1
+  train-morphometrics@in-merged-bc-merged-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/in-merged-bc-merged/petilla/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/in-merged-bc-merged-petilla-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/in-merged-bc-merged/petilla/features.csv
+      md5: aa3c71c469e66ea99354d6026d3a5c0b
+      size: 141071
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/in-merged-bc-merged-petilla-morphometrics-xgb-stratified-k-fold
+      md5: 565180dec97e3b781b1d91f81046f75b.dir
+      size: 6745071
+      nfiles: 1
+  evaluate-morphometrics@in-merged-bc-merged-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/in-merged-bc-merged-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/in-merged-bc-merged-petilla-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/in-merged-bc-merged-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: df83c7c48a531e2f9cf5f638a3d4bd64
+      size: 6745071
+    outs:
+    - path: evaluation/in-merged-bc-merged-petilla-morphometrics-xgb-stratified-k-fold
+      md5: 3c4e9802e233302e8e917a56c84280f5.dir
+      size: 9003517
+      nfiles: 33
+    - path: evaluation/in-merged-bc-merged-petilla-morphometrics-xgb-stratified-k-fold.html
+      md5: fbe9fef70abad3ee816a30cd20cae424
+      size: 11684
+  features-morphometrics@janelia-L5-petilla:
+    cmd: morphoclass -vv morphometrics extract-features --dataset-csv ./data/final/janelia/L5/dataset.csv
+      --morphometrics-config ./extract-features-morphometrics/configs/morphometrics_config_petilla.yaml
+      --output-features-directory ./extract-features-morphometrics/janelia-L5/petilla
+    outs:
+    - path: extract-features-morphometrics/janelia-L5/petilla
+      md5: d1cd6048feecced29351cde3fc1d8025.dir
+      size: 19693
+      nfiles: 1
+  train-morphometrics@janelia-L5-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv morphometrics train --morphometrics-features ./extract-features-morphometrics/janelia-L5/petilla/features.csv
+      --model-config training/configs/model-xgb.yaml --splitter-config training/configs/splitter-stratified-k-fold.yaml
+      --output-checkpoint-directory training/checkpoints-morphometrics/janelia-L5-petilla-morphometrics-xgb-stratified-k-fold
+    deps:
+    - path: ./extract-features-morphometrics/janelia-L5/petilla/features.csv
+      md5: 3e1bdb9f5d3ea3dc3bbe8b3112c628cf
+      size: 19693
+    - path: training/configs/model-xgb.yaml
+      md5: f10b1b21e9e3e7195886182294689fd6
+      size: 196
+    - path: training/configs/splitter-stratified-k-fold.yaml
+      md5: 24bc27f79e2e7c577938ebe601816b35
+      size: 88
+    outs:
+    - path: training/checkpoints-morphometrics/janelia-L5-petilla-morphometrics-xgb-stratified-k-fold
+      md5: 923ca523afe1ba8f3208479a8f364e09.dir
+      size: 2879279
+      nfiles: 1
+  evaluate-morphometrics@janelia-L5-petilla-morphometrics-xgb-stratified-k-fold:
+    cmd: morphoclass -vv evaluate performance training/checkpoints-morphometrics/janelia-L5-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      evaluation/janelia-L5-petilla-morphometrics-xgb-stratified-k-fold.html
+    deps:
+    - path: training/checkpoints-morphometrics/janelia-L5-petilla-morphometrics-xgb-stratified-k-fold/checkpoint.chk
+      md5: 6a04167dc4ab0f2f00456b32f45bbfe8
+      size: 2879279
+    outs:
+    - path: evaluation/janelia-L5-petilla-morphometrics-xgb-stratified-k-fold
+      md5: 38751a87968052baf52f012ed1efed96.dir
+      size: 8941323
+      nfiles: 33
+    - path: evaluation/janelia-L5-petilla-morphometrics-xgb-stratified-k-fold.html
+      md5: 6fa498d971f08c10dfb9dca701b7edd7
+      size: 10973
