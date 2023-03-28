@@ -557,7 +557,7 @@ def read_apical_from_file(path, label, nodes_features=None, inverted_apical=True
 
     # Check how many apicals the neuron has, and handle them accordingly
     # Extract radial distances and the adjacency matrix.
-    if not hasattr(neuron, "apical") or len(neuron.apical) == 0:
+    if not hasattr(neuron, "apical_dendrite") or len(neuron.apical) == 0:
         raise ValueError(f"Neuron {neuron.name} has no apical tree data")
     elif len(neuron.apical) == 2:
         # TODO: Implement feature extraction for bitufted cells as well,
