@@ -820,7 +820,7 @@ def plot_neurite(
     nx.draw(
         g,
         ax=ax,
-        pos=dict((n, xy) for n, xy in enumerate(zip(px, py))),
+        pos={n: xy for n, xy in enumerate(zip(px, py))},
         nodelist=[0],
         node_color="red",
         node_size=soma_size,

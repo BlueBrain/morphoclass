@@ -135,9 +135,9 @@ class TNSDataset(Dataset):
                 f"No data corresponding to layer {layer} found in data_path"
             )
         else:
-            self.class_dict = dict(
-                (n, m_type) for n, m_type in enumerate(sorted(self.m_types))
-            )
+            self.class_dict = {
+                n: m_type for n, m_type in enumerate(sorted(self.m_types))
+            }
             self.class_dict_inv = {v: k for k, v in self.class_dict.items()}
 
         self.distributions = input_distributions
