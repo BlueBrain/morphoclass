@@ -50,8 +50,8 @@ TYPE_DCT = {v: k for k, v in TREE_TYPE_DICT.items()}
 morphio_type_to_tmd_type = {
     SectionType.soma: TYPE_DCT["soma"],
     SectionType.axon: TYPE_DCT["axon"],
-    SectionType.basal_dendrite: TYPE_DCT["basal"],
-    SectionType.apical_dendrite: TYPE_DCT["apical"],
+    SectionType.basal_dendrite: TYPE_DCT["basal_dendrite"],
+    SectionType.apical_dendrite: TYPE_DCT["apical_dendrite"],
     SectionType.undefined: -1,
 }
 
