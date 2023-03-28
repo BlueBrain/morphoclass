@@ -38,9 +38,9 @@ class BranchingOnlyNeuron:
             The modified morphology data sample.
         """
         neuron = data.tmd_neuron
-        neuron.apical = [tree.extract_simplified() for tree in neuron.apical]
+        neuron.apical = [tree.extract_simplified() for tree in neuron.apical_dendrite]
         neuron.axon = [tree.extract_simplified() for tree in neuron.axon]
-        neuron.basal = [tree.extract_simplified() for tree in neuron.basal]
+        neuron.basal = [tree.extract_simplified() for tree in neuron.basal_dendrite]
         neuron.undefined = [tree.extract_simplified() for tree in neuron.undefined]
 
         return data
