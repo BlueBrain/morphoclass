@@ -273,9 +273,9 @@ def from_tmd_to_morphio(tmd_neuron):
     branches_type = []
     branches.extend(tmd_neuron.axon)
     branches_type.extend([SectionType.axon for _ in range(len(tmd_neuron.axon))])
-    branches.extend(tmd_neuron.basal)
+    branches.extend(tmd_neuron.basal_dendrite)
     branches_type.extend(
-        [SectionType.basal_dendrite for _ in range(len(tmd_neuron.basal))]
+        [SectionType.basal_dendrite for _ in range(len(tmd_neuron.basal_dendrite))]
     )
     branches.extend(tmd_neuron.apical_dendrite)
     branches_type.extend(

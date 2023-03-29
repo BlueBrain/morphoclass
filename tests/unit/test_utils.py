@@ -117,7 +117,7 @@ def test_tmd_to_morphio():
 def test_read_apical_from_file(data_path, mtype, neuron_file, n_apicals, monkeypatch):
     def load_neuron_new(path):
         neuron = load_neuron(path)
-        tree = neuron.apical[0]
+        tree = neuron.apical_dendrite[0]
         neuron.apical = []
         for _ in range(n_apicals):
             new_tree = tree.copy_tree()
