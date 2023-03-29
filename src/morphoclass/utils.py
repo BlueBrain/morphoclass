@@ -606,8 +606,9 @@ def read_apical_from_file(path, label, nodes_features=None, inverted_apical=True
 
                     elif node == "path_dist":
                         distances = neuron.apical_dendrite[0].get_point_path_distances()
-                        starts_points, ends_points = \
-                            neuron.apical_dendrite[0].get_sections_2()
+                        starts_points, ends_points = neuron.apical_dendrite[
+                            0
+                        ].get_sections_2()
                         path_lengths = np.zeros([len(ends_points) + 1])
                         path_lengths[0] = distances[0]
                         path_lengths[1:] = distances[ends_points]
