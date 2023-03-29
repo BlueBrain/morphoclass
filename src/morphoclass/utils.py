@@ -277,9 +277,9 @@ def from_tmd_to_morphio(tmd_neuron):
     branches_type.extend(
         [SectionType.basal_dendrite for _ in range(len(tmd_neuron.basal))]
     )
-    branches.extend(tmd_neuron.apical)
+    branches.extend(tmd_neuron.apical_dendrite)
     branches_type.extend(
-        [SectionType.apical_dendrite for _ in range(len(tmd_neuron.apical))]
+        [SectionType.apical_dendrite for _ in range(len(tmd_neuron.apical_dendrite))]
     )
 
     for nb_branch, branch in enumerate(branches):
@@ -557,24 +557,24 @@ def read_apical_from_file(path, label, nodes_features=None, inverted_apical=True
 
     # Check how many apicals the neuron has, and handle them accordingly
     # Extract radial distances and the adjacency matrix.
-    if not hasattr(neuron, "apical_dendrite") or len(neuron.apical) == 0:
+    if not hasattr(neuron, "apical_dendrite") or len(neuron.apical_dendrite) == 0:
         raise ValueError(f"Neuron {neuron.name} has no apical tree data")
-    elif len(neuron.apical) == 2:
+    elif len(neuron.apical_dendrite) == 2:
         # TODO: Implement feature extraction for bitufted cells as well,
         #       at the moment the is not handled at all! Basically one needs
         #       to do the same as in the `else` block below.
         #       Actually, the whole feature extraction should be implemented
         #       in a more streamlined way as a pipe/chain of transformers
         #       and should be able to treat the general case.
-        radial_distances, adj = _fuse_simplified_bitufted_apicals(*neuron.apical)
+        radial_distances, adj = _fuse_simplified_bitufted_apicals(*neuron.apical_dendrite)
         all_features = torch.from_numpy(radial_distances)
         all_features = all_features.to(torch.float32).unsqueeze(dim=1)
-    elif len(neuron.apical) > 2:
+    elif len(neuron.apical_dendrite) > 2:
         raise NotImplementedError(
             "Handling of more than two apical trees is not supported"
         )
     else:
-        tree = neuron.apical[0].extract_simplified()
+        tree = neuron.apical_dendrite[0].extract_simplified()
         if isinstance(nodes_features, list):
             if len(nodes_features) > 0:
                 for num_node, node in enumerate(nodes_features):
@@ -603,8 +603,8 @@ def read_apical_from_file(path, label, nodes_features=None, inverted_apical=True
                         features = torch.tensor(vertical_dist, dtype=torch.float32).t()
 
                     elif node == "path_dist":
-                        distances = neuron.apical[0].get_point_path_distances()
-                        starts_points, ends_points = neuron.apical[0].get_sections_2()
+                        distances = neuron.apical_dendrite[0].get_point_path_distances()
+                        starts_points, ends_points = neuron.apical_dendrite[0].get_sections_2()
                         path_lengths = np.zeros([len(ends_points) + 1])
                         path_lengths[0] = distances[0]
                         path_lengths[1:] = distances[ends_points]
