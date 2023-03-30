@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Implementation of the `morphoclass predict-after-extraction` CLI command."""
-import functools
 import logging
 import textwrap
 
@@ -106,7 +105,6 @@ def predict(features_dir, checkpoint_file, output_dir, results_name):
             click.secho("You chose to overwrite, proceeding...", fg="red")
 
     click.secho("✔ Loading checkpoint...", fg="green", bold=True)
-    import numpy as np
     import torch
 
     from morphoclass.data import MorphologyDataset
@@ -137,7 +135,7 @@ def predict(features_dir, checkpoint_file, output_dir, results_name):
         predictions = predict_xgb(dataset, checkpoint)
     else:
         click.secho(
-            f"Model not recognized: {model_name}. Stopping.",
+            f"Model not recognized: {model_class}. Stopping.",
             fg="red",
             bold=True,
             nl=False,
@@ -176,7 +174,7 @@ def predict_gnn(dataset, checkpoint):
     logits
         The predictions logits.
     """
-    import torch
+    import numpy as np
 
     import morphoclass.models
 
@@ -207,8 +205,6 @@ def predict_cnn(dataset, checkpoint):
         The predictions logits.
     """
     import numpy as np
-    import torch
-    from torch.utils.data import DataLoader, TensorDataset
 
     import morphoclass.models
 
