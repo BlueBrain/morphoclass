@@ -9,10 +9,12 @@ Submodules
 
    morphoclass.console.cmd_evaluate
    morphoclass.console.cmd_extract_features
+   morphoclass.console.cmd_extract_features_and_predict
    morphoclass.console.cmd_morphometrics
    morphoclass.console.cmd_organise_dataset
    morphoclass.console.cmd_performance_table
    morphoclass.console.cmd_plot_dataset_stats
+   morphoclass.console.cmd_predict
    morphoclass.console.cmd_preprocess_dataset
    morphoclass.console.cmd_train
    morphoclass.console.cmd_xai

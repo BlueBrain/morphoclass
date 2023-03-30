@@ -45,7 +45,6 @@ class ConcateNet(nn.Module):
     """
 
     def __init__(self, n_node_features, n_classes, n_features_perslay, bn=False):
-
         super().__init__()
         self.n_node_features = n_node_features
         self.n_classes = n_classes
