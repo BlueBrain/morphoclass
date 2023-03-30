@@ -27,14 +27,13 @@ logger = logging.getLogger(__name__)
 )
 @click.help_option("-h", "--help")
 @click.option(
-    "-i",
-    "--input-csv",
+    "-f",
+    "--features-dir",
     required=True,
-    type=click.Path(exists=True, dir_okay=False),
+    type=click.Path(exists=True, dir_okay=True),
     help=textwrap.dedent(
     """
-    A CSV file with paths to the morphology files in the
-    first column
+    The path to the extracted features of the morphologies to classify
     """
     ).strip(),
 )
@@ -64,13 +63,13 @@ logger = logging.getLogger(__name__)
     type=click.STRING,
     help="The filename of the results file",
 )
-def cli(input_csv, checkpoint_file, output_dir, results_name):
+def cli(features_dir, checkpoint_file, output_dir, results_name):
     """Run the `deepm predict` CLI command.
 
     Parameters
     ----------
-    input_csv
-        The CSV file with the input data paths.
+    features_dir
+        The path to the features of the morphologies.
     checkpoint_file
         The path to the checkpoint file.
     output_dir
@@ -82,16 +81,16 @@ def cli(input_csv, checkpoint_file, output_dir, results_name):
     import pathlib
     from datetime import datetime
 
-    input_csv = pathlib.Path(input_csv).resolve()
+    features_dir = pathlib.Path(features_dir).resolve()
     output_dir = pathlib.Path(output_dir).resolve()
     checkpoint_file = pathlib.Path(checkpoint_file).resolve()
     if results_name is None:
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         results_name = f"results_{timestamp}"
     results_path = output_dir / (results_name + ".json")
-    click.secho(f"Input CSV   : {input_csv}", fg="yellow")
-    click.secho(f"Output file : {results_path}", fg="yellow")
-    click.secho(f"Checkpoint  : {checkpoint_file}", fg="yellow")
+    click.secho(f"Features Dir : {features_dir}", fg="yellow")
+    click.secho(f"Output file  : {results_path}", fg="yellow")
+    click.secho(f"Checkpoint   : {checkpoint_file}", fg="yellow")
     if results_path.exists():
         msg = f'Results file "{results_path}" exists, overwrite? (y/[n]) '
         click.secho(msg, fg="red", bold=True, nl=False)
@@ -107,6 +106,7 @@ def cli(input_csv, checkpoint_file, output_dir, results_name):
     import torch
 
     from morphoclass.data import MorphologyDataset
+    from morphoclass.data.morphology_data import MorphologyData
 
     checkpoint = torch.load(checkpoint_file, map_location=torch.device('cpu'))
     model_class = checkpoint["model_class"]
@@ -116,7 +116,10 @@ def cli(input_csv, checkpoint_file, output_dir, results_name):
         click.secho(f"Created on  : {timestamp}", fg="yellow")
 
     click.secho("✔ Loading data...", fg="green", bold=True)
-    dataset = MorphologyDataset.from_csv(csv_file=input_csv)
+    data = []
+    for path in sorted(features_dir.glob("*.features")):
+        data.append(MorphologyData.load(path))
+    dataset = MorphologyDataset(data)
     click.echo(f"> Dataset length: {len(dataset)}")
 
     click.secho("✔ Computing predictions...", fg="green", bold=True)
@@ -136,19 +139,18 @@ def cli(input_csv, checkpoint_file, output_dir, results_name):
             nl=False,
         )
         return
-    logger.info(f"Accuracy: {np.mean(predictions == dataset_pi[2]):.2f}")
 
     click.secho("✔ Exporting results...", fg="green", bold=True)
-    prediction_lables = {}
+    prediction_labels = {}
     for sample, sample_pred in zip(dataset.data, predictions):
-        sample_path = str(sample.file)
-        pred_label = dataset.class_dict[sample_pred]
-        prediction_lables[str(sample_path)] = pred_label
+        sample_path = str(sample.path)
+        pred_label = dataset.y_to_label[sample_pred]
+        prediction_labels[sample_path] = pred_label
 
     results = dict()
-    results["predictions"] = prediction_lables
+    results["predictions"] = prediction_labels
     results["checkpoint_path"] = str(checkpoint_file)
-    results["model"] = model_name
+    results["model"] = model_class
     with open(results_path, "w") as fp:
         json.dump(results, fp)
 
@@ -178,7 +180,7 @@ def predict_gnn(dataset, checkpoint):
     model = model_cls(**checkpoint["model_params"])
     model.load_state_dict(checkpoint["all"]["model"])
     model.eval()
-    logits = [model_cnn(sample) for sample in dataset]
+    logits = [model(sample) for sample in dataset]
 
     return np.array(logits)
 
@@ -203,23 +205,14 @@ def predict_cnn(dataset, checkpoint):
     from torch.utils.data import DataLoader, TensorDataset
 
     import morphoclass.models
-    from morphoclass.data import MorphologyDataLoader
 
     # Model
     model_cls = getattr(morphoclass.models, checkpoint["model_class"].rpartition(".")[2])
     model = model_cls(**checkpoint["model_params"])
     model.load_state_dict(checkpoint["all"]["model"])
 
-    # Data
-    loader = MorphologyDataLoader(dataset)
-
     # Evaluation
-    model.eval()
-    logits = []
-    with torch.no_grad():
-        for batch in iter(loader):
-            batch_logits = model(batch).numpy()
-            logits.append(batch_logits)
+    logits = [model(sample.image).detach().numpy() for sample in dataset]
     if len(logits) > 0:
         logits = np.concatenate(logits)
     else:
@@ -244,5 +237,5 @@ def predict_xgb(dataset, checkpoint):
         The predictions.
     """
     model = checkpoint["all"]["model"]
-    predictions = [model.predict(sample.image.numpy().reshape(1, 10000)) for sample in dataset]
+    predictions = [model.predict(sample.image.numpy().reshape(1, 10000))[0] for sample in dataset]
     return predictions

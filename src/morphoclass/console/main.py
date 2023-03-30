@@ -26,6 +26,7 @@ from morphoclass.console import cmd_morphometrics
 from morphoclass.console import cmd_organise_dataset
 from morphoclass.console import cmd_performance_table
 from morphoclass.console import cmd_plot_dataset_stats
+from morphoclass.console import cmd_predict
 from morphoclass.console import cmd_preprocess_dataset
 from morphoclass.console import cmd_train
 from morphoclass.console import cmd_xai
@@ -137,6 +138,7 @@ cli.add_command(outlier_detection.cli)
 cli.add_command(cmd_xai.cli)
 cli.add_command(cmd_organise_dataset.cli)
 cli.add_command(cmd_plot_dataset_stats.cli)
+cli.add_command(cmd_predict.cli)
 cli.add_command(cmd_preprocess_dataset.cli)
 cli.add_command(cmd_train.cli)
 cli.add_command(cmd_evaluate.cli)
