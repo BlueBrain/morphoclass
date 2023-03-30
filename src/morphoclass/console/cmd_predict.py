@@ -64,7 +64,7 @@ logger = logging.getLogger(__name__)
     help="The filename of the results file",
 )
 def cli(features_dir, checkpoint_file, output_dir, results_name):
-    """Run the `deepm predict` CLI command.
+    """Run the `morphoclass predict` CLI command.
 
     Parameters
     ----------
