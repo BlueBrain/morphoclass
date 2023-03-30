@@ -167,7 +167,7 @@ def predict(features_dir, checkpoint_file, output_dir, results_name):
     results = {
         "predictions": prediction_labels,
         "checkpoint_path": str(checkpoint_file),
-        "model": model_class
+        "model": model_class,
     }
     with open(results_path, "w") as fp:
         json.dump(results, fp)
