@@ -129,17 +129,8 @@ def cli(
 
 def extract_features(
     csv_path: StrPath,
-    neurite_type: Literal["apical", "axon", "basal", "all"],
-    feature: Literal[
-        "graph-rd",
-        "graph-proj",
-        "diagram-tmd-rd",
-        "diagram-tmd-proj",
-        "diagram-deepwalk",
-        "image-tmd-rd",
-        "image-tmd-proj",
-        "image-deepwalk",
-    ],
+    neurite_type: str,
+    feature: str,
     output_dir: StrPath,
     orient: bool,
     no_simplify_graph: bool,
