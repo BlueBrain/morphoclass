@@ -145,7 +145,7 @@ def extract_features(
     no_simplify_graph: bool,
     keep_diagram: bool,
     force: bool,
-):
+) -> None:
     """Extract morphology features."""
     output_dir = pathlib.Path(output_dir)
     if output_dir.exists() and not force:

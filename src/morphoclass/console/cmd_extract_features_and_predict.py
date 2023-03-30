@@ -130,8 +130,8 @@ def cli(input_csv, checkpoint_file, output_dir, results_name):
 
     extract_features(
         input_csv,
-        neurite_type,
-        feature,
+        neurite_type[0],
+        feature[0],
         output_dir / "features",
         False,
         False,
