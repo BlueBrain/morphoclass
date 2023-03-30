@@ -15,7 +15,6 @@ Submodules
    morphoclass.console.cmd_performance_table
    morphoclass.console.cmd_plot_dataset_stats
    morphoclass.console.cmd_predict
-   morphoclass.console.cmd_predict_bu
    morphoclass.console.cmd_preprocess_dataset
    morphoclass.console.cmd_train
    morphoclass.console.cmd_xai
