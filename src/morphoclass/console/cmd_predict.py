@@ -63,7 +63,7 @@ logger = logging.getLogger(__name__)
     help="The filename of the results file",
 )
 def cli(features_dir, checkpoint_file, output_dir, results_name):
-    """Run the `morphoclass predict` CLI command.
+    """Run the `morphoclass predict-after-extraction` CLI command.
 
     Parameters
     ----------
@@ -80,6 +80,19 @@ def cli(features_dir, checkpoint_file, output_dir, results_name):
 
 
 def predict(features_dir, checkpoint_file, output_dir, results_name):
+    """Run the predict command.
+
+    Parameters
+    ----------
+    features_dir
+        The path to the features of the morphologies.
+    checkpoint_file
+        The path to the checkpoint file.
+    output_dir
+        The path to the output directory.
+    results_name
+        File prefix for results output files.
+    """
     import json
     import pathlib
     from datetime import datetime
@@ -149,10 +162,11 @@ def predict(features_dir, checkpoint_file, output_dir, results_name):
         pred_label = dataset.y_to_label[sample_pred]
         prediction_labels[sample_path] = pred_label
 
-    results = dict()
-    results["predictions"] = prediction_labels
-    results["checkpoint_path"] = str(checkpoint_file)
-    results["model"] = model_class
+    results = {
+        "predictions": prediction_labels,
+        "checkpoint_path": str(checkpoint_file),
+        "model": model_class
+    }
     with open(results_path, "w") as fp:
         json.dump(results, fp)
 

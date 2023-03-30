@@ -114,6 +114,7 @@ def cli(
     keep_diagram: bool,
     force: bool,
 ) -> None:
+    """Extract morphology features."""
     return extract_features(
         csv_path,
         neurite_type,
