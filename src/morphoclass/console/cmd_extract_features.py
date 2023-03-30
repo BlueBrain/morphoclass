@@ -114,6 +114,37 @@ def cli(
     keep_diagram: bool,
     force: bool,
 ) -> None:
+
+    return extract_features(
+        csv_path,
+        neurite_type,
+        feature,
+        output_dir,
+        orient,
+        no_simplify_graph,
+        keep_diagram,
+        force,
+        )
+
+def extract_features(
+    csv_path: StrPath,
+    neurite_type: Literal["apical", "axon", "basal", "all"],
+    feature: Literal[
+        "graph-rd",
+        "graph-proj",
+        "diagram-tmd-rd",
+        "diagram-tmd-proj",
+        "diagram-deepwalk",
+        "image-tmd-rd",
+        "image-tmd-proj",
+        "image-deepwalk",
+    ],
+    output_dir: StrPath,
+    orient: bool,
+    no_simplify_graph: bool,
+    keep_diagram: bool,
+    force: bool,
+)
     """Extract morphology features."""
     output_dir = pathlib.Path(output_dir)
     if output_dir.exists() and not force:

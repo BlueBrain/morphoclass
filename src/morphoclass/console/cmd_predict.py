@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Implementation of the `morphoclass predict` CLI command."""
+"""Implementation of the `morphoclass predict-after-extraction` CLI command."""
 import functools
 import logging
 import textwrap
@@ -22,8 +22,8 @@ logger = logging.getLogger(__name__)
 
 
 @click.command(
-    name="predict",
-    help="Run inference.",
+    name="predict-after-extraction",
+    help="Run inference from features directory.",
 )
 @click.help_option("-h", "--help")
 @click.option(
@@ -77,6 +77,9 @@ def cli(features_dir, checkpoint_file, output_dir, results_name):
     results_name
         File prefix for results output files.
     """
+    return predict(features_dir, checkpoint_file, output_dir, results_name)
+
+def predict(features_dir, checkpoint_file, output_dir, results_name)
     import json
     import pathlib
     from datetime import datetime

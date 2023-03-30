@@ -22,6 +22,7 @@ import click
 import morphoclass
 from morphoclass.console import cmd_evaluate
 from morphoclass.console import cmd_extract_features
+from morphoclass.console import cmd_extract_features_and_predict
 from morphoclass.console import cmd_morphometrics
 from morphoclass.console import cmd_organise_dataset
 from morphoclass.console import cmd_performance_table
@@ -144,4 +145,5 @@ cli.add_command(cmd_train.cli)
 cli.add_command(cmd_evaluate.cli)
 cli.add_command(cmd_performance_table.cli)
 cli.add_command(cmd_extract_features.cli)
+cli.add_command(cmd_extract_features_and_predict.cli)
 cli.add_command(cmd_morphometrics.cli)
