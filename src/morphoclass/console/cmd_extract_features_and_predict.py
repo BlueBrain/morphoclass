@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Implementation of the `morphoclass predict` CLI command."""
-import functools
 import logging
 import textwrap
 
@@ -32,9 +31,9 @@ logger = logging.getLogger(__name__)
     required=True,
     type=click.Path(exists=True, dir_okay=True),
     help=textwrap.dedent(
-    """
-    The CSV path with the path to all the morphologies to classify.
-    """
+        """
+        The CSV path with the path to all the morphologies to classify.
+        """
     ).strip(),
 )
 @click.option(
@@ -44,9 +43,9 @@ logger = logging.getLogger(__name__)
     required=True,
     type=click.Path(exists=True, file_okay=True, dir_okay=False),
     help=textwrap.dedent(
-    """
-    The path to the pre-trained model checkpoint.
-    """
+        """
+        The path to the pre-trained model checkpoint.
+        """
     ).strip(),
 )
 @click.option(
@@ -77,7 +76,6 @@ def cli(input_csv, checkpoint_file, output_dir, results_name):
     results_name
         File prefix for results output files.
     """
-    import json
     import pathlib
     from datetime import datetime
 
@@ -102,15 +100,16 @@ def cli(input_csv, checkpoint_file, output_dir, results_name):
             click.secho("You chose to overwrite, proceeding...", fg="red")
 
     click.secho("✔ Loading checkpoint...", fg="green", bold=True)
-    import numpy as np
     import torch
 
     from morphoclass.console.cmd_extract_features import extract_features
     from morphoclass.console.cmd_predict import predict
 
-    checkpoint = torch.load(checkpoint_file, map_location=torch.device('cpu'))
+    checkpoint = torch.load(checkpoint_file, map_location=torch.device("cpu"))
     neurites = ["apical", "axon", "basal", "all"]
-    neurite_type = [neurite for neurite in neurites if neurite in str(checkpoint["features_dir"])]
+    neurite_type = [
+        neurite for neurite in neurites if neurite in str(checkpoint["features_dir"])
+    ]
     features_type = [
         "graph-rd",
         "graph-proj",
@@ -121,7 +120,11 @@ def cli(input_csv, checkpoint_file, output_dir, results_name):
         "image-tmd-proj",
         "image-deepwalk",
     ]
-    feature = [feature for feature in features_type if feature in str(checkpoint["features_dir"])]
+    feature = [
+        feature
+        for feature in features_type
+        if feature in str(checkpoint["features_dir"])
+    ]
 
     extract_features(
         input_csv,

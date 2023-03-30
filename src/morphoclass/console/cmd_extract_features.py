@@ -114,7 +114,6 @@ def cli(
     keep_diagram: bool,
     force: bool,
 ) -> None:
-
     return extract_features(
         csv_path,
         neurite_type,
@@ -124,7 +123,8 @@ def cli(
         no_simplify_graph,
         keep_diagram,
         force,
-        )
+    )
+
 
 def extract_features(
     csv_path: StrPath,
@@ -144,7 +144,7 @@ def extract_features(
     no_simplify_graph: bool,
     keep_diagram: bool,
     force: bool,
-)
+):
     """Extract morphology features."""
     output_dir = pathlib.Path(output_dir)
     if output_dir.exists() and not force:

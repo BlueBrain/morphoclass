@@ -32,7 +32,6 @@ class AddRandomPointsToReductionMask:
     """
 
     def __init__(self, n_points):
-
         self.n_points = n_points
 
     @require_field("tmd_neurites_masks")

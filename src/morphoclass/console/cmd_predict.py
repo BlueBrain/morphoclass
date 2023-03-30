@@ -32,7 +32,7 @@ logger = logging.getLogger(__name__)
     required=True,
     type=click.Path(exists=True, dir_okay=True),
     help=textwrap.dedent(
-    """
+        """
     The path to the extracted features of the morphologies to classify
     """
     ).strip(),
@@ -44,7 +44,7 @@ logger = logging.getLogger(__name__)
     required=True,
     type=click.Path(exists=True, file_okay=True, dir_okay=False),
     help=textwrap.dedent(
-    """
+        """
     The path to the pre-trained model checkpoint.
     """
     ).strip(),
@@ -79,7 +79,8 @@ def cli(features_dir, checkpoint_file, output_dir, results_name):
     """
     return predict(features_dir, checkpoint_file, output_dir, results_name)
 
-def predict(features_dir, checkpoint_file, output_dir, results_name)
+
+def predict(features_dir, checkpoint_file, output_dir, results_name):
     import json
     import pathlib
     from datetime import datetime
@@ -111,7 +112,7 @@ def predict(features_dir, checkpoint_file, output_dir, results_name)
     from morphoclass.data import MorphologyDataset
     from morphoclass.data.morphology_data import MorphologyData
 
-    checkpoint = torch.load(checkpoint_file, map_location=torch.device('cpu'))
+    checkpoint = torch.load(checkpoint_file, map_location=torch.device("cpu"))
     model_class = checkpoint["model_class"]
     click.secho(f"Model       : {model_class}", fg="yellow")
     if "metadata" in checkpoint:
@@ -179,7 +180,9 @@ def predict_gnn(dataset, checkpoint):
 
     import morphoclass.models
 
-    model_cls = getattr(morphoclass.models, checkpoint["model_class"].rpartition(".")[2])
+    model_cls = getattr(
+        morphoclass.models, checkpoint["model_class"].rpartition(".")[2]
+    )
     model = model_cls(**checkpoint["model_params"])
     model.load_state_dict(checkpoint["all"]["model"])
     model.eval()
@@ -210,7 +213,9 @@ def predict_cnn(dataset, checkpoint):
     import morphoclass.models
 
     # Model
-    model_cls = getattr(morphoclass.models, checkpoint["model_class"].rpartition(".")[2])
+    model_cls = getattr(
+        morphoclass.models, checkpoint["model_class"].rpartition(".")[2]
+    )
     model = model_cls(**checkpoint["model_params"])
     model.load_state_dict(checkpoint["all"]["model"])
 
@@ -240,5 +245,7 @@ def predict_xgb(dataset, checkpoint):
         The predictions.
     """
     model = checkpoint["all"]["model"]
-    predictions = [model.predict(sample.image.numpy().reshape(1, 10000))[0] for sample in dataset]
+    predictions = [
+        model.predict(sample.image.numpy().reshape(1, 10000))[0] for sample in dataset
+    ]
     return predictions
