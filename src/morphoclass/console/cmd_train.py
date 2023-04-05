@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
     name="train-after-extraction",
     help="""
     Train a morphology classification model.
-    Features need to be first extracted."""
+    Features need to be first extracted.""",
 )
 @click.option(
     "--features-dir",
