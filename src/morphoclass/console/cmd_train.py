@@ -70,6 +70,22 @@ def cli(
     checkpoint_dir: StrPath,
     force: bool,
 ) -> None:
+    """Training and evaluation of the model."""
+    return train(
+        features_dir,
+        model_config,
+        splitter_config,
+        checkpoint_dir,
+        force,
+    )
+
+def train(
+    features_dir: StrPath,
+    model_config: StrPath,
+    splitter_config: StrPath,
+    checkpoint_dir: StrPath,
+    force: bool,
+) -> None:
     """Training and evaluation of the model.
 
     Parameters
