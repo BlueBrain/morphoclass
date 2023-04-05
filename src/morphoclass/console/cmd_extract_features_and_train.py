@@ -16,9 +16,9 @@ from __future__ import annotations
 
 import logging
 import pathlib
+from typing import Literal
 
 import click
-import yaml
 
 from morphoclass.types import StrPath
 

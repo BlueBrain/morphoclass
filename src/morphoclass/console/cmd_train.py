@@ -27,8 +27,8 @@ logger = logging.getLogger(__name__)
 
 @click.command(
     name="train-after-extraction",
-    help=
-    """Train a morphology classification model.
+    help="""
+    Train a morphology classification model.
     Features need to be first extracted."""
 )
 @click.option(
