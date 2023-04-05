@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Implementation of the `morphoclass train` CLI command."""
+"""Implementation of the `morphoclass train-after-extraction` CLI command."""
 from __future__ import annotations
 
 import logging
@@ -25,7 +25,12 @@ from morphoclass.types import StrPath
 logger = logging.getLogger(__name__)
 
 
-@click.command(name="train", help="Train a morphology classification model.")
+@click.command(
+    name="train-after-extraction",
+    help=
+    """Train a morphology classification model.
+    Features need to be first extracted."""
+)
 @click.option(
     "--features-dir",
     type=click.Path(exists=True, file_okay=False),
