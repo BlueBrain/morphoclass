@@ -117,13 +117,13 @@ def test_tmd_to_morphio():
 def test_read_apical_from_file(data_path, mtype, neuron_file, n_apicals, monkeypatch):
     def load_neuron_new(path):
         neuron = load_neuron(path)
-        tree = neuron.apical[0]
-        neuron.apical = []
+        tree = neuron.apical_dendrite[0]
+        neuron.apical_dendrite = []
         for _ in range(n_apicals):
             new_tree = tree.copy_tree()
             # Invert the y coordinate in order to test inverted pyramidal cells
             new_tree.y = -new_tree.y
-            neuron.apical.append(new_tree)
+            neuron.apical_dendrite.append(new_tree)
         return neuron
 
     monkeypatch.setattr("morphoclass.utils.load_neuron", load_neuron_new)

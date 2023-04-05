@@ -97,7 +97,7 @@ def test_extract_tmd_neurites(capsys):
         pre_transform=ExtractTMDNeuron(),
         transform=ExtractTMDNeurites(neurite_type="apical", from_tmd_neuron=True),
     )
-    dataset[0].tmd_neuron.apical = []
+    dataset[0].tmd_neuron.apical_dendrite = []
     data = dataset[0]
     _, err = capsys.readouterr()
     neuron_name = pathlib.Path(data.path).stem.strip()

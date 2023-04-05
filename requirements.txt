@@ -25,7 +25,7 @@ scikit-learn==1.0.1
 scipy==1.7.3
 seaborn==0.11.0
 shap[plots]==0.39.0
-tmd==2.1.0
+tmd==2.2.0
 torch==1.7.1
 tqdm==4.53.0
 umap-learn==0.5.1

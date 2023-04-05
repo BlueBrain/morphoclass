@@ -47,9 +47,9 @@ class ExtractTMDNeurites:
         "all": SectionType.all,
     }
     tmd_types = {
-        "apical": "apical",
+        "apical": "apical_dendrite",
         "axon": "axon",
-        "basal": "basal",
+        "basal": "basal_dendrite",
         "neurites": "neurites",
         "all": "neurites",
     }
