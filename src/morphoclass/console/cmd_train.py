@@ -79,6 +79,7 @@ def cli(
         force,
     )
 
+
 def train(
     features_dir: StrPath,
     model_config: StrPath,
