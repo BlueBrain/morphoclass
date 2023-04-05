@@ -131,4 +131,5 @@ def cli(
         model_config,
         splitter_config,
         output_dir / "checkpoints",
+        force,
     )
