@@ -158,7 +158,7 @@ def test_inter_rater_score(targets, predictions, kind, score):
 
 
 def test_inter_rater_score_fail(targets, predictions):
-    with pytest.raises(Exception):
+    with pytest.raises(ValueError):
         morphoclass.metrics.inter_rater_score(targets, predictions, kind="invalid")
 
 
