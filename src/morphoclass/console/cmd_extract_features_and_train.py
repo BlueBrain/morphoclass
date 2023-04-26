@@ -117,8 +117,8 @@ def cli(
 
     extract_features(
         input_csv,
-        neurite_type[0],
-        feature[0],
+        neurite_type,
+        feature,
         output_dir / "features",
         orient,
         no_simplify_graph,
