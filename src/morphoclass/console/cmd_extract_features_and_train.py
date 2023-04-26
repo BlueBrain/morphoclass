@@ -65,13 +65,21 @@ logger = logging.getLogger(__name__)
     "--model-config",
     type=click.Path(exists=True, dir_okay=False),
     required=True,
-    help="The model configuration file.",
+    help="""
+    The model configuration file.
+    For inspiration, model configuration files can be found under 
+    dvc/training/configs/
+    """,
 )
 @click.option(
     "--splitter-config",
     type=click.Path(exists=True, dir_okay=False),
     required=True,
-    help="The splitter configuration file.",
+    help="""
+    The splitter configuration file.
+    For inspiration, splitter configuration files can be found under 
+    dvc/training/configs/
+    """,
 )
 @click.option(
     "--output-dir",
