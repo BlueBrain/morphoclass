@@ -67,7 +67,7 @@ logger = logging.getLogger(__name__)
     required=True,
     help="""
     The model configuration file.
-    For inspiration, model configuration files can be found under 
+    For inspiration, model configuration files can be found under
     dvc/training/configs/
     """,
 )
@@ -77,7 +77,7 @@ logger = logging.getLogger(__name__)
     required=True,
     help="""
     The splitter configuration file.
-    For inspiration, splitter configuration files can be found under 
+    For inspiration, splitter configuration files can be found under
     dvc/training/configs/
     """,
 )
