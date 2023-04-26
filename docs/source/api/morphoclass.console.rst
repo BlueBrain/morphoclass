@@ -9,6 +9,7 @@ Submodules
 
    morphoclass.console.cmd_evaluate
    morphoclass.console.cmd_extract_features
+   morphoclass.console.cmd_extract_features_and_train
    morphoclass.console.cmd_morphometrics
    morphoclass.console.cmd_organise_dataset
    morphoclass.console.cmd_performance_table
