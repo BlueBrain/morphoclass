@@ -1,0 +1,22 @@
+neurite:
+  number_of_sections:
+  - mean
+  local_bifurcation_angles:
+  - mean
+  partition_asymmetry:
+  - mean
+  section_tortuosity:
+  - mean
+  diameter_power_relations:
+  - mean
+  sholl_frequency:
+  - mean
+  - max
+  segment_radii:
+  - mean
+  segment_taper_rates:
+  - mean
+neurite_type:
+- AXON
+- BASAL_DENDRITE
+- APICAL_DENDRITE

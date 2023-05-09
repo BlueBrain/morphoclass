@@ -1,0 +1,26 @@
+morphology:
+  total_length_per_neurite:
+    - mean
+  total_area_per_neurite:
+    - mean
+  total_volume_per_neurite:
+    - mean
+  total_depth:
+  - mean
+  total_height:
+  - mean
+  total_width:
+  - mean
+neurite:
+  number_of_sections:
+  - sum
+  section_bif_lengths:
+  - mean
+  - std
+  section_path_distances:
+  - max
+  section_radial_distances:
+  - max
+neurite_type:
+- BASAL_DENDRITE
+- APICAL_DENDRITE
