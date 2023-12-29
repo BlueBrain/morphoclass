@@ -21,7 +21,7 @@ First we define a helper function for data loading::
 
     def load_dataset(input_csv, fitted_scaler=None):
         pre_transform = mc.transforms.Compose([
-            mc.transforms.EExtractTMDNeurites(neurite_type='apical'),
+            mc.transforms.ExtractTMDNeurites(neurite_type='apical'),
             mc.transforms.BranchingOnlyNeurites(),
             mc.transforms.ExtractEdgeIndex(),
         ])
